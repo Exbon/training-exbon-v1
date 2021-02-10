@@ -32,7 +32,7 @@ const dashboardRoutes = [
     rtlName: "لوحة القيادة",
     icon: Dashboard,
 
-    layout: "/dashboard",
+    layout: "/home",
   },
   // {
   //   path: "/user-profile",
