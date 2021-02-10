@@ -136,7 +136,7 @@ const MSProject = () => {
             >
               {data.allProject.map(item => {
                 return (
-                  <option value={item.ProjectID}>
+                  <option value={item.ProjectID} key={item.ProjectID}>
                     {item.ProjectID} ({item.Status})
                   </option>
                 );
