@@ -123,6 +123,7 @@ const MSProject = () => {
                 marginLeft: "20px",
                 marginTop: 0,
                 marginBottom: 0,
+                fontFamily: "Roboto, sans-serif",
               }}
             >
               ProjectID
@@ -132,6 +133,7 @@ const MSProject = () => {
               onChange={handleSelectedProject}
               style={{
                 marginLeft: "50px",
+                fontFamily: "Roboto, sans-serif",
               }}
             >
               {data.allProject.map(item => {
@@ -156,6 +158,7 @@ const MSProject = () => {
               variant="outlined"
               style={{
                 marginLeft: "15px",
+                fontFamily: "Roboto, sans-serif",
               }}
             >
               1 week
