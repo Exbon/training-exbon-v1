@@ -23,12 +23,17 @@ export default function Footer(props) {
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a href="#company" className={classes.block}>
-                Daily Report
+                Company
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a href="#portfolio" className={classes.block}>
-                Calendar
+                Portfolio
+              </a>
+            </ListItem>
+            <ListItem className={classes.inlineBlock}>
+              <a href="#blog" className={classes.block}>
+                Blog
               </a>
             </ListItem>
           </List>
@@ -36,9 +41,14 @@ export default function Footer(props) {
         <p className={classes.right}>
           <span>
             &copy; {1900 + new Date().getYear()}{" "}
-            <a href="" target="_blank" className={classes.a}>
-              Exbon Development, Inc.
+            <a
+              href="https://www.creative-tim.com?ref=njsmd-footer"
+              target="_blank"
+              className={classes.a}
+            >
+              Creative Tim
             </a>
+            , made with love for a better web
           </span>
         </p>
       </div>

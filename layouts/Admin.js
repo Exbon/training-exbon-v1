@@ -16,7 +16,7 @@ import routes from "routes.js";
 import styles from "assets/jss/nextjs-material-dashboard/layouts/adminStyle.js";
 
 import bgImage from "assets/img/sidebar-2.jpg";
-import logo from "assets/img/reactlogo.png";
+import logo from "assets/img/exbon logo.png";
 
 let ps;
 
@@ -33,10 +33,10 @@ export default function Admin({ children, ...rest }) {
   const [color, setColor] = React.useState("white");
   const [fixedClasses, setFixedClasses] = React.useState("dropdown show");
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const handleImageClick = (image) => {
+  const handleImageClick = image => {
     setImage(image);
   };
-  const handleColorClick = (color) => {
+  const handleColorClick = color => {
     setColor(color);
   };
   const handleFixedClick = () => {
@@ -79,7 +79,7 @@ export default function Admin({ children, ...rest }) {
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
-        logoText={"Creative Tim"}
+        logoText={"Exbon"}
         logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}
