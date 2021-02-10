@@ -22,12 +22,15 @@ export default function Footer(props) {
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a href="#company" className={classes.block}>
+              <a
+                href="https://dailyreport.exbon.com/"
+                className={classes.block}
+              >
                 Daily Report
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a href="#portfolio" className={classes.block}>
+              <a href="/" className={classes.block}>
                 Calendar
               </a>
             </ListItem>

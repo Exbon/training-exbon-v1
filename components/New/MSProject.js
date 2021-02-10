@@ -66,6 +66,7 @@ const MSProject = () => {
           <Loader
             style={{
               marginTop: "50px",
+              marginBottom: "50px",
             }}
             type="Oval"
             color="#82ca9d"
@@ -113,6 +114,8 @@ const MSProject = () => {
                 marginTop: 0,
                 marginBottom: 0,
                 fontFamily: "Roboto, sans-serif",
+                color: "#74646e",
+                fontWeight: 500,
               }}
             >
               ProjectID
@@ -123,6 +126,12 @@ const MSProject = () => {
               style={{
                 marginLeft: "50px",
                 fontFamily: "Roboto, sans-serif",
+                display: "inline-block",
+                color: "#74646e",
+                border: "1px solid #c8bfc4",
+                borderRadius: "4px",
+                boxShadow: "inset 1px 1px 2px #ddd8dc",
+                background: "#fff",
               }}
             >
               {data.allProject.map(item => {
@@ -152,6 +161,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "15px",
                 fontFamily: "Roboto, sans-serif",
+                color: data.selectRange === "1week" ? "dodgerblue" : "grey",
               }}
             >
               1 week
@@ -166,6 +176,8 @@ const MSProject = () => {
               variant="outlined"
               style={{
                 marginLeft: "50px",
+                fontFamily: "Roboto, sans-serif",
+                color: data.selectRange === "1month" ? "dodgerblue" : "grey",
               }}
             >
               1 month
@@ -180,6 +192,8 @@ const MSProject = () => {
               variant="outlined"
               style={{
                 marginLeft: "50px",
+                fontFamily: "Roboto, sans-serif",
+                color: data.selectRange === "3months" ? "dodgerblue" : "grey",
               }}
             >
               3 months
@@ -194,6 +208,8 @@ const MSProject = () => {
               variant="outlined"
               style={{
                 marginLeft: "50px",
+                fontFamily: "Roboto, sans-serif",
+                color: data.selectRange === "1year" ? "dodgerblue" : "grey",
               }}
             >
               1 year
