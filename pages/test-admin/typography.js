@@ -2,7 +2,7 @@ import React from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // layout for this page
-import Admin from "layouts/Admin.js";
+import Admin from "layouts/Admin copy.js";
 // core components
 import Quote from "components/Typography/Quote.js";
 import Muted from "components/Typography/Muted.js";

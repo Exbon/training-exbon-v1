@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Close from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
 // layout for this page
-import Admin from "layouts/Admin.js";
+import Admin from "layouts/Admin copy.js";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";

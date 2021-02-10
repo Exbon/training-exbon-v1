@@ -17,7 +17,7 @@ import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
 // layout for this page
-import Admin from "layouts/Admin.js";
+import Admin from "layouts/Admin copy.js";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -46,7 +46,7 @@ function Dashboard() {
   const classes = useStyles();
   return (
     <div>
-      {/* <GridContainer>
+      <GridContainer>
         <GridItem xs={12} sm={6} md={3}>
           <Card>
             <CardHeader color="warning" stats icon>
@@ -63,7 +63,7 @@ function Dashboard() {
                 <Danger>
                   <Warning />
                 </Danger>
-                <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                <a href="#pablo" onClick={e => e.preventDefault()}>
                   Get more space
                 </a>
               </div>
@@ -260,7 +260,7 @@ function Dashboard() {
             </CardBody>
           </Card>
         </GridItem>
-      </GridContainer> */}
+      </GridContainer>
     </div>
   );
 }

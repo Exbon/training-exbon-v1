@@ -14,19 +14,8 @@ import {
 import { Button } from "@material-ui/core";
 
 const MSProject = () => {
-  // const data = [
-  //   { date: "01/01/2020", "Work Completion": 15 },
-  //   { date: "02/01/2020", "Work Completion": 20 },
-  //   { date: "03/01/2020", "Work Completion": 24 },
-  //   { date: "04/01/2020", "Work Completion": 37 },
-  //   { date: "05/01/2020", "Work Completion": 58 },
-  //   { date: "06/01/2020", "Work Completion": 69 },
-  //   { date: "07/01/2020", "Work Completion": 70 },
-  //   { date: "08/01/2020", "Work Completion": 89 },
-  // ];
-
   const [data, setData] = useState({
-    selectRange: "",
+    selectRange: "1week",
     allProject: [],
     graph1: [],
     graph2: [],
@@ -48,8 +37,8 @@ const MSProject = () => {
         headers: {},
       });
 
-      setData(() => ({
-        selectRange: "1week",
+      setData(prevState => ({
+        ...prevState,
         allProject: result.data.recordsets[0],
         graph1: result.data.recordsets[1],
         graph2: result.data.recordsets[2],
@@ -87,8 +76,8 @@ const MSProject = () => {
       ) : (
         <>
           <LineChart
-            width={700}
-            height={400}
+            width={980}
+            height={500}
             data={
               (data.selectRange === "1week" && data.graph1) ||
               (data.selectRange === "1month" && data.graph2) ||
@@ -145,9 +134,13 @@ const MSProject = () => {
               })}
             </select>
           </div>
-          <br />
 
-          <div style={{ marginBottom: "10px" }}>
+          <div
+            style={{
+              marginTop: "20px",
+              marginBottom: "10px",
+            }}
+          >
             <Button
               onClick={() =>
                 setData(prevState => ({

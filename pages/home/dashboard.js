@@ -49,7 +49,7 @@ function Dashboard() {
   const classes = useStyles();
   return (
     <div>
-      <Card style={{ width: "750px" }}>
+      <Card style={{ width: "1020px" }}>
         <MSProject />
       </Card>
     </div>

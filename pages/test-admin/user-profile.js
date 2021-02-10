@@ -3,7 +3,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 // layout for this page
-import Admin from "layouts/Admin.js";
+import Admin from "layouts/Admin copy.js";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -155,7 +155,7 @@ function UserProfile() {
         <GridItem xs={12} sm={12} md={4}>
           <Card profile>
             <CardAvatar profile>
-              <a href="#pablo" onClick={(e) => e.preventDefault()}>
+              <a href="#pablo" onClick={e => e.preventDefault()}>
                 <img src={avatar} alt="..." />
               </a>
             </CardAvatar>

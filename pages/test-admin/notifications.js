@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import AddAlert from "@material-ui/icons/AddAlert";
 // layout for this page
-import Admin from "layouts/Admin.js";
+import Admin from "layouts/Admin copy.js";
 // core components
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -67,7 +67,7 @@ function Notifications() {
       }
     };
   });
-  const showNotification = (place) => {
+  const showNotification = place => {
     switch (place) {
       case "tl":
         if (!tl) {
