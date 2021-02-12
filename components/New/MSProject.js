@@ -69,7 +69,7 @@ const MSProject = () => {
               marginBottom: "50px",
             }}
             type="Oval"
-            color="#82ca9d"
+            color="#1E90FF"
             height="100"
             width="100"
           />
