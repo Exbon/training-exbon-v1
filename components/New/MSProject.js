@@ -96,7 +96,7 @@ const MSProject = () => {
             <Line
               type="monotone"
               dataKey="WorkCompletion"
-              stroke="#82ca9d"
+              stroke="#1E90FF"
               strokeWidth={3}
               dot={data.selectRange === "1year" ? false : true}
               isAnimationActive={true}
@@ -161,7 +161,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "15px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "1week" ? "dodgerblue" : "grey",
+                color: data.selectRange === "1week" ? "#08B2C6" : "grey",
               }}
             >
               1 week
@@ -177,7 +177,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "50px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "1month" ? "dodgerblue" : "grey",
+                color: data.selectRange === "1month" ? "#08B2C6" : "grey",
               }}
             >
               1 month
@@ -193,7 +193,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "50px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "3months" ? "dodgerblue" : "grey",
+                color: data.selectRange === "3months" ? "#08B2C6" : "grey",
               }}
             >
               3 months
@@ -209,7 +209,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "50px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "1year" ? "dodgerblue" : "grey",
+                color: data.selectRange === "1year" ? "#08B2C6" : "grey",
               }}
             >
               1 year
