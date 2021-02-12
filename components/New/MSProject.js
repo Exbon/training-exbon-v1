@@ -69,7 +69,7 @@ const MSProject = () => {
               marginBottom: "50px",
             }}
             type="Oval"
-            color="#1E90FF"
+            color="#0ace83"
             height="100"
             width="100"
           />
@@ -96,7 +96,7 @@ const MSProject = () => {
             <Line
               type="monotone"
               dataKey="WorkCompletion"
-              stroke="#1E90FF"
+              stroke="#0ace83"
               strokeWidth={3}
               dot={data.selectRange === "1year" ? false : true}
               isAnimationActive={true}
