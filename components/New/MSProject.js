@@ -161,7 +161,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "15px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "1week" ? "#08B2C6" : "grey",
+                color: data.selectRange === "1week" ? "#1ec8db" : "grey",
               }}
             >
               1 week
@@ -177,7 +177,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "50px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "1month" ? "#08B2C6" : "grey",
+                color: data.selectRange === "1month" ? "#1ec8db" : "grey",
               }}
             >
               1 month
@@ -193,7 +193,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "50px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "3months" ? "#08B2C6" : "grey",
+                color: data.selectRange === "3months" ? "#1ec8db" : "grey",
               }}
             >
               3 months
@@ -209,7 +209,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "50px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "1year" ? "#08B2C6" : "grey",
+                color: data.selectRange === "1year" ? "#1ec8db" : "grey",
               }}
             >
               1 year
