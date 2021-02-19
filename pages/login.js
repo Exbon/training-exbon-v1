@@ -7,7 +7,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
-
+import TextField from "@material-ui/core/TextField";
 import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
@@ -45,6 +45,13 @@ const login = () => {
       }
     });
   };
+
+  const handleKeyPress = event => {
+    if (event.key === "Enter") {
+      handleLoginButton();
+    }
+  };
+
   return (
     <>
       <div className={classes.backgroundPage}></div>
@@ -73,30 +80,32 @@ const login = () => {
             <CardBody>
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={7}>
-                  <CustomInput
-                    labelText="Username"
+                  <TextField
+                    label="Username"
                     id="username"
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
+                    onKeyPress={handleKeyPress}
+                    style={{ width: "100%", marginTop: "30px" }}
                   />
                 </GridItem>
               </GridContainer>
               <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={7}>
-                  <CustomInput
-                    labelText="Password"
+                  <TextField
+                    label="Password"
                     id="password"
-                    formControlProps={{
-                      fullWidth: true,
-                    }}
-                    inputProps={{ type: "password" }}
+                    type="password"
+                    onKeyPress={handleKeyPress}
+                    style={{ width: "100%", marginTop: "30px" }}
                   />
                 </GridItem>
               </GridContainer>
             </CardBody>
             <CardFooter style={{ justifyContent: "center", marginTop: "50px" }}>
-              <Button color="primary" onClick={handleLoginButton}>
+              <Button
+                color="primary"
+                onClick={handleLoginButton}
+                style={{ fontSize: "small" }}
+              >
                 Login
               </Button>
             </CardFooter>
