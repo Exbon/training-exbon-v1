@@ -20,6 +20,9 @@ const loginStyle = {
     marginBottom: "3px",
     textDecoration: "none",
   },
+  cardFooter: {
+    justifyContent: "center",
+  },
 };
 
 export default loginStyle;
