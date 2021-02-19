@@ -1,6 +1,20 @@
 import login from "../../../../pages/login";
+import background from "../../../img/bg7.jpg";
 
 const loginStyle = {
+  backgroundPage: {
+    position: "absolute",
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    marginTop: "0px",
+    backgroundImage: `url(${background})`,
+    backgroundSize: "cover",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+  },
   title: {
     color: "red",
   },

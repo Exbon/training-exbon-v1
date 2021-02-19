@@ -19,9 +19,9 @@ const login = () => {
   const classes = useStyles();
 
   return (
-    <div style={{ marginTop: "100px" }}>
+    <div className={classes.backgroundPage}>
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={3}>
+        <GridItem xs={12} sm={12} md={3} style={{ marginTop: "100px" }}>
           <Card>
             <CardHeader color="primary">
               <div style={{ display: "flex", justifyContent: "space-between" }}>
