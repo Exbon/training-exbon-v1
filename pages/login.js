@@ -1,7 +1,7 @@
 import React from "react";
 
-import "assets/jss/nextjs-material-dashboard/New/loginStyle.css";
-
+import styles from "assets/jss/nextjs-material-dashboard/New/loginStyle.js";
+import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 // layout for this page
 import GridItem from "components/Grid/GridItem.js";
@@ -16,16 +16,24 @@ import CardFooter from "components/Card/CardFooter.js";
 import exbonLogo from "../assets/img/exbon logo.png";
 
 const login = () => {
+  const useStyles = makeStyles(styles);
+  const classes = useStyles();
   return (
-    <div className={"backgroundPage"}>
+    <>
+      <div className={classes.backgroundPage}></div>
       <GridContainer justify="center">
-        <GridItem xs={12} sm={12} md={3} style={{ marginTop: "100px" }}>
+        <GridItem
+          xs={12}
+          sm={12}
+          md={3}
+          style={{ marginTop: "100px", marginBottom: "200px" }}
+        >
           <Card>
             <CardHeader color="primary">
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>
-                  <h4 className={"cardTitleWhite"}>Dashboard</h4>
-                  <p className={"cardCategoryWhite"}>Login</p>
+                  <h4 className={classes.cardTitleWhite}>Dashboard</h4>
+                  <p className={classes.cardCategoryWhite}>Login</p>
                 </div>
                 <div>
                   <img
@@ -70,7 +78,7 @@ const login = () => {
           <div className={"space"}></div>
         </GridItem>
       </GridContainer>
-    </div>
+    </>
   );
 };
 
