@@ -16,24 +16,27 @@ const loginStyle = {
     backgroundRepeat: "no-repeat",
     overflow: "hidden",
   },
-  title: {
-    color: "red",
+  "card-header": {
+    display: "flex",
+    justifyContent: "space-between",
   },
-  cardCategoryWhite: {
-    color: "rgba(255,255,255,.62)",
-    margin: "0",
-    fontSize: "14px",
-    marginTop: "0",
-    marginBottom: "0",
-  },
-  cardTitleWhite: {
+
+  "card-header__title": {
     color: "#FFFFFF",
     marginTop: "0px",
     minHeight: "auto",
-    fontWeight: "300",
+    fontWeight: "500",
     fontFamily: "'Roboto', 'Helvetica', 'Arial', sans-serif",
     marginBottom: "3px",
     textDecoration: "none",
+  },
+  "card-header__detail": {
+    color: "rgba(255,255,255,.62)",
+    margin: "0",
+    fontSize: "14px",
+    fontWeight: "500",
+    marginTop: "0",
+    marginBottom: "0",
   },
   cardFooter: {
     justifyContent: "center",

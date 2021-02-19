@@ -7,17 +7,44 @@ import InputLabel from "@material-ui/core/InputLabel";
 import GridItem from "components/Grid/GridItem.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
+
 import Button from "components/CustomButtons/Button.js";
 import Card from "components/Card/Card.js";
 import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
+import { sha256 } from "js-sha256";
+import axios from "axios";
+import Router, { useRouter } from "next/router";
 
 import exbonLogo from "../assets/img/exbon logo.png";
 
 const login = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
+
+  const handleLoginButton = async () => {
+    const username = document.getElementById("username").value;
+    const password =
+      "0x" + sha256(document.getElementById("password").value).toUpperCase();
+
+    await axios({
+      method: "post",
+      url: `/api/dashboard/signin`,
+      timeout: 1000, // 1 seconds timeout
+      headers: {},
+      data: {
+        Username: username,
+        Password: password,
+      },
+    }).then(response => {
+      if (response.data.result.recordset[0] !== undefined) {
+        Router.push(`/home/dashboard`);
+      } else {
+        alert("Login failed.");
+      }
+    });
+  };
   return (
     <>
       <div className={classes.backgroundPage}></div>
@@ -30,10 +57,10 @@ const login = () => {
         >
           <Card>
             <CardHeader color="primary">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div className={classes["card-header"]}>
                 <div>
-                  <h4 className={classes.cardTitleWhite}>Dashboard</h4>
-                  <p className={classes.cardCategoryWhite}>Login</p>
+                  <h4 className={classes["card-header__title"]}>Dashboard</h4>
+                  <p className={classes["card-header__detail"]}>Login</p>
                 </div>
                 <div>
                   <img
@@ -63,12 +90,15 @@ const login = () => {
                     formControlProps={{
                       fullWidth: true,
                     }}
+                    inputProps={{ type: "password" }}
                   />
                 </GridItem>
               </GridContainer>
             </CardBody>
             <CardFooter style={{ justifyContent: "center", marginTop: "50px" }}>
-              <Button color="primary">Login</Button>
+              <Button color="primary" onClick={handleLoginButton}>
+                Login
+              </Button>
             </CardFooter>
           </Card>
         </GridItem>
