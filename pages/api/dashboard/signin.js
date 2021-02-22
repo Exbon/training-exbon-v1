@@ -13,7 +13,7 @@ const signinHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[Dashboard_Signin]
+          const query = `EXEC [Hammer].[dbo].[Dashboard_Signin_test]
           "${body.Username}", ${body.Password}`;
           /* --Params--
           	@username varchar(50),
