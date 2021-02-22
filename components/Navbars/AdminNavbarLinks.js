@@ -1,4 +1,5 @@
 import React from "react";
+import Router, { useRouter } from "next/router";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -22,7 +23,11 @@ import useWindowSize from "components/Hooks/useWindowSize.js";
 
 import styles from "assets/jss/nextjs-material-dashboard/components/headerLinksStyle.js";
 
+import { CookiesProvider, useCookies } from "react-cookie";
+
 export default function AdminNavbarLinks() {
+  const [cookies, setCookie, removeCookie] = useCookies("username");
+
   const size = useWindowSize();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
@@ -46,23 +51,14 @@ export default function AdminNavbarLinks() {
     }
   };
   const handleCloseProfile = () => {
-    setOpenProfile(null);
+    // setOpenProfile(null);
+    removeCookie("username", { path: "/" });
+    removeCookie("fullname", { path: "/" });
+    removeCookie("employeeid", { path: "/" });
+    Router.push("/login");
   };
   return (
     <div>
-      <div className={classes.manager}>
-        <Poppers
-          open={Boolean(openNotification)}
-          anchorEl={openNotification}
-          transition
-          disablePortal
-          className={
-            classNames({ [classes.popperClose]: !openNotification }) +
-            " " +
-            classes.popperNav
-          }
-        ></Poppers>
-      </div>
       <div className={classes.manager}>
         <Button
           color={size.width > 959 ? "transparent" : "white"}
