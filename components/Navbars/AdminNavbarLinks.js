@@ -26,7 +26,7 @@ import styles from "assets/jss/nextjs-material-dashboard/components/headerLinksS
 import { CookiesProvider, useCookies } from "react-cookie";
 
 export default function AdminNavbarLinks() {
-  const [cookies, setCookie, removeCookie] = useCookies("username");
+  const [cookies, setCookie, removeCookie] = useCookies();
   const [state, setState] = useState({ FullName: "" });
 
   const size = useWindowSize();
@@ -73,7 +73,7 @@ export default function AdminNavbarLinks() {
               fontFamily: "Roboto",
               fontWeight: "500",
               color: "darkgray",
-              marginTop: "13px",
+              marginTop: "14px",
             }}
           >
             {state.FullName}
