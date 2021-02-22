@@ -28,24 +28,22 @@ const login = () => {
     const password =
       "0x" + sha256(document.getElementById("password").value).toUpperCase();
 
-    // await axios({
-    //   method: "post",
-    //   url: `/api/dashboard/signin`,
-    //   timeout: 1000, // 1 seconds timeout
-    //   headers: {},
-    //   data: {
-    //     Username: username,
-    //     Password: password,
-    //   },
-    // }).then(response => {
-    //   if (response.data.result.recordset[0] !== undefined) {
-    //     Router.push(`/home/dashboard`);
-    //   } else {
-    //     alert("Login failed.");
-    //   }
-    // });
-
-    Router.push(`/home/dashboard`);
+    await axios({
+      method: "post",
+      url: `/api/dashboard/signin`,
+      timeout: 1000, // 1 seconds timeout
+      headers: {},
+      data: {
+        Username: username,
+        Password: password,
+      },
+    }).then(response => {
+      if (response.data.result.recordset[0] !== undefined) {
+        Router.push(`/home/dashboard`);
+      } else {
+        alert("Login failed.");
+      }
+    });
   };
 
   const handleKeyPress = event => {
