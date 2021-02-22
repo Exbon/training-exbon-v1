@@ -16,10 +16,12 @@ import CardFooter from "components/Card/CardFooter.js";
 import { sha256 } from "js-sha256";
 import axios from "axios";
 import Router, { useRouter } from "next/router";
+import { CookiesProvider, useCookies } from "react-cookie";
 
 import exbonLogo from "../assets/img/exbon logo.png";
 
 const login = () => {
+  const [cookies, setCookie, removeCookie] = useCookies("username");
   const useStyles = makeStyles(styles);
   const classes = useStyles();
 
@@ -39,6 +41,20 @@ const login = () => {
       },
     }).then(response => {
       if (response.data.result.recordset[0] !== undefined) {
+        const result = response.data.result.recordset[0];
+        setCookie("employeeid", result.EmployeeID, {
+          path: "/",
+          maxAge: 3600 * 24 * 30,
+        });
+        setCookie("fullname", result.FullName, {
+          path: "/",
+          maxAge: 3600 * 24 * 30,
+        });
+        setCookie("username", result.UserName, {
+          path: "/",
+          maxAge: 3600 * 24 * 30,
+        });
+
         Router.push(`/home/dashboard`);
       } else {
         alert("Login failed.");
