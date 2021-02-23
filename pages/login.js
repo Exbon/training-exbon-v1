@@ -20,6 +20,8 @@ import { CookiesProvider, useCookies } from "react-cookie";
 
 import exbonLogo from "../assets/img/exbon logo.png";
 
+import Image from "next/image";
+
 const login = () => {
   const [cookies, setCookie, removeCookie] = useCookies("username");
   const useStyles = makeStyles(styles);
@@ -86,10 +88,7 @@ const login = () => {
                   <p className={classes["card-header__detail"]}>Login</p>
                 </div>
                 <div>
-                  <img
-                    src={exbonLogo}
-                    style={{ width: "50px", height: "50px" }}
-                  ></img>
+                  <Image src={exbonLogo} width={50} height={50}></Image>
                 </div>
               </div>
             </CardHeader>
