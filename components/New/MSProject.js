@@ -23,6 +23,7 @@ const MSProject = () => {
     graph4: [],
   });
   const [selectedProject, setSelectedProject] = useState(5996);
+  const [selectedFeature, setFeature] = useState("WorkCompletion");
 
   const handleSelectedProject = e => {
     setSelectedProject(e.target.value);
@@ -76,50 +77,16 @@ const MSProject = () => {
         </div>
       ) : (
         <>
-          <LineChart
-            width={980}
-            height={500}
-            data={
-              (data.selectRange === "1week" && data.graph1) ||
-              (data.selectRange === "1month" && data.graph2) ||
-              (data.selectRange === "3months" && data.graph3) ||
-              (data.selectRange === "1year" && data.graph4)
-            }
-            margin={{ top: 20, right: 10, left: 10, bottom: 0 }}
-          >
-            <XAxis dataKey="Date" />
-            {/* <YAxis type="number" domain={[0, 100]} /> */}
-            <YAxis domain={["dataMin", "dataMax"]} />
-            <CartesianGrid strokeDasharray="3 3" />
-            <Tooltip />
-            <Legend />
-
-            {/* <Line
-              type="monotone"
-              dataKey="WorkCompletion"
-              stroke="#0ace83"
-              strokeWidth={3}
-              dot={data.selectRange === "1year" ? false : true}
-              isAnimationActive={true}
-            /> */}
-            <Line
-              type="monotone"
-              dataKey="EEAC"
-              stroke="#f19c3b"
-              strokeWidth={3}
-              dot={data.selectRange === "1year" ? false : true}
-              isAnimationActive={true}
-            />
-          </LineChart>
           <div
             style={{
               display: "flex",
-              marginTop: "10px",
+              marginTop: "20px",
+              marginBottom: "10px",
             }}
           >
             <p
               style={{
-                marginLeft: "20px",
+                marginLeft: "10px",
                 marginTop: 0,
                 marginBottom: 0,
                 fontFamily: "Roboto, sans-serif",
@@ -152,76 +119,151 @@ const MSProject = () => {
               })}
             </select>
           </div>
+          <div style={{ display: "flex" }}>
+            <LineChart
+              width={980}
+              height={500}
+              data={
+                (data.selectRange === "1week" && data.graph1) ||
+                (data.selectRange === "1month" && data.graph2) ||
+                (data.selectRange === "3months" && data.graph3) ||
+                (data.selectRange === "1year" && data.graph4)
+              }
+              margin={{ top: 20, right: 10, left: 10, bottom: 0 }}
+            >
+              <XAxis dataKey="Date" />
+              {selectedFeature === "WorkCompletion" && (
+                <YAxis type="number" domain={[0, 100]} />
+              )}
+              {selectedFeature === "EEAC" && (
+                <YAxis domain={["dataMin - 10000", "dataMax + 10000"]} />
+              )}
 
+              <CartesianGrid strokeDasharray="3 3" />
+              <Tooltip />
+              <Legend />
+
+              {selectedFeature === "WorkCompletion" && (
+                <Line
+                  type="monotone"
+                  dataKey="WorkCompletion"
+                  stroke="#0ace83"
+                  strokeWidth={3}
+                  dot={data.selectRange === "1year" ? false : true}
+                  isAnimationActive={true}
+                />
+              )}
+              {selectedFeature === "EEAC" && (
+                <Line
+                  type="monotone"
+                  dataKey="EEAC"
+                  stroke="#f19c3b"
+                  strokeWidth={3}
+                  dot={data.selectRange === "1year" ? false : true}
+                  isAnimationActive={true}
+                />
+              )}
+            </LineChart>
+            <div
+              style={{
+                marginTop: "20px",
+                marginBottom: "10px",
+              }}
+            >
+              <Button
+                onClick={() =>
+                  setData(prevState => ({
+                    ...prevState,
+                    selectRange: "1week",
+                  }))
+                }
+                variant="outlined"
+                style={{
+                  marginLeft: "15px",
+                  fontFamily: "Roboto, sans-serif",
+                  color: data.selectRange === "1week" ? "#1ec8db" : "grey",
+                }}
+              >
+                1 week
+              </Button>
+              <Button
+                onClick={() =>
+                  setData(prevState => ({
+                    ...prevState,
+                    selectRange: "1month",
+                  }))
+                }
+                variant="outlined"
+                style={{
+                  marginLeft: "50px",
+                  fontFamily: "Roboto, sans-serif",
+                  color: data.selectRange === "1month" ? "#1ec8db" : "grey",
+                }}
+              >
+                1 month
+              </Button>
+              <Button
+                onClick={() =>
+                  setData(prevState => ({
+                    ...prevState,
+                    selectRange: "3months",
+                  }))
+                }
+                variant="outlined"
+                style={{
+                  marginLeft: "50px",
+                  fontFamily: "Roboto, sans-serif",
+                  color: data.selectRange === "3months" ? "#1ec8db" : "grey",
+                }}
+              >
+                3 months
+              </Button>
+              <Button
+                onClick={() =>
+                  setData(prevState => ({
+                    ...prevState,
+                    selectRange: "1year",
+                  }))
+                }
+                variant="outlined"
+                style={{
+                  marginLeft: "50px",
+                  fontFamily: "Roboto, sans-serif",
+                  color: data.selectRange === "1year" ? "#1ec8db" : "grey",
+                }}
+              >
+                1 year
+              </Button>
+            </div>
+          </div>
           <div
             style={{
               marginTop: "20px",
-              marginBottom: "10px",
+              marginBottom: "20px",
             }}
           >
             <Button
-              onClick={() =>
-                setData(prevState => ({
-                  ...prevState,
-                  selectRange: "1week",
-                }))
-              }
               variant="outlined"
               style={{
-                marginLeft: "15px",
+                marginLeft: "20px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "1week" ? "#1ec8db" : "grey",
+                color:
+                  selectedFeature === "WorkCompletion" ? "#1ec8db" : "grey",
               }}
+              onClick={() => setFeature("WorkCompletion")}
             >
-              1 week
+              WorkCompletion
             </Button>
             <Button
-              onClick={() =>
-                setData(prevState => ({
-                  ...prevState,
-                  selectRange: "1month",
-                }))
-              }
               variant="outlined"
               style={{
-                marginLeft: "50px",
+                marginLeft: "20px",
                 fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "1month" ? "#1ec8db" : "grey",
+                color: selectedFeature === "EEAC" ? "#1ec8db" : "grey",
               }}
+              onClick={() => setFeature("EEAC")}
             >
-              1 month
-            </Button>
-            <Button
-              onClick={() =>
-                setData(prevState => ({
-                  ...prevState,
-                  selectRange: "3months",
-                }))
-              }
-              variant="outlined"
-              style={{
-                marginLeft: "50px",
-                fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "3months" ? "#1ec8db" : "grey",
-              }}
-            >
-              3 months
-            </Button>
-            <Button
-              onClick={() =>
-                setData(prevState => ({
-                  ...prevState,
-                  selectRange: "1year",
-                }))
-              }
-              variant="outlined"
-              style={{
-                marginLeft: "50px",
-                fontFamily: "Roboto, sans-serif",
-                color: data.selectRange === "1year" ? "#1ec8db" : "grey",
-              }}
-            >
-              1 year
+              EEAC
             </Button>
           </div>
         </>
