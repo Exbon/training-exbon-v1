@@ -13,7 +13,7 @@ const MSProjectHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const sqlQuery = `EXEC [Hammer].[dbo].[Dashboard_MSProject_SelectByProjectID]
+          const sqlQuery = `EXEC [Hammer].[dbo].[Dashboard_MSProject_SelectByProjectID_TEST]
                             ${query.ProjectID}`;
 
           request.query(sqlQuery, (err, recordset) => {

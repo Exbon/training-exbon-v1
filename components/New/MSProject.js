@@ -85,18 +85,27 @@ const MSProject = () => {
               (data.selectRange === "3months" && data.graph3) ||
               (data.selectRange === "1year" && data.graph4)
             }
-            margin={{ top: 20, right: 0, left: 0, bottom: 0 }}
+            margin={{ top: 20, right: 10, left: 10, bottom: 0 }}
           >
             <XAxis dataKey="Date" />
-            <YAxis type="number" domain={[0, 100]} />
+            {/* <YAxis type="number" domain={[0, 100]} /> */}
+            <YAxis domain={["dataMin", "dataMax"]} />
             <CartesianGrid strokeDasharray="3 3" />
             <Tooltip />
             <Legend />
 
-            <Line
+            {/* <Line
               type="monotone"
               dataKey="WorkCompletion"
               stroke="#0ace83"
+              strokeWidth={3}
+              dot={data.selectRange === "1year" ? false : true}
+              isAnimationActive={true}
+            /> */}
+            <Line
+              type="monotone"
+              dataKey="EEAC"
+              stroke="#f19c3b"
               strokeWidth={3}
               dot={data.selectRange === "1year" ? false : true}
               isAnimationActive={true}
