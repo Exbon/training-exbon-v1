@@ -13,6 +13,13 @@ import {
 } from "recharts";
 import { Button } from "@material-ui/core";
 
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import StyledRadio from "../../assets/jss/nextjs-material-dashboard/New/StyledRadio";
+import "../../assets/jss/nextjs-material-dashboard/New/MSProjectStyle.css";
+
 const MSProject = () => {
   const [data, setData] = useState({
     selectRange: "1week",
@@ -119,7 +126,7 @@ const MSProject = () => {
               })}
             </select>
           </div>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <LineChart
               width={980}
               height={500}
@@ -157,7 +164,7 @@ const MSProject = () => {
                 <Line
                   type="monotone"
                   dataKey="EEAC"
-                  stroke="#f19c3b"
+                  stroke="#6c85d8"
                   strokeWidth={3}
                   dot={data.selectRange === "1year" ? false : true}
                   isAnimationActive={true}
@@ -170,70 +177,65 @@ const MSProject = () => {
                 marginBottom: "10px",
               }}
             >
-              <Button
-                onClick={() =>
-                  setData(prevState => ({
-                    ...prevState,
-                    selectRange: "1week",
-                  }))
-                }
-                variant="outlined"
-                style={{
-                  marginLeft: "15px",
-                  fontFamily: "Roboto, sans-serif",
-                  color: data.selectRange === "1week" ? "#1ec8db" : "grey",
-                }}
-              >
-                1 week
-              </Button>
-              <Button
-                onClick={() =>
-                  setData(prevState => ({
-                    ...prevState,
-                    selectRange: "1month",
-                  }))
-                }
-                variant="outlined"
-                style={{
-                  marginLeft: "50px",
-                  fontFamily: "Roboto, sans-serif",
-                  color: data.selectRange === "1month" ? "#1ec8db" : "grey",
-                }}
-              >
-                1 month
-              </Button>
-              <Button
-                onClick={() =>
-                  setData(prevState => ({
-                    ...prevState,
-                    selectRange: "3months",
-                  }))
-                }
-                variant="outlined"
-                style={{
-                  marginLeft: "50px",
-                  fontFamily: "Roboto, sans-serif",
-                  color: data.selectRange === "3months" ? "#1ec8db" : "grey",
-                }}
-              >
-                3 months
-              </Button>
-              <Button
-                onClick={() =>
-                  setData(prevState => ({
-                    ...prevState,
-                    selectRange: "1year",
-                  }))
-                }
-                variant="outlined"
-                style={{
-                  marginLeft: "50px",
-                  fontFamily: "Roboto, sans-serif",
-                  color: data.selectRange === "1year" ? "#1ec8db" : "grey",
-                }}
-              >
-                1 year
-              </Button>
+              <FormControl component="fieldset">
+                <FormLabel component="legend" className="date-range-label">
+                  Date Range
+                </FormLabel>
+                <RadioGroup
+                  defaultValue="1week"
+                  aria-label="gender"
+                  name="customized-radios"
+                >
+                  <FormControlLabel
+                    value="1week"
+                    control={<StyledRadio />}
+                    label="1 Week"
+                    onClick={() =>
+                      setData(prevState => ({
+                        ...prevState,
+                        selectRange: "1week",
+                      }))
+                    }
+                    checked={data.selectRange === "1week" && true}
+                  />
+                  <FormControlLabel
+                    value="1month"
+                    control={<StyledRadio />}
+                    label="1 Month"
+                    onClick={() =>
+                      setData(prevState => ({
+                        ...prevState,
+                        selectRange: "1month",
+                      }))
+                    }
+                    checked={data.selectRange === "1month" && true}
+                  />
+                  <FormControlLabel
+                    value="3months"
+                    control={<StyledRadio />}
+                    label="3 Months"
+                    onClick={() =>
+                      setData(prevState => ({
+                        ...prevState,
+                        selectRange: "3months",
+                      }))
+                    }
+                    checked={data.selectRange === "3months" && true}
+                  />
+                  <FormControlLabel
+                    value="1year"
+                    control={<StyledRadio />}
+                    label="1 Year"
+                    onClick={() =>
+                      setData(prevState => ({
+                        ...prevState,
+                        selectRange: "1year",
+                      }))
+                    }
+                    checked={data.selectRange === "1year" && true}
+                  />
+                </RadioGroup>
+              </FormControl>
             </div>
           </div>
           <div
@@ -252,7 +254,7 @@ const MSProject = () => {
               }}
               onClick={() => setFeature("WorkCompletion")}
             >
-              WorkCompletion
+              Work Completion
             </Button>
             <Button
               variant="outlined"

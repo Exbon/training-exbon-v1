@@ -11,10 +11,10 @@ function Dashboard() {
   const classes = useStyles();
   return (
     <div>
-      <Card style={{ width: "1080px" }}>
+      <Card style={{ width: "1100px" }}>
         <CardHeader color="info">
           <h4 className={classes.cardTitleWhite}>MS Project Data</h4>
-          <p className={classes.cardCategoryWhite}>Work Completeion</p>
+          <p className={classes.cardCategoryWhite}>Work Completeion, EEAC</p>
         </CardHeader>
         <MSProject />
       </Card>
