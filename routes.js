@@ -34,14 +34,14 @@ const dashboardRoutes = [
 
     layout: "/home",
   },
-  {
-    path: "/user-profile",
-    name: "User Profile",
-    rtlName: "ملف تعريفي للمستخدم",
-    icon: Person,
+  // {
+  //   path: "/user-profile",
+  //   name: "User Profile",
+  //   rtlName: "ملف تعريفي للمستخدم",
+  //   icon: Person,
 
-    layout: "/dashboard",
-  },
+  //   layout: "/dashboard",
+  // },
   // {
   //   path: "/table-list",
   //   name: "Table List",
@@ -66,22 +66,22 @@ const dashboardRoutes = [
 
   //   layout: "/dashboard",
   // },
-  {
-    path: "/maps",
-    name: "Maps",
-    rtlName: "خرائط",
-    icon: LocationOn,
+  // {
+  //   path: "/maps",
+  //   name: "Maps",
+  //   rtlName: "خرائط",
+  //   icon: LocationOn,
 
-    layout: "/dashboard",
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    rtlName: "إخطارات",
-    icon: Notifications,
+  //   layout: "/dashboard",
+  // },
+  // {
+  //   path: "/notifications",
+  //   name: "Notifications",
+  //   rtlName: "إخطارات",
+  //   icon: Notifications,
 
-    layout: "/dashboard",
-  },
+  //   layout: "/dashboard",
+  // },
   // {
   //   path: "/rtl-page",
   //   name: "RTL Support",
