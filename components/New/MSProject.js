@@ -164,8 +164,13 @@ const MSProject = () => {
             >
               {state.assignedProject.map(item => {
                 return (
-                  <option value={item.ProjectID} key={item.ProjectID}>
-                    {item.ProjectID}
+                  <option
+                    value={item.ProjectID}
+                    key={item.ProjectID}
+                    projectgroup={item.ProjectGroup}
+                    projectname={item.ProjectName}
+                  >
+                    {item.ProjectID} ({item.Status})
                   </option>
                 );
               })}
