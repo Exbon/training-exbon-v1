@@ -170,7 +170,8 @@ const MSProject = () => {
                     projectgroup={item.ProjectGroup}
                     projectname={item.ProjectName}
                   >
-                    {item.ProjectID} ({item.Status})
+                    {item.ProjectID} &ensp;[{item.ProjectGroup}]{" "}
+                    {item.ProjectName} &ensp;({item.Status})
                   </option>
                 );
               })}
