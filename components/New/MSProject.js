@@ -19,8 +19,17 @@ import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import StyledRadio from "../../assets/jss/nextjs-material-dashboard/New/StyledRadio";
 import "../../assets/jss/nextjs-material-dashboard/New/MSProjectStyle.css";
+import { CookiesProvider, useCookies } from "react-cookie";
 
 const MSProject = () => {
+  const [cookies, setCookie, removeCookie] = useCookies("username");
+  const [status, setStatus] = useState({
+    cookies: {
+      username: 0,
+      fullname: "",
+      employeeid: 0,
+    },
+  });
   const [data, setData] = useState({
     selectRange: "1week",
     allProject: [],
@@ -28,6 +37,9 @@ const MSProject = () => {
     graph2: [],
     graph3: [],
     graph4: [],
+  });
+  const [state, setState] = useState({
+    assignedProject: [],
   });
   const [selectedProject, setSelectedProject] = useState(5996);
   const [selectedFeature, setFeature] = useState("WorkCompletion");
@@ -56,6 +68,36 @@ const MSProject = () => {
     };
     trackPromise(fetchData());
   }, [selectedProject]);
+
+  useEffect(() => {
+    if (status.cookies.username !== 0) {
+      if (status.cookies.username !== undefined) {
+        axios({
+          method: "post",
+          url: `/api/dashboard/signin`,
+          timeout: 5000, // 5 seconds timeout
+          headers: {},
+          data: {
+            Username: status.cookies.username,
+            Password: status.cookies.password,
+          },
+        }).then(response => {
+          setState({
+            assignedProject: response.data.result.recordsets[1],
+          });
+        });
+      }
+    } else {
+      setStatus({
+        cookies: {
+          username: cookies.username,
+          password: cookies.password,
+          fullname: cookies.fullname,
+          employeeid: cookies.employeeid,
+        },
+      });
+    }
+  }, [status, cookies]);
 
   const { promiseInProgress } = usePromiseTracker();
 
@@ -117,10 +159,10 @@ const MSProject = () => {
                 background: "#fff",
               }}
             >
-              {data.allProject.map(item => {
+              {state.assignedProject.map(item => {
                 return (
                   <option value={item.ProjectID} key={item.ProjectID}>
-                    {item.ProjectID} ({item.Status})
+                    {item.ProjectID}
                   </option>
                 );
               })}

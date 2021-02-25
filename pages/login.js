@@ -52,7 +52,11 @@ const login = () => {
           path: "/",
           maxAge: 3600 * 24 * 30,
         });
-        setCookie("username", result.UserName, {
+        setCookie("username", username, {
+          path: "/",
+          maxAge: 3600 * 24 * 30,
+        });
+        setCookie("password", password, {
           path: "/",
           maxAge: 3600 * 24 * 30,
         });
