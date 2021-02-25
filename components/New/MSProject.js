@@ -41,7 +41,7 @@ const MSProject = () => {
   const [state, setState] = useState({
     assignedProject: [],
   });
-  const [selectedProject, setSelectedProject] = useState(5996);
+  const [selectedProject, setSelectedProject] = useState(0);
   const [selectedFeature, setFeature] = useState("WorkCompletion");
 
   const handleSelectedProject = e => {
@@ -85,6 +85,9 @@ const MSProject = () => {
           setState({
             assignedProject: response.data.result.recordsets[1],
           });
+          if (response.data.result.recordsets[1].length > 0) {
+            setSelectedProject(response.data.result.recordsets[1][0].ProjectID);
+          }
         });
       }
     } else {
@@ -143,13 +146,13 @@ const MSProject = () => {
                 fontWeight: 500,
               }}
             >
-              ProjectID
+              Project ID
             </p>
             <select
               value={selectedProject}
               onChange={handleSelectedProject}
               style={{
-                marginLeft: "50px",
+                marginLeft: "20px",
                 fontFamily: "Roboto, sans-serif",
                 display: "inline-block",
                 color: "#74646e",
