@@ -22,7 +22,7 @@ import "../../assets/jss/nextjs-material-dashboard/New/MSProjectStyle.css";
 import { CookiesProvider, useCookies } from "react-cookie";
 
 const MSProject = () => {
-  const [cookies, setCookie, removeCookie] = useCookies("username");
+  const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
     cookies: {
       username: 0,
@@ -75,7 +75,7 @@ const MSProject = () => {
         axios({
           method: "post",
           url: `/api/dashboard/signin`,
-          timeout: 5000, // 5 seconds timeout
+          timeout: 1000, // 1 seconds timeout
           headers: {},
           data: {
             Username: status.cookies.username,
