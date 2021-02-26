@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import Link from "next/link";
@@ -17,6 +17,7 @@ import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.js";
 import RTLNavbarLinks from "components/Navbars/RTLNavbarLinks.js";
 
 import styles from "assets/jss/nextjs-material-dashboard/components/sidebarStyle.js";
+import { CookiesProvider, useCookies } from "react-cookie";
 
 export default function Sidebar(props) {
   // used for checking current route
@@ -29,6 +30,14 @@ export default function Sidebar(props) {
     return router.route.indexOf(routeName) > -1 ? true : false;
   }
   const { color, logo, image, logoText, routes } = props;
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const [state, setState] = useState({ EmployeeID: 0 });
+  useEffect(() => {
+    setState({
+      EmployeeID: cookies.employeeid,
+    });
+  }, [cookies]);
+
   var links = (
     <List className={classes.list}>
       {routes.map((prop, key) => {
@@ -38,6 +47,12 @@ export default function Sidebar(props) {
           activePro = classes.activePro + " ";
           listItemClasses = classNames({
             [" " + classes[color]]: true,
+          });
+        } else if (prop.path === "/calendar/") {
+          listItemClasses = classNames({
+            [" " + classes[color]]: activeRoute(
+              prop.layout + prop.path + state.EmployeeID
+            ),
           });
         } else {
           listItemClasses = classNames({
@@ -50,7 +65,14 @@ export default function Sidebar(props) {
             prop.path === "/upgrade-to-pro",
         });
         return (
-          <Link href={prop.layout + prop.path} key={key}>
+          <Link
+            href={
+              prop.path === "/calendar/"
+                ? prop.layout + prop.path + state.EmployeeID
+                : prop.layout + prop.path
+            }
+            key={key}
+          >
             <a className={activePro + classes.item}>
               <ListItem button className={classes.itemLink + listItemClasses}>
                 {typeof prop.icon === "string" ? (
