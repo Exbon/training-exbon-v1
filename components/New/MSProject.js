@@ -191,7 +191,11 @@ const MSProject = () => {
             >
               <XAxis dataKey="Date" />
               {selectedFeature === "WorkCompletion" && (
-                <YAxis type="number" domain={[0, 100]} />
+                <YAxis
+                  type="number"
+                  domain={[0, 100]}
+                  tickFormatter={value => value + " %"}
+                />
               )}
               {selectedFeature === "EEAC" && (
                 <YAxis
@@ -203,9 +207,15 @@ const MSProject = () => {
               )}
 
               <CartesianGrid strokeDasharray="3 3" />
-              <Tooltip
-                formatter={value => new Intl.NumberFormat("en").format(value)}
-              />
+              {selectedFeature === "WorkCompletion" && (
+                <Tooltip formatter={value => value + " %"} />
+              )}
+              {selectedFeature === "EEAC" && (
+                <Tooltip
+                  formatter={value => new Intl.NumberFormat("en").format(value)}
+                />
+              )}
+
               <Legend />
 
               {selectedFeature === "WorkCompletion" && (
