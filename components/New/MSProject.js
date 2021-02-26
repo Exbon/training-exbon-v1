@@ -194,11 +194,18 @@ const MSProject = () => {
                 <YAxis type="number" domain={[0, 100]} />
               )}
               {selectedFeature === "EEAC" && (
-                <YAxis domain={["dataMin - 10000", "dataMax + 10000"]} />
+                <YAxis
+                  domain={["dataMin - 10000", "dataMax + 10000"]}
+                  tickFormatter={value =>
+                    new Intl.NumberFormat("en").format(value)
+                  }
+                />
               )}
 
               <CartesianGrid strokeDasharray="3 3" />
-              <Tooltip />
+              <Tooltip
+                formatter={value => new Intl.NumberFormat("en").format(value)}
+              />
               <Legend />
 
               {selectedFeature === "WorkCompletion" && (
