@@ -146,7 +146,7 @@ const MSProject = () => {
                 fontWeight: 500,
               }}
             >
-              Project ID
+              Project
             </p>
             <select
               value={selectedProject}
