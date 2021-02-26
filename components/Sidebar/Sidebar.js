@@ -48,12 +48,6 @@ export default function Sidebar(props) {
           listItemClasses = classNames({
             [" " + classes[color]]: true,
           });
-        } else if (prop.path === "/calendar/") {
-          listItemClasses = classNames({
-            [" " + classes[color]]: activeRoute(
-              prop.layout + prop.path + state.EmployeeID
-            ),
-          });
         } else {
           listItemClasses = classNames({
             [" " + classes[color]]: activeRoute(prop.layout + prop.path),
