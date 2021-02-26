@@ -61,8 +61,8 @@ const dashboardRoutes = [
   },
   {
     path: "/",
-    name: "Task Completion",
-    icon: WorkIcon,
+    name: "Daily Report",
+    icon: ScheduleIcon,
 
     layout: "https://dailyreport.exbon.com",
   },
