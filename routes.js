@@ -16,8 +16,11 @@
 
 */
 // @material-ui/icons
+import React, { useState, useEffect } from "react";
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
+import EventNoteIcon from "@material-ui/icons/EventNote";
+import ScheduleIcon from "@material-ui/icons/Schedule";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import BubbleChart from "@material-ui/icons/BubbleChart";
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -29,27 +32,24 @@ const dashboardRoutes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    rtlName: "لوحة القيادة",
     icon: Dashboard,
 
     layout: "/home",
   },
-  // {
-  //   path: "/user-profile",
-  //   name: "User Profile",
-  //   rtlName: "ملف تعريفي للمستخدم",
-  //   icon: Person,
+  {
+    path: "/calendar/",
+    name: "Calendar",
+    icon: EventNoteIcon,
 
-  //   layout: "/dashboard",
-  // },
-  // {
-  //   path: "/table-list",
-  //   name: "Table List",
-  //   rtlName: "قائمة الجدول",
-  //   icon: "content_paste",
+    layout: "https://dailyreport.exbon.com",
+  },
+  {
+    path: "/",
+    name: "Daily Report",
+    icon: ScheduleIcon,
 
-  //   layout: "/dashboard",
-  // },
+    layout: "https://dailyreport.exbon.com",
+  },
   // {
   //   path: "/typography",
   //   name: "Typography",
