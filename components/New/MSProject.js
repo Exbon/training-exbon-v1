@@ -132,14 +132,14 @@ const MSProject = () => {
           <div
             style={{
               display: "flex",
-              marginTop: "20px",
-              marginBottom: "10px",
+              marginTop: "30px",
+              marginBottom: "30px",
             }}
           >
             <p
               style={{
-                marginLeft: "10px",
-                marginTop: 0,
+                marginLeft: "30px",
+                marginTop: "0",
                 marginBottom: 0,
                 fontFamily: "Roboto, sans-serif",
                 color: "#74646e",
@@ -177,7 +177,7 @@ const MSProject = () => {
               })}
             </select>
           </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
             <LineChart
               width={980}
               height={500}
@@ -187,7 +187,7 @@ const MSProject = () => {
                 (data.selectRange === "3months" && data.graph3) ||
                 (data.selectRange === "1year" && data.graph4)
               }
-              margin={{ top: 20, right: 10, left: 10, bottom: 0 }}
+              margin={{ top: 20, right: 50, left: 10, bottom: 0 }}
             >
               <XAxis dataKey="Date" />
               {selectedFeature === "WorkCompletion" && (
