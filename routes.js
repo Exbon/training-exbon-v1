@@ -27,7 +27,7 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 import Language from "@material-ui/icons/Language";
-
+import WorkIcon from "@material-ui/icons/Work";
 // function getCookie(cname) {
 //   var name = cname + "=";
 //   var decodedCookie = decodeURIComponent(document.cookie);
@@ -61,8 +61,8 @@ const dashboardRoutes = [
   },
   {
     path: "/",
-    name: "Daily Report",
-    icon: ScheduleIcon,
+    name: "Task Completion",
+    icon: WorkIcon,
 
     layout: "https://dailyreport.exbon.com",
   },
