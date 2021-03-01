@@ -93,3 +93,7 @@
 .fc-daygrid-day-number {
   font-weight: 600;
 }
+
+thead .fc-scroller {
+  overflow: hidden !important;
+}

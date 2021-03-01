@@ -27,6 +27,9 @@ const Schedule = () => {
       "Project ID : " +
         info.event._def.extendedProps.ProjectID +
         "<br/>" +
+        "Project Group : " +
+        info.event._def.extendedProps.ProjectGroup +
+        "<br/>" +
         "Project Name : " +
         info.event._def.extendedProps.ProjectName +
         "<br/>" +
@@ -37,7 +40,10 @@ const Schedule = () => {
         formatDate(info.event._instance.range.start) +
         "<br/>" +
         "End Date : " +
-        formatDate(info.event._instance.range.end)
+        formatDate(info.event._instance.range.end) +
+        "<br/>" +
+        "Status : " +
+        info.event._def.extendedProps.Status
     );
 
     ReactTooltip.rebuild();
