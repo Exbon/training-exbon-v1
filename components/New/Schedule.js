@@ -3,8 +3,21 @@ import ReactTooltip from "react-tooltip";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import { CookiesProvider, useCookies } from "react-cookie";
+import "../../assets/jss/nextjs-material-dashboard/New/ScheduleStyle.css";
+
 const Schedule = () => {
   const [data, setData] = useState(() => []);
+
+  const [cookies, setCookie, removeCookie] = useCookies();
+  const [status, setStatus] = useState({
+    cookies: {
+      username: 0,
+      password: 0,
+      fullname: "",
+      employeeid: 0,
+    },
+  });
 
   const handleEventPositioned = info => {
     info.el.setAttribute(
@@ -27,19 +40,35 @@ const Schedule = () => {
 
     ReactTooltip.rebuild();
   };
-  let id = 5023;
+
   useEffect(() => {
-    const fetchData = async () => {
-      let result = await axios({
-        method: "get",
-        url: `/api/calendar/${id}`,
-        timeout: 1000, // 1 seconds timeout
-        headers: {},
+    if (status.cookies.username !== 0) {
+      if (status.cookies.username !== undefined) {
+        console.log("test");
+        console.log("EmployeeID: " + status.cookies.employeeid);
+        const id = 5023;
+        const fetchData = async () => {
+          let result = await axios({
+            method: "get",
+            url: `/api/calendar/${id}`,
+            timeout: 15000, // 15 seconds timeout
+            headers: {},
+          });
+          setData(result.data);
+        };
+        trackPromise(fetchData());
+      }
+    } else {
+      setStatus({
+        cookies: {
+          username: cookies.username,
+          password: cookies.password,
+          fullname: cookies.fullname,
+          employeeid: cookies.employeeid,
+        },
       });
-      setData(result.data);
-    };
-    trackPromise(fetchData());
-  }, [id]);
+    }
+  }, [status, cookies]);
 
   const { promiseInProgress } = usePromiseTracker();
 
@@ -60,6 +89,7 @@ const Schedule = () => {
           </div>
         ) : (
           <>
+            {console.log(data)}
             <FullCalendar
               plugins={[dayGridPlugin]}
               height="100%"

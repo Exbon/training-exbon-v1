@@ -26,6 +26,7 @@ const MSProject = () => {
   const [status, setStatus] = useState({
     cookies: {
       username: 0,
+      password: 0,
       fullname: "",
       employeeid: 0,
     },
