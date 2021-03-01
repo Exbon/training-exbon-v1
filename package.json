@@ -10,6 +10,8 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf .next/ && npm install && npm run dev"
   },
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.5.0",
+    "@fullcalendar/react": "^5.5.0",
     "@material-ui/core": "4.11.3",
     "@material-ui/icons": "4.11.2",
     "@zeit/next-css": "1.0.1",
@@ -34,6 +36,7 @@
     "react-loader-spinner": "^4.0.0",
     "react-promise-tracker": "^2.1.0",
     "react-swipeable-views": "0.13.9",
+    "react-tooltip": "^4.2.15",
     "recharts": "^2.0.6"
   },
   "eslintConfig": {

@@ -1,0 +1,73 @@
+/* @media screen and (min-width: 900px) {
+  .frame {
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 750px;
+    background-color: white;
+    border-top: #fac863 5px solid;
+    border-radius: 1%;
+    padding: 25px;
+    box-shadow: 15px 15px 2px 1px rgba(145, 145, 148, 0.2);
+  }
+} */
+
+.frame {
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 950px;
+  height: 750px;
+  min-height: 750px;
+  background-color: white;
+  border-top: #fac863 5px solid;
+  border-radius: 1%;
+  padding: 25px;
+  box-shadow: 15px 15px 2px 1px rgba(145, 145, 148, 0.2);
+  font-family: "Roboto", sans-serif;
+}
+
+.toolbar__wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+.toolbar__wrapper__left {
+  display: flex;
+  flex-grow: 1;
+}
+
+.toolbar__wrapper__right {
+  color: rgba(236, 236, 236, 0.747);
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+.toolbar__wrapper__right__account-icon {
+  margin-left: 2%;
+  align-self: center;
+}
+.tooltip {
+  font-family: "Roboto", sans-serif;
+}
+.fc ::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+.fc ::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+}
+
+/* Handle */
+.fc ::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+.fc ::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
