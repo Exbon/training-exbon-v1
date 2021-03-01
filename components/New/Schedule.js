@@ -4,8 +4,9 @@ import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { CookiesProvider, useCookies } from "react-cookie";
+import axios from "axios";
 import "../../assets/jss/nextjs-material-dashboard/New/ScheduleStyle.css";
-
+import { formatDate } from "./formatDate";
 const Schedule = () => {
   const [data, setData] = useState(() => []);
 
@@ -46,11 +47,10 @@ const Schedule = () => {
       if (status.cookies.username !== undefined) {
         console.log("test");
         console.log("EmployeeID: " + status.cookies.employeeid);
-        const id = 5023;
         const fetchData = async () => {
           let result = await axios({
             method: "get",
-            url: `/api/calendar/${id}`,
+            url: `/api/calendar/${status.cookies.employeeid}`,
             timeout: 15000, // 15 seconds timeout
             headers: {},
           });
