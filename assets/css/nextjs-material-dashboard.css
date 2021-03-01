@@ -67,7 +67,7 @@ body {
   margin: 0;
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
-  line-height: 1.5em;
+  line-height: 1em !important;
   overflow-x: hidden;
 }
 
