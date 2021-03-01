@@ -23,6 +23,7 @@
 .noUi-target,
 .noUi-target * {
   -webkit-touch-callout: none;
+  touch-action: none;
   -ms-touch-action: none;
   user-select: none;
   box-sizing: border-box;
@@ -4375,7 +4376,6 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   border-radius: 10px;
   text-align: center;
   line-height: 19px;
-  vertical-align: middle;
   display: block;
 }
 
@@ -5039,13 +5039,6 @@ fieldset[disabled] .navbar .btn-link:focus {
 }
 
 @media (max-width: 1199px) {
-  .navbar {
-    /*
-        .navbar-form {
-          margin-top: 10px;
-        }
-    */
-  }
   .navbar .navbar-brand {
     height: 50px;
     padding: 10px 15px;
@@ -6925,6 +6918,7 @@ footer .btn {
     display: none;
   }
   .navbar-fixed-top {
+    backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
   }
   #bodyClick {

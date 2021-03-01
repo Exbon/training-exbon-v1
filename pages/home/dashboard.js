@@ -10,7 +10,7 @@ const Dashboard = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   return (
-    <div>
+    <div style={{ overflowX: "auto" }}>
       <Card style={{ width: "1200px" }}>
         <CardHeader color="info">
           <h4 className={classes.cardTitleWhite}>MS Project Data</h4>

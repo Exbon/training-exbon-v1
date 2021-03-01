@@ -9,11 +9,11 @@ const Calendar = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   return (
-    <div>
-      <Card style={{ width: "1200px" }}>
+    <div style={{ overflowX: "auto" }}>
+      <Card style={{ width: "1100px" }}>
         <CardHeader color="primary">
           <h4 className={classes.cardTitleWhite}>Schedule Calendar</h4>
-          <p className={classes.cardCategoryWhite}>Project Schedule</p>
+          <p className={classes.cardCategoryWhite}>My Project Schedule</p>
         </CardHeader>
         <Schedule />
       </Card>

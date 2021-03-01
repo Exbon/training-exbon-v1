@@ -68,7 +68,6 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 1.2em !important;
-  overflow-x: hidden;
 }
 
 blockquote footer:before,
@@ -223,7 +222,7 @@ footer ul li a:hover {
   body,
   html {
     position: relative;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
   }
 
   #bodyClick {
@@ -236,7 +235,7 @@ footer ul li a:hover {
     right: 260px;
     content: "";
     z-index: 9999;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
   }
 }
 .fixed-plugin {
@@ -252,7 +251,6 @@ footer ul li a:hover {
   border-radius: 8px 0 0 8px;
   text-align: center;
   top: 120px;
-  .badge-primary-background-color: #9c27b0;
 }
 
 .fixed-plugin .SocialMediaShareButton,
@@ -396,7 +394,6 @@ footer ul li a:hover {
 }
 
 .fixed-plugin .adjustments-line p {
-  float: left;
   display: inline-block;
   margin-bottom: 0;
   font-size: 1em;
@@ -436,7 +433,7 @@ footer ul li a:hover {
   cursor: pointer;
   display: block;
   max-height: 100px;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 0;
 }
 
@@ -514,9 +511,9 @@ footer ul li a:hover {
 * {
   letter-spacing: normal !important;
 }
-.body-page-transition {
+/* .body-page-transition {
   overflow: hidden;
-}
+} */
 .body-page-transition #page-transition {
   position: fixed;
   z-index: 9999;
