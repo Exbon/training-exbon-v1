@@ -75,7 +75,7 @@ const MSProject = () => {
         axios({
           method: "post",
           url: `/api/dashboard/signin`,
-          timeout: 1000, // 1 seconds timeout
+          timeout: 5000, // 5 seconds timeout
           headers: {},
           data: {
             Username: status.cookies.username,

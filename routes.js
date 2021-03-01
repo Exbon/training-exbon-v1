@@ -53,11 +53,11 @@ const dashboardRoutes = [
     layout: "/home",
   },
   {
-    path: "/calendar/",
+    path: "/calendar",
     name: "Calendar",
     icon: EventNoteIcon,
 
-    layout: "https://dailyreport.exbon.com",
+    layout: "/home",
   },
   {
     path: "/",

@@ -6,7 +6,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import styles from "assets/jss/nextjs-material-dashboard/views/dashboardStyle.js";
 import MSProject from "../../components/New/MSProject";
 
-function Dashboard() {
+const Dashboard = () => {
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   return (
@@ -20,7 +20,7 @@ function Dashboard() {
       </Card>
     </div>
   );
-}
+};
 
 Dashboard.layout = Admin;
 
