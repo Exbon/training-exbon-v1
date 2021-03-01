@@ -14,8 +14,8 @@
 } */
 
 .frame {
-  margin-top: 10px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
   width: 850px;
@@ -52,9 +52,10 @@
 }
 .tooltip {
   font-family: "Roboto", sans-serif;
+  font-weight: 500;
 }
 .fc ::-webkit-scrollbar {
-  width: 10px;
+  width: 4px;
 }
 
 /* Track */
@@ -71,4 +72,24 @@
 /* Handle on hover */
 .fc ::-webkit-scrollbar-thumb:hover {
   background: #b30000;
+}
+
+.fc-col-header {
+  width: 848px !important;
+}
+
+.fc-daygrid-body {
+  width: 848px !important;
+}
+
+.fc-scrollgrid-sync-table {
+  width: 848px !important;
+}
+
+.fc-scroller .fc-scroller-liquid-absolute {
+  overflow: hidden auto;
+}
+
+.fc-daygrid-day-number {
+  font-weight: 600;
 }

@@ -7,6 +7,7 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
 import "../../assets/jss/nextjs-material-dashboard/New/ScheduleStyle.css";
 import { formatDate } from "./formatDate";
+import Loader from "react-loader-spinner";
 const Schedule = () => {
   const [data, setData] = useState(() => []);
 
@@ -50,7 +51,7 @@ const Schedule = () => {
         const fetchData = async () => {
           let result = await axios({
             method: "get",
-            url: `/api/calendar/${5023}`,
+            url: `/api/calendar/${status.cookies.employeeid}`,
             timeout: 15000, // 15 seconds timeout
             headers: {},
           });
@@ -75,7 +76,7 @@ const Schedule = () => {
   return (
     <>
       <div className="frame">
-        {promiseInProgress === 0 ? (
+        {promiseInProgress || status.cookies.employeeid === 0 ? (
           <div
             style={{
               width: "100%",
