@@ -2,16 +2,9 @@
 
 #mainDiv {
   width: 1387px;
-  margin: auto;
+  margin-left: 10px;
 }
 
-.title {
-  font-family: "Roboto";
-  color: darkblue;
-  margin-right: 20px;
-  margin-bottom: 0;
-  margin-left: 5px;
-}
 .header {
   display: flex;
   justify-content: space-between;
@@ -29,6 +22,8 @@
   font-family: "Roboto";
   color: black;
   margin-right: 10px;
+  margin-bottom: 19px !important;
+  font-size: large;
 }
 
 .header__left__project-id__value {
@@ -39,6 +34,7 @@
   font-family: "Roboto";
   color: #50474c;
   white-space: nowrap;
+  font-size: medium;
 }
 
 .header__left__project-name {
@@ -47,6 +43,7 @@
   margin-left: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: medium;
 }
 
 .header__left__project-id__value:hover {
@@ -63,20 +60,21 @@
   margin-bottom: 5px;
 }
 .header__right__label-date-picker {
-  margin-bottom: 17px;
+  margin-bottom: 16px;
   font-family: "Roboto";
   color: #534f51;
 }
 
 .header__right__date-picker {
   width: 120px;
-  margin-bottom: 17px !important;
+  margin-bottom: 16px !important;
   margin-right: 20px !important;
 }
 
 .header__right__date-picker input {
   text-align: center;
   padding-bottom: 4px;
+  font-size: medium;
 }
 
 .header__right__save-btn {
@@ -103,6 +101,7 @@
 
 .table thead tr td {
   text-align: center;
+  font-weight: 400;
 }
 
 .table tr:nth-child(even) {
@@ -111,6 +110,7 @@
 
 .table tr {
   background-color: #ffffff;
+  font-weight: 400;
 }
 
 .table tbody tr:hover {

@@ -853,7 +853,27 @@ const TaskCompletion = (
           headers: {},
         });
 
-        setData(result1.data.result[0]);
+        // setData(result1.data.result[0]);
+        setData([
+          {
+            Company: "AME Builders",
+            CurrentWork: null,
+            FinishDate: "03/26/2021",
+            LastDate: "2021-02-01T00:00:00.000Z",
+            NewReqFinishDate: null,
+            NewReqStartDate: null,
+            PreviousWork: 0,
+            ProjectID: 5976,
+            RecordID: 0,
+            ReqFinishDate: null,
+            ReqStartDate: null,
+            Section: 1,
+            StartDate: "03/24/2021",
+            TaskID: 0,
+            TaskName: "BLDG L - Installation of Curb and Equipment Flashing",
+            Trade: "C39 Roofing",
+          },
+        ]);
         projectInfoTab2 = result1.data.result[1];
 
         let result2 = await axios({
@@ -1271,6 +1291,7 @@ const TaskCompletion = (
 
   return (
     <>
+      {console.log(data)}
       {status.cookies.username === undefined ||
       status.cookies.employeeid === undefined ? (
         <Login signin={signin} />
@@ -1324,7 +1345,7 @@ const TaskCompletion = (
                       size="small"
                       className="header__right__save-btn"
                       startIcon={<SaveIcon />}
-                      onClick={handleSaveBtn}
+                      // onClick={handleSaveBtn}
                     >
                       Save
                     </Button>
