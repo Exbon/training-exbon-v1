@@ -60,11 +60,11 @@ const dashboardRoutes = [
     layout: "/home",
   },
   {
-    path: "/",
+    path: "/dailyreport",
     name: "Daily Report",
     icon: ScheduleIcon,
 
-    layout: "https://dailyreport.exbon.com",
+    layout: "/home",
   },
   // {
   //   path: "/typography",
