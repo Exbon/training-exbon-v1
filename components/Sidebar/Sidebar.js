@@ -51,7 +51,7 @@ export default function Sidebar(props) {
         } else if (
           prop.path.includes("/dailyreport") &&
           (router.pathname.includes("timesheet") ||
-            router.pathname.includes("work-completion") ||
+            router.pathname.includes("task-completion") ||
             router.pathname.includes("deficiency-log"))
         ) {
           listItemClasses = classNames({

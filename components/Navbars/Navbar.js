@@ -16,6 +16,7 @@ import RTLNavbarLinks from "./RTLNavbarLinks.js";
 import Button from "components/CustomButtons/Button.js";
 
 import styles from "assets/jss/nextjs-material-dashboard/components/headerStyle.js";
+import Link from "next/link";
 
 export default function Header(props) {
   // used for checking current route
@@ -44,42 +45,47 @@ export default function Header(props) {
           {/* Here we create navbar brand, based on route name */}
           {router.route.includes("/home/dailyreport") ? (
             <div>
-              <Button
-                color={
-                  router.route.split("/")[3] === "timesheet"
-                    ? "success"
-                    : "transparent"
-                }
-                href="/home/dailyreport/timesheet"
-                className={classes.title}
-                round
-              >
-                Timesheet
-              </Button>
-              <Button
-                color={
-                  router.route.split("/")[3] === "work-completion"
-                    ? "success"
-                    : "transparent"
-                }
-                href="/home/dailyreport/work-completion"
-                className={classes.title}
-                round
-              >
-                Work Completion
-              </Button>
-              <Button
-                color={
-                  router.route.split("/")[3] === "deficiency-log"
-                    ? "success"
-                    : "transparent"
-                }
-                href="/home/dailyreport/deficiency-log"
-                className={classes.title}
-                round
-              >
-                Deficiency Log
-              </Button>
+              <Link href="/home/dailyreport/timesheet">
+                <Button
+                  color={
+                    router.route.split("/")[3] === "timesheet"
+                      ? "success"
+                      : "transparent"
+                  }
+                  className={classes.title}
+                  round
+                >
+                  Timesheet
+                </Button>
+              </Link>
+              <Link href="/home/dailyreport/task-completion">
+                <Button
+                  color={
+                    router.route.split("/")[3] === "task-completion"
+                      ? "success"
+                      : "transparent"
+                  }
+                  href="/home/dailyreport/task-completion"
+                  className={classes.title}
+                  round
+                >
+                  Task Completion
+                </Button>
+              </Link>
+              <Link href="/home/dailyreport/deficiency-log">
+                <Button
+                  color={
+                    router.route.split("/")[3] === "deficiency-log"
+                      ? "success"
+                      : "transparent"
+                  }
+                  href="/home/dailyreport/deficiency-log"
+                  className={classes.title}
+                  round
+                >
+                  Deficiency Log
+                </Button>
+              </Link>
             </div>
           ) : (
             <Button color="transparent" href="#" className={classes.title}>
