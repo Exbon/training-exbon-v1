@@ -48,6 +48,15 @@ export default function Sidebar(props) {
           listItemClasses = classNames({
             [" " + classes[color]]: true,
           });
+        } else if (
+          prop.path.includes("/dailyreport") &&
+          (router.pathname.includes("timesheet") ||
+            router.pathname.includes("work-completion") ||
+            router.pathname.includes("deficiency-log"))
+        ) {
+          listItemClasses = classNames({
+            [" " + classes[color]]: true,
+          });
         } else {
           listItemClasses = classNames({
             [" " + classes[color]]: activeRoute(prop.layout + prop.path),

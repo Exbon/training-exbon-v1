@@ -60,7 +60,7 @@ const dashboardRoutes = [
     layout: "/home",
   },
   {
-    path: "/dailyreport",
+    path: "/dailyreport/timesheet",
     name: "Daily Report",
     icon: ScheduleIcon,
 

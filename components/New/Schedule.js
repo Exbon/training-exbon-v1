@@ -52,8 +52,6 @@ const Schedule = () => {
   useEffect(() => {
     if (status.cookies.username !== 0) {
       if (status.cookies.username !== undefined) {
-        console.log("test");
-        console.log("EmployeeID: " + status.cookies.employeeid);
         const fetchData = async () => {
           let result = await axios({
             method: "get",
@@ -96,7 +94,6 @@ const Schedule = () => {
           </div>
         ) : (
           <>
-            {console.log(data)}
             <FullCalendar
               plugins={[dayGridPlugin]}
               height="100%"

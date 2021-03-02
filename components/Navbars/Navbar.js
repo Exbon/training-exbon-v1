@@ -42,26 +42,41 @@ export default function Header(props) {
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
           {/* Here we create navbar brand, based on route name */}
-          {router.route === "/home/dailyreport" ? (
+          {router.route.includes("/home/dailyreport") ? (
             <div>
               <Button
-                color="transparent"
+                color={
+                  router.route.split("/")[3] === "timesheet"
+                    ? "success"
+                    : "transparent"
+                }
                 href="/home/dailyreport/timesheet"
                 className={classes.title}
+                round
               >
                 Timesheet
               </Button>
               <Button
-                color="transparent"
-                href="/work-completion"
+                color={
+                  router.route.split("/")[3] === "work-completion"
+                    ? "success"
+                    : "transparent"
+                }
+                href="/home/dailyreport/work-completion"
                 className={classes.title}
+                round
               >
                 Work Completion
               </Button>
               <Button
-                color="transparent"
-                href="/deficiency-log"
+                color={
+                  router.route.split("/")[3] === "deficiency-log"
+                    ? "success"
+                    : "transparent"
+                }
+                href="/home/dailyreport/deficiency-log"
                 className={classes.title}
+                round
               >
                 Deficiency Log
               </Button>
