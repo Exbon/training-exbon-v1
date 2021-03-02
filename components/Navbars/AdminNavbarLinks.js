@@ -66,7 +66,7 @@ export default function AdminNavbarLinks() {
               fontFamily: "Roboto",
               fontWeight: "500",
               color: "darkgray",
-              marginTop: "14px",
+              marginTop: "16px",
             }}
           >
             {state.FullName}
