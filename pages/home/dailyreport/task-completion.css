@@ -80,9 +80,6 @@
   font-size: medium;
 }
 
-.header__right__save-btn {
-}
-
 .header__right__no-work-btn {
   margin-right: 20px !important;
   white-space: nowrap;
@@ -379,7 +376,8 @@
 }
 .modal-no-work__wrapper-title__title {
   color: #f60057;
-  margin-top: 0;
+  margin-top: 10px;
+  font-weight: 400;
 }
 .modal-no-work__wrapper-table {
   max-height: 650px;
@@ -402,10 +400,11 @@
 .modal-no-work__wrapper-table__table {
   color: rgb(116, 100, 110);
   font-size: 0.95rem;
+  font-weight: 400;
   font-family: "Roboto", sans-serif;
   border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
 }
 
 .modal-no-work__wrapper-table__table td {
@@ -458,6 +457,7 @@
 
 .modal-no-work__wrapper-btn-close {
   margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
 }
 .modal-no-work__wrapper-table__table__approval {

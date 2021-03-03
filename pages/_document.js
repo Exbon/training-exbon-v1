@@ -1,9 +1,6 @@
 import React from "react";
 import Document, { Head, Main, NextScript, Html } from "next/document";
 import { ServerStyleSheets } from "@material-ui/styles";
-import Modal from "react-modal";
-
-Modal.setAppElement("#modalForTasksTab");
 
 class MyDocument extends Document {
   render() {
@@ -42,7 +39,6 @@ class MyDocument extends Document {
         </Head>
         <body>
           <div id="page-transition"></div>
-          <div id="modalForTasksTab"></div>
           <Main />
           <NextScript />
         </body>

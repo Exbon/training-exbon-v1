@@ -24,6 +24,7 @@ import Router from "next/router";
 import PageChange from "components/PageChange/PageChange.js";
 
 import "assets/css/nextjs-material-dashboard.css?v=1.1.0";
+import Modal from "react-modal";
 
 Router.events.on("routeChangeStart", url => {
   console.log(`Loading: ${url}`);
@@ -41,6 +42,8 @@ Router.events.on("routeChangeError", () => {
   ReactDOM.unmountComponentAtNode(document.getElementById("page-transition"));
   document.body.classList.remove("body-page-transition");
 });
+
+Modal.setAppElement("#modalForTasksTab");
 
 export default class MyApp extends App {
   componentDidMount() {
@@ -89,6 +92,7 @@ export default class MyApp extends App {
         </Head>
         <Layout>
           <Component {...pageProps} />
+          <div id="modalForTasksTab"></div>
         </Layout>
       </React.Fragment>
     );
