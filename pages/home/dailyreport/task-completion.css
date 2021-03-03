@@ -24,6 +24,7 @@
   margin-right: 10px;
   margin-bottom: 19px !important;
   font-size: large;
+  font-weight: 600;
 }
 
 .header__left__project-id__value {
@@ -35,6 +36,7 @@
   color: #50474c;
   white-space: nowrap;
   font-size: medium;
+  font-weight: 600;
 }
 
 .header__left__project-name {
@@ -44,6 +46,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: medium;
+  font-weight: 600;
 }
 
 .header__left__project-id__value:hover {

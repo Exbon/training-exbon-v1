@@ -23,6 +23,8 @@ import { CookiesProvider, useCookies } from "react-cookie";
 
 import "./task-completion.css";
 
+Modal.setAppElement("#modalForTasksTab");
+
 let noWorkMapKey = -1;
 let projectInfoTab2;
 
@@ -60,9 +62,9 @@ const TaskCompletion = (
   }
 ) => {
   const router = useRouter();
-  const projectState = "5976";
+  const projectState = "6102";
 
-  const [cookies, setCookie, removeCookie] = useCookies("username");
+  const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
     cookies: {
       username: 0,
@@ -856,24 +858,151 @@ const TaskCompletion = (
         // setData(result1.data.result[0]);
         setData([
           {
-            Company: "AME Builders",
-            CurrentWork: null,
-            FinishDate: "03/26/2021",
-            LastDate: "2021-02-01T00:00:00.000Z",
-            NewReqFinishDate: null,
-            NewReqStartDate: null,
-            PreviousWork: 0,
-            ProjectID: 5976,
-            RecordID: 0,
-            ReqFinishDate: null,
+            TaskID: 464,
+            ProjectID: 6102,
+            RecordID: 1711,
+            TaskName: "Notice to Proceed",
+            Trade: null,
+            Company: null,
+            Section: null,
+            StartDate: "10/02/2020",
+            FinishDate: "10/02/2020",
             ReqStartDate: null,
+            ReqFinishDate: null,
+            NewReqStartDate: null,
+            NewReqFinishDate: null,
+            LastDate: "2021-01-14T00:00:00.000Z",
+            CurrentWork: null,
+            PreviousWork: 100,
+          },
+          {
+            TaskID: 465,
+            ProjectID: 6102,
+            RecordID: 1713,
+            TaskName: "Mobilization",
+            Trade: null,
+            Company: null,
+            Section: null,
+            StartDate: "01/11/2021",
+            FinishDate: "01/11/2021",
+            ReqStartDate: null,
+            ReqFinishDate: null,
+            NewReqStartDate: null,
+            NewReqFinishDate: null,
+            LastDate: "2021-01-14T00:00:00.000Z",
+            CurrentWork: null,
+            PreviousWork: 100,
+          },
+          {
+            TaskID: 466,
+            ProjectID: 6102,
+            RecordID: 4086,
+            TaskName: "Electrical & Other Repairs Carson Animal Care #3",
+            Trade: "C4 HVAC",
+            Company: "SOMA HVAC Inc",
             Section: 1,
-            StartDate: "03/24/2021",
-            TaskID: 0,
-            TaskName: "BLDG L - Installation of Curb and Equipment Flashing",
-            Trade: "C39 Roofing",
+            StartDate: "01/12/2021",
+            FinishDate: "02/15/2021",
+            ReqStartDate: null,
+            ReqFinishDate: null,
+            NewReqStartDate: null,
+            NewReqFinishDate: null,
+            LastDate: "2021-02-16T00:00:00.000Z",
+            CurrentWork: null,
+            PreviousWork: 100,
+          },
+          {
+            TaskID: 467,
+            ProjectID: 6102,
+            RecordID: 4087,
+            TaskName: "Demolition, Clean up and disposal",
+            Trade: "C4 HVAC",
+            Company: "SOMA HVAC Inc",
+            Section: 1,
+            StartDate: "02/12/2021",
+            FinishDate: "02/19/2021",
+            ReqStartDate: null,
+            ReqFinishDate: null,
+            NewReqStartDate: null,
+            NewReqFinishDate: null,
+            LastDate: "2021-02-16T00:00:00.000Z",
+            CurrentWork: null,
+            PreviousWork: 95,
+          },
+          {
+            TaskID: 468,
+            ProjectID: 6102,
+            RecordID: 4130,
+            TaskName: "Temp Power",
+            Trade: "B General Building",
+            Company: "Exbon Development Inc.",
+            Section: 1,
+            StartDate: "01/12/2021",
+            FinishDate: "02/16/2021",
+            ReqStartDate: null,
+            ReqFinishDate: null,
+            NewReqStartDate: null,
+            NewReqFinishDate: null,
+            LastDate: "2021-02-17T00:00:00.000Z",
+            CurrentWork: null,
+            PreviousWork: 100,
+          },
+          {
+            TaskID: 469,
+            ProjectID: 6102,
+            RecordID: 3956,
+            TaskName: "Concrete Patch",
+            Trade: "B General Building",
+            Company: "Exbon Development Inc.",
+            Section: 1,
+            StartDate: "02/19/2021",
+            FinishDate: "02/19/2021",
+            ReqStartDate: null,
+            ReqFinishDate: null,
+            NewReqStartDate: null,
+            NewReqFinishDate: null,
+            LastDate: "2021-02-12T00:00:00.000Z",
+            CurrentWork: null,
+            PreviousWork: 100,
+          },
+          {
+            TaskID: 470,
+            ProjectID: 6102,
+            RecordID: 4276,
+            TaskName: "Pre Final Inspection & Punchlist",
+            Trade: null,
+            Company: null,
+            Section: null,
+            StartDate: "02/22/2021",
+            FinishDate: "02/23/2021",
+            ReqStartDate: null,
+            ReqFinishDate: null,
+            NewReqStartDate: null,
+            NewReqFinishDate: null,
+            LastDate: "2021-02-19T00:00:00.000Z",
+            CurrentWork: null,
+            PreviousWork: 85,
+          },
+          {
+            TaskID: 471,
+            ProjectID: 6102,
+            RecordID: 4371,
+            TaskName: "Final Inspection",
+            Trade: null,
+            Company: null,
+            Section: null,
+            StartDate: "02/24/2021",
+            FinishDate: "02/24/2021",
+            ReqStartDate: null,
+            ReqFinishDate: null,
+            NewReqStartDate: null,
+            NewReqFinishDate: null,
+            LastDate: "2021-02-23T00:00:00.000Z",
+            CurrentWork: null,
+            PreviousWork: 40,
           },
         ]);
+
         projectInfoTab2 = result1.data.result[1];
 
         let result2 = await axios({
@@ -1679,6 +1808,7 @@ const TaskCompletion = (
                 </div>
               </div>
             </Modal>
+            <div id="modalForTasksTab"></div>
           </div>
         </>
       )}
