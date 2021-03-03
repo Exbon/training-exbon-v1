@@ -1427,7 +1427,7 @@ const TaskCompletion = (
       ) : !status.permission ? (
         <NotPermission />
       ) : (
-        <>
+        <div style={{ overflowX: "auto" }}>
           <div id="mainDiv">
             {promiseInProgress || !projectState || !(data.length > 0) ? (
               <div
@@ -1810,7 +1810,7 @@ const TaskCompletion = (
             </Modal>
             <div id="modalForTasksTab"></div>
           </div>
-        </>
+        </div>
       )}
     </>
   );

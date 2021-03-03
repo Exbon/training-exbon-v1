@@ -1,7 +1,7 @@
 import Admin from "layouts/Admin.js";
 
 const DailyReport = () => {
-  return <div></div>;
+  return <div style={{ overflowX: "auto" }}></div>;
 };
 
 DailyReport.layout = Admin;
