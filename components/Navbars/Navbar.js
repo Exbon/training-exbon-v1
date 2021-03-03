@@ -46,45 +46,49 @@ export default function Header(props) {
           {router.route.includes("/home/dailyreport") ? (
             <div>
               <Link href="/home/dailyreport/timesheet">
-                <Button
-                  color={
-                    router.route.split("/")[3] === "timesheet"
-                      ? "success"
-                      : "transparent"
-                  }
-                  className={classes.title}
-                  round
-                >
-                  Timesheet
-                </Button>
+                <a>
+                  <Button
+                    color={
+                      router.route.split("/")[3] === "timesheet"
+                        ? "success"
+                        : "transparent"
+                    }
+                    className={classes.title}
+                    round
+                  >
+                    Timesheet
+                  </Button>
+                </a>
               </Link>
               <Link href="/home/dailyreport/task-completion">
-                <Button
-                  color={
-                    router.route.split("/")[3] === "task-completion"
-                      ? "success"
-                      : "transparent"
-                  }
-                  href="/home/dailyreport/task-completion"
-                  className={classes.title}
-                  round
-                >
-                  Task Completion
-                </Button>
+                <a>
+                  <Button
+                    color={
+                      router.route.split("/")[3] === "task-completion"
+                        ? "success"
+                        : "transparent"
+                    }
+                    className={classes.title}
+                    round
+                  >
+                    Task Completion
+                  </Button>
+                </a>
               </Link>
               <Link href="/home/dailyreport/deficiency-log">
-                <Button
-                  color={
-                    router.route.split("/")[3] === "deficiency-log"
-                      ? "success"
-                      : "transparent"
-                  }
-                  href="/home/dailyreport/deficiency-log"
-                  className={classes.title}
-                  round
-                >
-                  Deficiency Log
-                </Button>
+                <a>
+                  <Button
+                    color={
+                      router.route.split("/")[3] === "deficiency-log"
+                        ? "success"
+                        : "transparent"
+                    }
+                    className={classes.title}
+                    round
+                  >
+                    Deficiency Log
+                  </Button>
+                </a>
               </Link>
             </div>
           ) : (
