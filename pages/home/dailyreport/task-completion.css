@@ -361,7 +361,8 @@
 }
 
 .alert__complete {
-  text-align: center;
+  text-align: center !important;
+  margin-left: 80px;
 }
 
 .table__report-icon {

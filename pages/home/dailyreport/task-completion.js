@@ -20,13 +20,14 @@ import DeleteTwoToneIcon from "@material-ui/icons/DeleteTwoTone";
 import Router, { useRouter } from "next/router";
 import NotPermission from "./NotPermission";
 import { CookiesProvider, useCookies } from "react-cookie";
-
+import "react-toastify/dist/ReactToastify.css";
 import "./task-completion.css";
 
 let noWorkMapKey = -1;
 let projectInfoTab2;
 
 toast.configure();
+
 const themeForWorkDate = createMuiTheme({
   palette: {
     primary: deepOrange,
@@ -60,7 +61,7 @@ const TaskCompletion = (
   }
 ) => {
   const router = useRouter();
-  const projectState = "6102";
+  const projectState = "999999";
 
   const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
