@@ -22,7 +22,6 @@ import NotPermission from "./NotPermission";
 import { CookiesProvider, useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import "./task-completion.css";
-
 let noWorkMapKey = -1;
 let projectInfoTab2;
 
@@ -61,7 +60,7 @@ const TaskCompletion = (
   }
 ) => {
   const router = useRouter();
-  const [projectState, setProjectState] = useState("6102");
+  const [projectState, setProjectState] = useState(undefined);
   // const projectState = "6102";
 
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -816,6 +815,15 @@ const TaskCompletion = (
         }).then(response => {
           const assignedProject = response.data.result.recordsets[1];
           setStateAssignedProject(response.data.result.recordsets[1]);
+
+          if (
+            response.data.result.recordsets[1].length > 0 &&
+            projectState == undefined
+          ) {
+            setProjectState(
+              "" + response.data.result.recordsets[1][0].ProjectID
+            );
+          }
           if (status.permission === true && projectState !== undefined) {
             let check = 0;
             for (let i = 0; i < assignedProject.length; i++) {
