@@ -818,11 +818,15 @@ const TaskCompletion = (
 
           if (
             response.data.result.recordsets[1].length > 0 &&
-            projectState == undefined
+            projectState === undefined
           ) {
-            setProjectState(
-              "" + response.data.result.recordsets[1][0].ProjectID
-            );
+            if (router.query.pid) {
+              setProjectState(router.query.pid);
+            } else {
+              setProjectState(
+                "" + response.data.result.recordsets[1][0].ProjectID
+              );
+            }
           }
           if (status.permission === true && projectState !== undefined) {
             let check = 0;
