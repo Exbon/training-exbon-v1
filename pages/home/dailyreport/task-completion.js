@@ -61,6 +61,7 @@ const TaskCompletion = (
   }
 ) => {
   const router = useRouter();
+  // const [projectState, setProjectState] = useState([]);
   const projectState = "6102";
 
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -73,6 +74,7 @@ const TaskCompletion = (
     },
     permission: true,
   });
+  const [stateAssignedProject, setStateAssignedProject] = useState([]);
 
   const columns = useMemo(
     () => [
@@ -813,7 +815,7 @@ const TaskCompletion = (
           },
         }).then(response => {
           const assignedProject = response.data.result.recordsets[1];
-
+          setStateAssignedProject(response.data.result.recordsets[1]);
           if (status.permission === true && projectState !== undefined) {
             let check = 0;
             for (let i = 0; i < assignedProject.length; i++) {
@@ -1260,8 +1262,38 @@ const TaskCompletion = (
               </div>
             ) : (
               <>
+                <select
+                  style={{
+                    marginTop: "30px",
+                    fontFamily: "Roboto, sans-serif",
+                    fontSize: "medium",
+                    display: "inline-block",
+                    color: "#74646e",
+                    border: "1px solid #c8bfc4",
+                    borderRadius: "4px",
+                    boxShadow: "inset 1px 1px 2px #ddd8dc",
+                    background: "#fff",
+                    zIndex: "100",
+                    position: "relative",
+                  }}
+                >
+                  {stateAssignedProject.map(item => {
+                    return (
+                      <option
+                        value={item.ProjectID}
+                        key={item.ProjectID}
+                        projectgroup={item.ProjectGroup}
+                        projectname={item.ProjectName}
+                      >
+                        {item.ProjectID} &emsp;[{item.ProjectGroup}]&ensp;
+                        {item.ProjectName}
+                      </option>
+                    );
+                  })}
+                </select>
+
                 <div className="header">
-                  <div className="header__left">
+                  {/* <div className="header__left">
                     <h3 className="header__left__project-id">
                       <span
                         onClick={goMain}
@@ -1283,7 +1315,7 @@ const TaskCompletion = (
                     ) : (
                       ""
                     )}
-                  </div>
+                  </div> */}
                   <div className="header__right">
                     <Button
                       variant="contained"

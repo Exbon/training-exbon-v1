@@ -8,6 +8,9 @@
 .header {
   display: flex;
   justify-content: space-between;
+  margin-top: -45px;
+  z-index: 0;
+  position: relative;
 }
 
 .header__left {
