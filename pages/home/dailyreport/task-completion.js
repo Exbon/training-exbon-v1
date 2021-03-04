@@ -61,8 +61,8 @@ const TaskCompletion = (
   }
 ) => {
   const router = useRouter();
-  // const [projectState, setProjectState] = useState([]);
-  const projectState = "6102";
+  const [projectState, setProjectState] = useState("6102");
+  // const projectState = "6102";
 
   const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
@@ -1263,6 +1263,8 @@ const TaskCompletion = (
             ) : (
               <>
                 <select
+                  value={projectState}
+                  onChange={e => setProjectState(e.target.value)}
                   style={{
                     marginTop: "30px",
                     fontFamily: "Roboto, sans-serif",
