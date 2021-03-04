@@ -143,6 +143,7 @@ const MSProject = () => {
                 marginTop: "0",
                 marginBottom: 0,
                 fontFamily: "Roboto, sans-serif",
+                fontSize: "medium",
                 color: "#74646e",
                 fontWeight: 500,
               }}
@@ -155,6 +156,7 @@ const MSProject = () => {
               style={{
                 marginLeft: "20px",
                 fontFamily: "Roboto, sans-serif",
+                fontSize: "medium",
                 display: "inline-block",
                 color: "#74646e",
                 border: "1px solid #c8bfc4",
