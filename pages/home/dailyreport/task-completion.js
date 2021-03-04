@@ -1275,7 +1275,7 @@ const TaskCompletion = (
                     borderRadius: "4px",
                     boxShadow: "inset 1px 1px 2px #ddd8dc",
                     background: "#fff",
-                    zIndex: "100",
+                    zIndex: modalNoWork.isOpen ? "0" : "1",
                     position: "relative",
                   }}
                 >
