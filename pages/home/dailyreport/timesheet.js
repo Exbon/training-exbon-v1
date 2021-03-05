@@ -139,15 +139,16 @@ const Timesheet = () => {
       for (
         let i = 12;
         i <
-        document.getElementsByClassName("table__time-wrapper__target-disabled")
-          .length;
+        document.getElementsByClassName(
+          "time__table__time-wrapper__target-disabled"
+        ).length;
         i++
       ) {
         document
-          .getElementsByClassName("table__time-wrapper__target-disabled")
+          .getElementsByClassName("time__table__time-wrapper__target-disabled")
           [i].setAttribute("disabled", true);
         document
-          .getElementsByClassName("table__time-wrapper__target-disabled")
+          .getElementsByClassName("time__table__time-wrapper__target-disabled")
           [i].classList.add("table__time-wrapper__target-disabled--disabled");
       }
       setSameTime();
@@ -155,17 +156,18 @@ const Timesheet = () => {
       for (
         let i = 12;
         i <
-        document.getElementsByClassName("table__time-wrapper__target-disabled")
-          .length;
+        document.getElementsByClassName(
+          "time__table__time-wrapper__target-disabled"
+        ).length;
         i++
       ) {
         document
-          .getElementsByClassName("table__time-wrapper__target-disabled")
+          .getElementsByClassName("time__table__time-wrapper__target-disabled")
           [i].removeAttribute("disabled");
         document
-          .getElementsByClassName("table__time-wrapper__target-disabled")
+          .getElementsByClassName("time__table__time-wrapper__target-disabled")
           [i].classList.remove(
-            "table__time-wrapper__target-disabled--disabled"
+            "time__table__time-wrapper__target-disabled--disabled"
           );
       }
     }
@@ -239,7 +241,7 @@ const Timesheet = () => {
       addUpdateQueue(TimesheetID);
       if (12 < parseInt(e.target.value)) {
         toast.warning(
-          <div className="alert__table__hour-input">
+          <div className="time__alert__table__hour-input">
             Only <strong>00 to 12</strong> can be entered into the time hour
             input.
           </div>,
@@ -332,7 +334,7 @@ const Timesheet = () => {
         return (
           <DeleteForeverIcon
             color="action"
-            className="table__delete-icon"
+            className="time__table__delete-icon"
             value={value}
             onClick={() => clickDeleteTimesheet(value)}
           ></DeleteForeverIcon>
@@ -344,7 +346,7 @@ const Timesheet = () => {
           value={value}
           onChange={onChangePosition}
           onBlur={onBlur}
-          className="table__position-dropdown"
+          className="time__table__position-dropdown"
           disabled={afterSundayCheck ? false : true}
         >
           <option value={"Director"}>Director</option>
@@ -359,7 +361,7 @@ const Timesheet = () => {
       id === "WorkEnd"
     ) {
       return (
-        <div className="table__time-wrapper">
+        <div className="time__table__time-wrapper">
           <InputMask
             value={value.slice(0, 2)}
             onChange={onCheckHour}
@@ -367,12 +369,12 @@ const Timesheet = () => {
             className={
               afterSundayCheck
                 ? classNames(
-                    "table__time-wrapper__target-disabled",
-                    "table__time-wrapper__hour-input"
+                    "time__table__time-wrapper__target-disabled",
+                    "time__table__time-wrapper__hour-input"
                   )
                 : classNames(
-                    "table__time-wrapper__target-disabled",
-                    "table__time-wrapper__hour-input-before-sunday"
+                    "time__table__time-wrapper__target-disabled",
+                    "time__table__time-wrapper__hour-input-before-sunday"
                   )
             }
             mask="29"
@@ -391,12 +393,12 @@ const Timesheet = () => {
             className={
               afterSundayCheck
                 ? classNames(
-                    "table__time-wrapper__target-disabled",
-                    "table__time-wrapper__min-input"
+                    "time__table__time-wrapper__target-disabled",
+                    "time__table__time-wrapper__min-input"
                   )
                 : classNames(
-                    "table__time-wrapper__target-disabled",
-                    "table__time-wrapper__min-input-before-sunday"
+                    "time__table__time-wrapper__target-disabled",
+                    "time__table__time-wrapper__min-input-before-sunday"
                   )
             }
             placeholder="00~50"
@@ -411,8 +413,8 @@ const Timesheet = () => {
             onChange={onCheckAmPm}
             onBlur={onBlur}
             className={classNames(
-              "table__time-wrapper__target-disabled",
-              "table__ampm-dropdown"
+              "time__table__time-wrapper__target-disabled",
+              "time__table__ampm-dropdown"
             )}
             disabled={afterSundayCheck ? false : true}
           >
@@ -446,8 +448,8 @@ const Timesheet = () => {
               <input
                 className={
                   afterSundayCheck
-                    ? "table__employee-input"
-                    : "table__employee-input-before-sunday"
+                    ? "time__table__employee-input"
+                    : "time__table__employee-input-before-sunday"
                 }
                 disabled={afterSundayCheck ? false : true}
                 {...props}
@@ -473,8 +475,8 @@ const Timesheet = () => {
       return (
         <div
           className={classNames([
-            "table__labor-hours-input",
-            "table__labor-hours-input",
+            "time__table__labor-hours-input",
+            "time__table__labor-hours-input",
           ])}
         >
           {laborDate}
@@ -734,32 +736,34 @@ const Timesheet = () => {
       for (
         let i = 12;
         i <
-        document.getElementsByClassName("table__time-wrapper__target-disabled")
-          .length;
+        document.getElementsByClassName(
+          "time__table__time-wrapper__target-disabled"
+        ).length;
         i++
       ) {
         document
-          .getElementsByClassName("table__time-wrapper__target-disabled")
+          .getElementsByClassName("time__table__time-wrapper__target-disabled")
           [i].setAttribute("disabled", true);
         document
-          .getElementsByClassName("table__time-wrapper__target-disabled")
+          .getElementsByClassName("time__table__time-wrapper__target-disabled")
           [i].classList.add("table__time-wrapper__target-disabled--disabled");
       }
     } else {
       for (
         let i = 12;
         i <
-        document.getElementsByClassName("table__time-wrapper__target-disabled")
-          .length;
+        document.getElementsByClassName(
+          "time__table__time-wrapper__target-disabled"
+        ).length;
         i++
       ) {
         document
-          .getElementsByClassName("table__time-wrapper__target-disabled")
+          .getElementsByClassName("time__table__time-wrapper__target-disabled")
           [i].removeAttribute("disabled");
         document
-          .getElementsByClassName("table__time-wrapper__target-disabled")
+          .getElementsByClassName("time__table__time-wrapper__target-disabled")
           [i].classList.remove(
-            "table__time-wrapper__target-disabled--disabled"
+            "time__table__time-wrapper__target-disabled--disabled"
           );
       }
     }
@@ -770,18 +774,19 @@ const Timesheet = () => {
     let checkTime = 0;
     for (
       let i = 0;
-      i < document.getElementsByClassName("table__labor-hours-input").length;
+      i <
+      document.getElementsByClassName("time__table__labor-hours-input").length;
       i++
     ) {
       if (
-        document.getElementsByClassName("table__labor-hours-input")[i]
+        document.getElementsByClassName("time__table__labor-hours-input")[i]
           .innerText === "NaN"
       )
         checkTime++;
     }
     if (checkEmployeeName) {
       toast.error(
-        <div className="alert__table__employee-input">
+        <div className="time__alert__table__employee-input">
           Unable to save. <br /> Please check <strong>employee name </strong>
           again.
         </div>,
@@ -793,7 +798,7 @@ const Timesheet = () => {
       return null;
     } else if (checkTime) {
       toast.error(
-        <div className="alert__table__time-wrapper">
+        <div className="time__alert__table__time-wrapper">
           Unable to save. <br /> Please check the <strong>time input </strong>
           again.
         </div>,
@@ -869,7 +874,7 @@ const Timesheet = () => {
       trackPromise(
         Promise.all(promises).then(result => {
           toast.success(
-            <div className="alert__complete">
+            <div className="time__alert__complete">
               <strong>Save Complete</strong>
             </div>,
             {
@@ -951,7 +956,7 @@ const Timesheet = () => {
         <NotPermission />
       ) : (
         <>
-          <div id="mainDiv">
+          <div id="time__mainDiv">
             {promiseInProgress || !projectState ? (
               <div
                 style={{
@@ -966,15 +971,15 @@ const Timesheet = () => {
               </div>
             ) : (
               <>
-                <div className="header">
-                  <div className="header__left">
-                    <h3 className="header__left__project-id">
+                <div className="time__header">
+                  <div className="time__header__left">
+                    <h3 className="time__header__left__project-id">
                       <span
                         onClick={() => {
                           goMain();
                           // setProjectState(0);
                         }}
-                        className="header__left__project-id__value"
+                        className="time__header__left__project-id__value"
                       >
                         {projectState}
                       </span>
@@ -983,10 +988,10 @@ const Timesheet = () => {
                     {projectInfoTab1 !== undefined &&
                     projectInfoTab1.length !== 0 ? (
                       <>
-                        <h4 className="header__left__project-group">
+                        <h4 className="time__header__left__project-group">
                           [{projectInfoTab1[0].ProjectGroup}]
                         </h4>
-                        <h4 className="header__left__project-name">
+                        <h4 className="time__header__left__project-name">
                           {projectInfoTab1[0].ProjectName}
                         </h4>
                       </>
@@ -994,7 +999,7 @@ const Timesheet = () => {
                       ""
                     )}
                   </div>
-                  <div className="header__right">
+                  <div className="time__header__right">
                     {/* {dateCheckEditable(selectedDate) && ( */}
                     <>
                       <Button
@@ -1003,8 +1008,8 @@ const Timesheet = () => {
                         size="small"
                         className={
                           dateCheckEditable(selectedDate)
-                            ? "header__right__save-btn"
-                            : "header__right__save-btn-before-sunday"
+                            ? "time__header__right__save-btn"
+                            : "time__header__right__save-btn-before-sunday"
                         }
                         onClick={handleSaveTimesheetBtn}
                         startIcon={<SaveIcon />}
@@ -1017,8 +1022,8 @@ const Timesheet = () => {
                         size="small"
                         className={
                           dateCheckEditable(selectedDate)
-                            ? "header__right__add-btn"
-                            : "header__right__add-btn-before-sunday"
+                            ? "time__header__right__add-btn"
+                            : "time__header__right__add-btn-before-sunday"
                         }
                         onClick={addTimesheetRow}
                         startIcon={<AddIcon />}
@@ -1038,8 +1043,8 @@ const Timesheet = () => {
                         label="Set Same Time of All"
                         className={
                           dateCheckEditable(selectedDate)
-                            ? "header__right__checkbox"
-                            : "header__right__checkbox-before-sunday"
+                            ? "time__header__right__checkbox"
+                            : "time__header__right__checkbox-before-sunday"
                         }
                       />
                     </>
@@ -1051,15 +1056,17 @@ const Timesheet = () => {
                         format="MM/dd/yyyy"
                         value={selectedDate}
                         onChange={handleDateChange}
-                        className="header__right__date-picker"
+                        className="time__header__right__date-picker"
                         autoOk={true}
                         okLabel=""
                       />
                     </MuiPickersUtilsProvider>
-                    <p className="header__right__label-date-picker">Date</p>
+                    <p className="time__header__right__label-date-picker">
+                      Date
+                    </p>
                   </div>
                 </div>
-                <div className="table">
+                <div className="time__table">
                   <TableContainer component={Paper}>
                     <Table>
                       <TableHead>

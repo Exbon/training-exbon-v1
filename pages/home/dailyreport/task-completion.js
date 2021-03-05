@@ -434,8 +434,8 @@ const TaskCompletion = (
                 autoOk={true}
                 className={
                   value === null
-                    ? "table__req-start-date-wrapper__date-picker"
-                    : "table__req-start-date-wrapper__date-picker-request"
+                    ? "task__table__req-start-date-wrapper__date-picker"
+                    : "task__table__req-start-date-wrapper__date-picker-request"
                 }
                 onChange={selectReqStartDate}
               />
@@ -457,8 +457,8 @@ const TaskCompletion = (
                 autoOk={true}
                 className={
                   value === null
-                    ? "table__req-finish-date-wrapper__date-picker"
-                    : "table__req-finish-date-wrapper__date-picker-request"
+                    ? "task__table__req-finish-date-wrapper__date-picker"
+                    : "task__table__req-finish-date-wrapper__date-picker-request"
                 }
                 onChange={selectReqFinishDate}
               />
@@ -1378,8 +1378,8 @@ const TaskCompletion = (
                                   <td
                                     className={
                                       item.OrderStatus === "2"
-                                        ? "modal-no-work__wrapper-table__table__pending"
-                                        : "modal-no-work__wrapper-table__table__request"
+                                        ? "task__modal-no-work__wrapper-table__table__pending"
+                                        : "task__modal-no-work__wrapper-table__table__request"
                                     }
                                   >
                                     {item.Status}&nbsp;{" "}
@@ -1400,15 +1400,15 @@ const TaskCompletion = (
                                   <td
                                     className={
                                       item.OrderStatus === "2"
-                                        ? "modal-no-work__wrapper-table__table__wrapper-icon-delete__pending"
-                                        : "modal-no-work__wrapper-table__table__wrapper-icon-delete__request"
+                                        ? "task__modal-no-work__wrapper-table__table__wrapper-icon-delete__pending"
+                                        : "task__modal-no-work__wrapper-table__table__wrapper-icon-delete__request"
                                     }
                                   >
                                     <DeleteTwoToneIcon
                                       className={
                                         item.OrderStatus === "2"
-                                          ? "modal-no-work__wrapper-table__table__wrapper-icon-edit__icon-delete__pending"
-                                          : "modal-no-work__wrapper-table__table__wrapper-icon-edit__icon-delete__request"
+                                          ? "task__modal-no-work__wrapper-table__table__wrapper-icon-edit__icon-delete__pending"
+                                          : "task__modal-no-work__wrapper-table__table__wrapper-icon-edit__icon-delete__request"
                                       }
                                       onClick={() => deleteRequestNoWork(index)}
                                     />
