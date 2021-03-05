@@ -20,7 +20,7 @@ import InputMask from "react-input-mask";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { formatDate } from "../../../components/New/formatDate";
-import inputTime from "../../../components/New/formatDate";
+import inputTime from "../../../components/New/inputTime";
 import Autocomplete from "react-autocomplete";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
