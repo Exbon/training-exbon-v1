@@ -178,6 +178,10 @@
   display: flex;
 }
 
+.time__table__time-wrapper__target-disabled--disabled {
+  opacity: 0.4;
+}
+
 .time__table__time-wrapper__hour-input {
   width: 20px;
   text-align: center;

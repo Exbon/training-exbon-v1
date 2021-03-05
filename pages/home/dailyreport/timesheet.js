@@ -54,7 +54,7 @@ const convertInputToTime = time => {
 
 const Timesheet = () => {
   const router = useRouter();
-  const projectState = "6102";
+  const projectState = "6071";
 
   const [cookies, setCookie, removeCookie] = useCookies("username");
   const [status, setStatus] = useState({
@@ -149,7 +149,9 @@ const Timesheet = () => {
           [i].setAttribute("disabled", true);
         document
           .getElementsByClassName("time__table__time-wrapper__target-disabled")
-          [i].classList.add("table__time-wrapper__target-disabled--disabled");
+          [i].classList.add(
+            "time__table__time-wrapper__target-disabled--disabled"
+          );
       }
       setSameTime();
     } else {
@@ -238,7 +240,7 @@ const Timesheet = () => {
       const TimesheetID = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute(
         "value"
       );
-      addUpdateQueue(TimesheetID);
+      // addUpdateQueue(TimesheetID);
       if (12 < parseInt(e.target.value)) {
         toast.warning(
           <div className="time__alert__table__hour-input">
@@ -260,7 +262,7 @@ const Timesheet = () => {
       const TimesheetID = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute(
         "value"
       );
-      addUpdateQueue(TimesheetID);
+      // addUpdateQueue(TimesheetID);
       setValue(value.slice(0, 2) + ":" + e.target.value + value.slice(5, 7));
     };
 
@@ -268,7 +270,7 @@ const Timesheet = () => {
       const TimesheetID = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute(
         "value"
       );
-      addUpdateQueue(TimesheetID);
+      // addUpdateQueue(TimesheetID);
       if (e.target.value === "AM") {
         setValue(value.slice(0, 2) + ":" + value.slice(3, 5) + "AM");
       } else if (e.target.value === "PM") {
@@ -282,7 +284,7 @@ const Timesheet = () => {
       const TimesheetID = e.target.parentElement.parentElement.children[0].children[0].getAttribute(
         "value"
       );
-      addUpdateQueue(TimesheetID);
+      // addUpdateQueue(TimesheetID);
       setValue(e.target.value);
     };
 
@@ -290,7 +292,7 @@ const Timesheet = () => {
       const TimesheetID = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute(
         "value"
       );
-      addUpdateQueue(TimesheetID);
+      // addUpdateQueue(TimesheetID);
       setValue(e.target.value);
     };
 
@@ -746,7 +748,9 @@ const Timesheet = () => {
           [i].setAttribute("disabled", true);
         document
           .getElementsByClassName("time__table__time-wrapper__target-disabled")
-          [i].classList.add("table__time-wrapper__target-disabled--disabled");
+          [i].classList.add(
+            "time__table__time-wrapper__target-disabled--disabled"
+          );
       }
     } else {
       for (
