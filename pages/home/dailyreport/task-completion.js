@@ -1159,42 +1159,7 @@ const TaskCompletion = (
       );
     }
 
-    // const fetchData = async () => {
-    //   await axios({
-    //     method: "POST",
-    //     url: `/api/project-date-change-request`,
-    //     timeout: 5000, // 5 seconds timeout
-    //     headers: {},
-    //     data: {
-    //       EmployeeID: employeeInfo.EmployeeID,
-    //       ProjectID: projectState,
-    //       RequestType: "Task",
-    //       RequestID: modalWorkDate.TaskID,
-    //       StartDate: modalWorkDate.StartDate,
-    //       EndDate: modalWorkDate.FinishDate,
-    //       Reason: null,
-    //     },
-    //   });
-    // };
-
-    // trackPromise(fetchData());
     closeModalWorkDate();
-    // toast.info(
-    //   <div className={styles["alert__complete"]}>
-    //     <strong>Request has been added.</strong>
-    //   </div>,
-    //   {
-    //     position: toast.POSITION.BOTTOM_CENTER,
-    //     hideProgressBar: true,
-    //   }
-    // );
-  };
-
-  const goMain = () => {
-    Router.push({
-      pathname: "/",
-      query: { tab: "task-completion", project: projectState },
-    });
   };
 
   const signin = async (username, password) => {
@@ -1232,23 +1197,6 @@ const TaskCompletion = (
         alert("Login failed.");
       }
     });
-  };
-
-  const logout = () => {
-    setData([]);
-    removeCookie("username", { path: "/" });
-    removeCookie("password", { path: "/" });
-    removeCookie("fullname", { path: "/" });
-    removeCookie("employeeid", { path: "/" });
-    setStatus(prevState => ({
-      permission: true,
-      cookies: {
-        username: undefined,
-        password: 0,
-        fullname: "",
-        employeeid: 0,
-      },
-    }));
   };
 
   return (
