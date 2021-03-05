@@ -232,7 +232,7 @@ const Timesheet = () => {
     updateMyData, // This is a custom function that we supplied to our table instance
   }) => {
     // We need to keep and update the state of the cell normally
-    const [value, setValue] = React.useState(initialValue);
+    const [value, setValue] = useState(initialValue);
 
     const onCheckHour = e => {
       const TimesheetID = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute(
@@ -325,7 +325,7 @@ const Timesheet = () => {
     };
 
     // If the initialValue is changed external, sync it up with our state
-    React.useEffect(() => {
+    useEffect(() => {
       setValue(initialValue);
     }, [initialValue]);
 
