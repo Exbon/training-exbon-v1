@@ -312,7 +312,10 @@ const Dashboard = () => {
                   }}
                 >
                   <FormControl component="fieldset">
-                    <FormLabel component="legend" className="date-range-label">
+                    <FormLabel
+                      component="legend"
+                      className="dashboard__date-range-label"
+                    >
                       Date Range
                     </FormLabel>
                     <RadioGroup
