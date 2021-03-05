@@ -12,7 +12,6 @@ import Paper from "@material-ui/core/Paper";
 
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
-import inputTime from "./inputTime";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import AddIcon from "@material-ui/icons/Add";
@@ -21,6 +20,7 @@ import InputMask from "react-input-mask";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { formatDate } from "../../../components/New/formatDate";
+import inputTime from "../../../components/New/formatDate";
 import Autocomplete from "react-autocomplete";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
