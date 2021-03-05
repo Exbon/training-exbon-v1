@@ -22,6 +22,7 @@ import NotPermission from "./NotPermission";
 import { CookiesProvider, useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import "./task-completion.css";
+import LoginComponent from "../../../components/New/LoginComponent";
 let noWorkMapKey = -1;
 let projectInfoTab2;
 
@@ -73,6 +74,7 @@ const TaskCompletion = (
     },
     permission: true,
   });
+
   const [stateAssignedProject, setStateAssignedProject] = useState([]);
 
   const columns = useMemo(
@@ -1254,7 +1256,7 @@ const TaskCompletion = (
       {console.log(data)}
       {status.cookies.username === undefined ||
       status.cookies.employeeid === undefined ? (
-        <Login signin={signin} />
+        <LoginComponent signin={signin} />
       ) : !status.permission ? (
         <NotPermission />
       ) : (
@@ -1677,5 +1679,6 @@ const TaskCompletion = (
     </>
   );
 };
+
 TaskCompletion.layout = Admin;
 export default TaskCompletion;
