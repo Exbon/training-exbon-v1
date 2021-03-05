@@ -14,6 +14,7 @@ import axios from "axios";
 import "../../assets/jss/nextjs-material-dashboard/New/ScheduleStyle.css";
 import { formatDate } from "../../components/New/formatDate";
 import Loader from "react-loader-spinner";
+import LoginComponent from "../../components/New/LoginComponent";
 
 const Calendar = () => {
   const useStyles = makeStyles(styles);
@@ -87,49 +88,97 @@ const Calendar = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
+  const signin = async (username, password) => {
+    await axios({
+      method: "post",
+      url: `/api/dashboard/signin`,
+      timeout: 3000, // 5 seconds timeout
+      headers: {},
+      data: {
+        Username: username,
+        Password: password,
+      },
+    }).then(response => {
+      if (response.data.result.recordset[0] !== undefined) {
+        setCookie("username", username, { path: "/", maxAge: 3600 * 24 * 30 });
+        setCookie("password", password, { path: "/", maxAge: 3600 * 24 * 30 });
+        setCookie("fullname", response.data.result.recordset[0].FullName, {
+          path: "/",
+          maxAge: 3600 * 24 * 30,
+        });
+        setCookie("employeeid", response.data.result.recordset[0].EmployeeID, {
+          path: "/",
+          maxAge: 3600 * 24 * 30,
+        });
+        setStatus(prevState => ({
+          ...prevState,
+          cookies: {
+            username: username,
+            password: password,
+            fullname: response.data.result.recordset[0].FullName,
+            employeeid: response.data.result.recordset[0].EmployeeID,
+          },
+        }));
+      } else {
+        alert("Login failed.");
+      }
+    });
+  };
+
   return (
-    <div style={{ overflowX: "auto" }}>
-      <Card style={{ width: "1100px" }}>
-        <CardHeader color="primary">
-          <h4 className={classes.cardTitleWhite}>Schedule Calendar</h4>
-          <p className={classes.cardCategoryWhite}>My Project Schedule</p>
-        </CardHeader>
-        <div className="frame">
-          {promiseInProgress || status.cookies.employeeid === 0 ? (
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Loader type="Oval" color="#FAC863" height="100" width="100" />
-            </div>
-          ) : (
-            <>
-              <FullCalendar
-                plugins={[dayGridPlugin]}
-                height="100%"
-                initialView="dayGridMonth"
-                events={data}
-                dayMaxEventRows={100}
-                eventColor="white"
-                eventTextColor="white"
-                displayEventTime={false}
-                eventDidMount={handleEventPositioned}
-              />
-              <ReactTooltip
-                className="tooltip"
-                multiline={true}
-                type="info"
-                offset={{ top: 10 }}
-              />
-            </>
-          )}
-        </div>
-      </Card>
+    <div
+      style={
+        status.cookies.username === undefined
+          ? { overflowX: "hidden" }
+          : { overflowX: "auto" }
+      }
+    >
+      {status.cookies.username === undefined ||
+      status.cookies.employeeid === undefined ? (
+        <LoginComponent signin={signin} />
+      ) : (
+        <Card style={{ width: "1100px" }}>
+          <CardHeader color="primary">
+            <h4 className={classes.cardTitleWhite}>Schedule Calendar</h4>
+            <p className={classes.cardCategoryWhite}>My Project Schedule</p>
+          </CardHeader>
+          <div className="frame">
+            {promiseInProgress || status.cookies.employeeid === 0 ? (
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Loader type="Oval" color="#FAC863" height="100" width="100" />
+              </div>
+            ) : (
+              <>
+                <FullCalendar
+                  plugins={[dayGridPlugin]}
+                  height="100%"
+                  initialView="dayGridMonth"
+                  events={data}
+                  dayMaxEventRows={100}
+                  eventColor="white"
+                  eventTextColor="white"
+                  displayEventTime={false}
+                  eventDidMount={handleEventPositioned}
+                />
+                <ReactTooltip
+                  className="tooltip"
+                  multiline={true}
+                  type="info"
+                  offset={{ top: 10 }}
+                />
+              </>
+            )}
+          </div>
+        </Card>
+      )}
     </div>
   );
 };
