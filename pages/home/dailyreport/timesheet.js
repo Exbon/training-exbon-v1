@@ -24,7 +24,7 @@ import inputTime from "../../../components/New/inputTime";
 import Autocomplete from "react-autocomplete";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import styles from "./Timesheet.module.css";
+import "./timesheet.css";
 import classNames from "classnames/bind";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
@@ -54,7 +54,7 @@ const convertInputToTime = time => {
 
 const Timesheet = () => {
   const router = useRouter();
-  const projectState = 6102;
+  const projectState = "6102";
 
   const [cookies, setCookie, removeCookie] = useCookies("username");
   const [status, setStatus] = useState({
@@ -239,7 +239,7 @@ const Timesheet = () => {
       addUpdateQueue(TimesheetID);
       if (12 < parseInt(e.target.value)) {
         toast.warning(
-          <div className={styles["alert__table__hour-input"]}>
+          <div className="alert__table__hour-input">
             Only <strong>00 to 12</strong> can be entered into the time hour
             input.
           </div>,
@@ -332,7 +332,7 @@ const Timesheet = () => {
         return (
           <DeleteForeverIcon
             color="action"
-            className={styles["table__delete-icon"]}
+            className="table__delete-icon"
             value={value}
             onClick={() => clickDeleteTimesheet(value)}
           ></DeleteForeverIcon>
@@ -344,7 +344,7 @@ const Timesheet = () => {
           value={value}
           onChange={onChangePosition}
           onBlur={onBlur}
-          className={styles["table__position-dropdown"]}
+          className="table__position-dropdown"
           disabled={afterSundayCheck ? false : true}
         >
           <option value={"Director"}>Director</option>
@@ -359,7 +359,7 @@ const Timesheet = () => {
       id === "WorkEnd"
     ) {
       return (
-        <div className={styles["table__time-wrapper"]}>
+        <div className="table__time-wrapper">
           <InputMask
             value={value.slice(0, 2)}
             onChange={onCheckHour}
@@ -368,11 +368,11 @@ const Timesheet = () => {
               afterSundayCheck
                 ? classNames(
                     "table__time-wrapper__target-disabled",
-                    styles["table__time-wrapper__hour-input"]
+                    "table__time-wrapper__hour-input"
                   )
                 : classNames(
                     "table__time-wrapper__target-disabled",
-                    styles["table__time-wrapper__hour-input-before-sunday"]
+                    "table__time-wrapper__hour-input-before-sunday"
                   )
             }
             mask="29"
@@ -392,11 +392,11 @@ const Timesheet = () => {
               afterSundayCheck
                 ? classNames(
                     "table__time-wrapper__target-disabled",
-                    styles["table__time-wrapper__min-input"]
+                    "table__time-wrapper__min-input"
                   )
                 : classNames(
                     "table__time-wrapper__target-disabled",
-                    styles["table__time-wrapper__min-input-before-sunday"]
+                    "table__time-wrapper__min-input-before-sunday"
                   )
             }
             placeholder="00~50"
@@ -412,7 +412,7 @@ const Timesheet = () => {
             onBlur={onBlur}
             className={classNames(
               "table__time-wrapper__target-disabled",
-              styles["table__ampm-dropdown"]
+              "table__ampm-dropdown"
             )}
             disabled={afterSundayCheck ? false : true}
           >
@@ -446,8 +446,8 @@ const Timesheet = () => {
               <input
                 className={
                   afterSundayCheck
-                    ? styles["table__employee-input"]
-                    : styles["table__employee-input-before-sunday"]
+                    ? "table__employee-input"
+                    : "table__employee-input-before-sunday"
                 }
                 disabled={afterSundayCheck ? false : true}
                 {...props}
@@ -473,7 +473,7 @@ const Timesheet = () => {
       return (
         <div
           className={classNames([
-            styles["table__labor-hours-input"],
+            "table__labor-hours-input",
             "table__labor-hours-input",
           ])}
         >
@@ -781,7 +781,7 @@ const Timesheet = () => {
     }
     if (checkEmployeeName) {
       toast.error(
-        <div className={styles["alert__table__employee-input"]}>
+        <div className="alert__table__employee-input">
           Unable to save. <br /> Please check <strong>employee name </strong>
           again.
         </div>,
@@ -793,7 +793,7 @@ const Timesheet = () => {
       return null;
     } else if (checkTime) {
       toast.error(
-        <div className={styles["alert__table__time-wrapper"]}>
+        <div className="alert__table__time-wrapper">
           Unable to save. <br /> Please check the <strong>time input </strong>
           again.
         </div>,
@@ -869,7 +869,7 @@ const Timesheet = () => {
       trackPromise(
         Promise.all(promises).then(result => {
           toast.success(
-            <div className={styles["alert__complete"]}>
+            <div className="alert__complete">
               <strong>Save Complete</strong>
             </div>,
             {
@@ -947,11 +947,11 @@ const Timesheet = () => {
       {status.cookies.username === undefined ||
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
-      ) : status.permission ? (
+      ) : !status.permission ? (
         <NotPermission />
       ) : (
         <>
-          <div id={styles.mainDiv}>
+          <div id="mainDiv">
             {promiseInProgress || !projectState ? (
               <div
                 style={{
@@ -966,17 +966,15 @@ const Timesheet = () => {
               </div>
             ) : (
               <>
-                <h1 className={styles["title"]}>Timesheet</h1>
-
-                <div className={styles["header"]}>
-                  <div className={styles["header__left"]}>
-                    <h3 className={styles["header__left__project-id"]}>
+                <div className="header">
+                  <div className="header__left">
+                    <h3 className="header__left__project-id">
                       <span
                         onClick={() => {
                           goMain();
                           // setProjectState(0);
                         }}
-                        className={styles["header__left__project-id__value"]}
+                        className="header__left__project-id__value"
                       >
                         {projectState}
                       </span>
@@ -985,10 +983,10 @@ const Timesheet = () => {
                     {projectInfoTab1 !== undefined &&
                     projectInfoTab1.length !== 0 ? (
                       <>
-                        <h4 className={styles["header__left__project-group"]}>
+                        <h4 className="header__left__project-group">
                           [{projectInfoTab1[0].ProjectGroup}]
                         </h4>
-                        <h4 className={styles["header__left__project-name"]}>
+                        <h4 className="header__left__project-name">
                           {projectInfoTab1[0].ProjectName}
                         </h4>
                       </>
@@ -996,7 +994,7 @@ const Timesheet = () => {
                       ""
                     )}
                   </div>
-                  <div className={styles["header__right"]}>
+                  <div className="header__right">
                     {/* {dateCheckEditable(selectedDate) && ( */}
                     <>
                       <Button
@@ -1005,8 +1003,8 @@ const Timesheet = () => {
                         size="small"
                         className={
                           dateCheckEditable(selectedDate)
-                            ? styles["header__right__save-btn"]
-                            : styles["header__right__save-btn-before-sunday"]
+                            ? "header__right__save-btn"
+                            : "header__right__save-btn-before-sunday"
                         }
                         onClick={handleSaveTimesheetBtn}
                         startIcon={<SaveIcon />}
@@ -1019,8 +1017,8 @@ const Timesheet = () => {
                         size="small"
                         className={
                           dateCheckEditable(selectedDate)
-                            ? styles["header__right__add-btn"]
-                            : styles["header__right__add-btn-before-sunday"]
+                            ? "header__right__add-btn"
+                            : "header__right__add-btn-before-sunday"
                         }
                         onClick={addTimesheetRow}
                         startIcon={<AddIcon />}
@@ -1040,8 +1038,8 @@ const Timesheet = () => {
                         label="Set Same Time of All"
                         className={
                           dateCheckEditable(selectedDate)
-                            ? styles["header__right__checkbox"]
-                            : styles["header__right__checkbox-before-sunday"]
+                            ? "header__right__checkbox"
+                            : "header__right__checkbox-before-sunday"
                         }
                       />
                     </>
@@ -1053,17 +1051,15 @@ const Timesheet = () => {
                         format="MM/dd/yyyy"
                         value={selectedDate}
                         onChange={handleDateChange}
-                        className={styles["header__right__date-picker"]}
+                        className="header__right__date-picker"
                         autoOk={true}
                         okLabel=""
                       />
                     </MuiPickersUtilsProvider>
-                    <p className={styles["header__right__label-date-picker"]}>
-                      Date
-                    </p>
+                    <p className="header__right__label-date-picker">Date</p>
                   </div>
                 </div>
-                <div className={styles["table"]}>
+                <div className="table">
                   <TableContainer component={Paper}>
                     <Table>
                       <TableHead>

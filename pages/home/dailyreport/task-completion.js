@@ -371,39 +371,39 @@ const TaskCompletion = (
     //   );
     if (id === "Trade") {
       return (
-        <div className="table__trade-wrapper">
-          <span className="table__trade-wrapper__data">{value}</span>
+        <div className="task__table__trade-wrapper">
+          <span className="task__table__trade-wrapper__data">{value}</span>
         </div>
       );
     } else if (id === "Section") {
       return (
-        <div className="table__section-wrapper">
-          <span className="table__section-wrapper__data">{value}</span>
+        <div className="task__table__section-wrapper">
+          <span className="task__table__section-wrapper__data">{value}</span>
         </div>
       );
     } else if (id === "Company") {
       return (
-        <div className="table__company-wrapper">
-          <span className="table__company-wrapper__data">{value}</span>
+        <div className="task__table__company-wrapper">
+          <span className="task__table__company-wrapper__data">{value}</span>
         </div>
       );
     } else if (id === "TaskName") {
       return (
-        <div className="table__task-name-wrapper">
-          <span className="table__task-name-wrapper__data">{value}</span>
+        <div className="task__table__task-name-wrapper">
+          <span className="task__table__task-name-wrapper__data">{value}</span>
         </div>
       );
     } else if (id === "StartDate") {
       return (
-        <div className="table__start-date-wrapper">
-          <span className="table__start-date-wrapper__data">{value}</span>
+        <div className="task__table__start-date-wrapper">
+          <span className="task__table__start-date-wrapper__data">{value}</span>
         </div>
       );
     } else if (id === "FinishDate") {
       return (
-        <div className="table__finish-date-wrapper">
+        <div className="task__table__finish-date-wrapper">
           <span
-            className="table__finish-date-wrapper__data"
+            className="task__table__finish-date-wrapper__data"
             // onClick={() =>
             //   handleModalWorkDate(
             //     "Finish Date",
@@ -423,7 +423,7 @@ const TaskCompletion = (
       );
     } else if (id === "ReqStartDate") {
       return (
-        <div className="table__req-start-date-wrapper">
+        <div className="task__table__req-start-date-wrapper">
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <ThemeProvider theme={themeForWorkDate}>
               <DatePicker
@@ -446,7 +446,7 @@ const TaskCompletion = (
       );
     } else if (id === "ReqFinishDate") {
       return (
-        <div className="table__req-finish-date-wrapper">
+        <div className="task__table__req-finish-date-wrapper">
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <ThemeProvider theme={themeForWorkDate}>
               <DatePicker
@@ -468,8 +468,10 @@ const TaskCompletion = (
       );
     } else if (id === "PreviousWork") {
       return (
-        <div className="table__previous-work-wrapper">
-          <span className="table__previous-work-wrapper__data">{value} %</span>
+        <div className="task__table__previous-work-wrapper">
+          <span className="task__table__previous-work-wrapper__data">
+            {value} %
+          </span>
         </div>
       );
     } else if (id === "CurrentWork") {
@@ -480,11 +482,11 @@ const TaskCompletion = (
         }
       });
       return (
-        <div className="table__current-work-wrapper">
-          <span className="table__current-work-wrapper__data">
+        <div className="task__table__current-work-wrapper">
+          <span className="task__table__current-work-wrapper__data">
             {value === null ? (
               <input
-                className="table__current-work-wrapper__input__previous-work"
+                className="task__table__current-work-wrapper__input__previous-work"
                 value={previousWork}
                 type="number"
                 onChange={onChangePercent}
@@ -496,7 +498,7 @@ const TaskCompletion = (
               ></input>
             ) : (
               <input
-                className="table__current-work-wrapper__input__current-work"
+                className="task__table__current-work-wrapper__input__current-work"
                 value={value}
                 type="number"
                 onChange={onChangePercent}
@@ -749,7 +751,7 @@ const TaskCompletion = (
     trackPromise(
       Promise.all(promises).then(() => {
         toast.success(
-          <div className="alert__complete">
+          <div className="task__alert__complete">
             <strong>Save Complete</strong>
           </div>,
           {
@@ -1209,7 +1211,7 @@ const TaskCompletion = (
         <NotPermission />
       ) : (
         <div style={{ overflowX: "auto" }}>
-          <div id="mainDiv">
+          <div id="task__mainDiv">
             {promiseInProgress || !projectState || !(data.length > 0) ? (
               <div
                 style={{
@@ -1256,12 +1258,12 @@ const TaskCompletion = (
                   })}
                 </select>
 
-                <div className="header">
-                  {/* <div className="header__left">
-                    <h3 className="header__left__project-id">
+                <div className="task__header">
+                  {/* <div className="task__header__left">
+                    <h3 className="task__header__left__project-id">
                       <span
                         onClick={goMain}
-                        className="header__left__project-id__value"
+                        className="task__header__left__project-id__value"
                       >
                         {projectState}
                       </span>
@@ -1269,10 +1271,10 @@ const TaskCompletion = (
                     {projectInfoTab2 !== undefined &&
                     projectInfoTab2.length !== 0 ? (
                       <>
-                        <h4 className="header__left__project-group">
+                        <h4 className="task__header__left__project-group">
                           [{projectInfoTab2[0].ProjectGroup}]
                         </h4>
-                        <h4 className="header__left__project-name">
+                        <h4 className="task__header__left__project-name">
                           {projectInfoTab2[0].ProjectName}
                         </h4>
                       </>
@@ -1280,12 +1282,12 @@ const TaskCompletion = (
                       ""
                     )}
                   </div> */}
-                  <div className="header__right">
+                  <div className="task__header__right">
                     <Button
                       variant="contained"
                       color="primary"
                       size="small"
-                      className="header__right__save-btn"
+                      className="task__header__right__save-btn"
                       startIcon={<SaveIcon />}
                       onClick={handleSaveBtn}
                     >
@@ -1296,7 +1298,7 @@ const TaskCompletion = (
                       color="secondary"
                       size="small"
                       startIcon={<EventBusyIcon />}
-                      className="header__right__no-work-btn"
+                      className="task__header__right__no-work-btn"
                       onClick={openModalNoWork}
                     >
                       Set No Work Days
@@ -1308,28 +1310,30 @@ const TaskCompletion = (
                         format="MM/dd/yyyy"
                         value={selectedDate}
                         onChange={handleDateChange}
-                        className="header__right__date-picker"
+                        className="task__header__right__date-picker"
                         autoOk={true}
                         okLabel=""
                       />
                     </MuiPickersUtilsProvider>
-                    <p className="header__right__label-date-picker">Date</p>
+                    <p className="task__header__right__label-date-picker">
+                      Date
+                    </p>
                     <Modal
                       isOpen={modalNoWork.isOpen}
                       onRequestClose={closeModalNoWork}
                       style={customStylesNoWork}
-                      className="modal-no-work"
+                      className="task__modal-no-work"
                     >
                       {/* <p className={styles["test"]}>
                   (This is a test, so NOT working yet. )
                 </p> */}
-                      <div className="modal-no-work__wrapper-title">
-                        <h4 className="modal-no-work__wrapper-title__title">
+                      <div className="task__modal-no-work__wrapper-title">
+                        <h4 className="task__modal-no-work__wrapper-title__title">
                           Set No Work Days
                         </h4>
                       </div>
-                      <div className="modal-no-work__wrapper-table">
-                        <table className="modal-no-work__wrapper-table__table">
+                      <div className="task__modal-no-work__wrapper-table">
+                        <table className="task__modal-no-work__wrapper-table__table">
                           <thead>
                             <tr>
                               <td>ID</td>
@@ -1347,7 +1351,7 @@ const TaskCompletion = (
                                   <td>
                                     {item.RecordID > 0 ? item.RecordID : ""}
                                   </td>
-                                  <td className="modal-no-work__wrapper-table__table__approval">
+                                  <td className="task__modal-no-work__wrapper-table__table__approval">
                                     Complete
                                   </td>
                                   <td>
@@ -1356,16 +1360,16 @@ const TaskCompletion = (
                                   </td>
                                   <td>&nbsp;{item.Note}</td>
                                   <td
-                                    className="modal-no-work__wrapper-table__table__wrapper-icon-edit"
+                                    className="task__modal-no-work__wrapper-table__table__wrapper-icon-edit"
                                     onClick={() => editNoWork(item.RecordID)}
                                   >
-                                    <EditTwoToneIcon className="modal-no-work__wrapper-table__table__wrapper-icon-edit__icon-edit" />
+                                    <EditTwoToneIcon className="task__modal-no-work__wrapper-table__table__wrapper-icon-edit__icon-edit" />
                                   </td>
                                   <td
-                                    className="modal-no-work__wrapper-table__table__wrapper-icon-delete"
+                                    className="task__modal-no-work__wrapper-table__table__wrapper-icon-delete"
                                     onClick={() => deleteNoWork(item.RecordID)}
                                   >
-                                    <DeleteTwoToneIcon className="modal-no-work__wrapper-table__table__wrapper-icon-edit__icon-delete" />
+                                    <DeleteTwoToneIcon className="task__modal-no-work__wrapper-table__table__wrapper-icon-edit__icon-delete" />
                                   </td>
                                 </tr>
                               ) : (
@@ -1380,7 +1384,7 @@ const TaskCompletion = (
                                   >
                                     {item.Status}&nbsp;{" "}
                                     {item.RecordID ? (
-                                      <div className="modal-no-work__wrapper-table__table__pending__id">
+                                      <div className="task__modal-no-work__wrapper-table__table__pending__id">
                                         # {item.RecordID}{" "}
                                       </div>
                                     ) : (
@@ -1416,7 +1420,7 @@ const TaskCompletion = (
                             <tr>
                               <td>
                                 <div
-                                  className="modal-no-work__wrapper-table__table__wrapper-btn-new"
+                                  className="task__modal-no-work__wrapper-table__table__wrapper-btn-new"
                                   onClick={addNoWork}
                                 >
                                   <Button>(+) NEW</Button>
@@ -1430,9 +1434,9 @@ const TaskCompletion = (
                             </tr>
                           </tbody>
                         </table>
-                        <div className="modal-no-work__wrapper-btn-close">
+                        <div className="task__modal-no-work__wrapper-btn-close">
                           <Button
-                            className="modal-no-work__wrapper-btn-close__btn-close"
+                            className="task__modal-no-work__wrapper-btn-close__btn-close"
                             onClick={closeModalNoWork}
                           >
                             Close
@@ -1446,8 +1450,8 @@ const TaskCompletion = (
                       onRequesClose={closeModalSaveNoWork}
                       style={customStylesSaveNoWork}
                     >
-                      <div className="modal-save-no-work__wrapper-content">
-                        <h4 className="modal-save-no-work__wrapper-content__title">
+                      <div className="task__modal-save-no-work__wrapper-content">
+                        <h4 className="task__modal-save-no-work__wrapper-content__title">
                           {modalSaveNoWork.Type}
                         </h4>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -1462,7 +1466,7 @@ const TaskCompletion = (
                               onChange={handleStartDateOfSaveNoWork}
                               format="MM/dd/yyyy"
                               label="Start Date"
-                              className="modal-save-no-work__wrapper-content__start-date"
+                              className="task__modal-save-no-work__wrapper-content__start-date"
                               autoOk={true}
                             />
                             <DatePicker
@@ -1475,14 +1479,14 @@ const TaskCompletion = (
                               onChange={handleEndDateOfSaveNoWork}
                               format="MM/dd/yyyy"
                               label="End Date"
-                              className="modal-save-no-work__wrapper-content__end-date"
+                              className="task__modal-save-no-work__wrapper-content__end-date"
                               autoOk={true}
                             />
                           </ThemeProvider>
                         </MuiPickersUtilsProvider>
                       </div>
-                      <div className="modal-save-no-work__wrapper-content__bottom">
-                        <div className="modal-save-no-work__wrapper-content__bottom__wrapper-note">
+                      <div className="task__modal-save-no-work__wrapper-content__bottom">
+                        <div className="task__modal-save-no-work__wrapper-content__bottom__wrapper-note">
                           <TextField
                             label="Reason"
                             multiline
@@ -1499,7 +1503,7 @@ const TaskCompletion = (
                         <Button
                           variant="outlined"
                           size="small"
-                          className="modal-save-no-work__wrapper-content__bottom__btn-save"
+                          className="task__modal-save-no-work__wrapper-content__bottom__btn-save"
                           onClick={() =>
                             requestNoWorkDays(modalSaveNoWork.Type)
                           }
@@ -1509,7 +1513,7 @@ const TaskCompletion = (
                         <Button
                           variant="outlined"
                           size="small"
-                          className="modal-save-no-work__wrapper-content__bottom__btn-cancel"
+                          className="task__modal-save-no-work__wrapper-content__bottom__btn-cancel"
                           onClick={closeModalSaveNoWork}
                         >
                           Cancel
@@ -1519,7 +1523,7 @@ const TaskCompletion = (
                   </div>
                 </div>
 
-                <div className="table">
+                <div className="task__table">
                   <table {...getTableProps()}>
                     <thead>
                       {headerGroups.map(headerGroup => (
@@ -1536,7 +1540,10 @@ const TaskCompletion = (
                       {rows.map((row, i) => {
                         prepareRow(row);
                         return (
-                          <tr {...row.getRowProps()} className="table__row">
+                          <tr
+                            {...row.getRowProps()}
+                            className="task__table__row"
+                          >
                             {row.cells.map(cell => {
                               return (
                                 <td {...cell.getCellProps()}>
@@ -1559,26 +1566,26 @@ const TaskCompletion = (
               onRequestClose={closeModalWorkDate}
               style={customStyles}
               contentLabel="Example Modal"
-              className="modal-work-date"
+              className="task__modal-work-date"
             >
-              <div className="modal-work-date__wrapper">
-                <div className="modal-work-date__wrapper-title">
-                  <h4 className="modal-work-date__wrapper-title__title">
+              <div className="task__modal-work-date__wrapper">
+                <div className="task__modal-work-date__wrapper-title">
+                  <h4 className="task__modal-work-date__wrapper-title__title">
                     Change Task Date
                   </h4>
-                  <h4 className="modal-work-date__wrapper-title__sub-title-task-name">
+                  <h4 className="task__modal-work-date__wrapper-title__sub-title-task-name">
                     {modalWorkDate.TaskName}
                   </h4>
-                  <h5 className="modal-work-date__wrapper-title__sub-title-company-name">
+                  <h5 className="task__modal-work-date__wrapper-title__sub-title-company-name">
                     {modalWorkDate.Company ? "by " + modalWorkDate.Company : ""}
                   </h5>
                 </div>
-                <div className="modal-work-date__wrapper-date-picker">
-                  <h4 className="modal-work-date__wrapper-date-picker__label">
+                <div className="task__modal-work-date__wrapper-date-picker">
+                  <h4 className="task__modal-work-date__wrapper-date-picker__label">
                     {modalWorkDate.type}
                   </h4>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <div className="modal-work-date__wrapper-date-picker__wrapper-work-date">
+                    <div className="task__modal-work-date__wrapper-date-picker__wrapper-work-date">
                       <ThemeProvider theme={themeForWorkDate}>
                         <DatePicker
                           disableToolbar
@@ -1594,19 +1601,19 @@ const TaskCompletion = (
                               : handleEndDateOfWorkDate
                           }
                           format="MM/dd/yyyy"
-                          className="modal-work-date__wrapper-date-picker__work-date"
+                          className="task__modal-work-date__wrapper-date-picker__work-date"
                           autoOk={true}
                         />
                       </ThemeProvider>
                     </div>
                   </MuiPickersUtilsProvider>
                 </div>
-                <div className="modal-work-date__wrapper-btn">
+                <div className="task__modal-work-date__wrapper-btn">
                   <Button
                     variant="contained"
                     size="small"
                     onClick={requestModalWorkDate}
-                    className="modal-work-date__wrapper-btn__btn-request"
+                    className="task__modal-work-date__wrapper-btn__btn-request"
                   >
                     Request
                   </Button>
@@ -1614,7 +1621,7 @@ const TaskCompletion = (
                     variant="contained"
                     size="small"
                     onClick={closeModalWorkDate}
-                    className="modal-work-date__wrapper-btn__btn-cancel"
+                    className="task__modal-work-date__wrapper-btn__btn-cancel"
                   >
                     Cancel
                   </Button>
