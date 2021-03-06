@@ -34,7 +34,6 @@ import Head from "next/head";
 import NotPermission from "./NotPermission";
 
 import { CookiesProvider, useCookies } from "react-cookie";
-import "react-toastify/dist/ReactToastify.css";
 import Admin from "layouts/Admin.js";
 import LoginComponent from "../../../components/New/LoginComponent";
 toast.configure();
