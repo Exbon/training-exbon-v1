@@ -40,7 +40,7 @@ const timesheetHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Hammer].[dbo].[Timesheet_Insert]
+          const query = `EXEC [Hammer].[dbo].[Timesheet_DeleteAndInsert]
           ${body.ProjectID}, ${body.EmployeeID}, "${body.Position}", "${body.Date}", "${body.WorkStart}", "${body.WorkEnd}", "${body.MealStart}", "${body.MealEnd}" `;
           /* --Params--
           @projectID int,
