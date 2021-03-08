@@ -816,48 +816,67 @@ const Timesheet = () => {
 
       const fetchData = async () => {
         for (let i = 0; i < data.length; i++) {
-          if (data[i].TimesheetID === 0) {
-            promises.push(
-              await axios({
-                method: "post",
-                url: `/api/timesheets`,
-                timeout: 5000, // 5 seconds timeout
-                headers: {},
-                data: {
-                  ProjectID: projectState,
-                  EmployeeID: data[i].EmployeeID,
-                  Position: data[i].Position,
-                  Date: data[i].Date,
-                  WorkStart: data[i].WorkStart,
-                  WorkEnd: data[i].WorkEnd,
-                  MealStart: data[i].MealStart,
-                  MealEnd: data[i].MealEnd,
-                },
-              }).then(response => {
-                updateTimesheetIDData(
-                  data[i].InsertID,
-                  response.data.TimesheetID
-                );
-              })
-            );
-          } else {
-            promises.push(
-              axios({
-                method: "put",
-                url: `/api/timesheets/${data[i].TimesheetID}`,
-                timeout: 5000, // 5 seconds timeout
-                headers: {},
-                data: {
-                  EmployeeID: data[i].EmployeeID,
-                  Position: data[i].Position,
-                  WorkStart: data[i].WorkStart,
-                  WorkEnd: data[i].WorkEnd,
-                  MealStart: data[i].MealStart,
-                  MealEnd: data[i].MealEnd,
-                },
-              })
-            );
-          }
+          promises.push(
+            await axios({
+              method: "post",
+              url: `/api/timesheets`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {},
+              data: {
+                ProjectID: projectState,
+                EmployeeID: data[i].EmployeeID,
+                Position: data[i].Position,
+                Date: data[i].Date,
+                WorkStart: data[i].WorkStart,
+                WorkEnd: data[i].WorkEnd,
+                MealStart: data[i].MealStart,
+                MealEnd: data[i].MealEnd,
+              },
+            })
+          );
+
+          // if (data[i].TimesheetID === 0) {
+          //   promises.push(
+          //     await axios({
+          //       method: "post",
+          //       url: `/api/timesheets`,
+          //       timeout: 5000, // 5 seconds timeout
+          //       headers: {},
+          //       data: {
+          //         ProjectID: projectState,
+          //         EmployeeID: data[i].EmployeeID,
+          //         Position: data[i].Position,
+          //         Date: data[i].Date,
+          //         WorkStart: data[i].WorkStart,
+          //         WorkEnd: data[i].WorkEnd,
+          //         MealStart: data[i].MealStart,
+          //         MealEnd: data[i].MealEnd,
+          //       },
+          //     }).then(response => {
+          //       updateTimesheetIDData(
+          //         data[i].InsertID,
+          //         response.data.TimesheetID
+          //       );
+          //     })
+          //   );
+          // } else {
+          //   promises.push(
+          //     axios({
+          //       method: "put",
+          //       url: `/api/timesheets/${data[i].TimesheetID}`,
+          //       timeout: 5000, // 5 seconds timeout
+          //       headers: {},
+          //       data: {
+          //         EmployeeID: data[i].EmployeeID,
+          //         Position: data[i].Position,
+          //         WorkStart: data[i].WorkStart,
+          //         WorkEnd: data[i].WorkEnd,
+          //         MealStart: data[i].MealStart,
+          //         MealEnd: data[i].MealEnd,
+          //       },
+          //     })
+          //   );
+          // }
         }
         // for (let i = 0; i < deleteQueue.length; i++) {
         //   promises.push(
