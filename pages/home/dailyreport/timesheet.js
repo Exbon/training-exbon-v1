@@ -106,32 +106,6 @@ const Timesheet = () => {
     }
   };
 
-  // const deleteQueue = useSelector(state => state.deleteQueue);
-
-  // const dispatch = useDispatch();
-
-  // const addUpdateQueue = value =>
-  //   dispatch({
-  //     type: "ADDUPDATEQUEUE",
-  //     addUpdateQueue: value,
-  //   });
-
-  // const addDeleteQueue = value =>
-  //   dispatch({
-  //     type: "ADDDELETEQUEUE",
-  //     addDeleteQueue: value,
-  //   });
-
-  // const initializeUpdateQueue = () =>
-  //   dispatch({
-  //     type: "INITIALIZEUPDATEQUEUE",
-  //   });
-
-  // const initializeDeleteQueue = () =>
-  //   dispatch({
-  //     type: "INITIALIZEDELETEQUEUE",
-  //   });
-
   const [checkState, setCheckState] = useState(true);
   const checkChange = event => {
     if (event.target.checked) {
@@ -222,7 +196,6 @@ const Timesheet = () => {
   );
 
   const [data, setData] = useState(() => []);
-  // const [dataEmployees, setDataEmployees] = useState(() => []);
 
   // Create an editable cell renderer
   const EditableCell = ({
@@ -236,10 +209,6 @@ const Timesheet = () => {
     const [value, setValue] = useState(initialValue);
 
     const onCheckHour = e => {
-      const TimesheetID = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute(
-        "value"
-      );
-      // addUpdateQueue(TimesheetID);
       if (12 < parseInt(e.target.value)) {
         toast.warning(
           <div className="time__alert__table__hour-input">
@@ -258,18 +227,10 @@ const Timesheet = () => {
     };
 
     const onCheckMin = e => {
-      const TimesheetID = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute(
-        "value"
-      );
-      // addUpdateQueue(TimesheetID);
       setValue(value.slice(0, 2) + ":" + e.target.value + value.slice(5, 7));
     };
 
     const onCheckAmPm = e => {
-      const TimesheetID = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute(
-        "value"
-      );
-      // addUpdateQueue(TimesheetID);
       if (e.target.value === "AM") {
         setValue(value.slice(0, 2) + ":" + value.slice(3, 5) + "AM");
       } else if (e.target.value === "PM") {
@@ -280,18 +241,10 @@ const Timesheet = () => {
     };
 
     const onChangePosition = e => {
-      const TimesheetID = e.target.parentElement.parentElement.children[0].children[0].getAttribute(
-        "value"
-      );
-      // addUpdateQueue(TimesheetID);
       setValue(e.target.value);
     };
 
     const onChange = e => {
-      const TimesheetID = e.target.parentElement.parentElement.parentElement.children[0].children[0].getAttribute(
-        "value"
-      );
-      // addUpdateQueue(TimesheetID);
       setValue(e.target.value);
     };
 
@@ -319,10 +272,7 @@ const Timesheet = () => {
     };
 
     const clickDeleteTimesheet = value => {
-      //value = TimesheetID
       deleteTimesheetRow(index, id);
-      // addDeleteQueue(value);
-      // deleteQueue.push(value);
     };
 
     // If the initialValue is changed external, sync it up with our state
@@ -693,43 +643,9 @@ const Timesheet = () => {
       };
 
       trackPromise(fetchData());
-      // initializeDeleteQueue();
-      // initializeUpdateQueue();
     } else {
       setData([]);
     }
-
-    // const fetchData = async () => {
-    //   let result = await axios({
-    //     method: "get",
-    //     url: `/api/timesheets?selectedDate=${formatDate(
-    //       selectedDate
-    //     )}&projectID=${projectState}`,
-    //     timeout: 1000, // 5 seconds timeout
-    //     headers: {},
-    //   });
-    //   if (result.data.result[0].length === 0) {
-    //     setCheckState(true);
-    //   } else {
-    //     setCheckState(false);
-    //   }
-    //   setData(result.data.result[0]);
-    //   dataEmployees = result.data.result[1];
-
-    //   setStatus((prevState) => ({
-    //     ...prevState,
-    //     cookies: {
-    //       username: cookies.username,
-    //       password: cookies.password,
-    //       fullname: cookies.fullname,
-    //       employeeid: cookies.employeeid,
-    //     },
-    //   }));
-    // };
-
-    // trackPromise(fetchData());
-    // initializeDeleteQueue();
-    // initializeUpdateQueue();
   }, [selectedDate, projectState, status]);
 
   useEffect(() => {
@@ -846,62 +762,7 @@ const Timesheet = () => {
               },
             })
           );
-
-          // if (data[i].TimesheetID === 0) {
-          //   promises.push(
-          //     await axios({
-          //       method: "post",
-          //       url: `/api/timesheets`,
-          //       timeout: 5000, // 5 seconds timeout
-          //       headers: {},
-          //       data: {
-          //         ProjectID: projectState,
-          //         EmployeeID: data[i].EmployeeID,
-          //         Position: data[i].Position,
-          //         Date: data[i].Date,
-          //         WorkStart: data[i].WorkStart,
-          //         WorkEnd: data[i].WorkEnd,
-          //         MealStart: data[i].MealStart,
-          //         MealEnd: data[i].MealEnd,
-          //       },
-          //     }).then(response => {
-          //       updateTimesheetIDData(
-          //         data[i].InsertID,
-          //         response.data.TimesheetID
-          //       );
-          //     })
-          //   );
-          // } else {
-          //   promises.push(
-          //     axios({
-          //       method: "put",
-          //       url: `/api/timesheets/${data[i].TimesheetID}`,
-          //       timeout: 5000, // 5 seconds timeout
-          //       headers: {},
-          //       data: {
-          //         EmployeeID: data[i].EmployeeID,
-          //         Position: data[i].Position,
-          //         WorkStart: data[i].WorkStart,
-          //         WorkEnd: data[i].WorkEnd,
-          //         MealStart: data[i].MealStart,
-          //         MealEnd: data[i].MealEnd,
-          //       },
-          //     })
-          //   );
-          // }
         }
-        // for (let i = 0; i < deleteQueue.length; i++) {
-        //   promises.push(
-        //     axios({
-        //       method: "delete",
-        //       url: `/api/timesheets/${deleteQueue[i]}`,
-        //       timeout: 5000, // 5 seconds timeout
-        //       headers: {},
-        //     })
-        //   );
-        // }
-        // initializeDeleteQueue();
-        // initializeUpdateQueue();
       };
 
       trackPromise(fetchData());
@@ -1011,7 +872,6 @@ const Timesheet = () => {
                       <span
                         onClick={() => {
                           goMain();
-                          // setProjectState(0);
                         }}
                         className="time__header__left__project-id__value"
                       >
@@ -1034,7 +894,6 @@ const Timesheet = () => {
                     )}
                   </div>
                   <div className="time__header__right">
-                    {/* {dateCheckEditable(selectedDate) && ( */}
                     <>
                       <Button
                         variant="contained"
