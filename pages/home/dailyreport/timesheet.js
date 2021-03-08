@@ -815,6 +815,18 @@ const Timesheet = () => {
       let promises = [];
 
       const fetchData = async () => {
+        promises.push(
+          await axios({
+            method: "delete",
+            url: `/api/timesheets`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              ProjectID: projectState,
+              Date: formatDate(selectedDate),
+            },
+          })
+        );
         for (let i = 0; i < data.length; i++) {
           promises.push(
             await axios({
@@ -826,7 +838,7 @@ const Timesheet = () => {
                 ProjectID: projectState,
                 EmployeeID: data[i].EmployeeID,
                 Position: data[i].Position,
-                Date: data[i].Date,
+                Date: formatDate(selectedDate),
                 WorkStart: data[i].WorkStart,
                 WorkEnd: data[i].WorkEnd,
                 MealStart: data[i].MealStart,

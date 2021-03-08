@@ -66,12 +66,6 @@ const timesheetHandler = (req, res) => {
         });
         break;
 
-      default:
-        res.setHeader("Allow", ["GET", "POST", "DELETE"]);
-        res.status(405).end(`Method ${method} Not Allowed`);
-        res.status(404).end(`Failed`);
-        resolve();
-
       case "DELETE":
         mssql.connect(dbserver.dbConfig, err => {
           if (err) {
