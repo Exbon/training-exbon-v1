@@ -648,7 +648,7 @@ const Timesheet = () => {
     }
   }, [selectedDate, projectState, status]);
 
-  useEffect(() => {
+  const applyCheckState = () => {
     if (checkState) {
       for (
         let i = 12;
@@ -686,6 +686,9 @@ const Timesheet = () => {
           );
       }
     }
+  };
+  useEffect(() => {
+    applyCheckState();
   }, [data]);
 
   const handleSaveTimesheetBtn = () => {
