@@ -800,17 +800,10 @@ const Timesheet = () => {
 
     setTimeout(() => {
       applyCheckState();
-    }, 700);
+    }, 600);
   };
 
   const { promiseInProgress } = usePromiseTracker();
-
-  const goMain = () => {
-    Router.push({
-      pathname: "/",
-      query: { tab: "timesheet", project: projectState },
-    });
-  };
 
   const signin = async (username, password) => {
     await axios({
