@@ -53,8 +53,8 @@ const convertInputToTime = time => {
 
 const Timesheet = () => {
   const router = useRouter();
-  const projectState = "6071";
-
+  // const projectState = "6071";
+  const [projectState, setProjectState] = useState(undefined);
   const [cookies, setCookie, removeCookie] = useCookies("username");
   const [status, setStatus] = useState({
     cookies: {
@@ -65,7 +65,7 @@ const Timesheet = () => {
     },
     permission: true,
   });
-
+  const [stateAssignedProject, setStateAssignedProject] = useState([]);
   const getSunday = d => {
     d = new Date(d);
     let day = d.getDay(),
@@ -475,20 +475,6 @@ const Timesheet = () => {
     );
   };
 
-  const updateTimesheetIDData = (InsertID, TimesheetID) => {
-    setData(old =>
-      old.map((row, index) => {
-        if (row.InsertID === InsertID) {
-          return {
-            ...old[index],
-            ["TimesheetID"]: TimesheetID,
-          };
-        }
-        return row;
-      })
-    );
-  };
-
   const convertEmployeeNameToID = name => {
     let employee = dataEmployees.find(
       employee => name === employee.EmployeeName
@@ -580,7 +566,7 @@ const Timesheet = () => {
         axios({
           method: "post",
           url: `/api/daily-report/signin`,
-          timeout: 5000, // 2 seconds timeout
+          timeout: 3000, // 2 seconds timeout
           headers: {},
           data: {
             Username: status.cookies.username,
@@ -588,6 +574,20 @@ const Timesheet = () => {
           },
         }).then(response => {
           const assignedProject = response.data.result.recordsets[1];
+          setStateAssignedProject(response.data.result.recordsets[1]);
+
+          if (
+            response.data.result.recordsets[1].length > 0 &&
+            projectState === undefined
+          ) {
+            if (router.query.pid) {
+              setProjectState(router.query.pid);
+            } else {
+              setProjectState(
+                "" + response.data.result.recordsets[1][0].ProjectID
+              );
+            }
+          }
 
           if (status.permission === true && projectState !== undefined) {
             let check = 0;
@@ -866,8 +866,39 @@ const Timesheet = () => {
               </div>
             ) : (
               <>
+                <select
+                  value={projectState}
+                  onChange={e => setProjectState(e.target.value)}
+                  style={{
+                    marginTop: "30px",
+                    fontFamily: "Roboto, sans-serif",
+                    fontSize: "medium",
+                    display: "inline-block",
+                    color: "#74646e",
+                    border: "1px solid #c8bfc4",
+                    borderRadius: "4px",
+                    boxShadow: "inset 1px 1px 2px #ddd8dc",
+                    background: "#fff",
+                    zIndex: "1",
+                    position: "relative",
+                  }}
+                >
+                  {stateAssignedProject.map(item => {
+                    return (
+                      <option
+                        value={item.ProjectID}
+                        key={item.ProjectID}
+                        projectgroup={item.ProjectGroup}
+                        projectname={item.ProjectName}
+                      >
+                        {item.ProjectID} &emsp;[{item.ProjectGroup}]&ensp;
+                        {item.ProjectName}
+                      </option>
+                    );
+                  })}
+                </select>
                 <div className="time__header">
-                  <div className="time__header__left">
+                  {/* <div className="time__header__left">
                     <h3 className="time__header__left__project-id">
                       <span
                         onClick={() => {
@@ -892,7 +923,7 @@ const Timesheet = () => {
                     ) : (
                       ""
                     )}
-                  </div>
+                  </div> */}
                   <div className="time__header__right">
                     <>
                       <Button
