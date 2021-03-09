@@ -251,6 +251,7 @@
 }
 .time__alert__complete {
   text-align: center;
+  margin-left: 80px;
 }
 
 .time__table__employee-input {
