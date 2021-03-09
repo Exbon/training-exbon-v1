@@ -854,7 +854,10 @@ const Timesheet = () => {
           <div id="time__mainDiv">
             {promiseInProgress || !projectState ? (
               data.length === 0 ? (
-                <p style={{ marginTop: "50px", fontWeight: "700" }}>
+                <p
+                  style={{ marginTop: "50px", fontWeight: "700" }}
+                  className="no-permission"
+                >
                   You han NO permission
                 </p>
               ) : (

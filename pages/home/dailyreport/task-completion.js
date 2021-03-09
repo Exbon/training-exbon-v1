@@ -1214,7 +1214,10 @@ const TaskCompletion = (
           <div id="task__mainDiv">
             {promiseInProgress || !projectState || !(data.length > 0) ? (
               data.length === 0 ? (
-                <p style={{ marginTop: "50px", fontWeight: "700" }}>
+                <p
+                  style={{ marginTop: "50px", fontWeight: "700" }}
+                  className="no-permission"
+                >
                   You han NO permission
                 </p>
               ) : (
