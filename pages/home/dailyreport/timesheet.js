@@ -853,17 +853,28 @@ const Timesheet = () => {
         <>
           <div id="time__mainDiv">
             {promiseInProgress || !projectState ? (
-              <div
-                style={{
-                  width: "100%",
-                  height: "100",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Loader type="Audio" color="#4e88de" height="100" width="100" />
-              </div>
+              data.length === 0 ? (
+                <p style={{ marginTop: "50px", fontWeight: "700" }}>
+                  You han NO permission
+                </p>
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Loader
+                    type="Audio"
+                    color="#4e88de"
+                    height="100"
+                    width="100"
+                  />
+                </div>
+              )
             ) : (
               <>
                 <select
