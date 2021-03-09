@@ -797,6 +797,10 @@ const Timesheet = () => {
         Action: "update",
       },
     });
+
+    setTimeout(() => {
+      applyCheckState();
+    }, 700);
   };
 
   const { promiseInProgress } = usePromiseTracker();
