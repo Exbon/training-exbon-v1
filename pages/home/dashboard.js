@@ -27,8 +27,9 @@ import StyledRadio from "../../assets/jss/nextjs-material-dashboard/New/StyledRa
 import "../../assets/jss/nextjs-material-dashboard/New/MSProjectStyle.css";
 import { CookiesProvider, useCookies } from "react-cookie";
 import LoginComponent from "../../components/New/LoginComponent";
-
+import Router, { useRouter } from "next/router";
 const Dashboard = () => {
+  const router = useRouter();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
   const [cookies, setCookie, removeCookie] = useCookies();
@@ -76,6 +77,7 @@ const Dashboard = () => {
         graph4: result.data.recordsets[4],
       }));
     };
+    router.push(`?pid=${selectedProject}`);
     trackPromise(fetchData());
   }, [selectedProject]);
 
@@ -95,7 +97,10 @@ const Dashboard = () => {
           setState({
             assignedProject: response.data.result.recordsets[1],
           });
-          if (response.data.result.recordsets[1].length > 0) {
+
+          if (router.query.pid) {
+            setSelectedProject(router.query.pid);
+          } else if (response.data.result.recordsets[1].length > 0) {
             setSelectedProject(response.data.result.recordsets[1][0].ProjectID);
           }
         });
