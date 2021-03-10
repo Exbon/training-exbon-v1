@@ -887,6 +887,7 @@ const TaskCompletion = (
 
         setPreviousProject(projectState);
       };
+      router.push(`?pid=${projectState}`);
 
       trackPromise(fetchData());
     } else {
