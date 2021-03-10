@@ -1,0 +1,72 @@
+#deficiency__mainDiv {
+  width: 700px;
+  margin-left: 10px;
+  margin-top: 20px;
+}
+@media screen and (max-width: 750px) {
+  #deficiency__mainDiv {
+    width: 100%;
+  }
+}
+
+.deficiency__safety-report__dropzone-wrapper {
+  padding: 20px;
+}
+
+.deficiency__inspection-record__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.deficiency__inspection-record__wrapper__description {
+  width: 100%;
+}
+
+.deficiency__inspection-record__wrapper__resolution {
+  width: 100%;
+}
+
+.deficiency__inspection-record__wrapper__between {
+  width: 10%;
+}
+
+.deficiency__memo__wrapper {
+  width: 100%;
+}
+
+.deficiency__alert__complete {
+  text-align: center;
+}
+.deficiency__header {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  flex-grow: 1;
+}
+.deficiency__header__project-id {
+  font-family: "Roboto";
+  color: black;
+  margin-right: 10px;
+}
+.deficiency__header__project-id__value {
+  text-decoration: underline;
+}
+.deficiency__header__project-id__value:hover {
+  color: #a79da3;
+  cursor: pointer;
+}
+
+.deficiency__header__project-group {
+  font-family: "Roboto";
+  color: #50474c;
+  white-space: nowrap;
+}
+
+.deficiency__header__project-name {
+  font-family: "Roboto";
+  color: #50474c;
+  margin-left: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
