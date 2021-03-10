@@ -120,6 +120,8 @@ const DeficiencyLog = (
         projectInfoTab3 = result.data.result[1];
       };
 
+      router.push(`?pid=${projectState}`);
+
       trackPromise(fetchData());
     } else {
       setData([]);
@@ -250,7 +252,8 @@ const DeficiencyLog = (
                   value={projectState}
                   onChange={e => setProjectState(e.target.value)}
                   style={{
-                    marginTop: "30px",
+                    marginTop: "10px",
+                    marginBottom: "15px",
                     fontFamily: "Roboto, sans-serif",
                     fontSize: "medium",
                     display: "inline-block",
@@ -277,29 +280,7 @@ const DeficiencyLog = (
                     );
                   })}
                 </select>
-                <div className="deficiency__header">
-                  <h3 className="deficiency__header__project-id">
-                    <span
-                      onClick={goMain}
-                      className="deficiency__header__project-id__value"
-                    >
-                      {projectState}
-                    </span>
-                  </h3>
-                  {projectInfoTab3 !== undefined &&
-                  projectInfoTab3.length !== 0 ? (
-                    <>
-                      <h4 className="deficiency__header__project-group">
-                        [{projectInfoTab3[0].ProjectGroup}]
-                      </h4>
-                      <h4 className="deficiency__header__project-name">
-                        {projectInfoTab3[0].ProjectName}
-                      </h4>
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </div>
+
                 <Accordion defaultExpanded={true}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
