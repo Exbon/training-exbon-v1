@@ -50,7 +50,6 @@ export default function Header(props) {
           {/* Here we create navbar brand, based on route name */}
           {router.route.includes("/home/dailyreport") ? (
             <div>
-              {console.log(router.query.pid)}
               <Link href={`/home/dailyreport/timesheet?pid=${pidState}`}>
                 <a>
                   <Button
