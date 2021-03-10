@@ -640,6 +640,7 @@ const Timesheet = () => {
         setData(result.data.result[0]);
         dataEmployees = result.data.result[1];
         projectInfoTab1 = result.data.result[2];
+        router.push(`?pid=${projectState}`);
       };
 
       trackPromise(fetchData());
@@ -848,7 +849,7 @@ const Timesheet = () => {
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
       ) : !status.permission ? (
-        <NotPermission />
+        <NotPermission path="timesheet" />
       ) : (
         <>
           <div id="time__mainDiv">

@@ -285,7 +285,7 @@
 }
 
 .no-permission {
-  animation: cssAnimation 0s 0.5s forwards;
+  animation: cssAnimation 0s 1s forwards;
   visibility: hidden;
   font-family: "Roboto";
 }

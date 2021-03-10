@@ -1208,7 +1208,7 @@ const TaskCompletion = (
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
       ) : !status.permission ? (
-        <NotPermission />
+        <NotPermission path="task-completion" />
       ) : (
         <div style={{ overflowX: "auto" }}>
           <div id="task__mainDiv">
