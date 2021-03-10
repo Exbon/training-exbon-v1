@@ -1219,7 +1219,7 @@ const TaskCompletion = (
                   style={{ marginTop: "50px", fontWeight: "700" }}
                   className="no-permission"
                 >
-                  You han NO permission
+                  You have NO permission
                 </p>
               ) : (
                 <div

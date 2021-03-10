@@ -37,6 +37,7 @@
 
 .deficiency__alert__complete {
   text-align: center;
+  margin-left: 80px;
 }
 .deficiency__header {
   display: flex;
