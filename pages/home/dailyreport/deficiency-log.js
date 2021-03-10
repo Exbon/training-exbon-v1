@@ -232,7 +232,7 @@ const DeficiencyLog = (
       ) : !status.permission ? (
         <NotPermission path="deficiency-log" />
       ) : (
-        <>
+        <div style={{ overflowX: "auto" }}>
           <div id="deficiency__mainDiv">
             {promiseInProgress || !projectState ? (
               data.length === 0 ? (
@@ -383,7 +383,7 @@ const DeficiencyLog = (
               </>
             )}
           </div>
-        </>
+        </div>
       )}
     </>
   );

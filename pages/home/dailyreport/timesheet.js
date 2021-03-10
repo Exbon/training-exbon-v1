@@ -851,7 +851,7 @@ const Timesheet = () => {
       ) : !status.permission ? (
         <NotPermission path="timesheet" />
       ) : (
-        <>
+        <div style={{ overflowX: "auto" }}>
           <div id="time__mainDiv">
             {promiseInProgress || !projectState ? (
               data.length === 0 ? (
@@ -1041,7 +1041,7 @@ const Timesheet = () => {
               </>
             )}
           </div>
-        </>
+        </div>
       )}
     </>
   );

@@ -2,6 +2,7 @@
   width: 1387px;
   margin-left: 10px;
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 @media screen and (max-width: 750px) {
   #deficiency__mainDiv {

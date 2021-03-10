@@ -90,6 +90,7 @@
 
 .task__table {
   overflow: auto;
+  margin-bottom: 10px;
 }
 .task__table table {
   font-family: "Roboto", sans-serif;
