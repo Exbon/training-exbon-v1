@@ -79,6 +79,7 @@
 .time__header__right__checkbox {
   flex-shrink: 0;
   font-family: "Roboto";
+  color: rgb(105, 98, 98);
 }
 
 .time__header__right__checkbox-before-sunday {
