@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
@@ -23,6 +23,7 @@ export default function Header(props) {
   const router = useRouter();
   // create styles for this component
   const useStyles = makeStyles(styles);
+  const [pidState, setPidState] = useState(undefined);
   const classes = useStyles();
   function makeBrand() {
     var name = "NextJS Material Dashboard";
@@ -38,6 +39,10 @@ export default function Header(props) {
   const appBarClasses = classNames({
     [" " + classes[color]]: color,
   });
+
+  useEffect(() => {
+    setPidState(router.query.pid);
+  }, [router.query.pid]);
   return (
     <AppBar className={classes.appBar + appBarClasses}>
       <Toolbar className={classes.container}>
@@ -45,7 +50,8 @@ export default function Header(props) {
           {/* Here we create navbar brand, based on route name */}
           {router.route.includes("/home/dailyreport") ? (
             <div>
-              <Link href="/home/dailyreport/timesheet">
+              {console.log(router.query.pid)}
+              <Link href={`/home/dailyreport/timesheet?pid=${pidState}`}>
                 <a>
                   <Button
                     color={
@@ -60,7 +66,7 @@ export default function Header(props) {
                   </Button>
                 </a>
               </Link>
-              <Link href="/home/dailyreport/task-completion">
+              <Link href={`/home/dailyreport/task-completion?pid=${pidState}`}>
                 <a>
                   <Button
                     color={
@@ -75,7 +81,7 @@ export default function Header(props) {
                   </Button>
                 </a>
               </Link>
-              <Link href="/home/dailyreport/deficiency-log">
+              <Link href={`/home/dailyreport/deficiency-log?pid=${pidState}`}>
                 <a>
                   <Button
                     color={

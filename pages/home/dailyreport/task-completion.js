@@ -1204,7 +1204,6 @@ const TaskCompletion = (
 
   return (
     <>
-      {console.log(data)}
       {status.cookies.username === undefined ||
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
