@@ -35,7 +35,7 @@ const DeficiencyLog = (
   }
 ) => {
   const router = useRouter();
-  const projectState = "6102";
+  const [projectState, setProjectState] = useState(undefined);
 
   const [cookies, setCookie, removeCookie] = useCookies("username");
   const [status, setStatus] = useState({
@@ -49,14 +49,14 @@ const DeficiencyLog = (
   });
 
   const [data, setData] = useState(() => []);
-
+  const [stateAssignedProject, setStateAssignedProject] = useState([]);
   useEffect(() => {
     if (status.cookies.username !== 0) {
       if (status.cookies.username !== undefined) {
         axios({
           method: "post",
           url: `/api/daily-report/signin`,
-          timeout: 5000, // 2 seconds timeout
+          timeout: 3000, // 3 seconds timeout
           headers: {},
           data: {
             Username: status.cookies.username,
@@ -64,6 +64,19 @@ const DeficiencyLog = (
           },
         }).then(response => {
           const assignedProject = response.data.result.recordsets[1];
+          setStateAssignedProject(response.data.result.recordsets[1]);
+          if (
+            response.data.result.recordsets[1].length > 0 &&
+            projectState === undefined
+          ) {
+            if (router.query.pid) {
+              setProjectState(router.query.pid);
+            } else {
+              setProjectState(
+                "" + response.data.result.recordsets[1][0].ProjectID
+              );
+            }
+          }
 
           if (status.permission === true && projectState !== undefined) {
             let check = 0;
@@ -209,22 +222,6 @@ const DeficiencyLog = (
     });
   };
 
-  const logout = () => {
-    setData([]);
-    removeCookie("username", { path: "/" });
-    removeCookie("password", { path: "/" });
-    removeCookie("fullname", { path: "/" });
-    removeCookie("employeeid", { path: "/" });
-    setStatus(prevState => ({
-      permission: true,
-      cookies: {
-        username: undefined,
-        password: 0,
-        fullname: "",
-        employeeid: 0,
-      },
-    }));
-  };
   return (
     <>
       {status.cookies.username === undefined ||
@@ -249,6 +246,37 @@ const DeficiencyLog = (
               </div>
             ) : (
               <>
+                <select
+                  value={projectState}
+                  onChange={e => setProjectState(e.target.value)}
+                  style={{
+                    marginTop: "30px",
+                    fontFamily: "Roboto, sans-serif",
+                    fontSize: "medium",
+                    display: "inline-block",
+                    color: "#74646e",
+                    border: "1px solid #c8bfc4",
+                    borderRadius: "4px",
+                    boxShadow: "inset 1px 1px 2px #ddd8dc",
+                    background: "#fff",
+                    zIndex: "1",
+                    position: "relative",
+                  }}
+                >
+                  {stateAssignedProject.map(item => {
+                    return (
+                      <option
+                        value={item.ProjectID}
+                        key={item.ProjectID}
+                        projectgroup={item.ProjectGroup}
+                        projectname={item.ProjectName}
+                      >
+                        {item.ProjectID} &emsp;[{item.ProjectGroup}]&ensp;
+                        {item.ProjectName}
+                      </option>
+                    );
+                  })}
+                </select>
                 <div className="deficiency__header">
                   <h3 className="deficiency__header__project-id">
                     <span
