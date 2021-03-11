@@ -53,7 +53,7 @@ const Dashboard = () => {
   const [state, setState] = useState({
     assignedProject: [],
   });
-  const [selectedProject, setSelectedProject] = useState(undefined);
+  const [selectedProject, setSelectedProject] = useState(0);
   const [selectedFeature, setFeature] = useState("WorkCompletion");
 
   const handleSelectedProject = e => {
@@ -61,29 +61,25 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    if (status.permission === true && selectedProject !== undefined) {
-      const fetchData = async () => {
-        let result = await axios({
-          method: "get",
-          url: `/api/MSProject/${selectedProject}`,
-          timeout: 5000, // 5 seconds timeout
-          headers: {},
-        });
+    const fetchData = async () => {
+      let result = await axios({
+        method: "get",
+        url: `/api/MSProject/${selectedProject}`,
+        timeout: 5000, // 5 seconds timeout
+        headers: {},
+      });
 
-        setData(prevState => ({
-          ...prevState,
-          allProject: result.data.recordsets[0],
-          graph1: result.data.recordsets[1],
-          graph2: result.data.recordsets[2],
-          graph3: result.data.recordsets[3],
-          graph4: result.data.recordsets[4],
-        }));
-      };
-      router.push(`?pid=${selectedProject}`);
-      trackPromise(fetchData());
-    } else {
-      setData(prevState => ({ ...prevState, selectRange: "1week" }));
-    }
+      setData(prevState => ({
+        ...prevState,
+        allProject: result.data.recordsets[0],
+        graph1: result.data.recordsets[1],
+        graph2: result.data.recordsets[2],
+        graph3: result.data.recordsets[3],
+        graph4: result.data.recordsets[4],
+      }));
+    };
+    router.push(`?pid=${selectedProject}`);
+    trackPromise(fetchData());
   }, [selectedProject]);
 
   useEffect(() => {
@@ -108,34 +104,17 @@ const Dashboard = () => {
           } else if (response.data.result.recordsets[1].length > 0) {
             setSelectedProject(response.data.result.recordsets[1][0].ProjectID);
           }
-
-          if (status.permission === true && selectedProject !== undefined) {
-            let check = 0;
-            for (let i = 0; i < state.assignedProject.length; i++) {
-              if (state.assignedProject[i].ProjectID === selectedProject) {
-                check++;
-                break;
-              }
-            }
-            if (check === 0) {
-              setStatus(prevState => ({
-                ...prevState,
-                permission: false,
-              }));
-            }
-          }
         });
       }
     } else {
-      setStatus(prevState => ({
-        ...prevState,
+      setStatus({
         cookies: {
           username: cookies.username,
           password: cookies.password,
           fullname: cookies.fullname,
           employeeid: cookies.employeeid,
         },
-      }));
+      });
     }
   }, [status, cookies]);
 
@@ -186,7 +165,6 @@ const Dashboard = () => {
           : { overflowX: "auto" }
       }
     >
-      {console.log(status.permission)}
       {status.cookies.username === undefined ||
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
