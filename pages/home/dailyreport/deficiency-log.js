@@ -238,7 +238,7 @@ const DeficiencyLog = (
               data.length === 0 ? (
                 <p
                   style={{ marginTop: "50px", fontWeight: "700" }}
-                  className="no-permission"
+                  className="deficiency__no-permission"
                 >
                   You have NO permission
                 </p>

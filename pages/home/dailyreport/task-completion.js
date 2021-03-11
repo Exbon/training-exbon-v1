@@ -1216,7 +1216,7 @@ const TaskCompletion = (
               data.length === 0 ? (
                 <p
                   style={{ marginTop: "50px", fontWeight: "700" }}
-                  className="no-permission"
+                  className="task__no-permission"
                 >
                   You have NO permission
                 </p>

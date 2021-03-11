@@ -598,7 +598,7 @@
   color: gray;
 }
 
-.no-permission {
+.task__no-permission {
   animation: cssAnimation 0s 0.5s forwards;
   visibility: hidden;
   font-family: "Roboto";

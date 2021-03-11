@@ -192,7 +192,7 @@ const Dashboard = () => {
       ) : selectedProject === undefined ? (
         <p
           style={{ marginTop: "50px", fontWeight: "700" }}
-          className="no-permission"
+          className="dashboard__no-permission"
         >
           You have NO permission
         </p>

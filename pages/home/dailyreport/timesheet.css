@@ -286,7 +286,7 @@
   color: slateblue;
 }
 
-.no-permission {
+.time__no-permission {
   animation: cssAnimation 0s 1s forwards;
   visibility: hidden;
   font-family: "Roboto";
