@@ -1,12 +1,19 @@
 import Link from "next/link";
-
+import Admin from "layouts/Admin.js";
+import "./NotPermission.css";
 const NotPermission = ({ path }) => {
   return (
-    <>
+    <div className="notpermit">
       <h1>No permissions</h1>
-      <a href={`/home/dailyreport/${path}`}>Go to main page</a>
-    </>
+      <a
+        href={
+          path === "dashboard" ? "/home/dashboard" : `/home/dailyreport/${path}`
+        }
+      >
+        Go to main page
+      </a>
+    </div>
   );
 };
-
+NotPermission.layout = Admin;
 export default NotPermission;
