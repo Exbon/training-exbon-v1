@@ -189,6 +189,13 @@ const Dashboard = () => {
       {status.cookies.username === undefined ||
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
+      ) : selectedProject === undefined ? (
+        <p
+          style={{ marginTop: "50px", fontWeight: "700" }}
+          className="no-permission"
+        >
+          You have NO permission
+        </p>
       ) : !permission ? (
         <NotPermission path="dashboard" />
       ) : (
