@@ -28,6 +28,8 @@ import "../../assets/jss/nextjs-material-dashboard/New/MSProjectStyle.css";
 import { CookiesProvider, useCookies } from "react-cookie";
 import LoginComponent from "../../components/New/LoginComponent";
 import Router, { useRouter } from "next/router";
+import NotPermission from "./dailyreport/NotPermission";
+
 const Dashboard = () => {
   const router = useRouter();
   const useStyles = makeStyles(styles);
@@ -40,8 +42,8 @@ const Dashboard = () => {
       fullname: "",
       employeeid: 0,
     },
-    permission: true,
   });
+  const [permission, setPermission] = useState(true);
   const [data, setData] = useState({
     selectRange: "1week",
     allProject: [],
@@ -59,6 +61,21 @@ const Dashboard = () => {
   const handleSelectedProject = e => {
     setSelectedProject(e.target.value);
   };
+
+  useEffect(() => {
+    let check = 0;
+    for (let i = 0; i < state.assignedProject.length; i++) {
+      if (state.assignedProject[i].ProjectID.toString() == selectedProject) {
+        check++;
+        break;
+      }
+    }
+    if (check === 0) {
+      setPermission(false);
+    } else {
+      setPermission(true);
+    }
+  }, [state, selectedProject, status, data]);
 
   useEffect(() => {
     if (selectedProject !== undefined) {
@@ -109,14 +126,15 @@ const Dashboard = () => {
         });
       }
     } else {
-      setStatus({
+      setStatus(prevState => ({
+        ...prevState,
         cookies: {
           username: cookies.username,
           password: cookies.password,
           fullname: cookies.fullname,
           employeeid: cookies.employeeid,
         },
-      });
+      }));
     }
   }, [status, cookies]);
 
@@ -167,9 +185,12 @@ const Dashboard = () => {
           : { overflowX: "auto" }
       }
     >
+      {console.log(permission)}
       {status.cookies.username === undefined ||
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
+      ) : !permission ? (
+        <NotPermission path="dashboard" />
       ) : (
         <Card style={{ width: "1200px" }}>
           <CardHeader color="info">
