@@ -53,7 +53,7 @@ const Dashboard = () => {
   const [state, setState] = useState({
     assignedProject: [],
   });
-  const [selectedProject, setSelectedProject] = useState(0);
+  const [selectedProject, setSelectedProject] = useState(undefined);
   const [selectedFeature, setFeature] = useState("WorkCompletion");
 
   const handleSelectedProject = e => {
@@ -61,25 +61,27 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      let result = await axios({
-        method: "get",
-        url: `/api/MSProject/${selectedProject}`,
-        timeout: 5000, // 5 seconds timeout
-        headers: {},
-      });
+    if (selectedProject !== undefined) {
+      const fetchData = async () => {
+        let result = await axios({
+          method: "get",
+          url: `/api/MSProject/${selectedProject}`,
+          timeout: 5000, // 5 seconds timeout
+          headers: {},
+        });
 
-      setData(prevState => ({
-        ...prevState,
-        allProject: result.data.recordsets[0],
-        graph1: result.data.recordsets[1],
-        graph2: result.data.recordsets[2],
-        graph3: result.data.recordsets[3],
-        graph4: result.data.recordsets[4],
-      }));
-    };
-    router.push(`?pid=${selectedProject}`);
-    trackPromise(fetchData());
+        setData(prevState => ({
+          ...prevState,
+          allProject: result.data.recordsets[0],
+          graph1: result.data.recordsets[1],
+          graph2: result.data.recordsets[2],
+          graph3: result.data.recordsets[3],
+          graph4: result.data.recordsets[4],
+        }));
+      };
+      router.push(`?pid=${selectedProject}`);
+      trackPromise(fetchData());
+    }
   }, [selectedProject]);
 
   useEffect(() => {
