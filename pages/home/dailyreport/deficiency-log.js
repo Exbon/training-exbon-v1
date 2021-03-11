@@ -352,34 +352,6 @@ const DeficiencyLog = (
                     </Button>
                   </AccordionActions>
                 </Accordion>
-                {/* <Accordion defaultExpanded={true}>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel3a-content"
-            >
-              <Typography variant="h5" color="primary">
-                Memo
-              </Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className={styles["memo__wrapper"]}>
-                <TextField
-                  id="TextFieldForMemo"
-                  multiline
-                  rows={4}
-                  defaultValue={data[0] === undefined ? "" : data[0].Memo}
-                  variant="outlined"
-                  fullWidth
-                />
-              </div>
-            </AccordionDetails>
-            <Divider />
-            <AccordionActions>
-              <Button size="small" color="primary" onClick={saveMemo}>
-                Save
-              </Button>
-            </AccordionActions>
-          </Accordion> */}
               </>
             )}
           </div>
