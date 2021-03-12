@@ -84,3 +84,9 @@
     visibility: visible;
   }
 }
+
+@media screen and (max-width: 1600px) {
+  #deficiency__mainDiv {
+    width: 1238px;
+  }
+}
