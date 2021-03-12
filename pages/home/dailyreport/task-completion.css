@@ -609,3 +609,22 @@
     visibility: visible;
   }
 }
+
+@media screen and (max-width: 1366px) {
+  #task__mainDiv {
+    width: 1000px;
+  }
+
+  .task__table thead td {
+    font-size: smaller;
+    display: block;
+  }
+
+  .task__header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0px;
+    z-index: 0;
+    position: relative;
+  }
+}

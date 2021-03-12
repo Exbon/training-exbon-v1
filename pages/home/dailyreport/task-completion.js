@@ -23,6 +23,8 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import "react-toastify/dist/ReactToastify.css";
 import "./task-completion.css";
 import LoginComponent from "../../../components/New/LoginComponent";
+import { useMediaQuery } from "react-responsive";
+
 let noWorkMapKey = -1;
 
 toast.configure();
@@ -52,6 +54,11 @@ const themeForNoWork = createMuiTheme({
 });
 
 const TaskCompletion = () => {
+  const isDesktop = useMediaQuery({
+    minWidth: 1366,
+  });
+  const isLaptop15dot6 = useMediaQuery({ maxWidth: "1366px" });
+
   const router = useRouter();
   const [projectState, setProjectState] = useState(undefined);
 
@@ -73,43 +80,43 @@ const TaskCompletion = () => {
       {
         Header: "Section",
         accessor: "Section",
-        width: 65,
+        width: isLaptop15dot6 ? 50 : 65,
       },
       {
         Header: "Summary Task",
         accessor: "Trade",
-        width: 160,
+        width: isLaptop15dot6 ? 100 : 160,
       },
 
       {
         Header: "Task",
         accessor: "TaskName",
-        width: 360,
+        width: isLaptop15dot6 ? 250 : 360,
       },
       {
         Header: "Resource",
         accessor: "Company",
-        width: 260,
+        width: isLaptop15dot6 ? 100 : 260,
       },
       {
         Header: "Start Date",
         accessor: "StartDate",
-        width: 100,
+        width: isLaptop15dot6 ? 90 : 100,
       },
       {
         Header: "Finish Date",
         accessor: "FinishDate",
-        width: 100,
+        width: isLaptop15dot6 ? 90 : 100,
       },
       {
-        Header: "Request Start Date",
+        Header: isLaptop15dot6 ? "Req. Start Date" : "Request Start Date",
         accessor: "ReqStartDate",
-        width: 100,
+        width: isLaptop15dot6 ? 90 : 100,
       },
       {
-        Header: "Request Finish Date",
+        Header: isLaptop15dot6 ? "Req. Finish Date" : "Request Finish Date",
         accessor: "ReqFinishDate",
-        width: 100,
+        width: isLaptop15dot6 ? 90 : 100,
       },
 
       {
