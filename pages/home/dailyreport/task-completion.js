@@ -52,17 +52,9 @@ const themeForNoWork = createMuiTheme({
   },
 });
 
-const TaskCompletion = (
-  {
-    // projectState,
-    // setProjectState,
-    // employeeInfo,
-    // setPreviousProject,
-  }
-) => {
+const TaskCompletion = () => {
   const router = useRouter();
   const [projectState, setProjectState] = useState(undefined);
-  // const projectState = "6102";
 
   const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
@@ -120,11 +112,7 @@ const TaskCompletion = (
         accessor: "ReqFinishDate",
         width: 100,
       },
-      // {
-      //   Header: "Finish Date",
-      //   accessor: "FinishDate",
-      //   width: 90,
-      // },
+
       {
         Header: "Previous Work %",
         accessor: "PreviousWork",
