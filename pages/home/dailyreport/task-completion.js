@@ -24,7 +24,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "./task-completion.css";
 import LoginComponent from "../../../components/New/LoginComponent";
 let noWorkMapKey = -1;
-let projectInfoTab2;
 
 toast.configure();
 
@@ -313,29 +312,6 @@ const TaskCompletion = () => {
       updateMyData(index, id, value);
     };
 
-    const handleModalWorkDate = (
-      type,
-      Company,
-      TaskID,
-      TaskName,
-      StartDate,
-      FinishDate,
-      ReqStartDate,
-      ReqFinishDate
-    ) => {
-      updateModalWorkDate(
-        index,
-        type,
-        Company,
-        TaskID,
-        TaskName,
-        StartDate,
-        FinishDate,
-        ReqStartDate,
-        ReqFinishDate
-      );
-    };
-
     const preventNegativeNumber = e => {
       if (e.key === "-" || e.key === "+" || e.key === ".") {
         setValue("0");
@@ -390,21 +366,7 @@ const TaskCompletion = () => {
     } else if (id === "FinishDate") {
       return (
         <div className="task__table__finish-date-wrapper">
-          <span
-            className="task__table__finish-date-wrapper__data"
-            // onClick={() =>
-            //   handleModalWorkDate(
-            //     "Finish Date",
-            //     row.original.Company,
-            //     row.original.TaskID,
-            //     row.original.TaskName,
-            //     row.original.StartDate,
-            //     row.original.FinishDate,
-            //     row.original.ReqStartDate,
-            //     row.original.ReqFinishDate
-            //   )
-            // }
-          >
+          <span className="task__table__finish-date-wrapper__data">
             {value}
           </span>
         </div>
@@ -587,39 +549,6 @@ const TaskCompletion = () => {
   });
 
   const [selectedDate, setSelectedDate] = useState(now);
-
-  const dateCheckEditable = str => {
-    const getSunday = d => {
-      d = new Date(d);
-      let day = d.getDay(),
-        diff = d.getDate() - day;
-      return new Date(d.setDate(diff));
-    };
-
-    const date_diff_indays = (date1, date2) => {
-      return Math.floor(
-        (Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate()) -
-          Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate())) /
-          (1000 * 60 * 60 * 24)
-      );
-    };
-
-    const toStr = str.toLocaleString();
-
-    const newStr =
-      toStr.split("/")[0] +
-      "/" +
-      toStr.split("/")[1] +
-      "/" +
-      toStr.split("/")[2];
-
-    const dateFromStr = new Date(newStr);
-    const sundayOfSelected = getSunday(dateFromStr);
-    const sundayOfToday = getSunday(now);
-
-    if (date_diff_indays(sundayOfToday, sundayOfSelected) >= 0) return true;
-    else return false;
-  };
 
   const handleDateChange = date => {
     setSelectedDate(date);
@@ -862,8 +791,6 @@ const TaskCompletion = () => {
 
         setData(result1.data.result[0]);
 
-        projectInfoTab2 = result1.data.result[1];
-
         let result2 = await axios({
           method: "get",
           url: `/api/project-no-work?projectID=${projectState}`,
@@ -884,17 +811,6 @@ const TaskCompletion = () => {
   }, [selectedDate, projectState, status]);
 
   const { promiseInProgress } = usePromiseTracker();
-
-  const customStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-    },
-  };
 
   // Set No Work
   const customStylesNoWork = {
@@ -1054,104 +970,6 @@ const TaskCompletion = () => {
   };
 
   // Work Date
-  const [modalWorkDate, setModalWorkDate] = useState({
-    rowIndex: 9999,
-    type: "",
-    isOpen: false,
-    Company: "",
-    TaskID: "",
-    TaskName: "",
-    StartDate: new Date("2010/01/01"),
-    FinishDate: new Date("2010/01/01"),
-  });
-
-  const afterOpenModalWorkDate = () => {
-    // references are now sync'd and can be accessed.
-  };
-
-  const closeModalWorkDate = () => {
-    setModalWorkDate(prevState => ({ ...prevState, isOpen: false }));
-  };
-
-  const handleStartDateOfWorkDate = StartDate => {
-    setModalWorkDate(prevState => ({ ...prevState, StartDate }));
-  };
-
-  const handleEndDateOfWorkDate = FinishDate => {
-    setModalWorkDate(prevState => ({ ...prevState, FinishDate }));
-  };
-
-  const updateModalWorkDate = (
-    index,
-    type,
-    Company,
-    TaskID,
-    TaskName,
-    StartDate,
-    FinishDate,
-    ReqStartDate,
-    ReqFinishDate
-  ) => {
-    setModalWorkDate({
-      isOpen: true,
-      rowIndex: index,
-      type,
-      Company,
-      TaskID,
-      TaskName,
-      StartDate,
-      FinishDate,
-      ReqStartDate,
-      ReqFinishDate,
-    });
-  };
-
-  const requestModalWorkDate = () => {
-    const StartDate = formatDate(modalWorkDate.StartDate);
-    const FinishDate = formatDate(modalWorkDate.FinishDate);
-
-    if (modalWorkDate.type === "Start Date") {
-      setData(old =>
-        old.map((row, index) => {
-          if (index === modalWorkDate.rowIndex) {
-            return {
-              ...old[modalWorkDate.rowIndex],
-              ReqStartDate: StartDate,
-              ReqFinishDate: modalWorkDate.ReqFinishDate
-                ? modalWorkDate.ReqFinishDate
-                : FinishDate,
-              NewReqStartDate: StartDate,
-              NewReqFinishDate: modalWorkDate.ReqFinishDate
-                ? modalWorkDate.ReqFinishDate
-                : FinishDate,
-            };
-          }
-          return row;
-        })
-      );
-    } else {
-      setData(old =>
-        old.map((row, index) => {
-          if (index === modalWorkDate.rowIndex) {
-            return {
-              ...old[modalWorkDate.rowIndex],
-              ReqStartDate: modalWorkDate.ReqStartDate
-                ? modalWorkDate.ReqStartDate
-                : StartDate,
-              ReqFinishDate: FinishDate,
-              NewReqStartDate: modalWorkDate.ReqStartDate
-                ? modalWorkDate.ReqStartDate
-                : StartDate,
-              NewReqFinishDate: FinishDate,
-            };
-          }
-          return row;
-        })
-      );
-    }
-
-    closeModalWorkDate();
-  };
 
   const signin = async (username, password) => {
     await axios({
@@ -1261,29 +1079,6 @@ const TaskCompletion = () => {
                 </select>
 
                 <div className="task__header">
-                  {/* <div className="task__header__left">
-                    <h3 className="task__header__left__project-id">
-                      <span
-                        onClick={goMain}
-                        className="task__header__left__project-id__value"
-                      >
-                        {projectState}
-                      </span>
-                    </h3>
-                    {projectInfoTab2 !== undefined &&
-                    projectInfoTab2.length !== 0 ? (
-                      <>
-                        <h4 className="task__header__left__project-group">
-                          [{projectInfoTab2[0].ProjectGroup}]
-                        </h4>
-                        <h4 className="task__header__left__project-name">
-                          {projectInfoTab2[0].ProjectName}
-                        </h4>
-                      </>
-                    ) : (
-                      ""
-                    )}
-                  </div> */}
                   <div className="task__header__right">
                     <Button
                       variant="contained"
@@ -1326,9 +1121,6 @@ const TaskCompletion = () => {
                       style={customStylesNoWork}
                       className="task__modal-no-work"
                     >
-                      {/* <p className={styles["test"]}>
-                  (This is a test, so NOT working yet. )
-                </p> */}
                       <div className="task__modal-no-work__wrapper-title">
                         <h4 className="task__modal-no-work__wrapper-title__title">
                           Set No Work Days
@@ -1561,75 +1353,6 @@ const TaskCompletion = () => {
                 </div>
               </>
             )}
-
-            <Modal
-              isOpen={modalWorkDate.isOpen}
-              onAfterOpen={afterOpenModalWorkDate}
-              onRequestClose={closeModalWorkDate}
-              style={customStyles}
-              contentLabel="Example Modal"
-              className="task__modal-work-date"
-            >
-              <div className="task__modal-work-date__wrapper">
-                <div className="task__modal-work-date__wrapper-title">
-                  <h4 className="task__modal-work-date__wrapper-title__title">
-                    Change Task Date
-                  </h4>
-                  <h4 className="task__modal-work-date__wrapper-title__sub-title-task-name">
-                    {modalWorkDate.TaskName}
-                  </h4>
-                  <h5 className="task__modal-work-date__wrapper-title__sub-title-company-name">
-                    {modalWorkDate.Company ? "by " + modalWorkDate.Company : ""}
-                  </h5>
-                </div>
-                <div className="task__modal-work-date__wrapper-date-picker">
-                  <h4 className="task__modal-work-date__wrapper-date-picker__label">
-                    {modalWorkDate.type}
-                  </h4>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <div className="task__modal-work-date__wrapper-date-picker__wrapper-work-date">
-                      <ThemeProvider theme={themeForWorkDate}>
-                        <DatePicker
-                          disableToolbar
-                          variant="inline"
-                          value={
-                            modalWorkDate.type === "Start Date"
-                              ? modalWorkDate.StartDate
-                              : modalWorkDate.FinishDate
-                          }
-                          onChange={
-                            modalWorkDate.type === "Start Date"
-                              ? handleStartDateOfWorkDate
-                              : handleEndDateOfWorkDate
-                          }
-                          format="MM/dd/yyyy"
-                          className="task__modal-work-date__wrapper-date-picker__work-date"
-                          autoOk={true}
-                        />
-                      </ThemeProvider>
-                    </div>
-                  </MuiPickersUtilsProvider>
-                </div>
-                <div className="task__modal-work-date__wrapper-btn">
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={requestModalWorkDate}
-                    className="task__modal-work-date__wrapper-btn__btn-request"
-                  >
-                    Request
-                  </Button>
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={closeModalWorkDate}
-                    className="task__modal-work-date__wrapper-btn__btn-cancel"
-                  >
-                    Cancel
-                  </Button>
-                </div>
-              </div>
-            </Modal>
           </div>
         </div>
       )}
