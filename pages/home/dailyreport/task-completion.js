@@ -80,43 +80,43 @@ const TaskCompletion = () => {
       {
         Header: "Section",
         accessor: "Section",
-        width: isLaptop15dot6 ? 50 : 65,
+        width: isLaptop15dot6 ? 55 : 65,
       },
       {
         Header: "Summary Task",
         accessor: "Trade",
-        width: isLaptop15dot6 ? 100 : 160,
+        width: isLaptop15dot6 ? 130 : 160,
       },
 
       {
         Header: "Task",
         accessor: "TaskName",
-        width: isLaptop15dot6 ? 250 : 360,
+        width: isLaptop15dot6 ? 310 : 360,
       },
       {
         Header: "Resource",
         accessor: "Company",
-        width: isLaptop15dot6 ? 100 : 260,
+        width: isLaptop15dot6 ? 220 : 260,
       },
       {
         Header: "Start Date",
         accessor: "StartDate",
-        width: isLaptop15dot6 ? 90 : 100,
+        width: isLaptop15dot6 ? 95 : 100,
       },
       {
         Header: "Finish Date",
         accessor: "FinishDate",
-        width: isLaptop15dot6 ? 90 : 100,
+        width: isLaptop15dot6 ? 95 : 100,
       },
       {
         Header: isLaptop15dot6 ? "Req. Start Date" : "Request Start Date",
         accessor: "ReqStartDate",
-        width: isLaptop15dot6 ? 90 : 100,
+        width: isLaptop15dot6 ? 95 : 100,
       },
       {
         Header: isLaptop15dot6 ? "Req. Finish Date" : "Request Finish Date",
         accessor: "ReqFinishDate",
-        width: isLaptop15dot6 ? 90 : 100,
+        width: isLaptop15dot6 ? 95 : 100,
       },
 
       {
