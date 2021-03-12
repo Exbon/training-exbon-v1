@@ -610,9 +610,9 @@
   }
 }
 
-@media screen and (max-width: 1366px) {
+@media screen and (max-width: 1600px) {
   #task__mainDiv {
-    width: 1000px;
+    width: 95%;
   }
 
   .task__table thead td {

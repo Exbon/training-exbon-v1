@@ -57,7 +57,7 @@ const TaskCompletion = () => {
   const isDesktop = useMediaQuery({
     minWidth: 1366,
   });
-  const isLaptop15dot6 = useMediaQuery({ maxWidth: "1366px" });
+  const isLaptop15dot6 = useMediaQuery({ maxWidth: "1600px" });
 
   const router = useRouter();
   const [projectState, setProjectState] = useState(undefined);
