@@ -385,7 +385,7 @@
   font-weight: 400;
 }
 .task__modal-no-work__wrapper-table {
-  max-height: 650px;
+  max-height: 500px;
   overflow: auto;
 }
 .task__modal-no-work__wrapper-table__table__wrapper-btn-new {
@@ -527,70 +527,6 @@
 .task__modal-save-no-work__wrapper-content__bottom__btn-cancel {
   color: #fd7c6e !important;
   margin-left: 5% !important;
-}
-
-/* work-date */
-
-.task__modal-work-date__wrapper {
-  padding: 30px;
-}
-
-.task__modal-work-date__wrapper-title {
-  text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.task__modal-work-date__wrapper-title__title {
-  color: #647be2;
-  margin-top: 0;
-}
-
-.task__modal-work-date__wrapper-date-picker__label {
-  text-align: center;
-  font-family: "Roboto";
-  color: #534f51;
-  margin-bottom: 0;
-}
-.task__modal-work-date__wrapper-date-picker__wrapper-work-date {
-  display: flex;
-  justify-content: center;
-}
-.task__modal-work-date__wrapper-date-picker__work-date {
-  width: 120px !important;
-  font-size: medium;
-  margin-top: 0;
-}
-
-.task__modal-work-date__wrapper-date-picker__work-date input {
-  text-align: center;
-  font-size: medium;
-}
-
-.task__modal-work-date__wrapper-btn {
-  margin-top: 20%;
-  display: flex;
-  justify-content: center;
-}
-
-.task__modal-work-date__wrapper-btn__btn-request {
-  background-color: #1cd3a2 !important;
-  color: white !important;
-}
-
-.task__modal-work-date__wrapper-btn__btn-cancel {
-  background-color: #fd7c6e !important;
-  color: white !important;
-  margin-left: 5% !important;
-}
-
-.task__modal-work-date__wrapper-title__sub-title-task-name {
-  margin-bottom: 0px;
-  font-family: "Roboto";
-}
-
-.task__modal-work-date__wrapper-title__sub-title-company-name {
-  margin-top: 5px;
-  font-family: "Roboto";
-  color: grey;
 }
 
 .task__test {

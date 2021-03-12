@@ -824,8 +824,8 @@ const TaskCompletion = () => {
   const customStylesNoWork = {
     content: {
       position: "absolute",
-      top: "40%",
-      left: "50%",
+      top: "50%",
+      left: "60%",
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
