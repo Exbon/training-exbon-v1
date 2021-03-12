@@ -36,6 +36,7 @@ import NotPermission from "./NotPermission";
 import { CookiesProvider, useCookies } from "react-cookie";
 import Admin from "layouts/Admin.js";
 import LoginComponent from "../../../components/New/LoginComponent";
+
 toast.configure();
 let afterSundayCheck = true;
 
@@ -154,42 +155,34 @@ const Timesheet = () => {
       {
         Header: " ", //Delete Timesheet
         accessor: "TimesheetID",
-        width: 30,
       },
       {
         Header: "Employee Name",
         accessor: "EmployeeName",
-        width: 120,
       },
       {
         Header: "Position",
         accessor: "Position",
-        width: 130,
       },
       {
         Header: "Work Start",
         accessor: "WorkStart",
-        width: 120,
       },
       {
         Header: "Meal Start",
         accessor: "MealStart",
-        width: 120,
       },
       {
         Header: "Meal End",
         accessor: "MealEnd",
-        width: 120,
       },
       {
         Header: "Work End",
         accessor: "WorkEnd",
-        width: 120,
       },
       {
         Header: "Labor Hours",
         accessor: "laborHours",
-        width: 40,
       },
     ],
     []

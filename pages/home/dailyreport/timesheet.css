@@ -297,3 +297,22 @@
     visibility: visible;
   }
 }
+
+@media screen and (max-width: 1600px) {
+  #time__mainDiv {
+    width: 1238px;
+  }
+
+  .time__table thead td {
+    font-size: smaller;
+    display: block;
+  }
+
+  .time__header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -43px;
+    z-index: 0;
+    position: relative;
+  }
+}
