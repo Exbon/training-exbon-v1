@@ -29,8 +29,11 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import LoginComponent from "../../components/New/LoginComponent";
 import Router, { useRouter } from "next/router";
 import NotPermission from "./dailyreport/NotPermission";
+import { useMediaQuery } from "react-responsive";
 
 const Dashboard = () => {
+  const isLaptop13 = useMediaQuery({ maxWidth: "1366px" });
+
   const router = useRouter();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
@@ -199,7 +202,7 @@ const Dashboard = () => {
       ) : !permission ? (
         <NotPermission path="dashboard" />
       ) : (
-        <Card style={{ width: "1200px" }}>
+        <Card style={isLaptop13 ? { width: "1000px" } : { width: "1200px" }}>
           <CardHeader color="info">
             <h4 className={classes.cardTitleWhite}>MS Project Data</h4>
             <p className={classes.cardCategoryWhite}>Work Completeion, EEAC</p>
@@ -279,8 +282,8 @@ const Dashboard = () => {
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <LineChart
-                  width={980}
-                  height={500}
+                  width={isLaptop13 ? 800 : 980}
+                  height={isLaptop13 ? 350 : 500}
                   data={
                     (data.selectRange === "1week" && data.graph1) ||
                     (data.selectRange === "1month" && data.graph2) ||
