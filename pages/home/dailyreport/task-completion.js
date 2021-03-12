@@ -109,12 +109,12 @@ const TaskCompletion = () => {
         width: isLaptop15dot6 ? 95 : 100,
       },
       {
-        Header: isLaptop15dot6 ? "Req. Start Date" : "Request Start Date",
+        Header: "Request Start Date",
         accessor: "ReqStartDate",
         width: isLaptop15dot6 ? 95 : 100,
       },
       {
-        Header: isLaptop15dot6 ? "Req. Finish Date" : "Request Finish Date",
+        Header: "Request Finish Date",
         accessor: "ReqFinishDate",
         width: isLaptop15dot6 ? 95 : 100,
       },
