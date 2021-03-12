@@ -54,7 +54,11 @@ const themeForNoWork = createMuiTheme({
 });
 
 const TaskCompletion = () => {
-  const isLaptop15dot6 = useMediaQuery({ maxWidth: "1600px" });
+  const isLaptop15dot6 = useMediaQuery({
+    maxWidth: "1600px",
+    minWidth: "1367px",
+  });
+  const isLaptop13 = useMediaQuery({ maxWidth: "1366px" });
 
   const router = useRouter();
   const [projectState, setProjectState] = useState(undefined);
@@ -75,45 +79,45 @@ const TaskCompletion = () => {
   const columns = useMemo(
     () => [
       {
-        Header: "Section",
+        Header: isLaptop13 ? "§" : "Section",
         accessor: "Section",
-        width: isLaptop15dot6 ? 55 : 65,
+        width: isLaptop15dot6 ? 55 : isLaptop13 ? 30 : 65,
       },
       {
         Header: "Summary Task",
         accessor: "Trade",
-        width: isLaptop15dot6 ? 130 : 160,
+        width: isLaptop15dot6 ? 130 : isLaptop13 ? 100 : 160,
       },
 
       {
         Header: "Task",
         accessor: "TaskName",
-        width: isLaptop15dot6 ? 310 : 360,
+        width: isLaptop15dot6 ? 310 : isLaptop13 ? 260 : 360,
       },
       {
         Header: "Resource",
         accessor: "Company",
-        width: isLaptop15dot6 ? 220 : 260,
+        width: isLaptop15dot6 ? 220 : isLaptop13 ? 150 : 260,
       },
       {
         Header: "Start Date",
         accessor: "StartDate",
-        width: isLaptop15dot6 ? 95 : 100,
+        width: isLaptop15dot6 ? 95 : isLaptop13 ? 80 : 100,
       },
       {
         Header: "Finish Date",
         accessor: "FinishDate",
-        width: isLaptop15dot6 ? 95 : 100,
+        width: isLaptop15dot6 ? 95 : isLaptop13 ? 80 : 100,
       },
       {
         Header: "Request Start Date",
         accessor: "ReqStartDate",
-        width: isLaptop15dot6 ? 95 : 100,
+        width: isLaptop15dot6 ? 95 : isLaptop13 ? 80 : 100,
       },
       {
         Header: "Request Finish Date",
         accessor: "ReqFinishDate",
-        width: isLaptop15dot6 ? 95 : 100,
+        width: isLaptop15dot6 ? 95 : isLaptop13 ? 80 : 100,
       },
 
       {

@@ -90,3 +90,9 @@
     width: 1238px;
   }
 }
+
+@media screen and (max-width: 1366px) {
+  #deficiency__mainDiv {
+    width: 1000px;
+  }
+}
