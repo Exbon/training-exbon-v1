@@ -717,7 +717,7 @@ const TaskCompletion = () => {
     axios({
       method: "post",
       url: `/api/log-daily-reports`,
-      timeout: 3000, // 5 seconds timeout
+      timeout: 3000, // 3 seconds timeout
       headers: {},
       data: {
         EmployeeID: status.cookies.employeeid,
@@ -735,7 +735,7 @@ const TaskCompletion = () => {
         axios({
           method: "post",
           url: `/api/daily-report/signin`,
-          timeout: 3000, // 2 seconds timeout
+          timeout: 3000, // 3 seconds timeout
           headers: {},
           data: {
             Username: status.cookies.username,
