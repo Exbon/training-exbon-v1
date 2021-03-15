@@ -546,6 +546,27 @@
   }
 }
 
+
+
+@media screen and (max-width: 1680px) {
+  #task__mainDiv {
+    width: 1238px;
+  }
+
+  .task__table thead td {
+    font-size: smaller;
+    display: block;
+  }
+
+  .task__header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: -43px;
+    z-index: 0;
+    position: relative;
+  }
+}
+
 @media screen and (max-width: 1600px) {
   #task__mainDiv {
     width: 1238px;
