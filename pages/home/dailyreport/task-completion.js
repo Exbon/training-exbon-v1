@@ -54,20 +54,24 @@ const themeForNoWork = createMuiTheme({
 });
 
 const TaskCompletion = () => {
-  const display1680x1050 = useMediaQuery({
+  const resolution1680 = useMediaQuery({
     maxWidth: "1680px",
     minWidth: "1601px",
   });
 
-  const isLaptop15dot6 = useMediaQuery({
+  const resolution1600 = useMediaQuery({
     maxWidth: "1600px",
     minWidth: "1441px",
   });
-  const display1440x757 = useMediaQuery({
+  const resolution1440 = useMediaQuery({
     maxWidth: "1440px",
     minWidth: "1367px",
   });
-  const isLaptop13 = useMediaQuery({ maxWidth: "1366px" });
+  const resolution1366 = useMediaQuery({
+    maxWidth: "1366px",
+    minWidth: "1281px",
+  });
+  const resolution1280 = useMediaQuery({ maxWidth: "1280px" });
 
   const router = useRouter();
   const [projectState, setProjectState] = useState(undefined);
@@ -88,28 +92,28 @@ const TaskCompletion = () => {
   const columns = useMemo(
     () => [
       {
-        Header: isLaptop13 || display1440x757 ? "§" : "Section",
+        Header: resolution1366 || resolution1440 ? "§" : "Section",
         accessor: "Section",
-        width: display1680x1050
+        width: resolution1680
           ? 56
-          : isLaptop15dot6
+          : resolution1600
           ? 55
-          : display1440x757
+          : resolution1440
           ? 40
-          : isLaptop13
+          : resolution1366
           ? 30
           : 65,
       },
       {
         Header: "Summary Task",
         accessor: "Trade",
-        width: display1680x1050
+        width: resolution1680
           ? 132
-          : isLaptop15dot6
+          : resolution1600
           ? 130
-          : display1440x757
+          : resolution1440
           ? 105
-          : isLaptop13
+          : resolution1366
           ? 100
           : 160,
       },
@@ -117,78 +121,78 @@ const TaskCompletion = () => {
       {
         Header: "Task",
         accessor: "TaskName",
-        width: display1680x1050
+        width: resolution1680
           ? 312
-          : isLaptop15dot6
+          : resolution1600
           ? 310
-          : display1440x757
+          : resolution1440
           ? 270
-          : isLaptop13
+          : resolution1366
           ? 260
           : 360,
       },
       {
         Header: "Resource",
         accessor: "Company",
-        width: display1680x1050
+        width: resolution1680
           ? 222
-          : isLaptop15dot6
+          : resolution1600
           ? 220
-          : display1440x757
+          : resolution1440
           ? 160
-          : isLaptop13
+          : resolution1366
           ? 150
           : 260,
       },
       {
         Header: "Start Date",
         accessor: "StartDate",
-        width: display1680x1050
+        width: resolution1680
           ? 95
-          : isLaptop15dot6
+          : resolution1600
           ? 95
-          : display1440x757
+          : resolution1440
           ? 85
-          : isLaptop13
+          : resolution1366
           ? 80
           : 100,
       },
       {
         Header: "Finish Date",
         accessor: "FinishDate",
-        width: display1680x1050
+        width: resolution1680
           ? 95
-          : isLaptop15dot6
+          : resolution1600
           ? 95
-          : display1440x757
+          : resolution1440
           ? 85
-          : isLaptop13
+          : resolution1366
           ? 80
           : 100,
       },
       {
         Header: "Request Start Date",
         accessor: "ReqStartDate",
-        width: display1680x1050
+        width: resolution1680
           ? 95
-          : isLaptop15dot6
+          : resolution1600
           ? 95
-          : display1440x757
+          : resolution1440
           ? 85
-          : isLaptop13
+          : resolution1366
           ? 80
           : 100,
       },
       {
         Header: "Request Finish Date",
         accessor: "ReqFinishDate",
-        width: display1680x1050
+        width: resolution1680
           ? 95
-          : isLaptop15dot6
+          : resolution1600
           ? 95
-          : display1440x757
+          : resolution1440
           ? 85
-          : isLaptop13
+          : resolution1366
           ? 80
           : 100,
       },
