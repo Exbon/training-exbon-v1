@@ -71,8 +71,13 @@ const TaskCompletion = () => {
     maxWidth: "1366px",
     minWidth: "1281px",
   });
-  const resolution1280 = useMediaQuery({ maxWidth: "1280px" });
-
+  const resolution1280 = useMediaQuery({
+    maxWidth: "1280px",
+    minWidth: "1153px",
+  });
+  const resolution1152 = useMediaQuery({
+    maxWidth: "1152px",
+  });
   const router = useRouter();
   const [projectState, setProjectState] = useState(undefined);
 
@@ -93,7 +98,9 @@ const TaskCompletion = () => {
     () => [
       {
         Header:
-          resolution1366 || resolution1440 || resolution1280 ? "§" : "Section",
+          resolution1366 || resolution1440 || resolution1280 || resolution1152
+            ? "§"
+            : "Section",
         accessor: "Section",
         width: resolution1680
           ? 56
@@ -104,6 +111,8 @@ const TaskCompletion = () => {
           : resolution1366
           ? 30
           : resolution1280
+          ? 20
+          : resolution1152
           ? 20
           : 65,
       },
@@ -120,6 +129,8 @@ const TaskCompletion = () => {
           ? 100
           : resolution1280
           ? 90
+          : resolution1152
+          ? 80
           : 160,
       },
 
@@ -136,6 +147,8 @@ const TaskCompletion = () => {
           ? 260
           : resolution1280
           ? 220
+          : resolution1152
+          ? 160
           : 360,
       },
       {
@@ -151,6 +164,8 @@ const TaskCompletion = () => {
           ? 150
           : resolution1280
           ? 108
+          : resolution1152
+          ? 108
           : 260,
       },
       {
@@ -165,6 +180,8 @@ const TaskCompletion = () => {
           : resolution1366
           ? 80
           : resolution1280
+          ? 80
+          : resolution1152
           ? 80
           : 100,
       },
@@ -183,6 +200,8 @@ const TaskCompletion = () => {
           ? 80
           : resolution1280
           ? 80
+          : resolution1152
+          ? 80
           : 100,
       },
       {
@@ -197,6 +216,8 @@ const TaskCompletion = () => {
           : resolution1366
           ? 80
           : resolution1280
+          ? 80
+          : resolution1152
           ? 80
           : 100,
       },
@@ -213,18 +234,20 @@ const TaskCompletion = () => {
           ? 80
           : resolution1280
           ? 80
+          : resolution1152
+          ? 80
           : 100,
       },
 
       {
-        Header: "Previous Work %",
+        Header: resolution1152 ? "Prev. Work %" : "Previous Work %",
         accessor: "PreviousWork",
-        width: 70,
+        width: resolution1152 ? 45 : 70,
       },
       {
-        Header: "Current Work %",
+        Header: resolution1152 ? "Curr. Work %" : "Current Work %",
         accessor: "CurrentWork",
-        width: 70,
+        width: resolution1152 ? 60 : 70,
       },
       // {
       //   Header: "Message",
@@ -531,7 +554,10 @@ const TaskCompletion = () => {
     } else if (id === "CurrentWork") {
       let previousWork;
       row.allCells.forEach(horizontalLine => {
-        if (horizontalLine.column.Header === "Previous Work %") {
+        if (
+          horizontalLine.column.Header === "Previous Work %" ||
+          horizontalLine.column.Header === "Prev. Work %"
+        ) {
           previousWork = horizontalLine.value;
         }
       });
