@@ -92,7 +92,8 @@ const TaskCompletion = () => {
   const columns = useMemo(
     () => [
       {
-        Header: resolution1366 || resolution1440 ? "§" : "Section",
+        Header:
+          resolution1366 || resolution1440 || resolution1280 ? "§" : "Section",
         accessor: "Section",
         width: resolution1680
           ? 56
@@ -102,6 +103,8 @@ const TaskCompletion = () => {
           ? 40
           : resolution1366
           ? 30
+          : resolution1280
+          ? 20
           : 65,
       },
       {
@@ -115,6 +118,8 @@ const TaskCompletion = () => {
           ? 105
           : resolution1366
           ? 100
+          : resolution1280
+          ? 90
           : 160,
       },
 
@@ -129,6 +134,8 @@ const TaskCompletion = () => {
           ? 270
           : resolution1366
           ? 260
+          : resolution1280
+          ? 220
           : 360,
       },
       {
@@ -142,6 +149,8 @@ const TaskCompletion = () => {
           ? 160
           : resolution1366
           ? 150
+          : resolution1280
+          ? 108
           : 260,
       },
       {
@@ -154,6 +163,8 @@ const TaskCompletion = () => {
           : resolution1440
           ? 85
           : resolution1366
+          ? 80
+          : resolution1280
           ? 80
           : 100,
       },
@@ -168,6 +179,10 @@ const TaskCompletion = () => {
           ? 85
           : resolution1366
           ? 80
+          : resolution1280
+          ? 80
+          : resolution1280
+          ? 80
           : 100,
       },
       {
@@ -181,6 +196,8 @@ const TaskCompletion = () => {
           ? 85
           : resolution1366
           ? 80
+          : resolution1280
+          ? 80
           : 100,
       },
       {
@@ -193,6 +210,8 @@ const TaskCompletion = () => {
           : resolution1440
           ? 85
           : resolution1366
+          ? 80
+          : resolution1280
           ? 80
           : 100,
       },
