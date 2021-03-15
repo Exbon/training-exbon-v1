@@ -61,6 +61,10 @@ const TaskCompletion = () => {
 
   const isLaptop15dot6 = useMediaQuery({
     maxWidth: "1600px",
+    minWidth: "1441px",
+  });
+  const display1440x757 = useMediaQuery({
+    maxWidth: "1440px",
     minWidth: "1367px",
   });
   const isLaptop13 = useMediaQuery({ maxWidth: "1366px" });
@@ -84,12 +88,14 @@ const TaskCompletion = () => {
   const columns = useMemo(
     () => [
       {
-        Header: isLaptop13 ? "§" : "Section",
+        Header: isLaptop13 || display1440x757 ? "§" : "Section",
         accessor: "Section",
         width: display1680x1050
           ? 56
           : isLaptop15dot6
           ? 55
+          : display1440x757
+          ? 40
           : isLaptop13
           ? 30
           : 65,
@@ -101,6 +107,8 @@ const TaskCompletion = () => {
           ? 132
           : isLaptop15dot6
           ? 130
+          : display1440x757
+          ? 105
           : isLaptop13
           ? 100
           : 160,
@@ -113,6 +121,8 @@ const TaskCompletion = () => {
           ? 312
           : isLaptop15dot6
           ? 310
+          : display1440x757
+          ? 270
           : isLaptop13
           ? 260
           : 360,
@@ -124,6 +134,8 @@ const TaskCompletion = () => {
           ? 222
           : isLaptop15dot6
           ? 220
+          : display1440x757
+          ? 160
           : isLaptop13
           ? 150
           : 260,
@@ -135,6 +147,8 @@ const TaskCompletion = () => {
           ? 95
           : isLaptop15dot6
           ? 95
+          : display1440x757
+          ? 85
           : isLaptop13
           ? 80
           : 100,
@@ -146,6 +160,8 @@ const TaskCompletion = () => {
           ? 95
           : isLaptop15dot6
           ? 95
+          : display1440x757
+          ? 85
           : isLaptop13
           ? 80
           : 100,
@@ -157,6 +173,8 @@ const TaskCompletion = () => {
           ? 95
           : isLaptop15dot6
           ? 95
+          : display1440x757
+          ? 85
           : isLaptop13
           ? 80
           : 100,
@@ -168,6 +186,8 @@ const TaskCompletion = () => {
           ? 95
           : isLaptop15dot6
           ? 95
+          : display1440x757
+          ? 85
           : isLaptop13
           ? 80
           : 100,
