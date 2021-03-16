@@ -729,7 +729,7 @@ const TaskCompletion = () => {
       }
 
       noWork.forEach(item => {
-        let reason = item.Note;
+        let reason = item.Note.replaceAll(`'`, `''`);
         if (reason === "") {
           reason = null;
         }
