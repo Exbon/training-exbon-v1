@@ -50,7 +50,7 @@ export default function Header(props) {
           {/* Here we create navbar brand, based on route name */}
           {router.route.includes("/home/dailyreport") ? (
             <div>
-              <Link href={`/home/dailyreport/timesheet?pid=${pidState}`}>
+              {/* <Link href={`/home/dailyreport/timesheet?pid=${pidState}`}>
                 <a>
                   <Button
                     color={
@@ -64,8 +64,8 @@ export default function Header(props) {
                     Timesheet
                   </Button>
                 </a>
-              </Link>
-              <Link href={`/home/dailyreport/task-completion?pid=${pidState}`}>
+              </Link> */}
+              {/* <Link href={`/home/dailyreport/task-completion?pid=${pidState}`}>
                 <a>
                   <Button
                     color={
@@ -79,8 +79,8 @@ export default function Header(props) {
                     Task Completion
                   </Button>
                 </a>
-              </Link>
-              <Link href={`/home/dailyreport/deficiency-log?pid=${pidState}`}>
+              </Link> */}
+              {/* <Link href={`/home/dailyreport/deficiency-log?pid=${pidState}`}>
                 <a>
                   <Button
                     color={
@@ -94,7 +94,10 @@ export default function Header(props) {
                     Deficiency Log
                   </Button>
                 </a>
-              </Link>
+              </Link> */}
+              <Button color="transparent" href="#" className={classes.title}>
+                Task Completion
+              </Button>
             </div>
           ) : (
             <Button color="transparent" href="#" className={classes.title}>
