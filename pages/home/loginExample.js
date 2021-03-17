@@ -5,7 +5,7 @@ import LoginComponent from "../../components/New/LoginComponent";
 import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
 
-const Dashboard = () => {
+const LoginExample = () => {
   const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
     cookies: {
@@ -92,6 +92,6 @@ const Dashboard = () => {
   );
 };
 
-Dashboard.layout = Admin;
+LoginExample.layout = Admin;
 
-export default Dashboard;
+export default LoginExample;
