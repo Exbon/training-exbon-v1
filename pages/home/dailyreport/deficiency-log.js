@@ -56,7 +56,7 @@ const DeficiencyLog = (
         axios({
           method: "post",
           url: `/api/daily-report/signin`,
-          timeout: 3000, // 3 seconds timeout
+          timeout: 5000, // 5 seconds timeout
           headers: {},
           data: {
             Username: status.cookies.username,
@@ -112,7 +112,7 @@ const DeficiencyLog = (
         let result = await axios({
           method: "get",
           url: `/api/project-deficiency-log?projectID=${projectState}`,
-          timeout: 5000, // 2 seconds timeout
+          timeout: 5000, // 5 seconds timeout
           headers: {},
         });
 

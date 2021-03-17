@@ -147,7 +147,7 @@ const Dashboard = () => {
     await axios({
       method: "post",
       url: `/api/dashboard/signin`,
-      timeout: 3000, // 5 seconds timeout
+      timeout: 5000, // 5 seconds timeout
       headers: {},
       data: {
         Username: username,

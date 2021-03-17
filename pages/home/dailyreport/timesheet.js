@@ -559,7 +559,7 @@ const Timesheet = () => {
         axios({
           method: "post",
           url: `/api/daily-report/signin`,
-          timeout: 3000, // 2 seconds timeout
+          timeout: 5000, // 5 seconds timeout
           headers: {},
           data: {
             Username: status.cookies.username,
