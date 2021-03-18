@@ -91,12 +91,12 @@ const Dashboard = () => {
       {
         Header: "Project Group",
         accessor: "ProjectGroup",
-        width: 120,
+        width: 100,
       },
       {
         Header: "Project ID",
         accessor: "ProjectID",
-        width: 50,
+        width: 70,
       },
       {
         Header: "Project Name",
@@ -106,48 +106,58 @@ const Dashboard = () => {
       {
         Header: "Contract Amount",
         accessor: "ContractAmount",
-        width: 100,
+        width: 70,
       },
       {
         Header: "Position",
         accessor: "Position",
+        width: 80,
       },
 
       {
         Header: "Baseline Cost",
         accessor: "BaselineCost",
+        width: 100,
       },
       {
         Header: "EEAC",
         accessor: "EEAC",
+        width: 100,
       },
       {
         Header: "CV",
         accessor: "CV",
+        width: 100,
       },
       {
         Header: "CPI",
         accessor: "CPI",
+        width: 60,
       },
       {
         Header: "Completion %",
         accessor: "WorkCompletion",
+        width: 95,
       },
       {
         Header: "ESPI",
         accessor: "ESPI",
+        width: 60,
       },
       {
         Header: "Deadline",
         accessor: "Deadline",
+        width: 90,
       },
       {
         Header: "Start Date",
         accessor: "StartDate",
+        width: 90,
       },
       {
         Header: "Finish Date",
         accessor: "FinishDate",
+        width: 90,
       },
     ],
     []
@@ -190,15 +200,34 @@ const Dashboard = () => {
     useEffect(() => {
       setValue(initialValue);
     }, [initialValue]);
-
-    if (id === "ContractAmount") {
-      return <div style={{ textAlign: "right" }}>{Math.round(value)}</div>;
+    if (id === "ProjectID") {
+      return <div style={{ textAlign: "center" }}>{value}</div>;
+    } else if (id === "ContractAmount") {
+      return (
+        <div style={{ textAlign: "right" }}>
+          {new Intl.NumberFormat("en").format(Math.round(value))}
+        </div>
+      );
+    } else if (id === "Position") {
+      return <div style={{ textAlign: "center" }}>{value}</div>;
     } else if (id === "BaselineCost") {
-      return <div style={{ textAlign: "right" }}>{Math.round(value)}</div>;
+      return (
+        <div style={{ textAlign: "right" }}>
+          {new Intl.NumberFormat("en").format(Math.round(value))}
+        </div>
+      );
     } else if (id === "EEAC") {
-      return <div style={{ textAlign: "right" }}>{Math.round(value)}</div>;
+      return (
+        <div style={{ textAlign: "right" }}>
+          {new Intl.NumberFormat("en").format(Math.round(value))}
+        </div>
+      );
     } else if (id === "CV") {
-      return <div style={{ textAlign: "right" }}>{Math.round(value)}</div>;
+      return (
+        <div style={{ textAlign: "right" }}>
+          {new Intl.NumberFormat("en").format(Math.round(value))}
+        </div>
+      );
     } else if (id === "CPI") {
       return <div style={{ textAlign: "right" }}>{Math.round(value)}</div>;
     } else if (id === "WorkCompletion") {
@@ -206,11 +235,11 @@ const Dashboard = () => {
     } else if (id === "ESPI") {
       return <div style={{ textAlign: "right" }}>{value.toFixed(2)}</div>;
     } else if (id === "Deadline") {
-      return <div>{formatDate(value)}</div>;
+      return <div style={{ textAlign: "center" }}>{formatDate(value)}</div>;
     } else if (id === "StartDate") {
-      return <div>{formatDate(value)}</div>;
+      return <div style={{ textAlign: "center" }}>{formatDate(value)}</div>;
     } else if (id === "FinishDate") {
-      return <div>{formatDate(value)}</div>;
+      return <div style={{ textAlign: "center" }}>{formatDate(value)}</div>;
     }
     return <div>{value}</div>;
   };
@@ -242,7 +271,7 @@ const Dashboard = () => {
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
       ) : (
-        <div style={{ overflowX: "auto" }}>
+        <div className="dashboard" style={{ overflowX: "auto" }}>
           <table {...getTableProps()}>
             <thead>
               {headerGroups.map(headerGroup => (
