@@ -1,8 +1,184 @@
-.dashboard td > div {
-  width: 100%;
+.dashboard__table {
+  overflow: auto;
+  margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+.dashboard__table table {
+  font-family: "Roboto", sans-serif;
+  border-collapse: collapse;
+}
+
+.dashboard__table thead {
+  vertical-align: middle !important;
+}
+
+.dashboard__table td {
+  border: 1px solid #ddd;
+  font-size: 0.9rem !important;
+}
+
+.dashboard__table thead tr th {
+  text-align: center;
+  font-size: 0.9rem !important;
+  border: 1px solid #ddd;
+  font-weight: 500;
+}
+
+.dashboard__table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.dashboard__table tr {
+  background-color: #ffffff;
+  font-weight: 400;
+}
+
+.dashboard__table tbody tr:hover {
+  /* background-color: #ddd; */
+  background-color: #cae9df;
+  border: 1px solid #2c9b5c;
+  cursor: default;
+}
+
+.dashboard__table thead th {
+  background-color: #31c4b0;
+  color: white;
+  font-size: 0.9rem !important;
+  vertical-align: middle !important;
+}
+
+.dashboard__table tbody td {
+  padding: 4px;
+}
+
+.dashboard__table thead th div {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  text-align: center !important;
+}
+
+.dashboard__table thead span {
+  vertical-align: middle;
+  text-align: center !important;
+  display: table-cell;
+  color: rgb(245, 245, 245);
   font-size: 0.9rem;
 }
 
-.dashboard thead {
+.dashboard__table tbody td div {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+}
+
+.dashboard__table tbody span {
+  vertical-align: middle;
+  text-align: left;
+  display: table-cell;
+  color: rgb(116, 100, 110);
   font-size: 0.9rem;
+}
+
+.dashboard__table__data-wrapper {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+}
+
+.dashboard__table__project-group {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+}
+
+.dashboard__table__project-id {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard__table__project-name {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+}
+
+.dashboard__table__contract-amount {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+}
+
+.dashboard__table__postion {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.dashboard__table__baseline-cost {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+}
+.dashboard__table__eeac {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+}
+
+.dashboard__table__cv {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+}
+.dashboard__table__cpi {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+}
+.dashboard__table__work-completion {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+}
+
+.dashboard__table__espi {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+}
+.dashboard__table__deadline {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.dashboard__table__start-date {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+.dashboard__table__finish-date {
+  display: table;
+  height: 100%;
+  margin-top: auto;
+  margin-left: auto;
+  margin-right: auto;
 }

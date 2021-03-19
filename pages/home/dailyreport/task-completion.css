@@ -546,8 +546,6 @@
   }
 }
 
-
-
 @media screen and (max-width: 1680px) {
   #task__mainDiv {
     width: 1238px;
@@ -713,32 +711,23 @@
     font-size: 0.8rem;
   }
 
-
-
   .task__table__section-wrapper__data {
     font-size: 0.8rem;
   }
-
-
 
   .task__table__trade-wrapper__data {
     font-size: 0.8rem;
   }
 
-
-
   .task__table__company-wrapper__data {
     font-size: 0.8rem;
   }
-
 
   .task__table__task-name-wrapper__data {
     font-size: 0.8rem;
   }
 
-
   .task__table__previous-work-wrapper__data {
-    
     font-size: 0.8rem;
   }
 
@@ -775,5 +764,4 @@
     padding: 3px;
     font-size: 0.7rem;
   }
-
 }

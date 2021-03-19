@@ -110,7 +110,7 @@ const Dashboard = () => {
       {
         Header: "Project Group",
         accessor: "ProjectGroup",
-        width: 100,
+        width: 120,
       },
       {
         Header: "Project ID",
@@ -219,49 +219,90 @@ const Dashboard = () => {
     useEffect(() => {
       setValue(initialValue);
     }, [initialValue]);
-
-    if (id === "ProjectID") {
-      return <div style={{ textAlign: "center" }}>{value}</div>;
+    if (id === "ProjectGroup") {
+      return (
+        <div className="dashboard__table__project-group">
+          <span>{value}</span>
+        </div>
+      );
+    } else if (id === "ProjectID") {
+      return (
+        <div className="dashboard__table__project-id">
+          <span>{value}</span>
+        </div>
+      );
     } else if (id === "ContractAmount") {
       return (
-        <div style={{ textAlign: "right" }}>
-          {new Intl.NumberFormat("en").format(Math.round(value))}
+        <div className="dashboard__table__contract-amount">
+          <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
         </div>
       );
     } else if (id === "Position") {
-      return <div style={{ textAlign: "center" }}>{value}</div>;
+      return (
+        <div className="dashboard__table__postion">
+          <span>{value}</span>
+        </div>
+      );
     } else if (id === "BaselineCost") {
       return (
-        <div style={{ textAlign: "right" }}>
-          {new Intl.NumberFormat("en").format(Math.round(value))}
+        <div className="dashboard__table__baseline-cost">
+          <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
         </div>
       );
     } else if (id === "EEAC") {
       return (
-        <div style={{ textAlign: "right" }}>
-          {new Intl.NumberFormat("en").format(Math.round(value))}
+        <div className="dashboard__table__eeac">
+          <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
         </div>
       );
     } else if (id === "CV") {
       return (
-        <div style={{ textAlign: "right" }}>
-          {new Intl.NumberFormat("en").format(Math.round(value))}
+        <div className="dashboard__table__cv">
+          <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
         </div>
       );
     } else if (id === "CPI") {
-      return <div style={{ textAlign: "right" }}>{Math.round(value)}</div>;
+      return (
+        <div className="dashboard__table__cpi">
+          <span>{Math.round(value)}</span>
+        </div>
+      );
     } else if (id === "WorkCompletion") {
-      return <div style={{ textAlign: "right" }}>{value.toFixed(2)}</div>;
+      return (
+        <div className="dashboard__table__work-completion">
+          <span>{value.toFixed(2)}</span>
+        </div>
+      );
     } else if (id === "ESPI") {
-      return <div style={{ textAlign: "right" }}>{value.toFixed(2)}</div>;
+      return (
+        <div className="dashboard__table__espi">
+          <span>{value.toFixed(2)}</span>
+        </div>
+      );
     } else if (id === "Deadline") {
-      return <div style={{ textAlign: "center" }}>{formatDate(value)}</div>;
+      return (
+        <div className="dashboard__table__deadline">
+          <span>{formatDate(value)}</span>
+        </div>
+      );
     } else if (id === "StartDate") {
-      return <div style={{ textAlign: "center" }}>{formatDate(value)}</div>;
+      return (
+        <div className="dashboard__table__start-date">
+          <span>{formatDate(value)}</span>
+        </div>
+      );
     } else if (id === "FinishDate") {
-      return <div style={{ textAlign: "center" }}>{formatDate(value)}</div>;
+      return (
+        <div className="dashboard__table__finish-date">
+          <span>{formatDate(value)}</span>
+        </div>
+      );
     }
-    return <div>{value}</div>;
+    return (
+      <div className="dashboard__table__data-wrapper">
+        <span>{value}</span>
+      </div>
+    );
   };
 
   // Set our editable cell renderer as the default Cell renderer
@@ -291,14 +332,16 @@ const Dashboard = () => {
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
       ) : (
-        <div className="dashboard" style={{ overflowX: "auto" }}>
+        <div className="dashboard__table" style={{ overflowX: "auto" }}>
           <table {...getTableProps()}>
             <thead>
               {headerGroups.map(headerGroup => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map(column => (
                     <th {...column.getHeaderProps()}>
-                      {column.render("Header")}
+                      <div>
+                        <span>{column.render("Header")}</span>
+                      </div>
                     </th>
                   ))}
                 </tr>
