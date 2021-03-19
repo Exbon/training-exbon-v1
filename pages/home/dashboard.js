@@ -4,7 +4,7 @@ import Admin from "layouts/Admin.js";
 import LoginComponent from "../../components/New/LoginComponent";
 import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
-import { useTable, useBlockLayout } from "react-table";
+import { useTable, useBlockLayout, useSortBy } from "react-table";
 import { formatDate } from "../../components/New/formatDate";
 import Router, { useRouter } from "next/router";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
@@ -148,7 +148,8 @@ const Dashboard = () => {
       {
         Header: "Contract Amount",
         accessor: "ContractAmount",
-        width: 70,
+        width: 100,
+        sortType: "basic",
       },
       {
         Header: "Position",
@@ -160,21 +161,25 @@ const Dashboard = () => {
         Header: "Baseline Cost",
         accessor: "BaselineCost",
         width: 100,
+        sortType: "basic",
       },
       {
         Header: "EEAC",
         accessor: "EEAC",
         width: 100,
+        sortType: "basic",
       },
       {
         Header: "CV",
         accessor: "CV",
         width: 100,
+        sortType: "basic",
       },
       {
         Header: "CPI",
         accessor: "CPI",
         width: 60,
+        sortType: "basic",
       },
       {
         Header: "Completion %",
@@ -185,6 +190,7 @@ const Dashboard = () => {
         Header: "ESPI",
         accessor: "ESPI",
         width: 60,
+        sortType: "basic",
       },
       {
         Header: "Deadline",
@@ -346,7 +352,8 @@ const Dashboard = () => {
       defaultColumn,
       updateMyData,
     },
-    useBlockLayout
+    useBlockLayout,
+    useSortBy
   );
   const { promiseInProgress } = usePromiseTracker();
   return (
@@ -378,9 +385,18 @@ const Dashboard = () => {
               {headerGroups.map(headerGroup => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map(column => (
-                    <th {...column.getHeaderProps()}>
+                    <th
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                    >
                       <div>
                         <span>{column.render("Header")}</span>
+                        <span>
+                          {column.isSorted
+                            ? column.isSortedDesc
+                              ? " 🔽"
+                              : " 🔼"
+                            : ""}
+                        </span>
                       </div>
                     </th>
                   ))}
