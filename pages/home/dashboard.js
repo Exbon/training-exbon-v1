@@ -7,6 +7,8 @@ import axios from "axios";
 import { useTable, useBlockLayout } from "react-table";
 import { formatDate } from "../../components/New/formatDate";
 import Router, { useRouter } from "next/router";
+import { usePromiseTracker, trackPromise } from "react-promise-tracker";
+import Loader from "react-loader-spinner";
 import "./dashboard.css";
 
 const Dashboard = () => {
@@ -24,85 +26,106 @@ const Dashboard = () => {
   });
 
   const signin = async (username, password) => {
-    await axios({
-      method: "post",
-      url: `/api/dashboard/signin`,
-      timeout: 5000, // 5 seconds timeout
-      headers: {},
-      data: {
-        Username: username,
-        Password: password,
-      },
-    }).then(response => {
-      if (response.data.result.recordset[0] !== undefined) {
-        setCookie("username", username, { path: "/", maxAge: 3600 * 24 * 30 });
-        setCookie("password", password, { path: "/", maxAge: 3600 * 24 * 30 });
-        setCookie("fullname", response.data.result.recordset[0].FullName, {
-          path: "/",
-          maxAge: 3600 * 24 * 30,
-        });
-        setCookie("employeeid", response.data.result.recordset[0].EmployeeID, {
-          path: "/",
-          maxAge: 3600 * 24 * 30,
-        });
-        setStatus(prevState => ({
-          ...prevState,
-          cookies: {
-            username: username,
-            password: password,
-            fullname: response.data.result.recordset[0].FullName,
-            employeeid: response.data.result.recordset[0].EmployeeID,
-          },
-        }));
-      } else {
-        alert("Login failed.");
-      }
-    });
+    let promises1 = [];
+
+    const testfunction1 = async () =>
+      await axios({
+        method: "post",
+        url: `/api/dashboard/signin`,
+        timeout: 5000, // 5 seconds timeout
+        headers: {},
+        data: {
+          Username: username,
+          Password: password,
+        },
+      }).then(response => {
+        if (response.data.result.recordset[0] !== undefined) {
+          setCookie("username", username, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie("password", password, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie("fullname", response.data.result.recordset[0].FullName, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie(
+            "employeeid",
+            response.data.result.recordset[0].EmployeeID,
+            {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            }
+          );
+          setStatus(prevState => ({
+            ...prevState,
+            cookies: {
+              username: username,
+              password: password,
+              fullname: response.data.result.recordset[0].FullName,
+              employeeid: response.data.result.recordset[0].EmployeeID,
+            },
+          }));
+        } else {
+          alert("Login failed.");
+        }
+      });
+    promises1.push(testfunction1());
+    trackPromise(Promise.all(promises1).then(() => {}));
   };
 
   useEffect(() => {
-    if (status.cookies.username !== 0) {
-      if (status.cookies.username !== undefined) {
-        if (router.query.status !== "completed") {
-          //In Progress
-          axios({
-            method: "post",
-            url: `/api/dashboard/signin`,
-            timeout: 5000, // 5 seconds timeout
-            headers: {},
-            data: {
-              Username: status.cookies.username,
-              Password: status.cookies.password,
-            },
-          }).then(response => {
-            setData(response.data.result.recordsets[1]);
-          });
-        } else {
-          axios({
-            method: "post",
-            url: `/api/dashboard/ms-completed`,
-            timeout: 5000, // 5 seconds timeout
-            headers: {},
-            data: {
-              Username: status.cookies.username,
-              Password: status.cookies.password,
-            },
-          }).then(response => {
-            setData(response.data.result.recordsets[0]);
-          });
+    let promises2 = [];
+
+    const testfunction2 = async () => {
+      if (status.cookies.username !== 0) {
+        if (status.cookies.username !== undefined) {
+          if (router.query.status !== "completed") {
+            //In Progress
+            await axios({
+              method: "post",
+              url: `/api/dashboard/signin`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {},
+              data: {
+                Username: status.cookies.username,
+                Password: status.cookies.password,
+              },
+            }).then(response => {
+              setData(response.data.result.recordsets[1]);
+            });
+          } else {
+            await axios({
+              method: "post",
+              url: `/api/dashboard/ms-completed`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {},
+              data: {
+                Username: status.cookies.username,
+                Password: status.cookies.password,
+              },
+            }).then(response => {
+              setData(response.data.result.recordsets[0]);
+            });
+          }
         }
+      } else {
+        setStatus(prevState => ({
+          ...prevState,
+          cookies: {
+            username: cookies.username,
+            password: cookies.password,
+            fullname: cookies.fullname,
+            employeeid: cookies.employeeid,
+          },
+        }));
       }
-    } else {
-      setStatus(prevState => ({
-        ...prevState,
-        cookies: {
-          username: cookies.username,
-          password: cookies.password,
-          fullname: cookies.fullname,
-          employeeid: cookies.employeeid,
-        },
-      }));
-    }
+    };
+    promises2.push(testfunction2());
+    trackPromise(Promise.all(promises2).then(() => {}));
   }, [status, cookies, router.query]);
 
   const columns = useMemo(
@@ -325,11 +348,23 @@ const Dashboard = () => {
     },
     useBlockLayout
   );
-
+  const { promiseInProgress } = usePromiseTracker();
   return (
     <>
-      {status.cookies.username === undefined ||
-      status.cookies.employeeid === undefined ? (
+      {promiseInProgress ? (
+        <div
+          style={{
+            width: "100%",
+            height: "100",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Loader type="Audio" color="#4e88de" height="100" width="100" />
+        </div>
+      ) : status.cookies.username === undefined ||
+        status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
       ) : (
         <div className="dashboard__table" style={{ overflowX: "auto" }}>
