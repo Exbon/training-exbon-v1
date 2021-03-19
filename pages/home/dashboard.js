@@ -361,7 +361,12 @@ const Dashboard = () => {
             alignItems: "center",
           }}
         >
-          <Loader type="Audio" color="#4e88de" height="100" width="100" />
+          <Loader
+            type="BallTriangle"
+            color="#31c4b0"
+            height="100"
+            width="100"
+          />
         </div>
       ) : status.cookies.username === undefined ||
         status.cookies.employeeid === undefined ? (
