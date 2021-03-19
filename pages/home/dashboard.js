@@ -26,9 +26,9 @@ const Dashboard = () => {
   });
 
   const signin = async (username, password) => {
-    let promises1 = [];
+    let promises = [];
 
-    const testfunction1 = async () =>
+    const fetchData = async () =>
       await axios({
         method: "post",
         url: `/api/dashboard/signin`,
@@ -73,14 +73,14 @@ const Dashboard = () => {
           alert("Login failed.");
         }
       });
-    promises1.push(testfunction1());
-    trackPromise(Promise.all(promises1).then(() => {}));
+    promises.push(fetchData());
+    trackPromise(Promise.all(promises).then(() => {}));
   };
 
   useEffect(() => {
-    let promises2 = [];
+    let promises = [];
 
-    const testfunction2 = async () => {
+    const fetchData = async () => {
       if (status.cookies.username !== 0) {
         if (status.cookies.username !== undefined) {
           if (router.query.status !== "completed") {
@@ -124,8 +124,8 @@ const Dashboard = () => {
         }));
       }
     };
-    promises2.push(testfunction2());
-    trackPromise(Promise.all(promises2).then(() => {}));
+    promises.push(fetchData());
+    trackPromise(Promise.all(promises).then(() => {}));
   }, [status, cookies, router.query]);
 
   const columns = useMemo(
@@ -364,8 +364,8 @@ const Dashboard = () => {
           <Loader
             type="BallTriangle"
             color="#31c4b0"
-            height="100"
-            width="100"
+            height="150"
+            width="150"
           />
         </div>
       ) : status.cookies.username === undefined ||
