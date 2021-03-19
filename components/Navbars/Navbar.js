@@ -48,7 +48,41 @@ export default function Header(props) {
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
           {/* Here we create navbar brand, based on route name */}
-          {router.route.includes("/home/dailyreport") ? (
+
+          {router.route.includes("/home/dashboard") ? (
+            <div>
+              <Link href={`/home/dashboard?status=inprogress`}>
+                <a>
+                  <Button
+                    color={
+                      router.query.status !== "completed"
+                        ? "success"
+                        : "transparent"
+                    }
+                    className={classes.title}
+                    round
+                  >
+                    In Progress
+                  </Button>
+                </a>
+              </Link>
+              <Link href={`/home/dashboard?status=completed`}>
+                <a>
+                  <Button
+                    color={
+                      router.query.status === "completed"
+                        ? "success"
+                        : "transparent"
+                    }
+                    className={classes.title}
+                    round
+                  >
+                    Completed
+                  </Button>
+                </a>
+              </Link>
+            </div>
+          ) : router.route.includes("/home/dailyreport") ? (
             <div>
               {/* <Link href={`/home/dailyreport/timesheet?pid=${pidState}`}>
                 <a>
