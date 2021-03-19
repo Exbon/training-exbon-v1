@@ -6,9 +6,12 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
 import { useTable, useBlockLayout } from "react-table";
 import { formatDate } from "../../components/New/formatDate";
+import Router, { useRouter } from "next/router";
 import "./dashboard.css";
 
 const Dashboard = () => {
+  const router = useRouter();
+
   const [data, setData] = useState(() => []);
   const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
@@ -60,18 +63,34 @@ const Dashboard = () => {
   useEffect(() => {
     if (status.cookies.username !== 0) {
       if (status.cookies.username !== undefined) {
-        axios({
-          method: "post",
-          url: `/api/dashboard/signin`,
-          timeout: 5000, // 5 seconds timeout
-          headers: {},
-          data: {
-            Username: status.cookies.username,
-            Password: status.cookies.password,
-          },
-        }).then(response => {
-          setData(response.data.result.recordsets[1]);
-        });
+        if (router.query.status !== "completed") {
+          //In Progress
+          axios({
+            method: "post",
+            url: `/api/dashboard/signin`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              Username: status.cookies.username,
+              Password: status.cookies.password,
+            },
+          }).then(response => {
+            setData(response.data.result.recordsets[1]);
+          });
+        } else {
+          axios({
+            method: "post",
+            url: `/api/dashboard/ms-completed`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              Username: status.cookies.username,
+              Password: status.cookies.password,
+            },
+          }).then(response => {
+            setData(response.data.result.recordsets[0]);
+          });
+        }
       }
     } else {
       setStatus(prevState => ({
@@ -84,7 +103,7 @@ const Dashboard = () => {
         },
       }));
     }
-  }, [status, cookies]);
+  }, [status, cookies, router.query]);
 
   const columns = useMemo(
     () => [
@@ -200,6 +219,7 @@ const Dashboard = () => {
     useEffect(() => {
       setValue(initialValue);
     }, [initialValue]);
+
     if (id === "ProjectID") {
       return <div style={{ textAlign: "center" }}>{value}</div>;
     } else if (id === "ContractAmount") {

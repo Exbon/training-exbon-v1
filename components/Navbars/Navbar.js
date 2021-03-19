@@ -51,7 +51,7 @@ export default function Header(props) {
 
           {router.route.includes("/home/dashboard") ? (
             <div>
-              <Link href={`/home/dashboard?status=inprogress`}>
+              <Link href={`/home/dashboard`}>
                 <a>
                   <Button
                     color={
