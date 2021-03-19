@@ -52,11 +52,11 @@ export default function Header(props) {
           {router.route.includes("/home/dashboard") ? (
             <div>
               <Link href={`/home/dashboard`}>
-                <a>
+                <a style={{ color: "grey" }}>
                   <Button
                     color={
                       router.query.status !== "completed"
-                        ? "success"
+                        ? "info"
                         : "transparent"
                     }
                     className={classes.title}
@@ -67,7 +67,7 @@ export default function Header(props) {
                 </a>
               </Link>
               <Link href={`/home/dashboard?status=completed`}>
-                <a>
+                <a style={{ color: "grey" }}>
                   <Button
                     color={
                       router.query.status === "completed"
