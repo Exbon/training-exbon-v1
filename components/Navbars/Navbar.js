@@ -25,8 +25,8 @@ export default function Header(props) {
   const useStyles = makeStyles(styles);
   const [pidState, setPidState] = useState(undefined);
   const classes = useStyles();
-  function makeBrand() {
-    var name = "NextJS Material Dashboard";
+  const makeBrand = () => {
+    let name = "NextJS Material Dashboard";
     props.routes.map(prop => {
       if (router.route.indexOf(prop.layout + prop.path) !== -1) {
         name = props.rtlActive ? prop.rtlName : prop.name;
@@ -34,7 +34,7 @@ export default function Header(props) {
       return null;
     });
     return name;
-  }
+  };
   const { color } = props;
   const appBarClasses = classNames({
     [" " + classes[color]]: color,
