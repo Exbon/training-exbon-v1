@@ -69,6 +69,14 @@
   font-size: 0.9rem;
 }
 
+.dashboard__table thead span:hover {
+  vertical-align: middle;
+  text-align: center !important;
+  display: table-cell;
+  color: rgb(32, 121, 82);
+  font-size: 0.9rem;
+}
+
 .dashboard__table tbody td div {
   display: table;
   height: 100%;
