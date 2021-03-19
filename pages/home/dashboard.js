@@ -285,15 +285,25 @@ const Dashboard = () => {
         </div>
       );
     } else if (id === "CV") {
-      return (
-        <div className="dashboard__table__cv">
-          <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
-        </div>
-      );
+      if (value < 0) {
+        return (
+          <div className="dashboard__table__cv">
+            <span style={{ color: "red" }}>
+              {new Intl.NumberFormat("en").format(Math.round(value))}
+            </span>
+          </div>
+        );
+      } else {
+        return (
+          <div className="dashboard__table__cv">
+            <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
+          </div>
+        );
+      }
     } else if (id === "CPI") {
       return (
         <div className="dashboard__table__cpi">
-          <span>{Math.round(value)}</span>
+          <span>{value.toFixed(2)}</span>
         </div>
       );
     } else if (id === "WorkCompletion") {
