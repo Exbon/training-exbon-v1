@@ -386,14 +386,22 @@ const Dashboard = () => {
       );
     } else if (id === "CV") {
       if (value < 0) {
-        return (
-          <div className="dashboard__table__cv">
-            <span style={{ color: "red" }}>
-              {value !== "" &&
-                new Intl.NumberFormat("en").format(Math.round(value))}
-            </span>
-          </div>
-        );
+        if (new Intl.NumberFormat("en").format(Math.round(value)) == "-0") {
+          return (
+            <div className="dashboard__table__cv">
+              <span>{value !== "" && "0"}</span>
+            </div>
+          );
+        } else {
+          return (
+            <div className="dashboard__table__cv">
+              <span style={{ color: "red" }}>
+                {value !== "" &&
+                  new Intl.NumberFormat("en").format(Math.round(value))}
+              </span>
+            </div>
+          );
+        }
       } else {
         return (
           <div className="dashboard__table__cv">
