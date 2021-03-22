@@ -113,15 +113,39 @@ const Dashboard = () => {
           }
         }
       } else {
-        setStatus(prevState => ({
-          ...prevState,
-          cookies: {
-            username: cookies.username,
-            password: cookies.password,
-            fullname: cookies.fullname,
-            employeeid: cookies.employeeid,
-          },
-        }));
+        if (router.query.pw !== undefined) {
+          await axios({
+            method: "post",
+            url: `/api/dashboard/signin-pw`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              Password: router.query.pw,
+            },
+          }).then(response => {
+            const employeeInfo = response.data.result.recordsets[0][0];
+            console.log(employeeInfo);
+            setStatus(prevState => ({
+              ...prevState,
+              cookies: {
+                username: employeeInfo.UserName,
+                password: router.query.pw,
+                fullname: employeeInfo.FullName,
+                employeeid: employeeInfo.EmployeeID,
+              },
+            }));
+          });
+        } else {
+          setStatus(prevState => ({
+            ...prevState,
+            cookies: {
+              username: cookies.username,
+              password: cookies.password,
+              fullname: cookies.fullname,
+              employeeid: cookies.employeeid,
+            },
+          }));
+        }
       }
     };
     promises.push(fetchData());
