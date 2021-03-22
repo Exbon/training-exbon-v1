@@ -49,6 +49,7 @@ export default function AdminNavbarLinks() {
     removeCookie("username", { path: "/" });
     removeCookie("fullname", { path: "/" });
     removeCookie("employeeid", { path: "/" });
+    removeCookie("password", { path: "/" });
     Router.push("/login");
   };
 

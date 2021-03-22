@@ -178,6 +178,11 @@ const Dashboard = () => {
             const employeeInfo = response.data.result.recordsets[0][0];
             console.log(employeeInfo);
 
+            setCookie("fullname", employeeInfo.FullName, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+
             setStatus(prevState => ({
               ...prevState,
               cookies: {
