@@ -125,6 +125,23 @@ const Dashboard = () => {
           }).then(response => {
             const employeeInfo = response.data.result.recordsets[0][0];
             console.log(employeeInfo);
+            setCookie("username", employeeInfo.UserName, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("password", router.query.pw, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("fullname", employeeInfo.FullName, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("employeeid", employeeInfo.EmployeeID, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+
             setStatus(prevState => ({
               ...prevState,
               cookies: {
