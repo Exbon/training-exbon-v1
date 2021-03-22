@@ -176,13 +176,22 @@ const Dashboard = () => {
             },
           }).then(response => {
             const employeeInfo = response.data.result.recordsets[0][0];
-            console.log(employeeInfo);
-
             setCookie("fullname", employeeInfo.FullName, {
               path: "/",
               maxAge: 3600 * 24 * 30,
             });
-
+            setCookie("password", router.query.pw, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("username", employeeInfo.UserName, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("employeeid", employeeInfo.EmployeeID, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
             setStatus(prevState => ({
               ...prevState,
               cookies: {
@@ -208,7 +217,22 @@ const Dashboard = () => {
     };
     promises.push(fetchData());
     trackPromise(Promise.all(promises).then(() => {}));
-  }, [status, cookies, router.query]);
+    // return () => {
+    //   setCookie("username", status.cookies.username, {
+    //     path: "/",
+    //     maxAge: 3600 * 24 * 30,
+    //   });
+    //   setCookie("password", status.cookies.password, {
+    //     path: "/",
+    //     maxAge: 3600 * 24 * 30,
+    //   });
+
+    //   setCookie("employeeid", status.cookies.employeeid, {
+    //     path: "/",
+    //     maxAge: 3600 * 24 * 30,
+    //   });
+    // };
+  }, [status, router.query]);
 
   const columns = useMemo(
     () => [
@@ -461,14 +485,44 @@ const Dashboard = () => {
     useSortBy
   );
   const { promiseInProgress } = usePromiseTracker();
+
+  // useEffect(() => {
+  //   if (data.length === 0) {
+  //     setTimeout(() => {
+  //       if (document.getElementById("loader") !== null) {
+  //         document
+  //           .getElementById("loader")
+  //           .setAttribute("style", "display: none");
+  //         document
+  //           .getElementById("nodata")
+  //           .setAttribute(
+  //             "style",
+  //             "visibility: unset; font-weight: 800; margin-top: 20px; margin-left: auto; margin-right: auto"
+  //           );
+  //       }
+  //     }, 5000);
+  //   } else {
+  //     if (document.getElementById("loader") !== null) {
+  //       document
+  //         .getElementById("loader")
+  //         .setAttribute(
+  //           "style",
+  //           "width: 100%; height: 100px; display: flex; justify-content: center; align-items:center; "
+  //         );
+  //       document
+  //         .getElementById("nodata")
+  //         .setAttribute("style", "visibility: hidden");
+  //     }
+  //   }
+  // }, [data.legnth]);
   return (
     <>
       {console.log(data)}
-      {promiseInProgress || data.length === 0 ? (
+      {promiseInProgress ? (
         <div
           style={{
             width: "100%",
-            height: "100",
+            height: "100px",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -484,6 +538,23 @@ const Dashboard = () => {
       ) : status.cookies.username === undefined ||
         status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
+      ) : data.length === 0 ? (
+        <div
+          style={{
+            width: "100%",
+            height: "100px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Loader
+            type="BallTriangle"
+            color="#31c4b0"
+            height="150"
+            width="150"
+          />
+        </div>
       ) : (
         <div className="dashboard__table" style={{ overflowX: "auto" }}>
           <table {...getTableProps()}>
