@@ -217,21 +217,6 @@ const Dashboard = () => {
     };
     promises.push(fetchData());
     trackPromise(Promise.all(promises).then(() => {}));
-    // return () => {
-    //   setCookie("username", status.cookies.username, {
-    //     path: "/",
-    //     maxAge: 3600 * 24 * 30,
-    //   });
-    //   setCookie("password", status.cookies.password, {
-    //     path: "/",
-    //     maxAge: 3600 * 24 * 30,
-    //   });
-
-    //   setCookie("employeeid", status.cookies.employeeid, {
-    //     path: "/",
-    //     maxAge: 3600 * 24 * 30,
-    //   });
-    // };
   }, [status, router.query]);
 
   const columns = useMemo(
