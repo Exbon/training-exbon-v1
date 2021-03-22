@@ -134,7 +134,7 @@ const Dashboard = () => {
                 Password: status.cookies.password,
               },
             }).then(response => {
-              response.data.result.recordsets[1].length === 0
+              response.data.result.recordsets[0].length === 0
                 ? setData(() => [
                     {
                       ProjectGroup: "",
