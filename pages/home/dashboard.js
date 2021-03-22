@@ -95,7 +95,33 @@ const Dashboard = () => {
                 Password: status.cookies.password,
               },
             }).then(response => {
-              setData(response.data.result.recordsets[1]);
+              response.data.result.recordsets[1].length === 0
+                ? setData(() => [
+                    {
+                      ProjectGroup: "",
+                      ProjectID: "",
+                      ProjectName: "No Data",
+                      ContractAmount: "",
+                      Director: "",
+                      PIC: "",
+                      Associate1: "",
+                      Associate2: "",
+                      Associate3: "",
+                      Position: "",
+                      BaselineCost: "",
+                      EEAC: "",
+                      CV: "",
+                      CPI: "",
+                      ESPI: "",
+                      WorkCompletion: "",
+                      StartDate: "",
+                      FinishDate: "",
+                      Deadline: "",
+                      IsDesign: "",
+                      DesignParentID: "",
+                    },
+                  ])
+                : setData(() => response.data.result.recordsets[1]);
             });
           } else {
             await axios({
@@ -108,7 +134,33 @@ const Dashboard = () => {
                 Password: status.cookies.password,
               },
             }).then(response => {
-              setData(response.data.result.recordsets[0]);
+              response.data.result.recordsets[1].length === 0
+                ? setData(() => [
+                    {
+                      ProjectGroup: "",
+                      ProjectID: "",
+                      ProjectName: "No Data",
+                      ContractAmount: "",
+                      Director: "",
+                      PIC: "",
+                      Associate1: "",
+                      Associate2: "",
+                      Associate3: "",
+                      Position: "",
+                      BaselineCost: "",
+                      EEAC: "",
+                      CV: "",
+                      CPI: "",
+                      ESPI: "",
+                      WorkCompletion: "",
+                      StartDate: "",
+                      FinishDate: "",
+                      Deadline: "",
+                      IsDesign: "",
+                      DesignParentID: "",
+                    },
+                  ])
+                : setData(() => response.data.result.recordsets[0]);
             });
           }
         }
@@ -125,22 +177,6 @@ const Dashboard = () => {
           }).then(response => {
             const employeeInfo = response.data.result.recordsets[0][0];
             console.log(employeeInfo);
-            setCookie("username", employeeInfo.UserName, {
-              path: "/",
-              maxAge: 3600 * 24 * 30,
-            });
-            setCookie("password", router.query.pw, {
-              path: "/",
-              maxAge: 3600 * 24 * 30,
-            });
-            setCookie("fullname", employeeInfo.FullName, {
-              path: "/",
-              maxAge: 3600 * 24 * 30,
-            });
-            setCookie("employeeid", employeeInfo.EmployeeID, {
-              path: "/",
-              maxAge: 3600 * 24 * 30,
-            });
 
             setStatus(prevState => ({
               ...prevState,
@@ -304,7 +340,10 @@ const Dashboard = () => {
     } else if (id === "ContractAmount") {
       return (
         <div className="dashboard__table__contract-amount">
-          <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
+          <span>
+            {value !== "" &&
+              new Intl.NumberFormat("en").format(Math.round(value))}
+          </span>
         </div>
       );
     } else if (id === "Position") {
@@ -316,13 +355,19 @@ const Dashboard = () => {
     } else if (id === "BaselineCost") {
       return (
         <div className="dashboard__table__baseline-cost">
-          <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
+          <span>
+            {value !== "" &&
+              new Intl.NumberFormat("en").format(Math.round(value))}
+          </span>
         </div>
       );
     } else if (id === "EEAC") {
       return (
         <div className="dashboard__table__eeac">
-          <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
+          <span>
+            {value !== "" &&
+              new Intl.NumberFormat("en").format(Math.round(value))}
+          </span>
         </div>
       );
     } else if (id === "CV") {
@@ -330,51 +375,55 @@ const Dashboard = () => {
         return (
           <div className="dashboard__table__cv">
             <span style={{ color: "red" }}>
-              {new Intl.NumberFormat("en").format(Math.round(value))}
+              {value !== "" &&
+                new Intl.NumberFormat("en").format(Math.round(value))}
             </span>
           </div>
         );
       } else {
         return (
           <div className="dashboard__table__cv">
-            <span>{new Intl.NumberFormat("en").format(Math.round(value))}</span>
+            <span>
+              {value !== "" &&
+                new Intl.NumberFormat("en").format(Math.round(value))}
+            </span>
           </div>
         );
       }
     } else if (id === "CPI") {
       return (
         <div className="dashboard__table__cpi">
-          <span>{value.toFixed(2)}</span>
+          <span>{value !== "" && parseFloat(value).toFixed(2)}</span>
         </div>
       );
     } else if (id === "WorkCompletion") {
       return (
         <div className="dashboard__table__work-completion">
-          <span>{value.toFixed(2)}</span>
+          <span>{value !== "" && parseFloat(value).toFixed(2)}</span>
         </div>
       );
     } else if (id === "ESPI") {
       return (
         <div className="dashboard__table__espi">
-          <span>{value.toFixed(2)}</span>
+          <span>{value !== "" && parseFloat(value).toFixed(2)}</span>
         </div>
       );
     } else if (id === "Deadline") {
       return (
         <div className="dashboard__table__deadline">
-          <span>{formatDate(value)}</span>
+          <span>{value !== "" && formatDate(value)}</span>
         </div>
       );
     } else if (id === "StartDate") {
       return (
         <div className="dashboard__table__start-date">
-          <span>{formatDate(value)}</span>
+          <span>{value !== "" && formatDate(value)}</span>
         </div>
       );
     } else if (id === "FinishDate") {
       return (
         <div className="dashboard__table__finish-date">
-          <span>{formatDate(value)}</span>
+          <span>{value !== "" && formatDate(value)}</span>
         </div>
       );
     }
@@ -409,7 +458,8 @@ const Dashboard = () => {
   const { promiseInProgress } = usePromiseTracker();
   return (
     <>
-      {promiseInProgress ? (
+      {console.log(data)}
+      {promiseInProgress || data.length === 0 ? (
         <div
           style={{
             width: "100%",
