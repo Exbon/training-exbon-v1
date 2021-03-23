@@ -203,11 +203,12 @@ const Dashboard = () => {
                 },
               }));
             } else {
+              alert("The user cannot be found.");
               setData(() => [
                 {
                   ProjectGroup: "",
                   ProjectID: "",
-                  ProjectName: "The user cannot be found.",
+                  ProjectName: "No Permission",
                   ContractAmount: "",
                   Director: "",
                   PIC: "",
