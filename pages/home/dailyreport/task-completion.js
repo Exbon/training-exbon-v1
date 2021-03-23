@@ -987,6 +987,7 @@ const TaskCompletion = () => {
       }
 
       if (status.permission === true && projectState !== undefined) {
+        router.push(`?pid=${projectState}`);
         await axios({
           method: "get",
           url: `/api/project-tasks-progress?selectedDate=${formatDate(
@@ -1006,9 +1007,6 @@ const TaskCompletion = () => {
         }).then(response => {
           setNoWork(response.data);
         });
-
-        setPreviousProject(projectState);
-        router.push(`?pid=${projectState}`);
       } else {
         setData([
           {
