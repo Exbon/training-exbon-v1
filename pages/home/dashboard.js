@@ -176,31 +176,59 @@ const Dashboard = () => {
             },
           }).then(response => {
             const employeeInfo = response.data.result.recordsets[0][0];
-            setCookie("fullname", employeeInfo.FullName, {
-              path: "/",
-              maxAge: 3600 * 24 * 30,
-            });
-            setCookie("password", router.query.pw, {
-              path: "/",
-              maxAge: 3600 * 24 * 30,
-            });
-            setCookie("username", employeeInfo.UserName, {
-              path: "/",
-              maxAge: 3600 * 24 * 30,
-            });
-            setCookie("employeeid", employeeInfo.EmployeeID, {
-              path: "/",
-              maxAge: 3600 * 24 * 30,
-            });
-            setStatus(prevState => ({
-              ...prevState,
-              cookies: {
-                username: employeeInfo.UserName,
-                password: router.query.pw,
-                fullname: employeeInfo.FullName,
-                employeeid: employeeInfo.EmployeeID,
-              },
-            }));
+            if (employeeInfo !== undefined) {
+              setCookie("fullname", employeeInfo.FullName, {
+                path: "/",
+                maxAge: 3600 * 24 * 30,
+              });
+              setCookie("password", router.query.pw, {
+                path: "/",
+                maxAge: 3600 * 24 * 30,
+              });
+              setCookie("username", employeeInfo.UserName, {
+                path: "/",
+                maxAge: 3600 * 24 * 30,
+              });
+              setCookie("employeeid", employeeInfo.EmployeeID, {
+                path: "/",
+                maxAge: 3600 * 24 * 30,
+              });
+              setStatus(prevState => ({
+                ...prevState,
+                cookies: {
+                  username: employeeInfo.UserName,
+                  password: router.query.pw,
+                  fullname: employeeInfo.FullName,
+                  employeeid: employeeInfo.EmployeeID,
+                },
+              }));
+            } else {
+              setData(() => [
+                {
+                  ProjectGroup: "",
+                  ProjectID: "",
+                  ProjectName: "The user cannot be found.",
+                  ContractAmount: "",
+                  Director: "",
+                  PIC: "",
+                  Associate1: "",
+                  Associate2: "",
+                  Associate3: "",
+                  Position: "",
+                  BaselineCost: "",
+                  EEAC: "",
+                  CV: "",
+                  CPI: "",
+                  ESPI: "",
+                  WorkCompletion: "",
+                  StartDate: "",
+                  FinishDate: "",
+                  Deadline: "",
+                  IsDesign: "",
+                  DesignParentID: "",
+                },
+              ]);
+            }
           });
         } else {
           setStatus(prevState => ({
