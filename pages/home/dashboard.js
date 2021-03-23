@@ -413,11 +413,21 @@ const Dashboard = () => {
         );
       }
     } else if (id === "CPI") {
-      return (
-        <div className="dashboard__table__cpi">
-          <span>{value !== "" && parseFloat(value).toFixed(2)}</span>
-        </div>
-      );
+      if (parseFloat(parseFloat(value).toFixed(2)) < 0.95) {
+        return (
+          <div className="dashboard__table__cpi">
+            <span style={{ color: "red" }}>
+              {value !== "" && parseFloat(value).toFixed(2)}
+            </span>
+          </div>
+        );
+      } else {
+        return (
+          <div className="dashboard__table__cpi">
+            <span>{value !== "" && parseFloat(value).toFixed(2)}</span>
+          </div>
+        );
+      }
     } else if (id === "WorkCompletion") {
       return (
         <div className="dashboard__table__work-completion">
@@ -425,11 +435,21 @@ const Dashboard = () => {
         </div>
       );
     } else if (id === "ESPI") {
-      return (
-        <div className="dashboard__table__espi">
-          <span>{value !== "" && parseFloat(value).toFixed(2)}</span>
-        </div>
-      );
+      if (parseFloat(parseFloat(value).toFixed(2)) < 0.95) {
+        return (
+          <div className="dashboard__table__espi">
+            <span style={{ color: "red" }}>
+              {value !== "" && parseFloat(value).toFixed(2)}
+            </span>
+          </div>
+        );
+      } else {
+        return (
+          <div className="dashboard__table__espi">
+            <span>{value !== "" && parseFloat(value).toFixed(2)}</span>
+          </div>
+        );
+      }
     } else if (id === "Deadline") {
       return (
         <div className="dashboard__table__deadline">
