@@ -15,8 +15,10 @@ import "../../assets/jss/nextjs-material-dashboard/New/ScheduleStyle.css";
 import { formatDate } from "../../components/New/formatDate";
 import Loader from "react-loader-spinner";
 import LoginComponent from "../../components/New/LoginComponent";
+import Router, { useRouter } from "next/router";
 
 const Calendar = () => {
+  const router = useRouter();
   const useStyles = makeStyles(styles);
   const classes = useStyles();
 
@@ -61,30 +63,75 @@ const Calendar = () => {
   };
 
   useEffect(() => {
-    if (status.cookies.username !== 0) {
-      if (status.cookies.username !== undefined) {
-        const fetchData = async () => {
-          let result = await axios({
+    let promises = [];
+
+    const fetchData = async () => {
+      if (status.cookies.username !== 0) {
+        if (status.cookies.username !== undefined) {
+          await axios({
             method: "get",
             url: `/api/calendar/${status.cookies.employeeid}`,
-            timeout: 15000, // 15 seconds timeout
+            timeout: 10000, // 10 seconds timeout
             headers: {},
+          }).then(response => {
+            setData(response.data);
           });
-          setData(result.data);
-        };
-        trackPromise(fetchData());
+        }
+      } else {
+        if (router.query.pw !== undefined) {
+          await axios({
+            method: "post",
+            url: `/api/dashboard/signin-pw`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              Password: router.query.pw,
+            },
+          }).then(response => {
+            const employeeInfo = response.data.result.recordsets[0][0];
+            setCookie("fullname", employeeInfo.FullName, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("password", router.query.pw, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("username", employeeInfo.UserName, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("employeeid", employeeInfo.EmployeeID, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setStatus(prevState => ({
+              ...prevState,
+              cookies: {
+                username: employeeInfo.UserName,
+                password: router.query.pw,
+                fullname: employeeInfo.FullName,
+                employeeid: employeeInfo.EmployeeID,
+              },
+            }));
+          });
+        } else {
+          setStatus(prevState => ({
+            ...prevState,
+            cookies: {
+              username: cookies.username,
+              password: cookies.password,
+              fullname: cookies.fullname,
+              employeeid: cookies.employeeid,
+            },
+          }));
+        }
       }
-    } else {
-      setStatus({
-        cookies: {
-          username: cookies.username,
-          password: cookies.password,
-          fullname: cookies.fullname,
-          employeeid: cookies.employeeid,
-        },
-      });
-    }
-  }, [status, cookies]);
+    };
+
+    promises.push(fetchData());
+    trackPromise(Promise.all(promises).then(() => {}));
+  }, [status]);
 
   const { promiseInProgress } = usePromiseTracker();
 
@@ -153,6 +200,8 @@ const Calendar = () => {
                   alignItems: "center",
                 }}
               >
+                {console.log(promiseInProgress)}
+                {console.log(status.cookies.employeeid)}
                 <Loader type="Oval" color="#FAC863" height="100" width="100" />
               </div>
             ) : (
