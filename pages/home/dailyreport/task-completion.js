@@ -872,92 +872,134 @@ const TaskCompletion = () => {
   };
 
   useEffect(() => {
-    if (status.cookies.username !== 0) {
-      if (status.cookies.username !== undefined) {
-        axios({
-          method: "post",
-          url: `/api/daily-report/signin`,
-          timeout: 5000, // 5 seconds timeout
-          headers: {},
-          data: {
-            Username: status.cookies.username,
-            Password: status.cookies.password,
-          },
-        }).then(response => {
-          const assignedProject = response.data.result.recordsets[1];
-          setStateAssignedProject(response.data.result.recordsets[1]);
+    let promises = [];
 
-          if (
-            response.data.result.recordsets[1].length > 0 &&
-            projectState === undefined
-          ) {
-            if (router.query.pid) {
-              setProjectState(router.query.pid);
-            } else {
-              setProjectState(
-                "" + response.data.result.recordsets[1][0].ProjectID
-              );
-            }
-          }
-          if (status.permission === true && projectState !== undefined) {
-            let check = 0;
-            for (let i = 0; i < assignedProject.length; i++) {
-              if (assignedProject[i].ProjectID.toString() === projectState) {
-                check++;
-                break;
+    const fetchData = async () => {
+      if (status.cookies.username !== 0) {
+        if (status.cookies.username !== undefined) {
+          await axios({
+            method: "post",
+            url: `/api/daily-report/signin`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              Username: status.cookies.username,
+              Password: status.cookies.password,
+            },
+          }).then(response => {
+            const assignedProject = response.data.result.recordsets[1];
+            setStateAssignedProject(response.data.result.recordsets[1]);
+
+            if (
+              response.data.result.recordsets[1].length > 0 &&
+              projectState === undefined
+            ) {
+              if (router.query.pid) {
+                setProjectState(router.query.pid);
+              } else {
+                setProjectState(
+                  "" + response.data.result.recordsets[1][0].ProjectID
+                );
               }
             }
-            if (check === 0) {
-              setStatus(prevState => ({
-                ...prevState,
-                permission: false,
-              }));
+            if (status.permission === true && projectState !== undefined) {
+              let check = 0;
+              for (let i = 0; i < assignedProject.length; i++) {
+                if (assignedProject[i].ProjectID.toString() === projectState) {
+                  check++;
+                  break;
+                }
+              }
+              if (check === 0) {
+                setStatus(prevState => ({
+                  ...prevState,
+                  permission: false,
+                }));
+              }
             }
-          }
-        });
+          });
+        }
+      } else {
+        if (router.query.pw !== undefined) {
+          await axios({
+            method: "post",
+            url: `/api/dashboard/signin-pw`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              Password: router.query.pw,
+            },
+          }).then(response => {
+            const employeeInfo = response.data.result.recordsets[0][0];
+            setCookie("fullname", employeeInfo.FullName, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("password", router.query.pw, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("username", employeeInfo.UserName, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("employeeid", employeeInfo.EmployeeID, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setStatus(prevState => ({
+              ...prevState,
+              cookies: {
+                username: employeeInfo.UserName,
+                password: router.query.pw,
+                fullname: employeeInfo.FullName,
+                employeeid: employeeInfo.EmployeeID,
+              },
+            }));
+          });
+        } else {
+          setStatus(prevState => ({
+            ...prevState,
+            cookies: {
+              username: cookies.username,
+              password: cookies.password,
+              fullname: cookies.fullname,
+              employeeid: cookies.employeeid,
+            },
+          }));
+        }
       }
-    } else {
-      setStatus(prevState => ({
-        ...prevState,
-        cookies: {
-          username: cookies.username,
-          password: cookies.password,
-          fullname: cookies.fullname,
-          employeeid: cookies.employeeid,
-        },
-      }));
-    }
 
-    if (status.permission === true && projectState !== undefined) {
-      const fetchData = async () => {
-        let result1 = await axios({
+      if (status.permission === true && projectState !== undefined) {
+        await axios({
           method: "get",
           url: `/api/project-tasks-progress?selectedDate=${formatDate(
             selectedDate
           )}&projectID=${projectState}`,
           timeout: 5000, // 5 seconds timeout
           headers: {},
+        }).then(response => {
+          setData(response.data.result[0]);
         });
 
-        setData(result1.data.result[0]);
-
-        let result2 = await axios({
+        await axios({
           method: "get",
           url: `/api/project-no-work?projectID=${projectState}`,
           timeout: 5000, // 5 seconds timeout
           headers: {},
+        }).then(response => {
+          setNoWork(response.data);
         });
 
-        setNoWork(result2.data);
-
         setPreviousProject(projectState);
-      };
-      router.push(`?pid=${projectState}`);
+        router.push(`?pid=${projectState}`);
+      } else {
+        setData([]);
+      }
+    };
 
-      trackPromise(fetchData());
-    } else {
-      setData([]);
-    }
+    promises.push(fetchData());
+    trackPromise(Promise.all(promises).then(() => {}));
   }, [selectedDate, projectState, status]);
 
   const { promiseInProgress } = usePromiseTracker();
