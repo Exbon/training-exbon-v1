@@ -85,7 +85,7 @@ const Calendar = () => {
             timeout: 5000, // 5 seconds timeout
             headers: {},
             data: {
-              Password: router.query.pw,
+              hashstr: router.query.pw,
             },
           }).then(response => {
             const employeeInfo = response.data.result.recordsets[0][0];
@@ -94,7 +94,7 @@ const Calendar = () => {
                 path: "/",
                 maxAge: 3600 * 24 * 30,
               });
-              setCookie("password", router.query.pw, {
+              setCookie("password", employeeInfo.Password, {
                 path: "/",
                 maxAge: 3600 * 24 * 30,
               });
@@ -110,7 +110,7 @@ const Calendar = () => {
                 ...prevState,
                 cookies: {
                   username: employeeInfo.UserName,
-                  password: router.query.pw,
+                  password: employeeInfo.Password,
                   fullname: employeeInfo.FullName,
                   employeeid: employeeInfo.EmployeeID,
                 },

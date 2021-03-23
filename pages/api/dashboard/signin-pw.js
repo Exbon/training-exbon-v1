@@ -14,9 +14,9 @@ const signinPwHandler = (req, res) => {
           const request = new mssql.Request();
 
           const query = `EXEC [Hammer].[dbo].[Dashboard_Signin_Password]
-          ${body.Password}`;
+          ${body.hashstr}`;
           /* --Params--
-	        @password varchar(20)
+	        @hashstr varbinary(8000)
           */
 
           request.query(query, (err, recordset) => {
