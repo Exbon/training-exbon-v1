@@ -78,14 +78,14 @@ const Calendar = () => {
           });
         }
       } else {
-        if (router.query.pw !== undefined) {
+        if (router.query.hash !== undefined) {
           await axios({
             method: "post",
             url: `/api/dashboard/signin-pw`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
             data: {
-              hashstr: router.query.pw,
+              hashstr: router.query.hash,
             },
           }).then(response => {
             const employeeInfo = response.data.result.recordsets[0][0];
