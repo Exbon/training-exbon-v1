@@ -723,6 +723,32 @@ const TaskCompletion = () => {
                 EndDate: data[i].ReqFinishDate,
                 Reason: null,
               },
+            }).catch(err => {
+              alert(
+                "Save Error.(POST /api/project-date-change-request) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                  err
+              );
+
+              setData([
+                {
+                  Company: "",
+                  CurrentWork: "",
+                  FinishDate: "",
+                  LastDate: "",
+                  NewReqFinishDate: "",
+                  NewReqStartDate: "",
+                  PreviousWork: "",
+                  ProjectID: "",
+                  RecordID: "",
+                  ReqFinishDate: "",
+                  ReqStartDate: "",
+                  Section: "",
+                  StartDate: "",
+                  TaskID: "",
+                  TaskName: "Loading Error",
+                  Trade: "",
+                },
+              ]);
             })
           );
         }
@@ -739,6 +765,32 @@ const TaskCompletion = () => {
                 Date: document.getElementById("datePickerDialog").value,
                 WorkCompleted: data[i].CurrentWork,
               },
+            }).catch(err => {
+              alert(
+                "Save Error.(PUT /api/project-tasks-progress) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                  err
+              );
+
+              setData([
+                {
+                  Company: "",
+                  CurrentWork: "",
+                  FinishDate: "",
+                  LastDate: "",
+                  NewReqFinishDate: "",
+                  NewReqStartDate: "",
+                  PreviousWork: "",
+                  ProjectID: "",
+                  RecordID: "",
+                  ReqFinishDate: "",
+                  ReqStartDate: "",
+                  Section: "",
+                  StartDate: "",
+                  TaskID: "",
+                  TaskName: "Loading Error",
+                  Trade: "",
+                },
+              ]);
             })
           );
         }
@@ -766,6 +818,32 @@ const TaskCompletion = () => {
                   EndDate: item.FinishDate,
                   Reason: reason,
                 },
+              }).catch(err => {
+                alert(
+                  "Save Error.(POST /api/project-date-change-request) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                    err
+                );
+
+                setData([
+                  {
+                    Company: "",
+                    CurrentWork: "",
+                    FinishDate: "",
+                    LastDate: "",
+                    NewReqFinishDate: "",
+                    NewReqStartDate: "",
+                    PreviousWork: "",
+                    ProjectID: "",
+                    RecordID: "",
+                    ReqFinishDate: "",
+                    ReqStartDate: "",
+                    Section: "",
+                    StartDate: "",
+                    TaskID: "",
+                    TaskName: "Loading Error",
+                    Trade: "",
+                  },
+                ]);
               })
             );
           } else if (item.Status === "Request For Edit") {
@@ -784,6 +862,32 @@ const TaskCompletion = () => {
                   EndDate: item.FinishDate,
                   Reason: reason,
                 },
+              }).catch(err => {
+                alert(
+                  "Save Error.(POST /api/project-date-change-request) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                    err
+                );
+
+                setData([
+                  {
+                    Company: "",
+                    CurrentWork: "",
+                    FinishDate: "",
+                    LastDate: "",
+                    NewReqFinishDate: "",
+                    NewReqStartDate: "",
+                    PreviousWork: "",
+                    ProjectID: "",
+                    RecordID: "",
+                    ReqFinishDate: "",
+                    ReqStartDate: "",
+                    Section: "",
+                    StartDate: "",
+                    TaskID: "",
+                    TaskName: "Loading Error",
+                    Trade: "",
+                  },
+                ]);
               })
             );
           } else if (item.Status === "Request For Delete") {
@@ -802,6 +906,32 @@ const TaskCompletion = () => {
                   EndDate: item.FinishDate,
                   Reason: reason,
                 },
+              }).catch(err => {
+                alert(
+                  "Save Error.(POST /api/project-date-change-request) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                    err
+                );
+
+                setData([
+                  {
+                    Company: "",
+                    CurrentWork: "",
+                    FinishDate: "",
+                    LastDate: "",
+                    NewReqFinishDate: "",
+                    NewReqStartDate: "",
+                    PreviousWork: "",
+                    ProjectID: "",
+                    RecordID: "",
+                    ReqFinishDate: "",
+                    ReqStartDate: "",
+                    Section: "",
+                    StartDate: "",
+                    TaskID: "",
+                    TaskName: "Loading Error",
+                    Trade: "",
+                  },
+                ]);
               })
             );
           }
@@ -884,6 +1014,32 @@ const TaskCompletion = () => {
         Category: "Tasks",
         Action: "update",
       },
+    }).catch(err => {
+      alert(
+        "Save Error.(POST /api/log-daily-reports) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+          err
+      );
+
+      setData([
+        {
+          Company: "",
+          CurrentWork: "",
+          FinishDate: "",
+          LastDate: "",
+          NewReqFinishDate: "",
+          NewReqStartDate: "",
+          PreviousWork: "",
+          ProjectID: "",
+          RecordID: "",
+          ReqFinishDate: "",
+          ReqStartDate: "",
+          Section: "",
+          StartDate: "",
+          TaskID: "",
+          TaskName: "Loading Error",
+          Trade: "",
+        },
+      ]);
     });
   };
 
@@ -902,38 +1058,47 @@ const TaskCompletion = () => {
               Username: status.cookies.username,
               Password: status.cookies.password,
             },
-          }).then(response => {
-            const assignedProject = response.data.result.recordsets[1];
-            setStateAssignedProject(response.data.result.recordsets[1]);
+          })
+            .then(response => {
+              const assignedProject = response.data.result.recordsets[1];
+              setStateAssignedProject(response.data.result.recordsets[1]);
 
-            if (
-              response.data.result.recordsets[1].length > 0 &&
-              projectState === undefined
-            ) {
-              if (router.query.pid) {
-                setProjectState(router.query.pid);
-              } else {
-                setProjectState(
-                  "" + response.data.result.recordsets[1][0].ProjectID
-                );
-              }
-            }
-            if (status.permission === true && projectState !== undefined) {
-              let check = 0;
-              for (let i = 0; i < assignedProject.length; i++) {
-                if (assignedProject[i].ProjectID.toString() === projectState) {
-                  check++;
-                  break;
+              if (
+                response.data.result.recordsets[1].length > 0 &&
+                projectState === undefined
+              ) {
+                if (router.query.pid) {
+                  setProjectState(router.query.pid);
+                } else {
+                  setProjectState(
+                    "" + response.data.result.recordsets[1][0].ProjectID
+                  );
                 }
               }
-              if (check === 0) {
-                setStatus(prevState => ({
-                  ...prevState,
-                  permission: false,
-                }));
+              if (status.permission === true && projectState !== undefined) {
+                let check = 0;
+                for (let i = 0; i < assignedProject.length; i++) {
+                  if (
+                    assignedProject[i].ProjectID.toString() === projectState
+                  ) {
+                    check++;
+                    break;
+                  }
+                }
+                if (check === 0) {
+                  setStatus(prevState => ({
+                    ...prevState,
+                    permission: false,
+                  }));
+                }
               }
-            }
-          });
+            })
+            .catch(err => {
+              alert(
+                "Loading Error.(POST /api/daily-report/signin) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                  err
+              );
+            });
         }
       } else {
         if (router.query.hash !== undefined) {
@@ -945,38 +1110,45 @@ const TaskCompletion = () => {
             data: {
               hashstr: router.query.hash,
             },
-          }).then(response => {
-            const employeeInfo = response.data.result.recordsets[0][0];
-            if (employeeInfo !== undefined) {
-              setCookie("fullname", employeeInfo.FullName, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setCookie("password", employeeInfo.Password, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setCookie("username", employeeInfo.UserName, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setCookie("employeeid", employeeInfo.EmployeeID, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setStatus(prevState => ({
-                ...prevState,
-                cookies: {
-                  username: employeeInfo.UserName,
-                  password: employeeInfo.Password,
-                  fullname: employeeInfo.FullName,
-                  employeeid: employeeInfo.EmployeeID,
-                },
-              }));
-            } else {
-              alert("The user cannot be found.");
-            }
-          });
+          })
+            .then(response => {
+              const employeeInfo = response.data.result.recordsets[0][0];
+              if (employeeInfo !== undefined) {
+                setCookie("fullname", employeeInfo.FullName, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setCookie("password", employeeInfo.Password, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setCookie("username", employeeInfo.UserName, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setCookie("employeeid", employeeInfo.EmployeeID, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setStatus(prevState => ({
+                  ...prevState,
+                  cookies: {
+                    username: employeeInfo.UserName,
+                    password: employeeInfo.Password,
+                    fullname: employeeInfo.FullName,
+                    employeeid: employeeInfo.EmployeeID,
+                  },
+                }));
+              } else {
+                alert("The user cannot be found.");
+              }
+            })
+            .catch(err => {
+              alert(
+                "Loading Error.(POST /api/dashboard/signin-pw) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                  err
+              );
+            });
         } else {
           setStatus(prevState => ({
             ...prevState,
@@ -1005,7 +1177,7 @@ const TaskCompletion = () => {
           })
           .catch(err => {
             alert(
-              "Loading Error.(/api/project-tasks-progress) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+              "Loading Error.(GET /api/project-tasks-progress?selectedDate=) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
                 err
             );
 
@@ -1036,9 +1208,37 @@ const TaskCompletion = () => {
           url: `/api/project-no-work?projectID=${projectState}`,
           timeout: 5000, // 5 seconds timeout
           headers: {},
-        }).then(response => {
-          setNoWork(response.data);
-        });
+        })
+          .then(response => {
+            setNoWork(response.data);
+          })
+          .catch(err => {
+            alert(
+              "Loading Error.(GET /api/project-no-work?projectID=) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                err
+            );
+
+            setData([
+              {
+                Company: "",
+                CurrentWork: "",
+                FinishDate: "",
+                LastDate: "",
+                NewReqFinishDate: "",
+                NewReqStartDate: "",
+                PreviousWork: "",
+                ProjectID: "",
+                RecordID: "",
+                ReqFinishDate: "",
+                ReqStartDate: "",
+                Section: "",
+                StartDate: "",
+                TaskID: "",
+                TaskName: "Loading Error",
+                Trade: "",
+              },
+            ]);
+          });
       } else {
         setData([
           {
@@ -1238,31 +1438,69 @@ const TaskCompletion = () => {
         Username: username,
         Password: password,
       },
-    }).then(response => {
-      if (response.data.result.recordset[0] !== undefined) {
-        setCookie("username", username, { path: "/", maxAge: 3600 * 24 * 30 });
-        setCookie("password", password, { path: "/", maxAge: 3600 * 24 * 30 });
-        setCookie("fullname", response.data.result.recordset[0].FullName, {
-          path: "/",
-          maxAge: 3600 * 24 * 30,
-        });
-        setCookie("employeeid", response.data.result.recordset[0].EmployeeID, {
-          path: "/",
-          maxAge: 3600 * 24 * 30,
-        });
-        setStatus(prevState => ({
-          ...prevState,
-          cookies: {
-            username: username,
-            password: password,
-            fullname: response.data.result.recordset[0].FullName,
-            employeeid: response.data.result.recordset[0].EmployeeID,
+    })
+      .then(response => {
+        if (response.data.result.recordset[0] !== undefined) {
+          setCookie("username", username, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie("password", password, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie("fullname", response.data.result.recordset[0].FullName, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie(
+            "employeeid",
+            response.data.result.recordset[0].EmployeeID,
+            {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            }
+          );
+          setStatus(prevState => ({
+            ...prevState,
+            cookies: {
+              username: username,
+              password: password,
+              fullname: response.data.result.recordset[0].FullName,
+              employeeid: response.data.result.recordset[0].EmployeeID,
+            },
+          }));
+        } else {
+          alert("Login failed.");
+        }
+      })
+      .catch(err => {
+        alert(
+          "Loading Error.(POST /api/project-tasks-progress) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+            err
+        );
+
+        setData([
+          {
+            Company: "",
+            CurrentWork: "",
+            FinishDate: "",
+            LastDate: "",
+            NewReqFinishDate: "",
+            NewReqStartDate: "",
+            PreviousWork: "",
+            ProjectID: "",
+            RecordID: "",
+            ReqFinishDate: "",
+            ReqStartDate: "",
+            Section: "",
+            StartDate: "",
+            TaskID: "",
+            TaskName: "Loading Error",
+            Trade: "",
           },
-        }));
-      } else {
-        alert("Login failed.");
-      }
-    });
+        ]);
+      });
   };
 
   return (
