@@ -38,41 +38,73 @@ const Dashboard = () => {
           Username: username,
           Password: password,
         },
-      }).then(response => {
-        if (response.data.result.recordset[0] !== undefined) {
-          setCookie("username", username, {
-            path: "/",
-            maxAge: 3600 * 24 * 30,
-          });
-          setCookie("password", password, {
-            path: "/",
-            maxAge: 3600 * 24 * 30,
-          });
-          setCookie("fullname", response.data.result.recordset[0].FullName, {
-            path: "/",
-            maxAge: 3600 * 24 * 30,
-          });
-          setCookie(
-            "employeeid",
-            response.data.result.recordset[0].EmployeeID,
-            {
+      })
+        .then(response => {
+          if (response.data.result.recordset[0] !== undefined) {
+            setCookie("username", username, {
               path: "/",
               maxAge: 3600 * 24 * 30,
-            }
+            });
+            setCookie("password", password, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie("fullname", response.data.result.recordset[0].FullName, {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            });
+            setCookie(
+              "employeeid",
+              response.data.result.recordset[0].EmployeeID,
+              {
+                path: "/",
+                maxAge: 3600 * 24 * 30,
+              }
+            );
+            setStatus(prevState => ({
+              ...prevState,
+              cookies: {
+                username: username,
+                password: password,
+                fullname: response.data.result.recordset[0].FullName,
+                employeeid: response.data.result.recordset[0].EmployeeID,
+              },
+            }));
+          } else {
+            alert("Login failed.");
+          }
+        })
+        .catch(err => {
+          alert(
+            "Loading Error.(POST /api/dashboard/signin) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+              err
           );
-          setStatus(prevState => ({
-            ...prevState,
-            cookies: {
-              username: username,
-              password: password,
-              fullname: response.data.result.recordset[0].FullName,
-              employeeid: response.data.result.recordset[0].EmployeeID,
+          setData(() => [
+            {
+              ProjectGroup: "",
+              ProjectID: "",
+              ProjectName: "No Permission",
+              ContractAmount: "",
+              Director: "",
+              PIC: "",
+              Associate1: "",
+              Associate2: "",
+              Associate3: "",
+              Position: "",
+              BaselineCost: "",
+              EEAC: "",
+              CV: "",
+              CPI: "",
+              ESPI: "",
+              WorkCompletion: "",
+              StartDate: "",
+              FinishDate: "",
+              Deadline: "",
+              IsDesign: "",
+              DesignParentID: "",
             },
-          }));
-        } else {
-          alert("Login failed.");
-        }
-      });
+          ]);
+        });
     promises.push(fetchData());
     trackPromise(Promise.all(promises).then(() => {}));
   };
@@ -94,35 +126,67 @@ const Dashboard = () => {
                 Username: status.cookies.username,
                 Password: status.cookies.password,
               },
-            }).then(response => {
-              response.data.result.recordsets[1].length === 0
-                ? setData(() => [
-                    {
-                      ProjectGroup: "",
-                      ProjectID: "",
-                      ProjectName: "No Data",
-                      ContractAmount: "",
-                      Director: "",
-                      PIC: "",
-                      Associate1: "",
-                      Associate2: "",
-                      Associate3: "",
-                      Position: "",
-                      BaselineCost: "",
-                      EEAC: "",
-                      CV: "",
-                      CPI: "",
-                      ESPI: "",
-                      WorkCompletion: "",
-                      StartDate: "",
-                      FinishDate: "",
-                      Deadline: "",
-                      IsDesign: "",
-                      DesignParentID: "",
-                    },
-                  ])
-                : setData(() => response.data.result.recordsets[1]);
-            });
+            })
+              .then(response => {
+                response.data.result.recordsets[1].length === 0
+                  ? setData(() => [
+                      {
+                        ProjectGroup: "",
+                        ProjectID: "",
+                        ProjectName: "No Data",
+                        ContractAmount: "",
+                        Director: "",
+                        PIC: "",
+                        Associate1: "",
+                        Associate2: "",
+                        Associate3: "",
+                        Position: "",
+                        BaselineCost: "",
+                        EEAC: "",
+                        CV: "",
+                        CPI: "",
+                        ESPI: "",
+                        WorkCompletion: "",
+                        StartDate: "",
+                        FinishDate: "",
+                        Deadline: "",
+                        IsDesign: "",
+                        DesignParentID: "",
+                      },
+                    ])
+                  : setData(() => response.data.result.recordsets[1]);
+              })
+              .catch(err => {
+                alert(
+                  "Loading Error.(POST /api/dashboard/signin) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                    err
+                );
+                setData(() => [
+                  {
+                    ProjectGroup: "",
+                    ProjectID: "",
+                    ProjectName: "No Permission",
+                    ContractAmount: "",
+                    Director: "",
+                    PIC: "",
+                    Associate1: "",
+                    Associate2: "",
+                    Associate3: "",
+                    Position: "",
+                    BaselineCost: "",
+                    EEAC: "",
+                    CV: "",
+                    CPI: "",
+                    ESPI: "",
+                    WorkCompletion: "",
+                    StartDate: "",
+                    FinishDate: "",
+                    Deadline: "",
+                    IsDesign: "",
+                    DesignParentID: "",
+                  },
+                ]);
+              });
           } else {
             await axios({
               method: "post",
@@ -133,35 +197,67 @@ const Dashboard = () => {
                 Username: status.cookies.username,
                 Password: status.cookies.password,
               },
-            }).then(response => {
-              response.data.result.recordsets[0].length === 0
-                ? setData(() => [
-                    {
-                      ProjectGroup: "",
-                      ProjectID: "",
-                      ProjectName: "No Data",
-                      ContractAmount: "",
-                      Director: "",
-                      PIC: "",
-                      Associate1: "",
-                      Associate2: "",
-                      Associate3: "",
-                      Position: "",
-                      BaselineCost: "",
-                      EEAC: "",
-                      CV: "",
-                      CPI: "",
-                      ESPI: "",
-                      WorkCompletion: "",
-                      StartDate: "",
-                      FinishDate: "",
-                      Deadline: "",
-                      IsDesign: "",
-                      DesignParentID: "",
-                    },
-                  ])
-                : setData(() => response.data.result.recordsets[0]);
-            });
+            })
+              .then(response => {
+                response.data.result.recordsets[0].length === 0
+                  ? setData(() => [
+                      {
+                        ProjectGroup: "",
+                        ProjectID: "",
+                        ProjectName: "No Data",
+                        ContractAmount: "",
+                        Director: "",
+                        PIC: "",
+                        Associate1: "",
+                        Associate2: "",
+                        Associate3: "",
+                        Position: "",
+                        BaselineCost: "",
+                        EEAC: "",
+                        CV: "",
+                        CPI: "",
+                        ESPI: "",
+                        WorkCompletion: "",
+                        StartDate: "",
+                        FinishDate: "",
+                        Deadline: "",
+                        IsDesign: "",
+                        DesignParentID: "",
+                      },
+                    ])
+                  : setData(() => response.data.result.recordsets[0]);
+              })
+              .catch(err => {
+                alert(
+                  "Loading Error.(POST /api/dashboard/ms-completed) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                    err
+                );
+                setData(() => [
+                  {
+                    ProjectGroup: "",
+                    ProjectID: "",
+                    ProjectName: "No Permission",
+                    ContractAmount: "",
+                    Director: "",
+                    PIC: "",
+                    Associate1: "",
+                    Associate2: "",
+                    Associate3: "",
+                    Position: "",
+                    BaselineCost: "",
+                    EEAC: "",
+                    CV: "",
+                    CPI: "",
+                    ESPI: "",
+                    WorkCompletion: "",
+                    StartDate: "",
+                    FinishDate: "",
+                    Deadline: "",
+                    IsDesign: "",
+                    DesignParentID: "",
+                  },
+                ]);
+              });
           }
         }
       } else {
@@ -174,36 +270,69 @@ const Dashboard = () => {
             data: {
               hashstr: router.query.hash,
             },
-          }).then(response => {
-            const employeeInfo = response.data.result.recordsets[0][0];
-            if (employeeInfo !== undefined) {
-              setCookie("fullname", employeeInfo.FullName, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setCookie("password", employeeInfo.Password, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setCookie("username", employeeInfo.UserName, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setCookie("employeeid", employeeInfo.EmployeeID, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setStatus(prevState => ({
-                ...prevState,
-                cookies: {
-                  username: employeeInfo.UserName,
-                  password: employeeInfo.Password,
-                  fullname: employeeInfo.FullName,
-                  employeeid: employeeInfo.EmployeeID,
-                },
-              }));
-            } else {
-              alert("The user cannot be found.");
+          })
+            .then(response => {
+              const employeeInfo = response.data.result.recordsets[0][0];
+              if (employeeInfo !== undefined) {
+                setCookie("fullname", employeeInfo.FullName, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setCookie("password", employeeInfo.Password, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setCookie("username", employeeInfo.UserName, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setCookie("employeeid", employeeInfo.EmployeeID, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setStatus(prevState => ({
+                  ...prevState,
+                  cookies: {
+                    username: employeeInfo.UserName,
+                    password: employeeInfo.Password,
+                    fullname: employeeInfo.FullName,
+                    employeeid: employeeInfo.EmployeeID,
+                  },
+                }));
+              } else {
+                alert("The user cannot be found.");
+                setData(() => [
+                  {
+                    ProjectGroup: "",
+                    ProjectID: "",
+                    ProjectName: "No Permission",
+                    ContractAmount: "",
+                    Director: "",
+                    PIC: "",
+                    Associate1: "",
+                    Associate2: "",
+                    Associate3: "",
+                    Position: "",
+                    BaselineCost: "",
+                    EEAC: "",
+                    CV: "",
+                    CPI: "",
+                    ESPI: "",
+                    WorkCompletion: "",
+                    StartDate: "",
+                    FinishDate: "",
+                    Deadline: "",
+                    IsDesign: "",
+                    DesignParentID: "",
+                  },
+                ]);
+              }
+            })
+            .catch(err => {
+              alert(
+                "Loading Error.(POST /api/dashboard/signin-pw) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                  err
+              );
               setData(() => [
                 {
                   ProjectGroup: "",
@@ -229,8 +358,7 @@ const Dashboard = () => {
                   DesignParentID: "",
                 },
               ]);
-            }
-          });
+            });
         } else {
           setStatus(prevState => ({
             ...prevState,
