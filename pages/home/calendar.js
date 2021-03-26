@@ -73,9 +73,16 @@ const Calendar = () => {
             url: `/api/calendar/${status.cookies.employeeid}`,
             timeout: 10000, // 10 seconds timeout
             headers: {},
-          }).then(response => {
-            setData(response.data);
-          });
+          })
+            .then(response => {
+              setData(response.data);
+            })
+            .catch(err => {
+              alert(
+                "Loading Error.(GET /api/calendar/${status.cookies.employeeid}) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                  err
+              );
+            });
         }
       } else {
         if (router.query.hash !== undefined) {
@@ -87,38 +94,45 @@ const Calendar = () => {
             data: {
               hashstr: router.query.hash,
             },
-          }).then(response => {
-            const employeeInfo = response.data.result.recordsets[0][0];
-            if (employeeInfo !== undefined) {
-              setCookie("fullname", employeeInfo.FullName, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setCookie("password", employeeInfo.Password, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setCookie("username", employeeInfo.UserName, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setCookie("employeeid", employeeInfo.EmployeeID, {
-                path: "/",
-                maxAge: 3600 * 24 * 30,
-              });
-              setStatus(prevState => ({
-                ...prevState,
-                cookies: {
-                  username: employeeInfo.UserName,
-                  password: employeeInfo.Password,
-                  fullname: employeeInfo.FullName,
-                  employeeid: employeeInfo.EmployeeID,
-                },
-              }));
-            } else {
-              alert("The user cannot be found.");
-            }
-          });
+          })
+            .then(response => {
+              const employeeInfo = response.data.result.recordsets[0][0];
+              if (employeeInfo !== undefined) {
+                setCookie("fullname", employeeInfo.FullName, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setCookie("password", employeeInfo.Password, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setCookie("username", employeeInfo.UserName, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setCookie("employeeid", employeeInfo.EmployeeID, {
+                  path: "/",
+                  maxAge: 3600 * 24 * 30,
+                });
+                setStatus(prevState => ({
+                  ...prevState,
+                  cookies: {
+                    username: employeeInfo.UserName,
+                    password: employeeInfo.Password,
+                    fullname: employeeInfo.FullName,
+                    employeeid: employeeInfo.EmployeeID,
+                  },
+                }));
+              } else {
+                alert("The user cannot be found.");
+              }
+            })
+            .catch(err => {
+              alert(
+                "Loading Error.(POST /api/dashboard/signin-pw) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+                  err
+              );
+            });
         } else {
           setStatus(prevState => ({
             ...prevState,
@@ -149,31 +163,48 @@ const Calendar = () => {
         Username: username,
         Password: password,
       },
-    }).then(response => {
-      if (response.data.result.recordset[0] !== undefined) {
-        setCookie("username", username, { path: "/", maxAge: 3600 * 24 * 30 });
-        setCookie("password", password, { path: "/", maxAge: 3600 * 24 * 30 });
-        setCookie("fullname", response.data.result.recordset[0].FullName, {
-          path: "/",
-          maxAge: 3600 * 24 * 30,
-        });
-        setCookie("employeeid", response.data.result.recordset[0].EmployeeID, {
-          path: "/",
-          maxAge: 3600 * 24 * 30,
-        });
-        setStatus(prevState => ({
-          ...prevState,
-          cookies: {
-            username: username,
-            password: password,
-            fullname: response.data.result.recordset[0].FullName,
-            employeeid: response.data.result.recordset[0].EmployeeID,
-          },
-        }));
-      } else {
-        alert("Login failed.");
-      }
-    });
+    })
+      .then(response => {
+        if (response.data.result.recordset[0] !== undefined) {
+          setCookie("username", username, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie("password", password, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie("fullname", response.data.result.recordset[0].FullName, {
+            path: "/",
+            maxAge: 3600 * 24 * 30,
+          });
+          setCookie(
+            "employeeid",
+            response.data.result.recordset[0].EmployeeID,
+            {
+              path: "/",
+              maxAge: 3600 * 24 * 30,
+            }
+          );
+          setStatus(prevState => ({
+            ...prevState,
+            cookies: {
+              username: username,
+              password: password,
+              fullname: response.data.result.recordset[0].FullName,
+              employeeid: response.data.result.recordset[0].EmployeeID,
+            },
+          }));
+        } else {
+          alert("Login failed.");
+        }
+      })
+      .catch(err => {
+        alert(
+          "Loading Error.(POST /api/dashboard/signin) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
+            err
+        );
+      });
   };
 
   return (
