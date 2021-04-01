@@ -1,1 +1,1 @@
-Exbon dashboard
+Exbon Dashboard
