@@ -219,11 +219,11 @@ const Calendar = () => {
       status.cookies.employeeid === undefined ? (
         <LoginComponent signin={signin} />
       ) : (
-        <Card style={{ width: "1100px" }}>
-          <CardHeader color="primary">
+        <div style={{ width: "1000px" }}>
+          {/* <CardHeader color="primary">
             <h4 className={classes.cardTitleWhite}>Schedule Calendar</h4>
             <p className={classes.cardCategoryWhite}>My Project Schedule</p>
-          </CardHeader>
+          </CardHeader> */}
           <div className="frame">
             {promiseInProgress || status.cookies.employeeid === 0 ? (
               <div
@@ -261,7 +261,7 @@ const Calendar = () => {
               </>
             )}
           </div>
-        </Card>
+        </div>
       )}
     </div>
   );
