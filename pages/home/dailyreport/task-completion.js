@@ -939,7 +939,7 @@ const TaskCompletion = () => {
       });
     };
 
-    trackPromise(fetchData());
+    fetchData();
 
     trackPromise(
       Promise.all(promises).then(() => {
