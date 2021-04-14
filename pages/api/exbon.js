@@ -14,7 +14,7 @@ const exbonHandler = (req, res) => {
           const request = new mssql.Request();
 
           const sqlQuery = `EXEC [Hammer].[dbo].[Calendar_SelectByEmployeeID]
-                            ${query.id}`;
+                            5023`;
 
           request.query(sqlQuery, (err, recordset) => {
             if (err) {
