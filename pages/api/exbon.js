@@ -1,5 +1,11 @@
 const mssql = require("mssql");
 const dbserver = require("../../dbConfig.js");
+const express = require("express");
+const app = express();
+const cors = require("cors");
+
+app.use(cors());
+app.options("*", cors());
 
 const exbonHandler = (req, res) => {
   const { method, body, query } = req;
