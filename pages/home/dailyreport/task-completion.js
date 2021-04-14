@@ -1067,6 +1067,7 @@ const TaskCompletion = () => {
                 response.data.result.recordsets[1].length > 0 &&
                 projectState === undefined
               ) {
+                console.log(router.query.pid);
                 if (router.query.pid) {
                   setProjectState(router.query.pid);
                 } else {
