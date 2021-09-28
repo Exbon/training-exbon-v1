@@ -2733,7 +2733,7 @@ output {
   height: auto;
 }
 
-.form-group-lg .form-control {
+/* .form-group-lg .form-control {
   height: 44px;
   padding: 9px 0;
   font-size: 18px;
@@ -2768,9 +2768,9 @@ output {
 .form-horizontal .radio,
 .form-horizontal .checkbox {
   min-height: 28px;
-}
+} */
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .form-horizontal .control-label {
     padding-top: 8px;
   }
@@ -2788,7 +2788,7 @@ output {
     padding-top: 4px;
     font-size: 11px;
   }
-}
+} */
 
 .label {
   border-radius: 2px;
