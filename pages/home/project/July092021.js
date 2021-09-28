@@ -8,7 +8,7 @@ import { formatDate } from "../../../components/New/formatDate";
 import Router, { useRouter } from "next/router";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
-import "./July082021.css";
+import "./July092021.css";
 
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -26,9 +26,17 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Button } from "@mui/material";
 import Link from "next/link";
 
+import FormLabel from "@mui/material/FormLabel";
+import FormControl from "@mui/material/FormControl";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormHelperText from "@mui/material/FormHelperText";
+
+import Checkbox from "@mui/material/Checkbox";
+
 import "./project.css";
 
-const July082021 = () => {
+const July092021 = () => {
   const router = useRouter();
 
   const [data, setData] = useState(() => []);
@@ -250,6 +258,22 @@ const July082021 = () => {
     second: false,
   });
 
+  const [state, setState] = useState({
+    gilad: false,
+    jason: false,
+    antoine: false,
+  });
+
+  const handleChange = event => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.checked,
+    });
+  };
+
+  const { gilad, jason, antoine } = state;
+  const error = [gilad, jason, antoine].filter(v => v).length !== 2;
+
   const changeAcc = order => {
     if (order == "first") {
       setAcc({ ...acc, first: !acc.first });
@@ -317,7 +341,7 @@ const July082021 = () => {
                 <br />
                 <br />
                 <br />
-                <div style={{ marginLeft: "30px" }}>
+                {/* <div style={{ marginLeft: "30px" }}>
                   <Accordion
                     expanded={acc.first}
                     className="acc"
@@ -349,7 +373,7 @@ const July082021 = () => {
                       ABC subcontractor finished 20% of Task 2.
                     </AccordionDetails>
                   </Accordion>
-                </div>
+                </div> */}
               </Grid>
               <Grid item xs={6}>
                 <Box
@@ -372,7 +396,7 @@ const July082021 = () => {
                         textAlign: "center",
                       }}
                     >
-                      Objective: Daily Report
+                      Objective: Change Order
                     </h2>
                     <p
                       style={{
@@ -383,7 +407,8 @@ const July082021 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      Today is the first day of construction.
+                      The customer asked for some work to be done that was not
+                      part of the initial specification.
                     </p>
                     <div
                       style={{
@@ -394,19 +419,103 @@ const July082021 = () => {
                         paddingBottom: "3%",
                       }}
                     >
-                      <p style={{ color: "white", fontWeight: "500" }}>
-                        Q1. Fill out timesheet and daily report for the day.
+                      <div className="textfield">
+                        <p
+                          style={{
+                            color: "white",
+                            fontWeight: "500",
+                            marginBottom: "1px",
+                          }}
+                        >
+                          Q1. What should be done in this case? (Multiple
+                          choice)
+                        </p>
+                        <div
+                          style={{
+                            marginLeft: "20px",
+                            marginTop: "1px",
+                          }}
+                        >
+                          <FormControl
+                            sx={{
+                              m: 3,
+                              marginBottom: "5px",
+                            }}
+                            component="fieldset"
+                            variant="standard"
+                          >
+                            <FormLabel component="legend"></FormLabel>
+                            <FormGroup>
+                              <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked={gilad}
+                                    onChange={handleChange}
+                                    name="gilad"
+                                    className="checkBox"
+                                  />
+                                }
+                                label="omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+                                className="formLabel"
+                              />
+                              <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked={jason}
+                                    onChange={handleChange}
+                                    name="jason"
+                                    className="checkBox"
+                                  />
+                                }
+                                label="sit amet, consectetur, adipisci velit, sed quia non numquam eius"
+                                className="formLabel"
+                              />
+                              <FormControlLabel
+                                control={
+                                  <Checkbox
+                                    checked={antoine}
+                                    onChange={handleChange}
+                                    name="antoine"
+                                    className="checkBox"
+                                  />
+                                }
+                                label="Duis aute irure dolor in reprehenderit in voluptate velit esse"
+                                className="formLabel"
+                              />
+                            </FormGroup>
+                            {/* <FormHelperText>Be careful</FormHelperText> */}
+                          </FormControl>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        marginTop: "0px",
+                        borderBottom: "3px dotted #7e7a7a",
+                        borderRadius: "2px",
+                        padding: "1%",
+                        paddingBottom: "3%",
+                      }}
+                    >
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "10px",
+                        }}
+                      >
+                        Q2. Create a Change Order with the following estimates,
+                        then upload it.
                       </p>
-                      <TextField
-                        label="Answer"
-                        fullWidth
-                        multiline
-                        rows={2}
-                        defaultValue=""
-                        className="textfield"
-                        color="warning"
-                        focused
-                      />
+                      <Button
+                        variant="contained"
+                        className="uploadBtn"
+                        component="label"
+                        style={{ marginLeft: "5%" }}
+                      >
+                        Upload File
+                        <input type="file" hidden />
+                      </Button>
                     </div>
                   </div>
                   <div
@@ -420,14 +529,14 @@ const July082021 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./July012021">
-                      <Button variant="outlined" className="nextBtn">
-                        PREVIOUS
+                    <Link href="./July082021">
+                      <Button variant="contained" className="prevBtn">
+                        Previous
                       </Button>
                     </Link>
-                    <Link href="./July092021">
-                      <Button variant="contained" className="nextBtn">
-                        NEXT
+                    <Link href="#">
+                      <Button variant="contained" className="submitBtn">
+                        Submit
                       </Button>
                     </Link>
                   </div>
@@ -441,6 +550,6 @@ const July082021 = () => {
   );
 };
 
-July082021.layout = Admin;
+July092021.layout = Admin;
 
-export default July082021;
+export default July092021;

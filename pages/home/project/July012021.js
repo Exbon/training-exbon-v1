@@ -8,6 +8,7 @@ import { formatDate } from "../../../components/New/formatDate";
 import Router, { useRouter } from "next/router";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
+import "./project.css";
 import "./July012021.css";
 
 import { styled } from "@mui/material/styles";
@@ -377,7 +378,15 @@ const July012021 = () => {
                       />
                     </div>
                   </div>
-                  <div style={{ padding: "1%", textAlign: "right" }}>
+                  <div
+                    style={{
+                      padding: "1%",
+                      textAlign: "right",
+                      marginBottom: "20px",
+                      marginRight: "20px",
+                      marginLeft: "20px",
+                    }}
+                  >
                     <Link href="./July082021">
                       <Button variant="contained" className="nextBtn">
                         NEXT

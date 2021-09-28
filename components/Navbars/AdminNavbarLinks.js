@@ -65,8 +65,8 @@ export default function AdminNavbarLinks() {
           <p
             style={{
               fontFamily: "Roboto",
-              fontWeight: "500",
-              color: "darkgray",
+              fontWeight: "600",
+              color: "#808286",
               marginTop: "16px",
             }}
           >
