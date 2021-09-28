@@ -391,7 +391,7 @@ const July082021 = () => {
                         borderBottom: "3px dotted #7e7a7a",
                         borderRadius: "2px",
                         padding: "1%",
-                        paddingBottom: "3%",
+                        paddingBottom: "2%",
                       }}
                     >
                       <p style={{ color: "white", fontWeight: "500" }}>
