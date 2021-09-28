@@ -31,13 +31,13 @@ const July012021 = () => {
     root: {
       "& .MuiOutlinedInput-root": {
         "& fieldset": {
-          borderColor: "#ee6414",
+          borderColor: "rgb(253, 165, 0)",
         },
         "&:hover fieldset": {
-          borderColor: "#ee6414",
+          borderColor: "rgb(253, 165, 0)",
         },
         "&.Mui-focused fieldset": {
-          borderColor: "#ee6414",
+          borderColor: "rgb(253, 165, 0)",
         },
       },
     },
@@ -346,7 +346,7 @@ const July012021 = () => {
                         id="validation-outlined-input"
                         focused
                         InputLabelProps={{
-                          style: { color: "#ee6414" },
+                          style: { color: "rgb(253, 165, 0)" },
                         }}
                         InputProps={{
                           style: { color: "white" },
