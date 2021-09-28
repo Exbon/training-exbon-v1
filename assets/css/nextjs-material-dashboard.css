@@ -62,7 +62,8 @@ html * {
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  background-color: #eeeeee;
+  /* background-color: #eeeeee; */
+  background-image: url("../img/back1.jpg");
   color: #3c4858;
   margin: 0;
   font-family: Roboto, Helvetica, Arial, sans-serif;
@@ -112,7 +113,12 @@ h6 {
 }
 
 body {
-  background-color: #eeeeee;
+  background-image: url("../img/back1-update.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-color: #eeeeee; */
   color: #3c4858;
 }
 

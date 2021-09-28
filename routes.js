@@ -46,32 +46,34 @@ import WorkIcon from "@material-ui/icons/Work";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
-    name: "Dashboard",
+    path: "/project",
+    name: "Project",
     icon: Dashboard,
-
     layout: "/home",
   },
-  {
-    path: "/calendar",
-    name: "Calendar",
-    icon: EventNoteIcon,
-
-    layout: "/home",
-  },
-  {
-    path: "/dailyreport/task-completion",
-    name: "Daily Report",
-    icon: ScheduleIcon,
-
-    layout: "/home",
-  },
+  // {
+  //   path: "/dashboard",
+  //   name: "Dashboard",
+  //   icon: Dashboard,
+  //   layout: "/home",
+  // },
+  // {
+  //   path: "/calendar",
+  //   name: "Calendar",
+  //   icon: EventNoteIcon,
+  //   layout: "/home",
+  // },
+  // {
+  //   path: "/dailyreport/task-completion",
+  //   name: "Daily Report",
+  //   icon: ScheduleIcon,
+  //   layout: "/home",
+  // },
   // {
   //   path: "/typography",
   //   name: "Typography",
   //   rtlName: "طباعة",
   //   icon: LibraryBooks,
-
   //   layout: "/dashboard",
   // },
   // {
@@ -79,7 +81,6 @@ const dashboardRoutes = [
   //   name: "Icons",
   //   rtlName: "الرموز",
   //   icon: BubbleChart,
-
   //   layout: "/dashboard",
   // },
   // {
@@ -87,7 +88,6 @@ const dashboardRoutes = [
   //   name: "Maps",
   //   rtlName: "خرائط",
   //   icon: LocationOn,
-
   //   layout: "/dashboard",
   // },
   // {
@@ -95,7 +95,6 @@ const dashboardRoutes = [
   //   name: "Notifications",
   //   rtlName: "إخطارات",
   //   icon: Notifications,
-
   //   layout: "/dashboard",
   // },
   // {
@@ -103,7 +102,6 @@ const dashboardRoutes = [
   //   name: "RTL Support",
   //   rtlName: "پشتیبانی از راست به چپ",
   //   icon: Language,
-
   //   layout: "/rtl",
   // },
   // {
@@ -111,7 +109,6 @@ const dashboardRoutes = [
   //   name: "Upgrade To PRO",
   //   rtlName: "التطور للاحترافية",
   //   icon: Unarchive,
-
   //   layout: "/dashboard",
   // },
 ];

@@ -61,7 +61,7 @@ const login = () => {
           maxAge: 3600 * 24 * 30,
         });
 
-        Router.push(`/home/dashboard`);
+        Router.push(`/home/project`);
       } else {
         alert("Login failed.");
       }
@@ -88,7 +88,9 @@ const login = () => {
             <CardHeader color="primary">
               <div className={classes["card-header"]}>
                 <div>
-                  <h4 className={classes["card-header__title"]}>Dashboard</h4>
+                  <h4 className={classes["card-header__title"]}>
+                    Exbon Training
+                  </h4>
                   <p className={classes["card-header__detail"]}>Login</p>
                 </div>
                 <div>

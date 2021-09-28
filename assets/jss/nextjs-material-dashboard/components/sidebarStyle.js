@@ -15,7 +15,7 @@ import {
   hexToRgb,
 } from "assets/jss/nextjs-material-dashboard.js";
 
-const sidebarStyle = (theme) => ({
+const sidebarStyle = theme => ({
   drawerPaper: {
     border: "none",
     position: "fixed",
@@ -125,7 +125,8 @@ const sidebarStyle = (theme) => ({
       content: '""',
       display: "block",
       background: blackColor,
-      opacity: ".8",
+      opacity: "0",
+      // opacity: ".8",
     },
   },
   list: {

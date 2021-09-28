@@ -1,0 +1,20 @@
+.background {
+  background-image: url("../../../assets/img/back1-update-2.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  height: 90vh;
+}
+.datepicker {
+  margin-left: 10px !important;
+  margin-top: 10px !important;
+  border: 2px solid white !important;
+}
+.datepicker input {
+  width: 100px;
+  text-align: center;
+  color: white !important;
+  cursor: pointer;
+}

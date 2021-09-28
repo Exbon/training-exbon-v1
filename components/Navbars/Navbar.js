@@ -135,7 +135,7 @@ export default function Header(props) {
             </div>
           ) : (
             <Button color="transparent" href="#" className={classes.title}>
-              {makeBrand()}
+              {/* {makeBrand()} */}
             </Button>
           )}
         </div>
