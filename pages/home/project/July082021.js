@@ -10,25 +10,74 @@ import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
 import "./July082021.css";
 
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 
 import DateFnsUtils from "@date-io/date-fns";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { Button } from "@mui/material";
+import Button from "@material-ui/core/Button";
 import Link from "next/link";
+import { withStyles } from "@material-ui/core/styles";
+import MuiAccordion from "@material-ui/core/Accordion";
+import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
+import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
+import Typography from "@material-ui/core/Typography";
+
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import "./project.css";
 
 const July082021 = () => {
+  const Accordion = withStyles({
+    root: {
+      border: "1px solid rgba(0, 0, 0, .125)",
+      marginTop: "0px",
+      paddingTop: "0px",
+      boxShadow: "none",
+      "&:not(:last-child)": {
+        borderBottom: 0,
+      },
+      "&:before": {
+        display: "none",
+      },
+      "&:hover": {
+        color: "#109b84",
+        backgroundColor: "#eff3f2",
+        border: "2px solid",
+      },
+      "&$expanded": {
+        margin: "auto",
+      },
+    },
+    expanded: {},
+  })(MuiAccordion);
+
+  const AccordionSummary = withStyles({
+    root: {
+      backgroundColor: "rgba(0, 0, 0, .03)",
+      borderBottom: "1px solid rgba(0, 0, 0, .125)",
+      marginBottom: -1,
+      minHeight: 26,
+      "&$expanded": {
+        minHeight: 26,
+      },
+    },
+    content: {
+      margin: "1px 0",
+      "&$expanded": {
+        margin: "1px 0",
+      },
+    },
+    expanded: {},
+  })(MuiAccordionSummary);
+
+  const AccordionDetails = withStyles(theme => ({
+    root: {
+      padding: theme.spacing(2),
+    },
+  }))(MuiAccordionDetails);
+
   const router = useRouter();
 
   const [data, setData] = useState(() => []);
@@ -204,47 +253,6 @@ const July082021 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const Accordion = styled(props => (
-    <MuiAccordion disableGutters elevation={0} square {...props} />
-  ))(({ theme }) => ({
-    border: `1px solid ${theme.palette.divider}`,
-    "&:not(:last-child)": {
-      borderBottom: 0,
-    },
-    "&:before": {
-      display: "none",
-    },
-    "&:hover": {
-      color: "#1790a0",
-      backgroundColor: "#eff3f2",
-      border: "2px solid",
-    },
-  }));
-
-  const AccordionSummary = styled(props => (
-    <MuiAccordionSummary
-      expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
-      {...props}
-    />
-  ))(({ theme }) => ({
-    backgroundColor:
-      theme.palette.mode === "dark"
-        ? "rgba(255, 255, 255, .05)"
-        : "rgba(0, 0, 0, .03)",
-    flexDirection: "row-reverse",
-    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-      transform: "rotate(90deg)",
-    },
-    "& .MuiAccordionSummary-content": {
-      marginLeft: theme.spacing(1),
-    },
-  }));
-
-  const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-    padding: theme.spacing(2),
-    borderTop: "1px solid rgba(0, 0, 0, .125)",
-  }));
-
   const [acc, setAcc] = useState({
     first: false,
     second: false,
@@ -300,7 +308,7 @@ const July082021 = () => {
       ) : (
         <div className="background">
           <Box sx={{ width: "100%" }}>
-            <Grid container columnSpacing={{ xs: 5 }}>
+            <Grid container>
               <Grid item xs={6}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <DatePicker
@@ -317,19 +325,43 @@ const July082021 = () => {
                 <br />
                 <br />
                 <br />
-                <div style={{ marginLeft: "30px" }}>
+                <div style={{ marginLeft: "30px", marginRight: "30px" }}>
                   <Accordion
                     expanded={acc.first}
                     className="acc"
                     onChange={() => changeAcc("first")}
                   >
                     <AccordionSummary id="acc1">
-                      <Typography style={{ fontWeight: "500" }}>
-                        Field Worker
-                      </Typography>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-start",
+                          marginTop: "9px",
+                          marginBottom: "11px",
+                        }}
+                      >
+                        {acc.first ? (
+                          <ExpandMoreIcon />
+                        ) : (
+                          <ChevronRightIcon style={{ marginBottom: "0px" }} />
+                        )}
+                        <p
+                          style={{
+                            fontWeight: "500",
+                            marginTop: "3px",
+                            marginBottom: "4px",
+                          }}
+                        >
+                          Field Worker
+                        </p>
+                      </div>
                     </AccordionSummary>
                     <AccordionDetails
-                      style={{ color: "#6e6b6b", fontWeight: "500" }}
+                      style={{
+                        color: "#6e6b6b",
+                        fontWeight: "500",
+                        marginLeft: "20px",
+                      }}
                     >
                       3 field workers worked on Task 1 for 8 hours.
                     </AccordionDetails>
@@ -339,12 +371,36 @@ const July082021 = () => {
                     onChange={() => changeAcc("second")}
                   >
                     <AccordionSummary id="acc2">
-                      <Typography style={{ fontWeight: "500" }}>
-                        Subcontractor
-                      </Typography>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-start",
+                          marginTop: "9px",
+                          marginBottom: "11px",
+                        }}
+                      >
+                        {acc.second ? (
+                          <ExpandMoreIcon />
+                        ) : (
+                          <ChevronRightIcon style={{ marginBottom: "0px" }} />
+                        )}
+                        <p
+                          style={{
+                            fontWeight: "500",
+                            marginTop: "3px",
+                            marginBottom: "4px",
+                          }}
+                        >
+                          Subcontractor
+                        </p>
+                      </div>
                     </AccordionSummary>
                     <AccordionDetails
-                      style={{ color: "#6e6b6b", fontWeight: "500" }}
+                      style={{
+                        color: "#6e6b6b",
+                        fontWeight: "500",
+                        marginLeft: "20px",
+                      }}
                     >
                       ABC subcontractor finished 20% of Task 2.
                     </AccordionDetails>
@@ -352,8 +408,8 @@ const July082021 = () => {
                 </div>
               </Grid>
               <Grid item xs={6}>
-                <Box
-                  sx={{
+                <div
+                  style={{
                     minHeight: "90vh",
                     borderRadius: "10px",
                     display: "flex",
@@ -421,7 +477,7 @@ const July082021 = () => {
                       </Button>
                     </Link>
                   </div>
-                </Box>
+                </div>
               </Grid>
             </Grid>
           </Box>

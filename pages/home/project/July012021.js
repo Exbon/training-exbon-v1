@@ -11,23 +11,49 @@ import Loader from "react-loader-spinner";
 import "./project.css";
 import "./July012021.css";
 
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 
 import DateFnsUtils from "@date-io/date-fns";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { Button } from "@mui/material";
+import Button from "@material-ui/core/Button";
 import Link from "next/link";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+import InputBase from "@material-ui/core/InputBase";
+import InputLabel from "@material-ui/core/InputLabel";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
+
+import { green, orange } from "@material-ui/core/colors";
 
 const July012021 = () => {
+  const ValidationTextField = withStyles({
+    root: {
+      "& .MuiOutlinedInput-root": {
+        "& fieldset": {
+          borderColor: "#ee6414",
+        },
+        "&:hover fieldset": {
+          borderColor: "#ee6414",
+        },
+        "&.Mui-focused fieldset": {
+          borderColor: "#ee6414",
+        },
+      },
+    },
+  })(TextField);
+  const useStyles = makeStyles(theme => ({
+    root: {
+      display: "flex",
+      flexWrap: "wrap",
+    },
+    margin: {
+      margin: theme.spacing(1),
+    },
+  }));
+
+  const classes = useStyles();
+
   const router = useRouter();
 
   const [data, setData] = useState(() => []);
@@ -204,47 +230,6 @@ const July012021 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const Accordion = styled(props => (
-    <MuiAccordion disableGutters elevation={0} square {...props} />
-  ))(({ theme }) => ({
-    border: `1px solid ${theme.palette.divider}`,
-    "&:not(:last-child)": {
-      borderBottom: 0,
-    },
-    "&:before": {
-      display: "none",
-    },
-    "&:hover": {
-      color: "#109b84",
-      backgroundColor: "#eff3f2",
-      border: "2px solid",
-    },
-  }));
-
-  const AccordionSummary = styled(props => (
-    <MuiAccordionSummary
-      expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
-      {...props}
-    />
-  ))(({ theme }) => ({
-    backgroundColor:
-      theme.palette.mode === "dark"
-        ? "rgba(255, 255, 255, .05)"
-        : "rgba(0, 0, 0, .03)",
-    flexDirection: "row-reverse",
-    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-      transform: "rotate(90deg)",
-    },
-    "& .MuiAccordionSummary-content": {
-      marginLeft: theme.spacing(1),
-    },
-  }));
-
-  const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-    padding: theme.spacing(2),
-    borderTop: "1px solid rgba(0, 0, 0, .125)",
-  }));
-
   return (
     <>
       {promiseInProgress ? (
@@ -286,8 +271,8 @@ const July012021 = () => {
         </div>
       ) : (
         <div className="background">
-          <Box sx={{ width: "100%" }}>
-            <Grid container columnSpacing={{ xs: 5 }}>
+          <div style={{ width: "100%" }}>
+            <Grid container>
               <Grid item xs={6}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <DatePicker
@@ -304,25 +289,10 @@ const July012021 = () => {
                 <br />
                 <br />
                 <br />
-                {/* <Accordion expanded={acc.first} onChange={() => changeAcc("first")}>
-            <AccordionSummary id="acc1">
-              <Typography>OneDrive Link</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                <a
-                  target="_blank"
-                  href="https://exboncom-my.sharepoint.com/:f:/r/personal/hammer_exbon_com/Documents/Exbon%20Drive?csf=1&web=1&e=hCB762"
-                >
-                  Link
-                </a>
-              </Typography>
-            </AccordionDetails>
-          </Accordion> */}
               </Grid>
               <Grid item xs={6}>
-                <Box
-                  sx={{
+                <div
+                  style={{
                     minHeight: "90vh",
                     borderRadius: "10px",
                     display: "flex",
@@ -366,15 +336,21 @@ const July012021 = () => {
                       <p style={{ color: "white", fontWeight: "500" }}>
                         Q1. What is the project’s NTP Date?
                       </p>
-                      <TextField
-                        label="Answer"
+                      <ValidationTextField
                         fullWidth
-                        multiline
-                        rows={4}
-                        defaultValue=""
-                        className="textfield"
-                        color="warning"
+                        multiline={true}
+                        rows={3}
+                        className={classes.margin}
+                        label="Answer"
+                        variant="outlined"
+                        id="validation-outlined-input"
                         focused
+                        InputLabelProps={{
+                          style: { color: "#ee6414" },
+                        }}
+                        InputProps={{
+                          style: { color: "white" },
+                        }}
                       />
                     </div>
                   </div>
@@ -393,10 +369,10 @@ const July012021 = () => {
                       </Button>
                     </Link>
                   </div>
-                </Box>
+                </div>
               </Grid>
             </Grid>
-          </Box>
+          </div>
         </div>
       )}
     </>

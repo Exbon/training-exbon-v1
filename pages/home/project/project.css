@@ -47,3 +47,8 @@
 .checkBox {
   color: orange !important;
 }
+
+.submitBtn {
+  color: white !important;
+  background-color: #b43499 !important;
+}

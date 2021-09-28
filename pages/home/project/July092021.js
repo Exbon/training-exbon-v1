@@ -10,29 +10,20 @@ import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
 import "./July092021.css";
 
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
 
 import DateFnsUtils from "@date-io/date-fns";
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
-import { Button } from "@mui/material";
+import Button from "@material-ui/core/Button";
 import Link from "next/link";
 
-import FormLabel from "@mui/material/FormLabel";
-import FormControl from "@mui/material/FormControl";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormHelperText from "@mui/material/FormHelperText";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-import Checkbox from "@mui/material/Checkbox";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import "./project.css";
 
@@ -212,47 +203,6 @@ const July092021 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const Accordion = styled(props => (
-    <MuiAccordion disableGutters elevation={0} square {...props} />
-  ))(({ theme }) => ({
-    border: `1px solid ${theme.palette.divider}`,
-    "&:not(:last-child)": {
-      borderBottom: 0,
-    },
-    "&:before": {
-      display: "none",
-    },
-    "&:hover": {
-      color: "#1790a0",
-      backgroundColor: "#eff3f2",
-      border: "2px solid",
-    },
-  }));
-
-  const AccordionSummary = styled(props => (
-    <MuiAccordionSummary
-      expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
-      {...props}
-    />
-  ))(({ theme }) => ({
-    backgroundColor:
-      theme.palette.mode === "dark"
-        ? "rgba(255, 255, 255, .05)"
-        : "rgba(0, 0, 0, .03)",
-    flexDirection: "row-reverse",
-    "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-      transform: "rotate(90deg)",
-    },
-    "& .MuiAccordionSummary-content": {
-      marginLeft: theme.spacing(1),
-    },
-  }));
-
-  const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-    padding: theme.spacing(2),
-    borderTop: "1px solid rgba(0, 0, 0, .125)",
-  }));
-
   const [acc, setAcc] = useState({
     first: false,
     second: false,
@@ -323,8 +273,8 @@ const July092021 = () => {
         </div>
       ) : (
         <div className="background">
-          <Box sx={{ width: "100%" }}>
-            <Grid container columnSpacing={{ xs: 5 }}>
+          <div style={{ width: "100%" }}>
+            <Grid container>
               <Grid item xs={6}>
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                   <DatePicker
@@ -376,8 +326,8 @@ const July092021 = () => {
                 </div> */}
               </Grid>
               <Grid item xs={6}>
-                <Box
-                  sx={{
+                <div
+                  style={{
                     minHeight: "90vh",
                     borderRadius: "10px",
                     display: "flex",
@@ -540,10 +490,10 @@ const July092021 = () => {
                       </Button>
                     </Link>
                   </div>
-                </Box>
+                </div>
               </Grid>
             </Grid>
-          </Box>
+          </div>
         </div>
       )}
     </>
