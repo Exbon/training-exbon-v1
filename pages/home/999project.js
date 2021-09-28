@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import Admin from "layouts/Admin.js";
-import LoginComponent from "../../../components/New/LoginComponent";
+import LoginComponent from "../../components/New/LoginComponent";
 import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
 import { useTable, useBlockLayout, useSortBy } from "react-table";
-import { formatDate } from "../../../components/New/formatDate";
+import { formatDate } from "../../components/New/formatDate";
 import Router, { useRouter } from "next/router";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
-import "./July012021.css";
+import "./999project.css";
 
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -20,13 +20,13 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-
-import DateFnsUtils from "@date-io/date-fns";
-import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateAdapter from "@date-io/date-fns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DatePicker from "@mui/lab/DatePicker";
 import { Button } from "@mui/material";
 import Link from "next/link";
 
-const July012021 = () => {
+const Project = () => {
   const router = useRouter();
 
   const [data, setData] = useState(() => []);
@@ -130,17 +130,20 @@ const July012021 = () => {
     const fetchData = async () => {
       if (status.cookies.username !== 0) {
         if (status.cookies.username !== undefined) {
-          //In Progress
-          await axios({
-            method: "post",
-            url: `/api/dashboard/signin`,
-            timeout: 5000, // 5 seconds timeout
-            headers: {},
-            data: {
-              Username: status.cookies.username,
-              Password: status.cookies.password,
-            },
-          }).then(response => {});
+          if (router.query.status !== "completed") {
+            //In Progress
+            await axios({
+              method: "post",
+              url: `/api/dashboard/signin`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {},
+              data: {
+                Username: status.cookies.username,
+                Password: status.cookies.password,
+              },
+            }).then(response => {});
+          } else {
+          }
         }
       } else {
         if (router.query.hash !== undefined) {
@@ -284,116 +287,14 @@ const July012021 = () => {
           />
         </div>
       ) : (
-        <div className="background">
-          <Box sx={{ width: "100%" }}>
-            <Grid container columnSpacing={{ xs: 5 }}>
-              <Grid item xs={6}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <DatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    value={"07/01/2021"}
-                    onChange={() => {}}
-                    className="datepicker"
-                    autoOk={true}
-                  />
-                </MuiPickersUtilsProvider>
-
-                <br />
-                <br />
-                <br />
-                {/* <Accordion expanded={acc.first} onChange={() => changeAcc("first")}>
-            <AccordionSummary id="acc1">
-              <Typography>OneDrive Link</Typography>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Typography>
-                <a
-                  target="_blank"
-                  href="https://exboncom-my.sharepoint.com/:f:/r/personal/hammer_exbon_com/Documents/Exbon%20Drive?csf=1&web=1&e=hCB762"
-                >
-                  Link
-                </a>
-              </Typography>
-            </AccordionDetails>
-          </Accordion> */}
-              </Grid>
-              <Grid item xs={6}>
-                <Box
-                  sx={{
-                    minHeight: "90vh",
-                    borderRadius: "10px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    borderLeft: "2px dotted #7e7a7a",
-                    borderTopLeftRadius: "0px",
-                    borderBottomLeftRadius: "0px",
-                  }}
-                >
-                  <div style={{ padding: "1%" }}>
-                    <h2
-                      style={{
-                        color: "#fcfaf8",
-                        fontWeight: "400",
-                        textAlign: "center",
-                      }}
-                    >
-                      Objective: The project has been awarded.
-                    </h2>
-                    <p
-                      style={{
-                        marginTop: "40px",
-                        marginLeft: "5px",
-                        marginBottom: "20px",
-                        color: "#fcfaf8",
-                        fontWeight: "500",
-                      }}
-                    >
-                      Locate the NTP document in OneDrive and go over it.
-                    </p>
-                    <div
-                      style={{
-                        borderTop: "2px dotted #7e7a7a",
-                        borderBottom: "2px dotted #7e7a7a",
-                        borderRadius: "2px",
-                        padding: "1%",
-                        paddingBottom: "3%",
-                      }}
-                    >
-                      <p style={{ color: "white", fontWeight: "500" }}>
-                        Q1. What is the project’s NTP Date?
-                      </p>
-                      <TextField
-                        label="Answer"
-                        fullWidth
-                        multiline
-                        rows={4}
-                        defaultValue=""
-                        className="textfield"
-                        color="warning"
-                        focused
-                      />
-                    </div>
-                  </div>
-                  <div style={{ padding: "1%", textAlign: "right" }}>
-                    <Link href="./July082021">
-                      <Button variant="contained" className="nextBtn">
-                        NEXT
-                      </Button>
-                    </Link>
-                  </div>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
-        </div>
+        <>
+          <div className="background">tes</div>
+        </>
       )}
     </>
   );
 };
 
-July012021.layout = Admin;
+Project.layout = Admin;
 
-export default July012021;
+export default Project;

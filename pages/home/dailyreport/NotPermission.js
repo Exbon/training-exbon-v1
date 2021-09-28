@@ -7,7 +7,9 @@ const NotPermission = ({ path }) => {
       <h1>No permissions</h1>
       <a
         href={
-          path === "dashboard" ? "/home/dashboard" : `/home/dailyreport/${path}`
+          path === "dashboard"
+            ? "/home/project/July012021"
+            : `/home/dailyreport/${path}`
         }
       >
         Go to main page

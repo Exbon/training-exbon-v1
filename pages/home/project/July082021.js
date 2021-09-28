@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import Admin from "layouts/Admin.js";
-import LoginComponent from "../../components/New/LoginComponent";
+import LoginComponent from "../../../components/New/LoginComponent";
 import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
 import { useTable, useBlockLayout, useSortBy } from "react-table";
-import { formatDate } from "../../components/New/formatDate";
+import { formatDate } from "../../../components/New/formatDate";
 import Router, { useRouter } from "next/router";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
-import "./project.css";
+import "./July082021.css";
 
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -20,13 +20,13 @@ import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
-import DateAdapter from "@date-io/date-fns";
-import LocalizationProvider from "@mui/lab/LocalizationProvider";
-import DatePicker from "@mui/lab/DatePicker";
+
+import DateFnsUtils from "@date-io/date-fns";
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Button } from "@mui/material";
 import Link from "next/link";
 
-const Project = () => {
+const July082021 = () => {
   const router = useRouter();
 
   const [data, setData] = useState(() => []);
@@ -130,20 +130,16 @@ const Project = () => {
     const fetchData = async () => {
       if (status.cookies.username !== 0) {
         if (status.cookies.username !== undefined) {
-          if (router.query.status !== "completed") {
-            //In Progress
-            await axios({
-              method: "post",
-              url: `/api/dashboard/signin`,
-              timeout: 5000, // 5 seconds timeout
-              headers: {},
-              data: {
-                Username: status.cookies.username,
-                Password: status.cookies.password,
-              },
-            }).then(response => {});
-          } else {
-          }
+          await axios({
+            method: "post",
+            url: `/api/dashboard/signin`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              Username: status.cookies.username,
+              Password: status.cookies.password,
+            },
+          }).then(response => {});
         }
       } else {
         if (router.query.hash !== undefined) {
@@ -217,7 +213,7 @@ const Project = () => {
       display: "none",
     },
     "&:hover": {
-      color: "#109b84",
+      color: "#1790a0",
       backgroundColor: "#eff3f2",
       border: "2px solid",
     },
@@ -246,6 +242,19 @@ const Project = () => {
     padding: theme.spacing(2),
     borderTop: "1px solid rgba(0, 0, 0, .125)",
   }));
+
+  const [acc, setAcc] = useState({
+    first: false,
+    second: false,
+  });
+
+  const changeAcc = order => {
+    if (order == "first") {
+      setAcc({ ...acc, first: !acc.first });
+    } else if (order == "second") {
+      setAcc({ ...acc, second: !acc.second });
+    }
+  };
 
   return (
     <>
@@ -287,14 +296,146 @@ const Project = () => {
           />
         </div>
       ) : (
-        <>
-          <div className="background">tes</div>
-        </>
+        <div className="background">
+          <Box sx={{ width: "100%" }}>
+            <Grid container columnSpacing={{ xs: 5 }}>
+              <Grid item xs={6}>
+                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <DatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="MM/dd/yyyy"
+                    value={"07/08/2021"}
+                    onChange={() => {}}
+                    className="datepicker"
+                    autoOk={true}
+                  />
+                </MuiPickersUtilsProvider>
+
+                <br />
+                <br />
+                <br />
+                <div style={{ marginLeft: "30px" }}>
+                  <Accordion
+                    expanded={acc.first}
+                    className="acc"
+                    onChange={() => changeAcc("first")}
+                  >
+                    <AccordionSummary id="acc1">
+                      <Typography style={{ fontWeight: "500" }}>
+                        Field Worker
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails
+                      style={{ color: "#6e6b6b", fontWeight: "500" }}
+                    >
+                      3 field workers worked on Task 1 for 8 hours.
+                    </AccordionDetails>
+                  </Accordion>
+                  <Accordion
+                    expanded={acc.second}
+                    onChange={() => changeAcc("second")}
+                  >
+                    <AccordionSummary id="acc2">
+                      <Typography style={{ fontWeight: "500" }}>
+                        Subcontractor
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails
+                      style={{ color: "#6e6b6b", fontWeight: "500" }}
+                    >
+                      ABC subcontractor finished 20% of Task 2.
+                    </AccordionDetails>
+                  </Accordion>
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <Box
+                  sx={{
+                    minHeight: "90vh",
+                    borderRadius: "10px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    borderLeft: "2px dotted #7e7a7a",
+                    borderTopLeftRadius: "0px",
+                    borderBottomLeftRadius: "0px",
+                  }}
+                >
+                  <div style={{ padding: "1%" }}>
+                    <h2
+                      style={{
+                        color: "#fcfaf8",
+                        fontWeight: "400",
+                        textAlign: "center",
+                      }}
+                    >
+                      Objective: Daily Report
+                    </h2>
+                    <p
+                      style={{
+                        marginTop: "40px",
+                        marginBottom: "20px",
+                        color: "#f7f3f0",
+                        fontWeight: "500",
+                        marginLeft: "5px",
+                      }}
+                    >
+                      Today is the first day of construction.
+                    </p>
+                    <div
+                      style={{
+                        borderTop: "3px dotted #7e7a7a",
+                        borderBottom: "3px dotted #7e7a7a",
+                        borderRadius: "2px",
+                        padding: "1%",
+                        paddingBottom: "3%",
+                      }}
+                    >
+                      <p style={{ color: "white", fontWeight: "500" }}>
+                        Q1. Fill out timesheet and daily report for the day.
+                      </p>
+                      <TextField
+                        label="Answer"
+                        fullWidth
+                        multiline
+                        rows={2}
+                        defaultValue=""
+                        className="textfield"
+                        color="warning"
+                        focused
+                      />
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      padding: "1%",
+                      textAlign: "right",
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Link href="./July012021">
+                      <Button variant="outlined" className="nextBtn">
+                        PREVIOUS
+                      </Button>
+                    </Link>
+                    <Link href="./July092021">
+                      <Button variant="contained" className="nextBtn">
+                        NEXT
+                      </Button>
+                    </Link>
+                  </div>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+        </div>
       )}
     </>
   );
 };
 
-Project.layout = Admin;
+July082021.layout = Admin;
 
-export default Project;
+export default July082021;

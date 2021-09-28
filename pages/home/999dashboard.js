@@ -9,7 +9,7 @@ import { formatDate } from "../../components/New/formatDate";
 import Router, { useRouter } from "next/router";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
-import "./dashboard.css";
+import "./999dashboard.css";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -638,22 +638,17 @@ const Dashboard = () => {
     Cell: EditableCell,
   };
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable(
-    {
-      columns,
-      data,
-      defaultColumn,
-      updateMyData,
-    },
-    useBlockLayout,
-    useSortBy
-  );
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable(
+      {
+        columns,
+        data,
+        defaultColumn,
+        updateMyData,
+      },
+      useBlockLayout,
+      useSortBy
+    );
   const { promiseInProgress } = usePromiseTracker();
 
   // useEffect(() => {

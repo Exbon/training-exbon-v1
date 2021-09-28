@@ -61,7 +61,7 @@ const login = () => {
           maxAge: 3600 * 24 * 30,
         });
 
-        Router.push(`/home/project`);
+        Router.push(`/home/project/July012021`);
       } else {
         alert("Login failed.");
       }
