@@ -397,16 +397,6 @@ const July082021 = () => {
                       <p style={{ color: "white", fontWeight: "500" }}>
                         Q1. Fill out timesheet and daily report for the day.
                       </p>
-                      <TextField
-                        label="Answer"
-                        fullWidth
-                        multiline
-                        rows={2}
-                        defaultValue=""
-                        className="textfield"
-                        color="warning"
-                        focused
-                      />
                     </div>
                   </div>
                   <div
