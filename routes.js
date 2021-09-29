@@ -28,6 +28,13 @@ import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 import Language from "@material-ui/icons/Language";
 import WorkIcon from "@material-ui/icons/Work";
+import CloudIcon from "@material-ui/icons/Cloud";
+import WatchLaterIcon from "@material-ui/icons/WatchLater";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import ExposureIcon from "@material-ui/icons/Exposure";
+import EditIcon from "@material-ui/icons/Edit";
+import BorderColorIcon from "@material-ui/icons/BorderColor";
+import SyncProblemIcon from "@material-ui/icons/SyncProblem";
 // function getCookie(cname) {
 //   var name = cname + "=";
 //   var decodedCookie = decodeURIComponent(document.cookie);
@@ -48,19 +55,19 @@ const dashboardRoutes = [
   {
     path: "/project/July012021",
     name: "OneDrive",
-    icon: Dashboard,
+    icon: CloudIcon,
     layout: "/home",
   },
   {
     path: "/project/July082021",
     name: "Daily Report",
-    icon: Dashboard,
+    icon: WatchLaterIcon,
     layout: "/home",
   },
   {
     path: "/project/July092021",
     name: "Change Order",
-    icon: Dashboard,
+    icon: SyncProblemIcon,
     layout: "/home",
   },
   // {
