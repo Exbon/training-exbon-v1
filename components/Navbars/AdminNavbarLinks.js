@@ -66,7 +66,7 @@ export default function AdminNavbarLinks() {
             style={{
               fontFamily: "Roboto",
               fontWeight: "600",
-              color: "#808286",
+              color: "#c0c2c7",
               marginTop: "16px",
             }}
           >
@@ -81,7 +81,7 @@ export default function AdminNavbarLinks() {
             onClick={handleClickProfile}
             className={classes.buttonLink}
           >
-            <Person className={classes.icons} />
+            <Person className={classes.icons} style={{ color: "#c0c2c7" }} />
           </Button>
           <Poppers
             open={Boolean(openProfile)}
