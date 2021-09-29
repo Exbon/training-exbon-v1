@@ -57,6 +57,7 @@ const July012021 = () => {
   const router = useRouter();
 
   const [data, setData] = useState(() => []);
+  const [testData, setTestData] = useState(() => []);
   const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
     cookies: {
@@ -121,31 +122,7 @@ const July012021 = () => {
             "Loading Error.(POST /api/dashboard/signin) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
               err
           );
-          setData(() => [
-            {
-              ProjectGroup: "",
-              ProjectID: "",
-              ProjectName: "No Permission",
-              ContractAmount: "",
-              Director: "",
-              PIC: "",
-              Associate1: "",
-              Associate2: "",
-              Associate3: "",
-              Position: "",
-              BaselineCost: "",
-              EEAC: "",
-              CV: "",
-              CPI: "",
-              ESPI: "",
-              WorkCompletion: "",
-              StartDate: "",
-              FinishDate: "",
-              Deadline: "",
-              IsDesign: "",
-              DesignParentID: "",
-            },
-          ]);
+          setData(() => [{}]);
         });
     promises.push(fetchData());
     trackPromise(Promise.all(promises).then(() => {}));
@@ -230,8 +207,24 @@ const July012021 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `https://www.wrike.com/api/v4/contacts`,
+      timeout: 5000, // 5 seconds timeout
+      headers: {
+        Authorization:
+          "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+      },
+      // data: {
+      //   hashstr: router.query.hash,
+      // },
+    }).then(response => setTestData(response));
+  }, []);
+
   return (
     <>
+      {/* {console.log(testData)} */}
       {promiseInProgress ? (
         <div
           style={{

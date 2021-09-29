@@ -17,10 +17,14 @@ import useWindowSize from "components/Hooks/useWindowSize.js";
 import styles from "assets/jss/nextjs-material-dashboard/components/headerLinksStyle.js";
 
 import { CookiesProvider, useCookies } from "react-cookie";
+import { isFirstDayOfMonth } from "date-fns";
+
+import axios from "axios";
 
 export default function AdminNavbarLinks() {
   const [cookies, setCookie, removeCookie] = useCookies();
   const [state, setState] = useState({ FullName: "" });
+  const [testData, setTestData] = useState("");
 
   const size = useWindowSize();
   const useStyles = makeStyles(styles);
@@ -57,9 +61,31 @@ export default function AdminNavbarLinks() {
     setState({
       FullName: cookies.fullname,
     });
+
+    axios({
+      method: "get",
+      url: `https://www.wrike.com/api/v4/contacts`,
+      timeout: 5000, // 5 seconds timeout
+      headers: {
+        Authorization:
+          "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+      },
+      // data: {
+      //   hashstr: router.query.hash,
+      // },
+    }).then(response => {
+      let data = response.data.data;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].profiles[0].email == cookies.username + "@exbon.com") {
+          setTestData(data[i].id);
+        }
+      }
+    });
   }, [cookies]);
+
   return (
     <div>
+      {console.log(testData)}
       <div className={classes.manager}>
         <div style={{ display: "flex" }}>
           <p
@@ -70,7 +96,7 @@ export default function AdminNavbarLinks() {
               marginTop: "16px",
             }}
           >
-            {state.FullName}
+            {state.FullName} ({testData})
           </p>
           <Button
             color={size.width > 959 ? "transparent" : "white"}
