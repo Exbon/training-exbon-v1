@@ -47,7 +47,19 @@ import WorkIcon from "@material-ui/icons/Work";
 const dashboardRoutes = [
   {
     path: "/project/July012021",
-    name: "Project",
+    name: "OneDrive",
+    icon: Dashboard,
+    layout: "/home",
+  },
+  {
+    path: "/project/July082021",
+    name: "Daily Report",
+    icon: Dashboard,
+    layout: "/home",
+  },
+  {
+    path: "/project/July092021",
+    name: "Change Order",
     icon: Dashboard,
     layout: "/home",
   },

@@ -1,5 +1,6 @@
 .background {
-  background-image: url("../../../assets/img/back3-2.jpg");
+  /* background-image: url("../../../assets/img/back3-2.jpg"); */
+  background-color: rgb(73, 70, 70);
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
