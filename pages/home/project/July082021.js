@@ -26,7 +26,9 @@ import Typography from "@material-ui/core/Typography";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
+import PersonImage from "../../../assets/img/Person1.png";
 import "./project.css";
+import { Person } from "@material-ui/icons";
 
 const July082021 = () => {
   const Accordion = withStyles({
@@ -326,7 +328,8 @@ const July082021 = () => {
                 <br />
                 <br />
                 <div style={{ marginLeft: "30px", marginRight: "30px" }}>
-                  <Accordion
+                  <img src={PersonImage} style={{ width: "300px" }} />
+                  {/* <Accordion
                     expanded={acc.first}
                     className="acc"
                     onChange={() => changeAcc("first")}
@@ -404,7 +407,7 @@ const July082021 = () => {
                     >
                       ABC subcontractor finished 20% of Task 2.
                     </AccordionDetails>
-                  </Accordion>
+                  </Accordion> */}
                 </div>
               </Grid>
               <Grid item xs={6}>
