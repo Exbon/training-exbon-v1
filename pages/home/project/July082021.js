@@ -259,6 +259,7 @@ const July082021 = () => {
     first: false,
     second: false,
   });
+  const [stateImage, setStateImage] = useState(false);
 
   const changeAcc = order => {
     if (order == "first") {
@@ -336,21 +337,29 @@ const July082021 = () => {
                     justifyContent: "center",
                   }}
                 >
-                  <img src={PersonImage} style={{ width: "300px" }} />
-                  <blockquote
-                    className="example-obtuse"
-                    style={{ width: "200px", height: "160px" }}
-                  >
-                    <p style={{ fontSize: "1.2rem" }}>
-                      I'm Adam, working as Exbon field worker.
-                    </p>
-                    <p style={{ fontSize: "1.2rem", marginTop: "10px" }}>
-                      I worked 8 hours today on Task A.
-                    </p>
-                    <p style={{ fontSize: "1.2rem", marginTop: "10px" }}>
-                      Exbon's subcontractor, ABC, finished 20% of Task 2.
-                    </p>
-                  </blockquote>
+                  <img
+                    src={PersonImage}
+                    style={{ width: "300px", cursor: "pointer" }}
+                    onClick={() => setStateImage(true)}
+                  />
+                  {stateImage ? (
+                    <blockquote
+                      className="example-obtuse"
+                      style={{ width: "200px", height: "160px" }}
+                    >
+                      <p style={{ fontSize: "1.2rem" }}>
+                        I'm Adam, working as Exbon field worker.
+                      </p>
+                      <p style={{ fontSize: "1.2rem", marginTop: "10px" }}>
+                        I worked 8 hours today on Task A.
+                      </p>
+                      <p style={{ fontSize: "1.2rem", marginTop: "10px" }}>
+                        Exbon's subcontractor, ABC, finished 20% of Task 2.
+                      </p>
+                    </blockquote>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </Grid>
               <Grid item xs={6}>
