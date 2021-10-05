@@ -331,7 +331,9 @@ const July082021 = () => {
                   style={{
                     marginLeft: "30px",
                     marginRight: "30px",
+                    marginTop: "40px",
                     display: "flex",
+                    justifyContent: "center",
                   }}
                 >
                   <img src={PersonImage} style={{ width: "300px" }} />
