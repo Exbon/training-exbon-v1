@@ -327,87 +327,28 @@ const July082021 = () => {
                 <br />
                 <br />
                 <br />
-                <div style={{ marginLeft: "30px", marginRight: "30px" }}>
+                <div
+                  style={{
+                    marginLeft: "30px",
+                    marginRight: "30px",
+                    display: "flex",
+                  }}
+                >
                   <img src={PersonImage} style={{ width: "300px" }} />
-                  {/* <Accordion
-                    expanded={acc.first}
-                    className="acc"
-                    onChange={() => changeAcc("first")}
+                  <blockquote
+                    className="example-obtuse"
+                    style={{ width: "200px", height: "160px" }}
                   >
-                    <AccordionSummary id="acc1">
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-start",
-                          marginTop: "9px",
-                          marginBottom: "11px",
-                        }}
-                      >
-                        {acc.first ? (
-                          <ExpandMoreIcon />
-                        ) : (
-                          <ChevronRightIcon style={{ marginBottom: "0px" }} />
-                        )}
-                        <p
-                          style={{
-                            fontWeight: "500",
-                            marginTop: "3px",
-                            marginBottom: "4px",
-                          }}
-                        >
-                          Field Worker
-                        </p>
-                      </div>
-                    </AccordionSummary>
-                    <AccordionDetails
-                      style={{
-                        color: "#6e6b6b",
-                        fontWeight: "500",
-                        marginLeft: "20px",
-                      }}
-                    >
-                      3 field workers worked on Task 1 for 8 hours.
-                    </AccordionDetails>
-                  </Accordion>
-                  <Accordion
-                    expanded={acc.second}
-                    onChange={() => changeAcc("second")}
-                  >
-                    <AccordionSummary id="acc2">
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "flex-start",
-                          marginTop: "9px",
-                          marginBottom: "11px",
-                        }}
-                      >
-                        {acc.second ? (
-                          <ExpandMoreIcon />
-                        ) : (
-                          <ChevronRightIcon style={{ marginBottom: "0px" }} />
-                        )}
-                        <p
-                          style={{
-                            fontWeight: "500",
-                            marginTop: "3px",
-                            marginBottom: "4px",
-                          }}
-                        >
-                          Subcontractor
-                        </p>
-                      </div>
-                    </AccordionSummary>
-                    <AccordionDetails
-                      style={{
-                        color: "#6e6b6b",
-                        fontWeight: "500",
-                        marginLeft: "20px",
-                      }}
-                    >
-                      ABC subcontractor finished 20% of Task 2.
-                    </AccordionDetails>
-                  </Accordion> */}
+                    <p style={{ fontSize: "1.2rem" }}>
+                      I'm Adam, working as Exbon field worker.
+                    </p>
+                    <p style={{ fontSize: "1.2rem", marginTop: "10px" }}>
+                      I worked 8 hours today on Task A.
+                    </p>
+                    <p style={{ fontSize: "1.2rem", marginTop: "10px" }}>
+                      Exbon's subcontractor, ABC, finished 20% of Task 2.
+                    </p>
+                  </blockquote>
                 </div>
               </Grid>
               <Grid item xs={6}>

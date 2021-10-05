@@ -1,60 +1,94 @@
-.background {
-  /* background-image: url("../../../assets/img/back3-2.jpg"); */
-  background-color: #5e5a5a;
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 5px;
-  height: 90vh;
+/* ------------------------------------------
+PURE CSS SPEECH BUBBLES
+by Nicolas Gallagher
+- http://nicolasgallagher.com/pure-css-speech-bubbles/
+
+http://nicolasgallagher.com
+http://twitter.com/necolas
+
+Created: 02 March 2010
+Version: 1.2 (03 March 2011)
+
+Dual licensed under MIT and GNU GPLv2 Nicolas Gallagher
+------------------------------------------ */
+
+/* NOTE: Some declarations use longhand notation so that it can be clearly
+explained what specific properties or values do and what their relationship
+is to other properties or values in creating the effect */
+
+/* ============================================================================================================================
+== GENERAL STYLES
+** ============================================================================================================================ */
+
+body {
+  padding: 0;
+  margin: 0;
+  font: 1em/1.4 Cambria, Georgia, sans-serif;
+  color: #333;
+  background: #fff;
 }
-.datepicker {
-  margin-left: 30px !important;
-  margin-top: 30px !important;
-  /* border: 2px solid white !important; */
-  border-radius: 10px !important;
+
+a:link,
+a:visited {
+  border-bottom: 1px solid #c55500;
+  text-decoration: none;
+  color: #c55500;
 }
-.datepicker input {
-  width: 100px;
+
+a:visited {
+  border-bottom: 1px solid #730800;
+  color: #730800;
+}
+
+a:hover,
+a:focus,
+a:active {
+  border: 0;
+  color: #fff;
+  background: #c55500;
+}
+
+a:visited:hover,
+a:visited:focus,
+a:visited:active {
+  color: #fff;
+  background: #730800;
+}
+
+#container {
+  width: 500px;
+  padding: 0 0 50px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 1em 0 0;
+  font-size: 2.5em;
+  font-weight: normal;
+  line-height: 1.2;
   text-align: center;
-  color: white !important;
-  background-color: #1790a0 !important;
-  font-weight: 500;
-  cursor: pointer;
-  border: 1px solid #1790a0;
-  border-radius: 5px;
 }
 
-.textfield textarea {
-  color: white !important;
-  caret-color: white;
-  margin-left: 8px;
+h2 {
+  margin: 0.5em 0 1.5em;
+  font-size: 1.25em;
+  font-weight: normal;
+  font-style: italic;
+  text-align: center;
 }
 
-.nextBtn {
-  color: white !important;
-  background-color: #1790a0 !important;
+p {
+  margin: 1em 0;
 }
 
-.prevBtn {
-  color: white !important;
-  background-color: #1790a0 !important;
+.content h2 {
+  margin: 2em 0 0.75em;
+  font-size: 2em;
+  font-weight: bold;
+  font-style: normal;
+  text-align: left;
 }
 
-.formLabel {
-  color: white;
-}
-
-.checkBox {
-  color: rgb(253, 165, 0) !important;
-}
-
-.submitBtn {
-  color: white !important;
-  background-color: #b43499 !important;
-}
-
-/* Speech Bubble */
 blockquote {
   margin: 1em 0;
 }
@@ -702,10 +736,62 @@ blockquote p {
   right: 110px;
   border-width: 0 0 30px 20px;
   border-style: solid;
-  border-color: transparent #5e5a5a;
+  border-color: transparent #fff;
   /* reduce the damage in FF3.0 */
   display: block;
   width: 0;
+}
+
+/* ============================================================================================================================
+== TWITTER
+** ============================================================================================================================ */
+
+.example-twitter {
+  position: relative;
+  padding: 15px;
+  margin: 100px 0 0.5em;
+  color: #333;
+  background: #eee;
+  /* css3 */
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.example-twitter p {
+  font-size: 28px;
+  line-height: 1.25em;
+}
+
+/* this isn't necessary, just saves me having to edit the HTML of the demo */
+.example-twitter:before {
+  content: url(twitter-logo.gif);
+  position: absolute;
+  top: -60px;
+  left: 0;
+  width: 155px;
+  height: 36px;
+  /* reduce the damage in FF3.0 */
+  display: block;
+}
+
+/* creates the triangle */
+.example-twitter:after {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 50px;
+  border: 15px solid transparent;
+  border-bottom-color: #eee;
+  /* reduce the damage in FF3.0 */
+  display: block;
+  width: 0;
+}
+
+/* display of quote author (alternatively use a class on the element following the blockquote) */
+.example-twitter + p {
+  padding-left: 15px;
+  font: 14px Arial, sans-serif;
 }
 
 /* ============================================================================================================================
