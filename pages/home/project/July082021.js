@@ -355,11 +355,17 @@ const July082021 = () => {
                       src={Avatar1}
                       style={{ width: "150px", cursor: "pointer" }}
                       data-for="avatar1"
-                      data-tip="Name: Mark Lee <br/>
-                       Affiliation: Exbon field worker"
+                      data-tip
                     />
                   </div>
-                  <ReactTooltip id="avatar1" multiline={true} type="light" />
+                  <ReactTooltip id="avatar1" multiline={true} type="light">
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <span style={{ textAlign: "center" }}>
+                        Name: Mark Lee <br />
+                        Affiliation: Exbon field worker
+                      </span>
+                    </div>
+                  </ReactTooltip>
 
                   <div
                     style={{
@@ -424,10 +430,18 @@ const July082021 = () => {
                       src={Avatar2}
                       style={{ width: "150px", cursor: "pointer" }}
                       data-for="avatar2"
-                      data-tip="Name: Aaron Smith <br/>
-                       Affiliation: ABC Subcontracting"
+                      data-tip
                     />
-                    <ReactTooltip id="avatar2" multiline={true} type="light" />
+                    <ReactTooltip id="avatar2" multiline={true} type="light">
+                      <div
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <span style={{ textAlign: "center" }}>
+                          Name: Aaron Smith <br />
+                          Affiliation: ABC Subcontracting
+                        </span>
+                      </div>
+                    </ReactTooltip>
                   </div>
                   <div
                     style={{
