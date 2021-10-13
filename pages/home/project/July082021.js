@@ -31,6 +31,7 @@ import Avatar1 from "../../../assets/img/avatar1.png";
 import Avatar2 from "../../../assets/img/avatar2.png";
 import "./project.css";
 import { Person } from "@material-ui/icons";
+import ReactTooltip from "react-tooltip";
 
 const July082021 = () => {
   const Accordion = withStyles({
@@ -287,6 +288,10 @@ const July082021 = () => {
     }
   };
 
+  useEffect(() => {
+    ReactTooltip.rebuild();
+  }, []);
+
   return (
     <>
       {console.log(statePerson)}
@@ -367,35 +372,21 @@ const July082021 = () => {
                     <img
                       src={Avatar1}
                       style={{ width: "150px", cursor: "pointer" }}
-                      onClick={() => handleSetStatePerson(1)}
+                      data-for="avatar1"
+                      data-tip="Name: Mark Lee <br/>
+                       Affiliation: Exbon field worker"
                     />
                   </div>
+                  <ReactTooltip id="avatar1" multiline={true} type="light" />
 
                   <div
                     style={{
-                      marginTop: "30px",
+                      marginTop: "70px",
                       marginLeft: "30px",
                       color: "white",
                       fontWeight: "500",
                     }}
                   >
-                    <p
-                      className="person-animation"
-                      style={
-                        statePerson.person1 ? {} : { visibility: "hidden" }
-                      }
-                    >
-                      Name: Mark Lee
-                    </p>
-                    <p
-                      className="person-animation"
-                      style={
-                        statePerson.person1 ? {} : { visibility: "hidden" }
-                      }
-                    >
-                      Affiliation: Exbon field worker
-                    </p>
-
                     <p>
                       Work: 8 hours on Task A from 9 to 6pm. It was lunch time
                       from 12 to 1pm.
@@ -450,33 +441,20 @@ const July082021 = () => {
                     <img
                       src={Avatar2}
                       style={{ width: "150px", cursor: "pointer" }}
-                      onClick={() => handleSetStatePerson(2)}
+                      data-for="avatar2"
+                      data-tip="Name: Aaron Smith <br/>
+                       Affiliation: ABC Subcontracting"
                     />
+                    <ReactTooltip id="avatar2" multiline={true} type="light" />
                   </div>
                   <div
                     style={{
-                      marginTop: "52px",
+                      marginTop: "87px",
                       marginLeft: "30px",
                       color: "white",
                       fontWeight: "500",
                     }}
                   >
-                    <p
-                      className="person-animation"
-                      style={
-                        statePerson.person2 ? {} : { visibility: "hidden" }
-                      }
-                    >
-                      Name: Aaron Smith
-                    </p>
-                    <p
-                      className="person-animation"
-                      style={
-                        statePerson.person2 ? {} : { visibility: "hidden" }
-                      }
-                    >
-                      Affiliation: ABC Subcontracting
-                    </p>
                     <p>Work: Finished 20% of Task 2.</p>
                   </div>
                 </div>
