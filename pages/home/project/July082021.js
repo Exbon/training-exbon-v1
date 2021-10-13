@@ -370,24 +370,37 @@ const July082021 = () => {
                       onClick={() => handleSetStatePerson(1)}
                     />
                   </div>
-                  {statePerson.person1 && (
-                    <div
-                      style={{
-                        marginTop: "40px",
-                        marginLeft: "30px",
-                        color: "white",
-                        fontWeight: "500",
-                      }}
+
+                  <div
+                    style={{
+                      marginTop: "25px",
+                      marginLeft: "30px",
+                      color: "white",
+                      fontWeight: "500",
+                    }}
+                  >
+                    <p
                       className="person-animation"
+                      style={
+                        statePerson.person1 ? {} : { visibility: "hidden" }
+                      }
                     >
-                      <p>Name: Mark Lee</p>
-                      <p>Affiliation: Exbon field worker</p>
-                      <p>
-                        Work: 8 hours on Task A from 9 to 6pm. It was lunch time
-                        from 12 to 1pm.
-                      </p>
-                    </div>
-                  )}
+                      Name: Mark Lee
+                    </p>
+                    <p
+                      className="person-animation"
+                      style={
+                        statePerson.person1 ? {} : { visibility: "hidden" }
+                      }
+                    >
+                      Affiliation: Exbon field worker
+                    </p>
+
+                    <p>
+                      Work: 8 hours on Task A from 9 to 6pm. It was lunch time
+                      from 12 to 1pm.
+                    </p>
+                  </div>
 
                   {/* <img
                     src={PersonImage}
@@ -440,21 +453,32 @@ const July082021 = () => {
                       onClick={() => handleSetStatePerson(2)}
                     />
                   </div>
-                  {statePerson.person2 && (
-                    <div
-                      style={{
-                        marginTop: "60px",
-                        marginLeft: "30px",
-                        color: "white",
-                        fontWeight: "500",
-                      }}
+                  <div
+                    style={{
+                      marginTop: "50px",
+                      marginLeft: "30px",
+                      color: "white",
+                      fontWeight: "500",
+                    }}
+                  >
+                    <p
                       className="person-animation"
+                      style={
+                        statePerson.person2 ? {} : { visibility: "hidden" }
+                      }
                     >
-                      <p>Name: Aaron Smith</p>
-                      <p>Affiliation: ABC Subcontracting</p>
-                      <p>Work: Finished 20% of Task 2.</p>
-                    </div>
-                  )}
+                      Name: Aaron Smith
+                    </p>
+                    <p
+                      className="person-animation"
+                      style={
+                        statePerson.person2 ? {} : { visibility: "hidden" }
+                      }
+                    >
+                      Affiliation: ABC Subcontracting
+                    </p>
+                    <p>Work: Finished 20% of Task 2.</p>
+                  </div>
                 </div>
               </Grid>
               <Grid item xs={6}>
