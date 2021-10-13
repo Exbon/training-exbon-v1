@@ -262,10 +262,6 @@ const July082021 = () => {
     first: false,
     second: false,
   });
-  const [statePerson, setStatePerson] = useState({
-    person1: false,
-    person2: false,
-  });
 
   const changeAcc = order => {
     if (order == "first") {
@@ -275,26 +271,12 @@ const July082021 = () => {
     }
   };
 
-  const handleSetStatePerson = num => {
-    let temp = statePerson;
-
-    if (num == 1) {
-      temp.person1 = !temp.person1;
-      console.log(temp);
-      setStatePerson({ ...temp });
-    } else if (num == 2) {
-      temp.person2 = !temp.person2;
-      setStatePerson({ ...temp });
-    }
-  };
-
   useEffect(() => {
     ReactTooltip.rebuild();
   }, []);
 
   return (
     <>
-      {console.log(statePerson)}
       {promiseInProgress ? (
         <div
           style={{
