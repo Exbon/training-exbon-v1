@@ -432,7 +432,14 @@ const July082021 = () => {
                       data-for="avatar2"
                       data-tip
                     />
-                    <ReactTooltip id="avatar2" multiline={true} type="light">
+                    <ReactTooltip
+                      id="avatar2"
+                      multiline={true}
+                      type="light"
+                      effect="solid"
+                      arrowColor="transparent"
+                      offset={{ top: -20, right: 100 }}
+                    >
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                       >
