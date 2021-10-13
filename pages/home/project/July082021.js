@@ -261,7 +261,10 @@ const July082021 = () => {
     first: false,
     second: false,
   });
-  const [stateImage, setStateImage] = useState(false);
+  const [statePerson, setStatePerson] = useState({
+    person1: false,
+    person2: false,
+  });
 
   const changeAcc = order => {
     if (order == "first") {
@@ -271,8 +274,22 @@ const July082021 = () => {
     }
   };
 
+  const handleSetStatePerson = num => {
+    let temp = statePerson;
+
+    if (num == 1) {
+      temp.person1 = !temp.person1;
+      console.log(temp);
+      setStatePerson({ ...temp });
+    } else if (num == 2) {
+      temp.person2 = !temp.person2;
+      setStatePerson({ ...temp });
+    }
+  };
+
   return (
     <>
+      {console.log(statePerson)}
       {promiseInProgress ? (
         <div
           style={{
@@ -350,9 +367,28 @@ const July082021 = () => {
                     <img
                       src={Avatar1}
                       style={{ width: "150px", cursor: "pointer" }}
-                      onClick={() => setStateImage(true)}
+                      onClick={() => handleSetStatePerson(1)}
                     />
                   </div>
+                  {statePerson.person1 && (
+                    <div
+                      style={{
+                        marginTop: "40px",
+                        marginLeft: "30px",
+                        color: "white",
+                        fontWeight: "500",
+                      }}
+                      className="person-animation"
+                    >
+                      <p>Name: Mark Lee</p>
+                      <p>Affiliation: Exbon field worker</p>
+                      <p>
+                        Work: 8 hours on Task A from 9 to 6pm. It was lunch time
+                        from 12 to 1pm.
+                      </p>
+                    </div>
+                  )}
+
                   {/* <img
                     src={PersonImage}
                     style={{ width: "300px", cursor: "pointer" }}
@@ -389,7 +425,7 @@ const July082021 = () => {
                     <p
                       style={{
                         marginBottom: "0px",
-                        marginTop: "5px",
+                        marginTop: "30px",
                         textAlign: "center",
                         fontWeight: "600",
                         color: "bisque",
@@ -401,9 +437,24 @@ const July082021 = () => {
                     <img
                       src={Avatar2}
                       style={{ width: "150px", cursor: "pointer" }}
-                      onClick={() => setStateImage(true)}
+                      onClick={() => handleSetStatePerson(2)}
                     />
                   </div>
+                  {statePerson.person2 && (
+                    <div
+                      style={{
+                        marginTop: "60px",
+                        marginLeft: "30px",
+                        color: "white",
+                        fontWeight: "500",
+                      }}
+                      className="person-animation"
+                    >
+                      <p>Name: Aaron Smith</p>
+                      <p>Affiliation: ABC Subcontracting</p>
+                      <p>Work: Finished 20% of Task 2.</p>
+                    </div>
+                  )}
                 </div>
               </Grid>
               <Grid item xs={6}>
