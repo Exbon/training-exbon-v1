@@ -27,6 +27,8 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import PersonImage from "../../../assets/img/Person1.png";
+import Avatar1 from "../../../assets/img/avatar1.png";
+import Avatar2 from "../../../assets/img/avatar2.png";
 import "./project.css";
 import { Person } from "@material-ui/icons";
 
@@ -325,27 +327,41 @@ const July082021 = () => {
                   />
                 </MuiPickersUtilsProvider>
 
-                <br />
-                <br />
-                <br />
                 <div
                   style={{
                     marginLeft: "30px",
                     marginRight: "30px",
-                    marginTop: "40px",
+                    marginTop: "15px",
                     display: "flex",
-                    justifyContent: "center",
                   }}
                 >
-                  <img
+                  <div>
+                    <p
+                      style={{
+                        marginBottom: "0px",
+                        marginTop: "5px",
+                        textAlign: "center",
+                        fontWeight: "600",
+                        color: "bisque",
+                      }}
+                    >
+                      Mark
+                    </p>
+                    <img
+                      src={Avatar1}
+                      style={{ width: "150px", cursor: "pointer" }}
+                      onClick={() => setStateImage(true)}
+                    />
+                  </div>
+                  {/* <img
                     src={PersonImage}
                     style={{ width: "300px", cursor: "pointer" }}
                     onClick={() => setStateImage(true)}
-                  />
-                  {stateImage ? (
+                  /> */}
+                  {/* {stateImage ? (
                     <blockquote
                       className="example-obtuse"
-                      style={{ width: "200px", height: "160px" }}
+                      style={{ width: "300px", height: "150px" }}
                     >
                       <p style={{ fontSize: "1.2rem" }}>
                         I'm Adam, working as Exbon field worker.
@@ -359,7 +375,35 @@ const July082021 = () => {
                     </blockquote>
                   ) : (
                     <></>
-                  )}
+                  )} */}
+                </div>
+                <div
+                  style={{
+                    marginLeft: "30px",
+                    marginRight: "30px",
+                    marginTop: "20px",
+                    display: "flex",
+                  }}
+                >
+                  <div>
+                    <p
+                      style={{
+                        marginBottom: "0px",
+                        marginTop: "5px",
+                        textAlign: "center",
+                        fontWeight: "600",
+                        color: "bisque",
+                      }}
+                    >
+                      Aaron
+                    </p>
+
+                    <img
+                      src={Avatar2}
+                      style={{ width: "150px", cursor: "pointer" }}
+                      onClick={() => setStateImage(true)}
+                    />
+                  </div>
                 </div>
               </Grid>
               <Grid item xs={6}>
