@@ -373,7 +373,7 @@ const July082021 = () => {
 
                   <div
                     style={{
-                      marginTop: "25px",
+                      marginTop: "30px",
                       marginLeft: "30px",
                       color: "white",
                       fontWeight: "500",
@@ -455,7 +455,7 @@ const July082021 = () => {
                   </div>
                   <div
                     style={{
-                      marginTop: "50px",
+                      marginTop: "52px",
                       marginLeft: "30px",
                       color: "white",
                       fontWeight: "500",
