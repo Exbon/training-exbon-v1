@@ -31,6 +31,12 @@ export default function Admin({ children, ...rest }) {
   // states and functions
   const [image, setImage] = React.useState(bgImage);
   const [color, setColor] = React.useState("white");
+  const [state, setState] = React.useState(false);
+
+  const handleState = () => {
+    setState(!state);
+  };
+
   const [fixedClasses, setFixedClasses] = React.useState("dropdown show");
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleImageClick = image => {
@@ -77,21 +83,29 @@ export default function Admin({ children, ...rest }) {
   }, [mainPanel]);
   return (
     <div className={classes.wrapper}>
-      <Sidebar
-        routes={routes}
-        logoText={"Exbon Training"}
-        logo={logo}
-        image={image}
-        handleDrawerToggle={handleDrawerToggle}
-        open={mobileOpen}
-        color={color}
-        {...rest}
-      />
-      <div className={classes.mainPanel} ref={mainPanel}>
+      {console.log(state)}
+      {!state && (
+        <Sidebar
+          routes={routes}
+          logoText={"Exbon Training"}
+          logo={logo}
+          image={image}
+          handleDrawerToggle={handleDrawerToggle}
+          open={mobileOpen}
+          color={color}
+          {...rest}
+        />
+      )}
+
+      <div
+        className={state ? classes.mainPanelHide : classes.mainPanel}
+        ref={mainPanel}
+      >
         <Navbar
           routes={routes}
           handleDrawerToggle={handleDrawerToggle}
           {...rest}
+          handleState={handleState}
         />
         {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
         {getRoute() ? (

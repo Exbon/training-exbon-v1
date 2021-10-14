@@ -40,6 +40,9 @@ export default function Header(props) {
     [" " + classes[color]]: color,
   });
 
+  const hideSidebar = () => {
+    props.handleState();
+  };
   useEffect(() => {
     setPidState(router.query.pid);
   }, [router.query.pid]);
@@ -48,6 +51,18 @@ export default function Header(props) {
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
           {/* Here we create navbar brand, based on route name */}
+          <a style={{ color: "grey" }}>
+            <Button
+              color={
+                router.query.status !== "completed" ? "info" : "transparent"
+              }
+              className={classes.title}
+              round
+              onClick={() => hideSidebar()}
+            >
+              Table of Contents
+            </Button>
+          </a>
 
           {router.route.includes("/home/dashboard") ? (
             <div>

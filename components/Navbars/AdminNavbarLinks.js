@@ -85,7 +85,6 @@ export default function AdminNavbarLinks() {
 
   return (
     <div>
-      {console.log(testData)}
       <div className={classes.manager}>
         <div style={{ display: "flex" }}>
           <p
