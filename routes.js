@@ -70,12 +70,12 @@ const dashboardRoutes = [
     icon: SyncProblemIcon,
     layout: "/home",
   },
-  // {
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   icon: Dashboard,
-  //   layout: "/home",
-  // },
+  {
+    path: "/project/July112021",
+    name: "Sample",
+    icon: Dashboard,
+    layout: "/home",
+  },
   // {
   //   path: "/calendar",
   //   name: "Calendar",

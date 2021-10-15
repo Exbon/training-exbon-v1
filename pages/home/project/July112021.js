@@ -3,8 +3,7 @@ import Admin from "layouts/Admin.js";
 import LoginComponent from "../../../components/New/LoginComponent";
 import { CookiesProvider, useCookies } from "react-cookie";
 import axios from "axios";
-import { useTable, useBlockLayout, useSortBy } from "react-table";
-import { formatDate } from "../../../components/New/formatDate";
+
 import Router, { useRouter } from "next/router";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
@@ -17,16 +16,143 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import Button from "@material-ui/core/Button";
 import Link from "next/link";
 
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-
-import Checkbox from "@material-ui/core/Checkbox";
+import { makeStyles } from "@material-ui/core/styles";
+import Collapse from "@material-ui/core/Collapse";
+import IconButton from "@material-ui/core/IconButton";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Typography from "@material-ui/core/Typography";
+import Paper from "@material-ui/core/Paper";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
 import "./project.css";
 
-const July092021 = () => {
+const July112021 = () => {
+  const useRowStyles = makeStyles({
+    root: {
+      "& > *": {
+        borderBottom: "unset",
+      },
+    },
+  });
+
+  function createData(
+    name,
+    position,
+    license,
+    workstart,
+    workend,
+    mealstart,
+    mealend,
+    task,
+    completion,
+    workers
+  ) {
+    return {
+      name,
+      position,
+      license,
+      workstart,
+      workend,
+      mealstart,
+      mealend,
+      task,
+      completion,
+      workers,
+      history: [
+        { date: "2020-01-05", customerId: "11091700", amount: 3 },
+        { date: "2020-01-02", customerId: "Anonymous", amount: 1 },
+      ],
+    };
+  }
+
+  function Row(props) {
+    const { row } = props;
+    const [open, setOpen] = useState(false);
+    const classes = useRowStyles();
+
+    return (
+      <>
+        <TableRow className={classes.root}>
+          <TableCell style={{ width: "30px", paddingBottom: 0, paddingTop: 0 }}>
+            <IconButton aria-label="expand row" onClick={() => setOpen(!open)}>
+              {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            </IconButton>
+          </TableCell>
+          <TableCell
+            component="th"
+            scope="row"
+            style={{ paddingBottom: 0, paddingTop: 0, fontWeight: "800" }}
+          >
+            {row.name}
+          </TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <Box margin={1}>
+                <Table size="small" aria-label="purchases">
+                  <TableHead>
+                    {row.name == "Field Worker" && (
+                      <TableRow>
+                        <TableCell></TableCell>
+                        <TableCell>Name</TableCell>
+                        <TableCell align="right">Position</TableCell>
+                        <TableCell align="right">Work Start</TableCell>
+                        <TableCell align="right">Work End</TableCell>
+                        <TableCell align="right">Task</TableCell>
+                      </TableRow>
+                    )}
+                    {row.name == "Subcontractor" && (
+                      <TableRow>
+                        <TableCell></TableCell>
+                        <TableCell>Subcontractor</TableCell>
+                        <TableCell align="right">License</TableCell>
+                        <TableCell align="right">Work Start</TableCell>
+                        <TableCell align="right">Work End</TableCell>
+                        <TableCell align="right">Task</TableCell>
+                        <TableCell align="right">Completion</TableCell>
+                        <TableCell align="right">Workers</TableCell>
+                      </TableRow>
+                    )}
+                  </TableHead>
+                  <TableBody>
+                    {row.history.map(historyRow => (
+                      <TableRow key={historyRow.date}>
+                        <TableCell component="th" scope="row">
+                          {historyRow.date}
+                        </TableCell>
+                        <TableCell>{historyRow.customerId}</TableCell>
+                        <TableCell align="right">{historyRow.amount}</TableCell>
+                        <TableCell align="right">
+                          {Math.round(historyRow.amount * row.price * 100) /
+                            100}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </Box>
+            </Collapse>
+          </TableCell>
+        </TableRow>
+      </>
+    );
+  }
+
+  const rows = [
+    createData("Field Worker"),
+    createData("Subcontractor"),
+    createData("Material Delivered"),
+    createData("Exbon Team"),
+    createData("Client"),
+  ];
+
   const router = useRouter();
 
   const [data, setData] = useState(() => []);
@@ -202,35 +328,6 @@ const July092021 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const [acc, setAcc] = useState({
-    first: false,
-    second: false,
-  });
-
-  const [state, setState] = useState({
-    gilad: false,
-    jason: false,
-    antoine: false,
-  });
-
-  const handleChange = event => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.checked,
-    });
-  };
-
-  const { gilad, jason, antoine } = state;
-  const error = [gilad, jason, antoine].filter(v => v).length !== 2;
-
-  const changeAcc = order => {
-    if (order == "first") {
-      setAcc({ ...acc, first: !acc.first });
-    } else if (order == "second") {
-      setAcc({ ...acc, second: !acc.second });
-    }
-  };
-
   return (
     <>
       {promiseInProgress ? (
@@ -272,57 +369,34 @@ const July092021 = () => {
         </div>
       ) : (
         <div className="background">
-          <div style={{ width: "100%" }}>
+          <Box sx={{ width: "100%" }}>
             <Grid container>
               <Grid item xs={6}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <DatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    value={"07/09/2021"}
-                    onChange={() => {}}
-                    className="datepicker"
-                    autoOk={true}
-                  />
-                </MuiPickersUtilsProvider>
-
-                <br />
-                <br />
-                <br />
-                {/* <div style={{ marginLeft: "30px" }}>
-                  <Accordion
-                    expanded={acc.first}
-                    className="acc"
-                    onChange={() => changeAcc("first")}
-                  >
-                    <AccordionSummary id="acc1">
-                      <Typography style={{ fontWeight: "500" }}>
-                        Field Worker
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails
-                      style={{ color: "#6e6b6b", fontWeight: "500" }}
-                    >
-                      3 field workers worked on Task 1 for 8 hours.
-                    </AccordionDetails>
-                  </Accordion>
-                  <Accordion
-                    expanded={acc.second}
-                    onChange={() => changeAcc("second")}
-                  >
-                    <AccordionSummary id="acc2">
-                      <Typography style={{ fontWeight: "500" }}>
-                        Subcontractor
-                      </Typography>
-                    </AccordionSummary>
-                    <AccordionDetails
-                      style={{ color: "#6e6b6b", fontWeight: "500" }}
-                    >
-                      ABC subcontractor finished 20% of Task 2.
-                    </AccordionDetails>
-                  </Accordion>
-                </div> */}
+                <div style={{ display: "flex" }}>
+                  <p className="title-day">Day 9</p>
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <DatePicker
+                      disableToolbar
+                      variant="inline"
+                      format="MM/dd/yyyy"
+                      value={"07/11/2021"}
+                      onChange={() => {}}
+                      className="datepicker"
+                      autoOk={true}
+                    />
+                  </MuiPickersUtilsProvider>
+                </div>
+                <div style={{ width: "900px" }}>
+                  <TableContainer component={Paper}>
+                    <Table aria-label="collapsible table">
+                      <TableBody>
+                        {rows.map(row => (
+                          <Row key={row.name} row={row} />
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </div>
               </Grid>
               <Grid item xs={6}>
                 <div
@@ -345,7 +419,7 @@ const July092021 = () => {
                         textAlign: "center",
                       }}
                     >
-                      Objective: Change Order
+                      Assignment
                     </h2>
                     <p
                       style={{
@@ -356,8 +430,7 @@ const July092021 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      The customer asked for some work to be done that was not
-                      part of the initial specification.
+                      Today is the first day of construction.
                     </p>
                     <div
                       style={{
@@ -365,106 +438,12 @@ const July092021 = () => {
                         borderBottom: "3px dotted #7e7a7a",
                         borderRadius: "2px",
                         padding: "1%",
-                        paddingBottom: "3%",
+                        paddingBottom: "2%",
                       }}
                     >
-                      <div className="textfield">
-                        <p
-                          style={{
-                            color: "white",
-                            fontWeight: "500",
-                            marginBottom: "1px",
-                          }}
-                        >
-                          Q1. What should be done in this case? (Multiple
-                          choice)
-                        </p>
-                        <div
-                          style={{
-                            marginLeft: "20px",
-                            marginTop: "1px",
-                          }}
-                        >
-                          <FormControl
-                            sx={{
-                              m: 3,
-                              marginBottom: "5px",
-                            }}
-                            component="fieldset"
-                            variant="standard"
-                          >
-                            <FormLabel component="legend"></FormLabel>
-                            <FormGroup>
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={gilad}
-                                    onChange={handleChange}
-                                    name="gilad"
-                                    className="checkBox"
-                                  />
-                                }
-                                label="omnis iste natus error sit voluptatem accusantium doloremque laudantium."
-                                className="formLabel"
-                              />
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={jason}
-                                    onChange={handleChange}
-                                    name="jason"
-                                    className="checkBox"
-                                  />
-                                }
-                                label="sit amet, consectetur, adipisci velit, sed quia non numquam eius"
-                                className="formLabel"
-                              />
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={antoine}
-                                    onChange={handleChange}
-                                    name="antoine"
-                                    className="checkBox"
-                                  />
-                                }
-                                label="Duis aute irure dolor in reprehenderit in voluptate velit esse"
-                                className="formLabel"
-                              />
-                            </FormGroup>
-                            {/* <FormHelperText>Be careful</FormHelperText> */}
-                          </FormControl>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        marginTop: "0px",
-                        borderBottom: "3px dotted #7e7a7a",
-                        borderRadius: "2px",
-                        padding: "1%",
-                        paddingBottom: "3%",
-                      }}
-                    >
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: "500",
-                          marginBottom: "10px",
-                        }}
-                      >
-                        Q2. Create a Change Order with the following estimates,
-                        then upload it.
+                      <p style={{ color: "white", fontWeight: "500" }}>
+                        Q1. Fill out timesheet and daily report for the day.
                       </p>
-                      <Button
-                        variant="contained"
-                        className="uploadBtn"
-                        component="label"
-                        style={{ marginLeft: "5%" }}
-                      >
-                        Upload File
-                        <input type="file" hidden />
-                      </Button>
                     </div>
                   </div>
                   <div
@@ -478,27 +457,27 @@ const July092021 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./July082021">
-                      <Button variant="contained" className="prevBtn">
-                        Previous
+                    <Link href="#">
+                      <Button variant="outlined" className="nextBtn">
+                        PREVIOUS
                       </Button>
                     </Link>
                     <Link href="#">
-                      <Button variant="contained" className="submitBtn">
-                        Submit
+                      <Button variant="contained" className="nextBtn">
+                        NEXT
                       </Button>
                     </Link>
                   </div>
                 </div>
               </Grid>
             </Grid>
-          </div>
+          </Box>
         </div>
       )}
     </>
   );
 };
 
-July092021.layout = Admin;
+July112021.layout = Admin;
 
-export default July092021;
+export default July112021;

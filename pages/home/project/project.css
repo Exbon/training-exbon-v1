@@ -9,7 +9,6 @@
   height: 90vh;
 }
 .datepicker {
-  margin-left: 30px !important;
   margin-top: 30px !important;
   /* border: 2px solid white !important; */
   border-radius: 10px !important;
@@ -141,4 +140,17 @@ blockquote p {
 
 .table-contents-icon:hover {
   color: white;
+}
+
+.uploadBtn {
+  color: white !important;
+  background-color: #1790a0 !important;
+}
+
+.title-day {
+  margin-top: 36px !important;
+  color: bisque;
+  font-size: large;
+  font-weight: 500;
+  margin-right: 20px;
 }

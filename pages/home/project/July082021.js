@@ -8,7 +8,6 @@ import { formatDate } from "../../../components/New/formatDate";
 import Router, { useRouter } from "next/router";
 import { usePromiseTracker, trackPromise } from "react-promise-tracker";
 import Loader from "react-loader-spinner";
-import "./July082021.css";
 
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";

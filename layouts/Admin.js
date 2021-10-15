@@ -83,7 +83,6 @@ export default function Admin({ children, ...rest }) {
   }, [mainPanel]);
   return (
     <div className={classes.wrapper}>
-      {console.log(state)}
       {!state && (
         <Sidebar
           routes={routes}
@@ -106,6 +105,7 @@ export default function Admin({ children, ...rest }) {
           handleDrawerToggle={handleDrawerToggle}
           {...rest}
           handleState={handleState}
+          currentState={state}
         />
         {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
         {getRoute() ? (
