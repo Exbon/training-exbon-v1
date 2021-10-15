@@ -134,3 +134,11 @@ blockquote p {
   margin: 0px;
   color: bisque;
 }
+
+.table-contents-icon {
+  cursor: pointer;
+}
+
+.table-contents-icon:hover {
+  color: white;
+}

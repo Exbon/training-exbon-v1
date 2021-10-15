@@ -18,6 +18,8 @@ import Button from "components/CustomButtons/Button.js";
 import styles from "assets/jss/nextjs-material-dashboard/components/headerStyle.js";
 import Link from "next/link";
 
+import ListIcon from "@material-ui/icons/List";
+
 export default function Header(props) {
   // used for checking current route
   const router = useRouter();
@@ -51,7 +53,7 @@ export default function Header(props) {
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
           {/* Here we create navbar brand, based on route name */}
-          <a style={{ color: "grey" }}>
+          {/* <a style={{ color: "grey" }}>
             <Button
               color={
                 router.query.status !== "completed" ? "info" : "transparent"
@@ -62,8 +64,13 @@ export default function Header(props) {
             >
               Table of Contents
             </Button>
-          </a>
-
+          </a> */}
+          <ListIcon
+            className="table-contents-icon"
+            onClick={() => hideSidebar()}
+            color="action"
+            fontSize="large"
+          />
           {router.route.includes("/home/dashboard") ? (
             <div>
               <Link href={`/home/dashboard`}>
