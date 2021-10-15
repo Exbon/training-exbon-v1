@@ -34,6 +34,8 @@ import Profile1 from "../../../assets/img/faces/profile1.png";
 import Profile2 from "../../../assets/img/faces/profile2.png";
 import Profile3 from "../../../assets/img/faces/profile3.png";
 import Profile4 from "../../../assets/img/faces/profile4.png";
+import Subcontractor1 from "../../../assets/img/faces/sub1.png";
+import Subcontractor2 from "../../../assets/img/faces/sub2.png";
 
 import "./project.css";
 
@@ -136,27 +138,32 @@ const July112021 = () => {
                         <TableCell align="left" width="10%">
                           Position
                         </TableCell>
-                        <TableCell align="center" width="17%">
+                        <TableCell align="center" width="15%">
                           Work Start
                         </TableCell>
-                        <TableCell align="center" width="17%">
+                        <TableCell align="center" width="15%">
                           Work End
                         </TableCell>
-                        <TableCell align="left" width="36%">
+                        <TableCell align="left" width="40%">
                           Task
                         </TableCell>
                       </TableRow>
                     )}
                     {row.name == "Subcontractor" && (
                       <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell>Subcontractor</TableCell>
-                        <TableCell align="right">License</TableCell>
-                        <TableCell align="right">Work Start</TableCell>
-                        <TableCell align="right">Work End</TableCell>
-                        <TableCell align="right">Task</TableCell>
-                        <TableCell align="right">Completion</TableCell>
-                        <TableCell align="right">Workers</TableCell>
+                        <TableCell width="6%" align="center">
+                          Subcontractor
+                        </TableCell>
+                        <TableCell className="test">License</TableCell>
+                        <TableCell align="center" width="10%">
+                          Work Start
+                        </TableCell>
+                        <TableCell align="center" width="10%">
+                          Work End
+                        </TableCell>
+                        <TableCell width="58%">Task</TableCell>
+                        <TableCell width="5%">Completion</TableCell>
+                        <TableCell width="5%">Workers</TableCell>
                       </TableRow>
                     )}
                   </TableHead>
@@ -262,6 +269,92 @@ const July112021 = () => {
                           <TableCell align="center">12:00</TableCell>
                           <TableCell align="center">16:00</TableCell>
                           <TableCell>1st Coat of Finish Paint</TableCell>
+                        </TableRow>
+                      </>
+                    )}
+                    {row.name == "Subcontractor" && (
+                      <>
+                        {/* Subcontractor1 */}
+                        <TableRow>
+                          <TableCell rowSpan={3}>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              <img
+                                src={Subcontractor1}
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  cursor: "pointer",
+                                }}
+                              />
+                              <span>AK Electrical</span>
+                            </div>
+                          </TableCell>
+                          <TableCell rowSpan={3}>C10 Electrical</TableCell>
+                          <TableCell align="center">8:00</TableCell>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell>
+                            Safe off / Tag out at existing Panel A
+                          </TableCell>
+                          <TableCell align="right">1.2%</TableCell>
+                          <TableCell align="right">4</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell align="center">13:00</TableCell>
+                          <TableCell align="center">15:00</TableCell>
+                          <TableCell>
+                            Layout for all wall duplex power outlets
+                          </TableCell>
+                          <TableCell align="right">2.4%</TableCell>
+                          <TableCell align="right">4</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell align="center">15:00</TableCell>
+                          <TableCell align="center">17:00</TableCell>
+                          <TableCell>Electrical rough-in for walls</TableCell>
+                          <TableCell align="right">3.0%</TableCell>
+                          <TableCell align="right">4</TableCell>
+                        </TableRow>
+
+                        {/* Subcontractor2 */}
+                        <TableRow>
+                          <TableCell rowSpan={3}>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              <img
+                                src={Subcontractor2}
+                                style={{
+                                  width: "40px",
+                                  height: "40px",
+                                  cursor: "pointer",
+                                }}
+                              />
+                              <span style={{ textAlign: "center" }}>
+                                Johnson Control
+                              </span>
+                            </div>
+                          </TableCell>
+                          <TableCell rowSpan={3}>C7 Low Voltage</TableCell>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell align="center">17:00</TableCell>
+                          <TableCell>
+                            Installation of low voltage wiring from existing FA
+                            panel to each J-boxes
+                          </TableCell>
+                          <TableCell align="right">5.0%</TableCell>
+                          <TableCell align="right">3</TableCell>
                         </TableRow>
                       </>
                     )}
