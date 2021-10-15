@@ -594,7 +594,7 @@ const July112021 = () => {
         <div className="background">
           <Box sx={{ width: "100%" }}>
             <Grid container>
-              <Grid item xs={6}>
+              <Grid item xs={8}>
                 <div style={{ display: "flex" }}>
                   <p className="title-day">Day 9</p>
                   <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -621,7 +621,7 @@ const July112021 = () => {
                   </TableContainer>
                 </div>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={4}>
                 <div
                   style={{
                     minHeight: "90vh",
