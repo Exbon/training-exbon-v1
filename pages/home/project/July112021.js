@@ -34,6 +34,9 @@ import Profile1 from "../../../assets/img/faces/profile1.png";
 import Profile2 from "../../../assets/img/faces/profile2.png";
 import Profile3 from "../../../assets/img/faces/profile3.png";
 import Profile4 from "../../../assets/img/faces/profile4.png";
+import Profile5 from "../../../assets/img/faces/profile5.png";
+import Profile6 from "../../../assets/img/faces/profile6.png";
+import Profile7 from "../../../assets/img/faces/profile7.png";
 import Subcontractor1 from "../../../assets/img/faces/sub1.png";
 import Subcontractor2 from "../../../assets/img/faces/sub2.png";
 import Vendor1 from "../../../assets/img/faces/vendor1.png";
@@ -82,7 +85,7 @@ const July112021 = () => {
           picture: "",
           name: "Kevin Valdez",
           position: "Carpenter",
-          workstart: "7:00",
+          workstart: "07:00",
           workend: "11:00",
           task: "Ceiling Joist Installation ",
         },
@@ -195,6 +198,18 @@ const July112021 = () => {
                         </TableCell>
                       </TableRow>
                     )}
+                    {row.name == "Client" && (
+                      <TableRow>
+                        <TableCell width="10%"></TableCell>
+                        <TableCell width="15%">Name</TableCell>
+                        <TableCell align="left" width="15%">
+                          Position
+                        </TableCell>
+                        <TableCell align="left" width="60%">
+                          Description
+                        </TableCell>
+                      </TableRow>
+                    )}
                   </TableHead>
                   <TableBody>
                     {/* {row.history.map(historyRow => (
@@ -227,7 +242,7 @@ const July112021 = () => {
                           </TableCell>
                           <TableCell rowSpan={3}>Kevin Valdez</TableCell>
                           <TableCell rowSpan={3}>Carpenter</TableCell>
-                          <TableCell align="center">7:00</TableCell>
+                          <TableCell align="center">07:00</TableCell>
                           <TableCell align="center">11:00</TableCell>
                           <TableCell>Ceiling Joist Installation</TableCell>
                         </TableRow>
@@ -256,7 +271,7 @@ const July112021 = () => {
                           </TableCell>
                           <TableCell rowSpan={3}>Paul Martinez</TableCell>
                           <TableCell rowSpan={3}>Carpenter</TableCell>
-                          <TableCell align="center">7:00</TableCell>
+                          <TableCell align="center">07:00</TableCell>
                           <TableCell align="center">11:00</TableCell>
                           <TableCell>Ceiling Joist Installation</TableCell>
                         </TableRow>
@@ -285,7 +300,7 @@ const July112021 = () => {
                           </TableCell>
                           <TableCell rowSpan={3}>Peter Cho</TableCell>
                           <TableCell rowSpan={3}>Painter</TableCell>
-                          <TableCell align="center">7:00</TableCell>
+                          <TableCell align="center">07:00</TableCell>
                           <TableCell align="center">11:00</TableCell>
                           <TableCell>Sanding & Priming</TableCell>
                         </TableRow>
@@ -328,7 +343,7 @@ const July112021 = () => {
                             </div>
                           </TableCell>
                           <TableCell rowSpan={3}>C10 Electrical</TableCell>
-                          <TableCell align="center">8:00</TableCell>
+                          <TableCell align="center">08:00</TableCell>
                           <TableCell align="center">12:00</TableCell>
                           <TableCell>
                             Safe off / Tag out at existing Panel A
@@ -347,7 +362,7 @@ const July112021 = () => {
                         </TableRow>
                         <TableRow>
                           <TableCell align="center">15:00</TableCell>
-                          <TableCell align="center">17:00</TableCell>
+                          <TableCell align="center">107:00</TableCell>
                           <TableCell>Electrical rough-in for walls</TableCell>
                           <TableCell align="right">3.0%</TableCell>
                           <TableCell align="right">4</TableCell>
@@ -379,7 +394,7 @@ const July112021 = () => {
                           </TableCell>
                           <TableCell rowSpan={3}>C7 Low Voltage</TableCell>
                           <TableCell align="center">12:00</TableCell>
-                          <TableCell align="center">17:00</TableCell>
+                          <TableCell align="center">107:00</TableCell>
                           <TableCell>
                             Installation of low voltage wiring from existing FA
                             panel to each J-boxes
@@ -478,7 +493,7 @@ const July112021 = () => {
                       <>
                         {/* Person1 */}
                         <TableRow>
-                          <TableCell component="th" scope="row" rowSpan={3}>
+                          <TableCell component="th" scope="row">
                             <img
                               src={Profile4}
                               style={{
@@ -488,11 +503,77 @@ const July112021 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell rowSpan={3}>Susan Ali</TableCell>
-                          <TableCell rowSpan={3}>Accountant</TableCell>
+                          <TableCell>Susan Ali</TableCell>
+                          <TableCell>Accountant</TableCell>
                           <TableCell>
                             Received a 100% bill from Ganahl Lumber stating all
                             material has been delivered
+                          </TableCell>
+                        </TableRow>
+                      </>
+                    )}
+                    {row.name == "Client" && (
+                      <>
+                        {/* Client1 */}
+                        <TableRow>
+                          <TableCell component="th" scope="row">
+                            <img
+                              src={Profile5}
+                              style={{
+                                width: "70px",
+                                height: "70px",
+                                cursor: "pointer",
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell>Don Trump</TableCell>
+                          <TableCell>PM ( OAR )</TableCell>
+                          <TableCell>
+                            Visited the site and confirm verbally the wall paint
+                            color to be "Swiss Coffee"
+                          </TableCell>
+                        </TableRow>
+
+                        {/* Client2 */}
+                        <TableRow>
+                          <TableCell component="th" scope="row" rowSpan={2}>
+                            <img
+                              src={Profile6}
+                              style={{
+                                width: "70px",
+                                height: "70px",
+                                cursor: "pointer",
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell rowSpan={2}>James Dean</TableCell>
+                          <TableCell rowSpan={2}>Inspector ( IOR )</TableCell>
+                          <TableCell>
+                            Pointed out new lockset delivered today is different
+                            from approval submittal
+                          </TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>Correctional Notice Issued</TableCell>
+                        </TableRow>
+
+                        {/* Client3 */}
+                        <TableRow>
+                          <TableCell component="th" scope="row">
+                            <img
+                              src={Profile7}
+                              style={{
+                                width: "70px",
+                                height: "70px",
+                                cursor: "pointer",
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell>Ken Muhamad</TableCell>
+                          <TableCell>Facility Manager</TableCell>
+                          <TableCell>
+                            Visited the site and asked AK Electrical if they can
+                            move one duplex outlet 12" to his desk
                           </TableCell>
                         </TableRow>
                       </>
