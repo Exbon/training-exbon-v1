@@ -50,8 +50,6 @@ export default function Header(props) {
   }, [router.query.pid]);
   return (
     <AppBar className={classes.appBar + appBarClasses}>
-      {console.log("props.currentState")}
-      {console.log(props.currentState)}
       <Toolbar className={classes.container}>
         <div className={classes.flex}>
           {/* Here we create navbar brand, based on route name */}
@@ -72,11 +70,6 @@ export default function Header(props) {
             onClick={() => hideSidebar()}
             color="action"
             fontSize="large"
-            style={
-              props.currentState
-                ? { marginLeft: "10px" }
-                : { marginLeft: "250px" }
-            }
           />
           {router.route.includes("/home/dashboard") ? (
             <div>

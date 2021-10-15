@@ -30,6 +30,11 @@ import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 
+import Profile1 from "../../../assets/img/faces/profile1.png";
+import Profile2 from "../../../assets/img/faces/profile2.png";
+import Profile3 from "../../../assets/img/faces/profile3.png";
+import Profile4 from "../../../assets/img/faces/profile4.png";
+
 import "./project.css";
 
 const July112021 = () => {
@@ -68,6 +73,32 @@ const July112021 = () => {
         { date: "2020-01-05", customerId: "11091700", amount: 3 },
         { date: "2020-01-02", customerId: "Anonymous", amount: 1 },
       ],
+      fieldworker: [
+        {
+          picture: "",
+          name: "Kevin Valdez",
+          position: "Carpenter",
+          workstart: "7:00",
+          workend: "11:00",
+          task: "Ceiling Joist Installation ",
+        },
+        {
+          picture: "",
+          name: "Paul Martinez",
+          position: "Carpenter",
+          workstart: "",
+          workend: "",
+          task: "",
+        },
+        {
+          picture: "",
+          name: "Peter Cho",
+          position: "Painter",
+          workstart: "",
+          workend: "",
+          task: "",
+        },
+      ],
     };
   }
 
@@ -100,12 +131,20 @@ const July112021 = () => {
                   <TableHead>
                     {row.name == "Field Worker" && (
                       <TableRow>
-                        <TableCell></TableCell>
-                        <TableCell>Name</TableCell>
-                        <TableCell align="right">Position</TableCell>
-                        <TableCell align="right">Work Start</TableCell>
-                        <TableCell align="right">Work End</TableCell>
-                        <TableCell align="right">Task</TableCell>
+                        <TableCell width="10%"></TableCell>
+                        <TableCell width="10%">Name</TableCell>
+                        <TableCell align="left" width="10%">
+                          Position
+                        </TableCell>
+                        <TableCell align="center" width="17%">
+                          Work Start
+                        </TableCell>
+                        <TableCell align="center" width="17%">
+                          Work End
+                        </TableCell>
+                        <TableCell align="left" width="36%">
+                          Task
+                        </TableCell>
                       </TableRow>
                     )}
                     {row.name == "Subcontractor" && (
@@ -122,7 +161,7 @@ const July112021 = () => {
                     )}
                   </TableHead>
                   <TableBody>
-                    {row.history.map(historyRow => (
+                    {/* {row.history.map(historyRow => (
                       <TableRow key={historyRow.date}>
                         <TableCell component="th" scope="row">
                           {historyRow.date}
@@ -134,7 +173,98 @@ const July112021 = () => {
                             100}
                         </TableCell>
                       </TableRow>
-                    ))}
+                    ))} */}
+
+                    {row.name == "Field Worker" && (
+                      <>
+                        {/* Person1 */}
+                        <TableRow>
+                          <TableCell component="th" scope="row" rowSpan={3}>
+                            <img
+                              src={Profile2}
+                              style={{
+                                width: "70px",
+                                height: "70px",
+                                cursor: "pointer",
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell rowSpan={3}>Kevin Valdez</TableCell>
+                          <TableCell rowSpan={3}>Carpenter</TableCell>
+                          <TableCell align="center">7:00</TableCell>
+                          <TableCell align="center">11:00</TableCell>
+                          <TableCell>Ceiling Joist Installation</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell align="center">11:00</TableCell>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell>Meal</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell align="center">15:00</TableCell>
+                          <TableCell>Drywall Installation & Patching</TableCell>
+                        </TableRow>
+
+                        {/* Person2 */}
+                        <TableRow>
+                          <TableCell component="th" scope="row" rowSpan={3}>
+                            <img
+                              src={Profile3}
+                              style={{
+                                width: "70px",
+                                height: "70px",
+                                cursor: "pointer",
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell rowSpan={3}>Paul Martinez</TableCell>
+                          <TableCell rowSpan={3}>Carpenter</TableCell>
+                          <TableCell align="center">7:00</TableCell>
+                          <TableCell align="center">11:00</TableCell>
+                          <TableCell>Ceiling Joist Installation</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell align="center">11:00</TableCell>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell>Meal</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell align="center">16:00</TableCell>
+                          <TableCell>Drywall Installation & Patching</TableCell>
+                        </TableRow>
+
+                        {/* Person3 */}
+                        <TableRow>
+                          <TableCell component="th" scope="row" rowSpan={3}>
+                            <img
+                              src={Profile1}
+                              style={{
+                                width: "70px",
+                                height: "70px",
+                                cursor: "pointer",
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell rowSpan={3}>Peter Cho</TableCell>
+                          <TableCell rowSpan={3}>Painter</TableCell>
+                          <TableCell align="center">7:00</TableCell>
+                          <TableCell align="center">11:00</TableCell>
+                          <TableCell>Sanding & Priming</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell align="center">11:00</TableCell>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell>Meal</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell align="center">16:00</TableCell>
+                          <TableCell>1st Coat of Finish Paint</TableCell>
+                        </TableRow>
+                      </>
+                    )}
                   </TableBody>
                 </Table>
               </Box>
@@ -386,7 +516,7 @@ const July112021 = () => {
                     />
                   </MuiPickersUtilsProvider>
                 </div>
-                <div style={{ width: "900px" }}>
+                <div style={{ width: "98%" }}>
                   <TableContainer component={Paper}>
                     <Table aria-label="collapsible table">
                       <TableBody>
