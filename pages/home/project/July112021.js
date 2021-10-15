@@ -146,7 +146,7 @@ const July112021 = () => {
                         <TableCell align="center" width="15%">
                           Work End
                         </TableCell>
-                        <TableCell align="left" width="40%">
+                        <TableCell align="left" width="50%">
                           Task
                         </TableCell>
                       </TableRow>
@@ -181,6 +181,18 @@ const July112021 = () => {
                         <TableCell width="55%">Item</TableCell>
                         <TableCell width="7%">Unit</TableCell>
                         <TableCell width="7%">QTY</TableCell>
+                      </TableRow>
+                    )}
+                    {row.name == "Exbon Team" && (
+                      <TableRow>
+                        <TableCell width="10%"></TableCell>
+                        <TableCell width="15%">Name</TableCell>
+                        <TableCell align="left" width="15%">
+                          Position
+                        </TableCell>
+                        <TableCell align="left" width="60%">
+                          Description
+                        </TableCell>
                       </TableRow>
                     )}
                   </TableHead>
@@ -459,6 +471,29 @@ const July112021 = () => {
                           <TableCell>Ceiling Tile Adhesive</TableCell>
                           <TableCell>Carton</TableCell>
                           <TableCell align="right">4</TableCell>
+                        </TableRow>
+                      </>
+                    )}
+                    {row.name == "Exbon Team" && (
+                      <>
+                        {/* Person1 */}
+                        <TableRow>
+                          <TableCell component="th" scope="row" rowSpan={3}>
+                            <img
+                              src={Profile4}
+                              style={{
+                                width: "70px",
+                                height: "70px",
+                                cursor: "pointer",
+                              }}
+                            />
+                          </TableCell>
+                          <TableCell rowSpan={3}>Susan Ali</TableCell>
+                          <TableCell rowSpan={3}>Accountant</TableCell>
+                          <TableCell>
+                            Received a 100% bill from Ganahl Lumber stating all
+                            material has been delivered
+                          </TableCell>
                         </TableRow>
                       </>
                     )}
