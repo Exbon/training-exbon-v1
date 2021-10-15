@@ -36,6 +36,8 @@ import Profile3 from "../../../assets/img/faces/profile3.png";
 import Profile4 from "../../../assets/img/faces/profile4.png";
 import Subcontractor1 from "../../../assets/img/faces/sub1.png";
 import Subcontractor2 from "../../../assets/img/faces/sub2.png";
+import Vendor1 from "../../../assets/img/faces/vendor1.png";
+import Vendor2 from "../../../assets/img/faces/vendor2.png";
 
 import "./project.css";
 
@@ -151,19 +153,34 @@ const July112021 = () => {
                     )}
                     {row.name == "Subcontractor" && (
                       <TableRow>
-                        <TableCell width="6%" align="center">
+                        <TableCell width="15%" align="center">
                           Subcontractor
                         </TableCell>
-                        <TableCell className="test">License</TableCell>
-                        <TableCell align="center" width="10%">
+                        <TableCell className="test" width="10%">
+                          License
+                        </TableCell>
+                        <TableCell align="center" width="12%">
                           Work Start
                         </TableCell>
-                        <TableCell align="center" width="10%">
+                        <TableCell align="center" width="12%">
                           Work End
                         </TableCell>
-                        <TableCell width="58%">Task</TableCell>
-                        <TableCell width="5%">Completion</TableCell>
-                        <TableCell width="5%">Workers</TableCell>
+                        <TableCell width="39%">Task</TableCell>
+                        <TableCell width="6%">Completion</TableCell>
+                        <TableCell width="6%">Workers</TableCell>
+                      </TableRow>
+                    )}
+                    {row.name == "Material Delivered" && (
+                      <TableRow>
+                        <TableCell width="15%" align="center">
+                          Vendor
+                        </TableCell>
+                        <TableCell align="center" width="16%">
+                          Time
+                        </TableCell>
+                        <TableCell width="55%">Item</TableCell>
+                        <TableCell width="7%">Unit</TableCell>
+                        <TableCell width="7%">QTY</TableCell>
                       </TableRow>
                     )}
                   </TableHead>
@@ -293,7 +310,9 @@ const July112021 = () => {
                                   cursor: "pointer",
                                 }}
                               />
-                              <span>AK Electrical</span>
+                              <span style={{ textAlign: "center" }}>
+                                AK Electrical
+                              </span>
                             </div>
                           </TableCell>
                           <TableCell rowSpan={3}>C10 Electrical</TableCell>
@@ -355,6 +374,91 @@ const July112021 = () => {
                           </TableCell>
                           <TableCell align="right">5.0%</TableCell>
                           <TableCell align="right">3</TableCell>
+                        </TableRow>
+                      </>
+                    )}
+                    {row.name == "Material Delivered" && (
+                      <>
+                        {/* Vendor1 */}
+                        <TableRow>
+                          <TableCell rowSpan={4}>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              <img
+                                src={Vendor1}
+                                style={{
+                                  width: "80px",
+                                  height: "40px",
+                                  cursor: "pointer",
+                                }}
+                              />
+                              <span style={{ textAlign: "center" }}>
+                                Ganahl Lumber
+                              </span>
+                            </div>
+                          </TableCell>
+                          <TableCell align="center" rowSpan={4}>
+                            10:00
+                          </TableCell>
+                          <TableCell>Door Frame</TableCell>
+                          <TableCell>EA</TableCell>
+                          <TableCell align="right">4</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>Laminated Door</TableCell>
+                          <TableCell>EA</TableCell>
+                          <TableCell align="right">4</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>Door Hardware - Hinge</TableCell>
+                          <TableCell>EA</TableCell>
+                          <TableCell align="right">12</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>Door Hardware - Lockset</TableCell>
+                          <TableCell>EA</TableCell>
+                          <TableCell align="right">12</TableCell>
+                        </TableRow>
+
+                        {/* Vendor2 */}
+                        <TableRow>
+                          <TableCell rowSpan={2}>
+                            <div
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "center",
+                                alignItems: "center",
+                              }}
+                            >
+                              <img
+                                src={Vendor2}
+                                style={{
+                                  width: "80px",
+                                  height: "40px",
+                                  cursor: "pointer",
+                                }}
+                              />
+                              <span style={{ textAlign: "center" }}>AMS</span>
+                            </div>
+                          </TableCell>
+                          <TableCell align="center" rowSpan={2}>
+                            13:00
+                          </TableCell>
+                          <TableCell>Acoustical Ceiling Tile</TableCell>
+                          <TableCell>Box</TableCell>
+                          <TableCell align="right">4</TableCell>
+                        </TableRow>
+                        <TableRow>
+                          <TableCell>Ceiling Tile Adhesive</TableCell>
+                          <TableCell>Carton</TableCell>
+                          <TableCell align="right">4</TableCell>
                         </TableRow>
                       </>
                     )}
@@ -635,25 +739,51 @@ const July112021 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2
+                    <h3
                       style={{
                         color: "#fcfaf8",
                         fontWeight: "400",
                         textAlign: "center",
+                        marginTop: "10px",
                       }}
                     >
-                      Assignment
-                    </h2>
+                      Daily Note
+                    </h3>
                     <p
                       style={{
-                        marginTop: "40px",
-                        marginBottom: "20px",
+                        marginTop: "10px",
+                        marginBottom: "30px",
                         color: "#f7f3f0",
                         fontWeight: "500",
                         marginLeft: "5px",
                       }}
                     >
-                      Today is the first day of construction.
+                      1) During material delivery, it was noticed that one of 4
+                      lamintated doors are damaged.
+                    </p>
+                    <p
+                      style={{
+                        marginTop: "10px",
+                        marginBottom: "30px",
+                        color: "#f7f3f0",
+                        fontWeight: "500",
+                        marginLeft: "5px",
+                      }}
+                    >
+                      2) Peter Cho informed you that he will not come back
+                      tomorrow and like to quit from this jobsite.
+                    </p>
+                    <p
+                      style={{
+                        marginTop: "10px",
+                        marginBottom: "10px",
+                        color: "#f7f3f0",
+                        fontWeight: "500",
+                        marginLeft: "5px",
+                      }}
+                    >
+                      3) Electrical rough-in for walls is done today and ready
+                      for an inspection
                     </p>
                     <div
                       style={{
@@ -664,8 +794,100 @@ const July112021 = () => {
                         paddingBottom: "2%",
                       }}
                     >
-                      <p style={{ color: "white", fontWeight: "500" }}>
-                        Q1. Fill out timesheet and daily report for the day.
+                      <h3
+                        style={{
+                          color: "#fcfaf8",
+                          fontWeight: "400",
+                          textAlign: "center",
+                          marginTop: "0px",
+                        }}
+                      >
+                        Assignment
+                      </h3>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        1) Create Daily Report
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        2) Create Timesheet
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        3) Deficiency Log : Upload a correctional notice from
+                        IOR and develop a plan.
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        4) Deficiency Log : Record one damaged door issue and
+                        develop a plan
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        5) RFI Log : Submit a RFI to confirm the paint color
+                        "Swiss Coffee" which was confimed verbally at the site
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        6) RFI Log : Submit a RFI to confirm if one duplex
+                        outlet can be moved 12" to FM's desk.
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        7) Vendor Bill Process : Process Vendor Bill via Wrike
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        8) Request a last paycheck for Peter Cho
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        9) Request an inspection : Electrical Rough-in (Wall)
                       </p>
                     </div>
                   </div>
