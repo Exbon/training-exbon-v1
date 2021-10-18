@@ -266,17 +266,20 @@ const July012021 = () => {
           <div style={{ width: "100%" }}>
             <Grid container>
               <Grid item xs={6}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <DatePicker
-                    disableToolbar
-                    variant="inline"
-                    format="MM/dd/yyyy"
-                    value={"07/01/2021"}
-                    onChange={() => {}}
-                    className="datepicker"
-                    autoOk={true}
-                  />
-                </MuiPickersUtilsProvider>
+                <div style={{ display: "flex" }}>
+                  <p className="title-day">Day 1</p>
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <DatePicker
+                      disableToolbar
+                      variant="inline"
+                      format="MM/dd/yyyy"
+                      value={"07/01/2021"}
+                      onChange={() => {}}
+                      className="datepicker"
+                      autoOk={true}
+                    />
+                  </MuiPickersUtilsProvider>
+                </div>
 
                 <br />
                 <br />

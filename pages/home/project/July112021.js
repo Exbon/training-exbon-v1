@@ -874,7 +874,7 @@ const July112021 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1) During material delivery, it was noticed that one of 4
+                      1. During material delivery, it was noticed that one of 4
                       lamintated doors are damaged.
                     </p>
                     <p
@@ -886,7 +886,7 @@ const July112021 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      2) Peter Cho informed you that he will not come back
+                      2. Peter Cho informed you that he will not come back
                       tomorrow and like to quit from this jobsite.
                     </p>
                     <p
@@ -898,7 +898,7 @@ const July112021 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      3) Electrical rough-in for walls is done today and ready
+                      3. Electrical rough-in for walls is done today and ready
                       for an inspection
                     </p>
                     <div
@@ -927,7 +927,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1) Create Daily Report
+                        1. Create Daily Report
                       </p>
                       <p
                         style={{
@@ -936,7 +936,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        2) Create Timesheet
+                        2. Create Timesheet
                       </p>
                       <p
                         style={{
@@ -945,7 +945,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        3) Deficiency Log : Upload a correctional notice from
+                        3. Deficiency Log : Upload a correctional notice from
                         IOR and develop a plan.
                       </p>
                       <p
@@ -955,7 +955,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        4) Deficiency Log : Record one damaged door issue and
+                        4. Deficiency Log : Record one damaged door issue and
                         develop a plan
                       </p>
                       <p
@@ -965,7 +965,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        5) RFI Log : Submit a RFI to confirm the paint color
+                        5. RFI Log : Submit a RFI to confirm the paint color
                         "Swiss Coffee" which was confimed verbally at the site
                       </p>
                       <p
@@ -975,7 +975,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        6) RFI Log : Submit a RFI to confirm if one duplex
+                        6. RFI Log : Submit a RFI to confirm if one duplex
                         outlet can be moved 12" to FM's desk.
                       </p>
                       <p
@@ -985,7 +985,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        7) Vendor Bill Process : Process Vendor Bill via Wrike
+                        7. Vendor Bill Process : Process Vendor Bill via Wrike
                       </p>
                       <p
                         style={{
@@ -994,7 +994,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        8) Request a last paycheck for Peter Cho
+                        8. Request a last paycheck for Peter Cho
                       </p>
                       <p
                         style={{
@@ -1003,7 +1003,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        9) Request an inspection : Electrical Rough-in (Wall)
+                        9. Request an inspection : Electrical Rough-in (Wall)
                       </p>
                     </div>
                   </div>
@@ -1018,7 +1018,7 @@ const July112021 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="#">
+                    <Link href="./July092021">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
