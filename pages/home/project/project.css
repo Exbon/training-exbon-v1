@@ -9,7 +9,8 @@
   height: 90vh;
 }
 .datepicker {
-  margin-top: 30px !important;
+  margin-top: 28px !important;
+  margin-right: 40px !important;
   /* border: 2px solid white !important; */
   border-radius: 10px !important;
 }
@@ -148,11 +149,11 @@ blockquote p {
 }
 
 .title-day {
-  margin-top: 36px !important;
+  margin-top: 16px !important;
   color: bisque;
-  font-size: large;
   font-weight: 500;
   margin-right: 20px;
+  text-align: center;
 }
 
 .test {

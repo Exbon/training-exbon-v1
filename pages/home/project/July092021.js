@@ -276,18 +276,27 @@ const July092021 = () => {
             <Grid container>
               <Grid item xs={6}>
                 <div style={{ display: "flex" }}>
-                  <p className="title-day">Day 3</p>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <DatePicker
-                      disableToolbar
-                      variant="inline"
-                      format="MM/dd/yyyy"
-                      value={"07/09/2021"}
-                      onChange={() => {}}
-                      className="datepicker"
-                      autoOk={true}
-                    />
-                  </MuiPickersUtilsProvider>
+                  <div style={{ flexGrow: "1" }}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <DatePicker
+                        disableToolbar
+                        variant="inline"
+                        format="MM/dd/yyyy"
+                        value={"07/09/2021"}
+                        onChange={() => {}}
+                        className="datepicker"
+                        autoOk={true}
+                      />
+                    </MuiPickersUtilsProvider>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexGrow: "4",
+                    }}
+                  >
+                    <h2 className="title-day">Day 3 - Change Order</h2>
+                  </div>
                 </div>
 
                 <br />
@@ -346,9 +355,10 @@ const July092021 = () => {
                         color: "#fcfaf8",
                         fontWeight: "400",
                         textAlign: "center",
+                        marginTop: "5px",
                       }}
                     >
-                      Objective: Change Order
+                      Assignment
                     </h2>
                     <p
                       style={{

@@ -319,25 +319,34 @@ const July082021 = () => {
             <Grid container>
               <Grid item xs={6}>
                 <div style={{ display: "flex" }}>
-                  <p className="title-day">Day 2</p>
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <DatePicker
-                      disableToolbar
-                      variant="inline"
-                      format="MM/dd/yyyy"
-                      value={"07/08/2021"}
-                      onChange={() => {}}
-                      className="datepicker"
-                      autoOk={true}
-                    />
-                  </MuiPickersUtilsProvider>
+                  <div style={{ flexGrow: "1" }}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <DatePicker
+                        disableToolbar
+                        variant="inline"
+                        format="MM/dd/yyyy"
+                        value={"07/08/2021"}
+                        onChange={() => {}}
+                        className="datepicker"
+                        autoOk={true}
+                      />
+                    </MuiPickersUtilsProvider>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexGrow: "4",
+                    }}
+                  >
+                    <h2 className="title-day">Day 2 - Daily Report</h2>
+                  </div>
                 </div>
 
                 <div
                   style={{
-                    marginLeft: "30px",
+                    marginLeft: "0px",
                     marginRight: "30px",
-                    marginTop: "15px",
+                    marginTop: "25px",
                     display: "flex",
                   }}
                 >
@@ -409,7 +418,7 @@ const July082021 = () => {
                 </div>
                 <div
                   style={{
-                    marginLeft: "30px",
+                    marginLeft: "0px",
                     marginRight: "30px",
                     marginTop: "20px",
                     display: "flex",
@@ -483,9 +492,10 @@ const July082021 = () => {
                         color: "#fcfaf8",
                         fontWeight: "400",
                         textAlign: "center",
+                        marginTop: "5px",
                       }}
                     >
-                      Objective: Daily Report
+                      Assignment
                     </h2>
                     <p
                       style={{
