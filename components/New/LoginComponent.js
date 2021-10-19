@@ -33,7 +33,9 @@ const LoginComponent = ({ signin }) => {
   };
 
   const handleKeyPress = () => {
-    handleLoginButton();
+    if (event.key === "Enter") {
+      handleLoginButton();
+    }
   };
 
   return (
