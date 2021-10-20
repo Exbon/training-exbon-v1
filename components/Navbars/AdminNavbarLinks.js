@@ -91,7 +91,7 @@ export default function AdminNavbarLinks() {
             style={{
               fontFamily: "Roboto",
               fontWeight: "600",
-              color: "#c0c2c7",
+              color: "#23887a",
               marginTop: "16px",
             }}
           >
