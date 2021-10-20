@@ -113,8 +113,8 @@ h6 {
 }
 
 body {
-  /* background-image: url("../img/back5.jpg"); */
-  background-color: #5e5a5a;
+  background-image: url("../img/back5.jpg");
+  /* background-color: #5e5a5a; */
   background-size: cover;
   background-attachment: fixed;
   background-position: center;

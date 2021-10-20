@@ -42,6 +42,8 @@ import Subcontractor2 from "../../../assets/img/faces/sub2.png";
 import Vendor1 from "../../../assets/img/faces/vendor1.png";
 import Vendor2 from "../../../assets/img/faces/vendor2.png";
 
+import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+
 import "./project.css";
 
 const July112021 = () => {
@@ -149,8 +151,11 @@ const July112021 = () => {
                         <TableCell align="center" width="15%">
                           Work End
                         </TableCell>
-                        <TableCell align="left" width="50%">
+                        <TableCell align="left" width="40%">
                           Task
+                        </TableCell>
+                        <TableCell align="left" width="10%">
+                          Completion
                         </TableCell>
                       </TableRow>
                     )}
@@ -159,7 +164,7 @@ const July112021 = () => {
                         <TableCell width="15%" align="center">
                           Subcontractor
                         </TableCell>
-                        <TableCell className="test" width="10%">
+                        <TableCell className="test" width="14%">
                           License
                         </TableCell>
                         <TableCell align="center" width="12%">
@@ -168,7 +173,7 @@ const July112021 = () => {
                         <TableCell align="center" width="12%">
                           Work End
                         </TableCell>
-                        <TableCell width="39%">Task</TableCell>
+                        <TableCell width="31%">Task</TableCell>
                         <TableCell width="6%">Completion</TableCell>
                         <TableCell width="6%">Workers</TableCell>
                       </TableRow>
@@ -241,20 +246,25 @@ const July112021 = () => {
                             />
                           </TableCell>
                           <TableCell rowSpan={3}>Kevin Valdez</TableCell>
-                          <TableCell rowSpan={3}>Carpenter</TableCell>
+                          <TableCell>Carpenter</TableCell>
                           <TableCell align="center">07:00</TableCell>
                           <TableCell align="center">11:00</TableCell>
                           <TableCell>Ceiling Joist Installation</TableCell>
+                          <TableCell align="right">10%</TableCell>
                         </TableRow>
                         <TableRow>
+                          <TableCell>Carpenter</TableCell>
                           <TableCell align="center">11:00</TableCell>
                           <TableCell align="center">12:00</TableCell>
                           <TableCell>Meal</TableCell>
+                          <TableCell align="right"></TableCell>
                         </TableRow>
                         <TableRow>
+                          <TableCell>Carpenter</TableCell>
                           <TableCell align="center">12:00</TableCell>
                           <TableCell align="center">15:00</TableCell>
                           <TableCell>Drywall Installation & Patching</TableCell>
+                          <TableCell align="right">30%</TableCell>
                         </TableRow>
 
                         {/* Person2 */}
@@ -270,20 +280,25 @@ const July112021 = () => {
                             />
                           </TableCell>
                           <TableCell rowSpan={3}>Paul Martinez</TableCell>
-                          <TableCell rowSpan={3}>Carpenter</TableCell>
+                          <TableCell>Carpenter</TableCell>
                           <TableCell align="center">07:00</TableCell>
                           <TableCell align="center">11:00</TableCell>
                           <TableCell>Ceiling Joist Installation</TableCell>
+                          <TableCell align="right">10%</TableCell>
                         </TableRow>
                         <TableRow>
+                          <TableCell>Carpenter</TableCell>
                           <TableCell align="center">11:00</TableCell>
                           <TableCell align="center">12:00</TableCell>
                           <TableCell>Meal</TableCell>
+                          <TableCell align="right"></TableCell>
                         </TableRow>
                         <TableRow>
+                          <TableCell>Carpenter</TableCell>
                           <TableCell align="center">12:00</TableCell>
                           <TableCell align="center">16:00</TableCell>
                           <TableCell>Drywall Installation & Patching</TableCell>
+                          <TableCell align="right">30%</TableCell>
                         </TableRow>
 
                         {/* Person3 */}
@@ -299,20 +314,25 @@ const July112021 = () => {
                             />
                           </TableCell>
                           <TableCell rowSpan={3}>Peter Cho</TableCell>
-                          <TableCell rowSpan={3}>Painter</TableCell>
+                          <TableCell>Painter</TableCell>
                           <TableCell align="center">07:00</TableCell>
                           <TableCell align="center">11:00</TableCell>
                           <TableCell>Sanding & Priming</TableCell>
+                          <TableCell align="right">15%</TableCell>
                         </TableRow>
                         <TableRow>
+                          <TableCell>Painter</TableCell>
                           <TableCell align="center">11:00</TableCell>
                           <TableCell align="center">12:00</TableCell>
                           <TableCell>Meal</TableCell>
+                          <TableCell align="right"></TableCell>
                         </TableRow>
                         <TableRow>
+                          <TableCell>Painter</TableCell>
                           <TableCell align="center">12:00</TableCell>
                           <TableCell align="center">16:00</TableCell>
                           <TableCell>1st Coat of Finish Paint</TableCell>
+                          <TableCell align="right">5%</TableCell>
                         </TableRow>
                       </>
                     )}
@@ -342,7 +362,7 @@ const July112021 = () => {
                               </span>
                             </div>
                           </TableCell>
-                          <TableCell rowSpan={3}>C10 Electrical</TableCell>
+                          <TableCell>C10 Electrical</TableCell>
                           <TableCell align="center">08:00</TableCell>
                           <TableCell align="center">12:00</TableCell>
                           <TableCell>
@@ -352,6 +372,7 @@ const July112021 = () => {
                           <TableCell align="right">4</TableCell>
                         </TableRow>
                         <TableRow>
+                          <TableCell>C10 Electrical</TableCell>
                           <TableCell align="center">13:00</TableCell>
                           <TableCell align="center">15:00</TableCell>
                           <TableCell>
@@ -361,6 +382,7 @@ const July112021 = () => {
                           <TableCell align="right">4</TableCell>
                         </TableRow>
                         <TableRow>
+                          <TableCell>C10 Electrical</TableCell>
                           <TableCell align="center">15:00</TableCell>
                           <TableCell align="center">107:00</TableCell>
                           <TableCell>Electrical rough-in for walls</TableCell>
@@ -814,9 +836,9 @@ const July112021 = () => {
         <div className="background">
           <Box sx={{ width: "100%" }}>
             <Grid container>
-              <Grid item xs={8}>
-                <div style={{ display: "flex" }}>
-                  <div style={{ flexGrow: "1" }}>
+              <Grid item xs={8} style={{ height: "90vh", overflow: "auto" }}>
+                <div>
+                  <div>
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
                       <DatePicker
                         disableToolbar
@@ -829,16 +851,16 @@ const July112021 = () => {
                       />
                     </MuiPickersUtilsProvider>
                   </div>
-                  <div
+                  {/* <div
                     style={{
                       display: "flex",
                       flexGrow: "4",
                     }}
                   >
                     <h2 className="title-day">Day 9 - Sample Project</h2>
-                  </div>
+                  </div> */}
                 </div>
-                <div style={{ width: "98%" }}>
+                <div style={{ width: "98%", marginTop: "10px" }}>
                   <TableContainer component={Paper}>
                     <Table aria-label="collapsible table">
                       <TableBody>
@@ -850,7 +872,7 @@ const July112021 = () => {
                   </TableContainer>
                 </div>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={4} style={{ height: "90vh", overflow: "auto" }}>
                 <div
                   style={{
                     minHeight: "90vh",
@@ -861,9 +883,11 @@ const July112021 = () => {
                     borderLeft: "2px dotted #7e7a7a",
                     borderTopLeftRadius: "0px",
                     borderBottomLeftRadius: "0px",
+                    backgroundColor: "#5e5a5a",
                   }}
                 >
                   <div style={{ padding: "1%" }}>
+                    <h2 className="title-day">Day 9 - Sample Project</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -874,6 +898,12 @@ const July112021 = () => {
                     >
                       Daily Note
                     </h3>
+                    <div style={{ textAlign: "center" }}>
+                      {/* Link -> OneDrive download click -> Chrome Development Settings -> Network API */}
+                      <Link href="https://exboncom-my.sharepoint.com/personal/hammer_exbon_com/_layouts/15/download.aspx?UniqueId=54b02ca3%2D16b7%2D4a9b%2Db852%2Dc5f75ca6a92b">
+                        <CloudDownloadIcon className="Onedrive-download-icon" />
+                      </Link>
+                    </div>
                     <p
                       style={{
                         marginTop: "10px",

@@ -1,6 +1,6 @@
 .background {
   /* background-image: url("../../../assets/img/back3-2.jpg"); */
-  background-color: #5e5a5a;
+  /* background-color: #5e5a5a; */
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -158,4 +158,15 @@ blockquote p {
 
 .test {
   max-width: 10px !important;
+}
+
+.Onedrive-download-icon {
+  cursor: pointer;
+  color: white !important;
+  border-color: white !important;
+}
+
+.Onedrive-download-icon:hover {
+  color: rgb(124, 201, 236) !important;
+  border-color: white !important;
 }
