@@ -111,7 +111,7 @@ const July112021 = () => {
 
   function Row(props) {
     const { row } = props;
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const classes = useRowStyles();
 
     return (
@@ -936,7 +936,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1. Create Daily Report
+                        0901. Create Daily Report
                       </p>
                       <p
                         style={{
@@ -945,7 +945,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        2. Create Timesheet
+                        0902. Create Timesheet
                       </p>
                       <p
                         style={{
@@ -954,7 +954,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        3. Deficiency Log : Upload a correctional notice from
+                        0903. Deficiency Log : Upload a correctional notice from
                         IOR and develop a plan.
                       </p>
                       <p
@@ -964,7 +964,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        4. Deficiency Log : Record one damaged door issue and
+                        0904. Deficiency Log : Record one damaged door issue and
                         develop a plan
                       </p>
                       <p
@@ -974,7 +974,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        5. RFI Log : Submit a RFI to confirm the paint color
+                        0905. RFI Log : Submit a RFI to confirm the paint color
                         "Swiss Coffee" which was confimed verbally at the site
                       </p>
                       <p
@@ -984,7 +984,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        6. RFI Log : Submit a RFI to confirm if one duplex
+                        0906. RFI Log : Submit a RFI to confirm if one duplex
                         outlet can be moved 12" to FM's desk.
                       </p>
                       <p
@@ -994,7 +994,8 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        7. Vendor Bill Process : Process Vendor Bill via Wrike
+                        0907. Vendor Bill Process : Process Vendor Bill via
+                        Wrike
                       </p>
                       <p
                         style={{
@@ -1003,7 +1004,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        8. Request a last paycheck for Peter Cho
+                        0908. Request a last paycheck for Peter Cho
                       </p>
                       <p
                         style={{
@@ -1012,7 +1013,7 @@ const July112021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        9. Request an inspection : Electrical Rough-in (Wall)
+                        0909. Request an inspection : Electrical Rough-in (Wall)
                       </p>
                     </div>
                   </div>
