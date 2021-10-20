@@ -40,7 +40,7 @@ import Profile7 from "../../../assets/img/faces/profile7.png";
 import Subcontractor1 from "../../../assets/img/faces/sub1.png";
 import Subcontractor2 from "../../../assets/img/faces/sub2.png";
 import Vendor1 from "../../../assets/img/faces/vendor1.png";
-import Vendor2 from "../../../assets/img/faces/vendor2.png";
+import Vendor3 from "../../../assets/img/faces/vendor3.png";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
@@ -487,7 +487,7 @@ const July112021 = () => {
                               }}
                             >
                               <img
-                                src={Vendor2}
+                                src={Vendor3}
                                 style={{
                                   width: "80px",
                                   height: "40px",
