@@ -3,7 +3,7 @@ import Router from "next/router";
 
 export default function _error() {
   React.useEffect(() => {
-    Router.push("/home/project/July012021");
+    Router.push("/home/p0/July112021");
   });
 
   return <div />;

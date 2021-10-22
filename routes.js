@@ -52,30 +52,30 @@ import SyncProblemIcon from "@material-ui/icons/SyncProblem";
 // }
 
 const dashboardRoutes = [
-  {
-    path: "/project/July012021",
-    name: "OneDrive",
-    icon: CloudIcon,
-    layout: "/home",
-  },
-  {
-    path: "/project/July082021",
-    name: "Daily Report",
-    icon: WatchLaterIcon,
-    layout: "/home",
-  },
-  {
-    path: "/project/July092021",
-    name: "Change Order",
-    icon: SyncProblemIcon,
-    layout: "/home",
-  },
-  {
-    path: "/project/July112021",
-    name: "Sample",
-    icon: Dashboard,
-    layout: "/home",
-  },
+  // {
+  //   path: "/p0/July012021",
+  //   name: "OneDrive",
+  //   icon: CloudIcon,
+  //   layout: "/home",
+  // },
+  // {
+  //   path: "/p0/July082021",
+  //   name: "Daily Report",
+  //   icon: WatchLaterIcon,
+  //   layout: "/home",
+  // },
+  // {
+  //   path: "/p0/July092021",
+  //   name: "Change Order",
+  //   icon: SyncProblemIcon,
+  //   layout: "/home",
+  // },
+  // {
+  //   path: "/p0/July112021",
+  //   name: "Sample",
+  //   icon: Dashboard,
+  //   layout: "/home",
+  // },
   // {
   //   path: "/calendar",
   //   name: "Calendar",
