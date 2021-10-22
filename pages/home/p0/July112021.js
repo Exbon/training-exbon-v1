@@ -1058,7 +1058,7 @@ const July112021 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./July092021">
+                    <Link href="#">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
