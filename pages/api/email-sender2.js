@@ -16,7 +16,6 @@ const emailHandler = (req, res) => {
     text: "This is text version!",
     // replyTo: "receiverXXX@gmail.com",
     // attachments: [
-
     // ],
     onError: e => console.log(e),
     onSuccess: i => console.log(i),
