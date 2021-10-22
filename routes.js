@@ -52,18 +52,18 @@ import SyncProblemIcon from "@material-ui/icons/SyncProblem";
 // }
 
 const dashboardRoutes = [
-  // {
-  //   path: "/p0/July012021",
-  //   name: "OneDrive",
-  //   icon: CloudIcon,
-  //   layout: "/home",
-  // },
-  // {
-  //   path: "/p0/July082021",
-  //   name: "Daily Report",
-  //   icon: WatchLaterIcon,
-  //   layout: "/home",
-  // },
+  {
+    path: "/p1/July122021",
+    name: "Day 7",
+    icon: Dashboard,
+    layout: "/home",
+  },
+  {
+    path: "/p2/July122021",
+    name: "Day 8",
+    icon: Dashboard,
+    layout: "/home",
+  },
   // {
   //   path: "/p0/July092021",
   //   name: "Change Order",
