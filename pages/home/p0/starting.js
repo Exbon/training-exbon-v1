@@ -1,6 +1,7 @@
 import React from "react";
 import Admin from "layouts/Admin.js";
 import { Button } from "@material-ui/core";
+import Link from "next/link";
 
 function starting() {
   return (
@@ -15,13 +16,15 @@ function starting() {
         textAlign: "center",
       }}
     >
-      <Button
-        variant="contained"
-        color="primary"
-        style={{ alignSelf: "center", width: "30%" }}
-      >
-        Continue
-      </Button>
+      <Link href="../p1/July122021">
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ alignSelf: "center", width: "30%" }}
+        >
+          Continue
+        </Button>
+      </Link>
     </div>
   );
 }
