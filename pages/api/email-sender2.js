@@ -31,6 +31,7 @@ const emailHandler = (req, res) => {
           onSuccess: i => {
             console.log(i);
             res.status(200).json({
+              //for preventing Timeout
               result: 1,
             });
             resolve();

@@ -222,18 +222,18 @@ const start = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const handleEmail = () => {
-    axios({
+  const handleEmail = async () => {
+    await axios({
       method: "post",
       url: `/api/email-sender2`,
-      timeout: 15000, // 5 seconds timeout
+      timeout: 5000, // 5 seconds timeout
       headers: {},
       data: {
         username: cookies.username,
       },
     });
 
-    axios({
+    await axios({
       method: "post",
       url: `/api/training/training-progress`,
       timeout: 5000, // 5 seconds timeout
@@ -242,6 +242,7 @@ const start = () => {
         employeeID: cookies.employeeid,
       },
     }).then(response => {
+      debugger;
       console.log(response);
     });
   };
