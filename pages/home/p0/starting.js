@@ -17,6 +17,16 @@ function starting() {
         username: cookies.username,
       },
     });
+
+    axios({
+      method: "post",
+      url: `/api/training/training-progress`,
+      timeout: 5000, // 5 seconds timeout
+      headers: {},
+      data: {
+        employeeID: cookies.employeeid,
+      },
+    });
   };
   return (
     <div
