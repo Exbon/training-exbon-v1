@@ -28,3 +28,4 @@ package-lock.json
 .next
 
 dbConfig.js
+emailConfig.js
