@@ -7,7 +7,7 @@ export default function Index() {
   React.useEffect(() => {
     {
       cookies.username
-        ? Router.push("/home/p0/July112021")
+        ? Router.push("/home/p0/starting")
         : Router.push("/login");
     }
   });
