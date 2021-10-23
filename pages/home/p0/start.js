@@ -114,31 +114,6 @@ const start = () => {
             "Loading Error.(POST /api/dashboard/signin) \n\nPlease try again.\n\nPlease contact IT if the issue still persists. (Hyunmyung Kim 201-554-6666)\n\n" +
               err
           );
-          setData(() => [
-            {
-              ProjectGroup: "",
-              ProjectID: "",
-              ProjectName: "No Permission",
-              ContractAmount: "",
-              Director: "",
-              PIC: "",
-              Associate1: "",
-              Associate2: "",
-              Associate3: "",
-              Position: "",
-              BaselineCost: "",
-              EEAC: "",
-              CV: "",
-              CPI: "",
-              ESPI: "",
-              WorkCompletion: "",
-              StartDate: "",
-              FinishDate: "",
-              Deadline: "",
-              IsDesign: "",
-              DesignParentID: "",
-            },
-          ]);
         });
     promises.push(fetchData());
     trackPromise(Promise.all(promises).then(() => {}));
@@ -242,13 +217,13 @@ const start = () => {
         employeeID: cookies.employeeid,
       },
     }).then(response => {
-      debugger;
-      console.log(response);
+      setData(response.data.result.recordsets[0]);
     });
   };
 
   return (
     <>
+      {console.log(data)}
       {promiseInProgress ? (
         <div
           style={{
@@ -298,16 +273,14 @@ const start = () => {
             textAlign: "center",
           }}
         >
-          <Link href="../p1/July122021">
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ alignSelf: "center", width: "30%" }}
-              onClick={() => handleEmail()}
-            >
-              Continue
-            </Button>
-          </Link>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ alignSelf: "center", width: "30%" }}
+            onClick={() => handleEmail()}
+          >
+            Continue
+          </Button>
         </div>
       )}
     </>
