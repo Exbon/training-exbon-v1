@@ -217,7 +217,9 @@ const start = () => {
         employeeID: cookies.employeeid,
       },
     }).then(response => {
-      setData(response.data.result.recordsets[0]);
+      const result = response.data.result.recordsets[0];
+      if (result.length > 0) {
+      }
     });
   };
 
