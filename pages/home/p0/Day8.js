@@ -78,36 +78,8 @@ const Day8 = () => {
       task,
       completion,
       workers,
-      history: [
-        { date: "2020-01-05", customerId: "11091700", amount: 3 },
-        { date: "2020-01-02", customerId: "Anonymous", amount: 1 },
-      ],
-      fieldworker: [
-        {
-          picture: "",
-          name: "Kevin Valdez",
-          position: "Carpenter",
-          workstart: "07:00",
-          workend: "11:00",
-          task: "Ceiling Joist Installation ",
-        },
-        {
-          picture: "",
-          name: "Paul Martinez",
-          position: "Carpenter",
-          workstart: "",
-          workend: "",
-          task: "",
-        },
-        {
-          picture: "",
-          name: "Peter Cho",
-          position: "Painter",
-          workstart: "",
-          workend: "",
-          task: "",
-        },
-      ],
+      history: [],
+      fieldworker: [],
     };
   }
 
@@ -602,6 +574,89 @@ const Day8 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
+  const handleProcess = async () => {
+    await axios({
+      method: "get",
+      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=8`,
+      timeout: 5000, // 5 seconds timeout
+      headers: {},
+    }).then(async response => {
+      const result1 = response.data.result.recordsets[0];
+      if (result1.length == 0) {
+        await axios({
+          method: "get",
+          url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
+          timeout: 5000, // 5 seconds timeout
+          headers: {},
+        }).then(async response => {
+          const result2 = response.data.result.recordsets[0];
+          if (result2.length == 0) {
+            alert("No RFI log created!");
+          } else {
+            const TaskID = result2[0].WrikeID;
+            await axios({
+              method: "get",
+              url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {
+                Authorization:
+                  "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+              },
+            }).then(async response => {
+              let data = response.data.data;
+              if (data[0].customStatusId != "IEACA7BEJMCIU2ZO") {
+                alert("Wrike task's status in incorrect!");
+              } else {
+                await axios({
+                  method: "post",
+                  url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
+                  timeout: 5000, // 5 seconds timeout
+                  headers: {
+                    Authorization:
+                      "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                  },
+                  data: {
+                    plainText: false,
+                    text: "Please submit this RFI to Owner",
+                  },
+                }).then(async response => {
+                  await axios({
+                    method: "put",
+                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                    timeout: 5000, // 5 seconds timeout
+                    headers: {
+                      Authorization:
+                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                    },
+                    data: {
+                      customStatus: "IEACA7BEJMCIU2ZY",
+                    },
+                  }).then(async response => {
+                    await axios({
+                      method: "post",
+                      url: `/api/training/training-progress`,
+                      timeout: 5000, // 5 seconds timeout
+                      headers: {},
+                      data: {
+                        employeeID: cookies.employeeid,
+                        day: 8,
+                        part: 1,
+                      },
+                    }).then(response => {
+                      router.push(`./Day9`);
+                    });
+                  });
+                });
+              }
+            });
+          }
+        });
+      } else {
+        router.push(`./Day9`);
+      }
+    });
+  };
+
   return (
     <>
       {promiseInProgress ? (
@@ -755,15 +810,24 @@ const Day8 = () => {
                         0803 . RFI Log : Send a RFI to Owner to get a formal
                         directive
                       </p>
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: "500",
-                          marginBottom: "30px",
-                        }}
+                    </div>
+                    <div
+                      style={{
+                        borderBottom: "3px dotted #7e7a7a",
+                        borderRadius: "2px",
+                        padding: "1%",
+                        paddingBottom: "2%",
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        onClick={() => handleProcess()}
                       >
-                        0804 . Upload RFI in One Drive
-                      </p>
+                        Process
+                      </Button>
                     </div>
                   </div>
                   <div
@@ -782,7 +846,7 @@ const Day8 = () => {
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Link href="#">
+                    <Link href="./Day9">
                       <Button variant="contained" className="nextBtn">
                         NEXT
                       </Button>
