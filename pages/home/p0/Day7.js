@@ -755,7 +755,7 @@ const Day7 = () => {
                   },
                   data: {
                     plainText: false,
-                    text: "Test Comment",
+                    text: "Project Control: Proceed with a formal RFI Process",
                   },
                 }).then(async response => {
                   await axios({
