@@ -718,7 +718,7 @@ const Day7 = () => {
       if (result1.length == 0) {
         await axios({
           method: "get",
-          url: `/api/training/deficiency-log?employeeID=7423`,
+          url: `/api/training/deficiency-log?employeeID=${cookies.employeeid}`,
           timeout: 5000, // 5 seconds timeout
           headers: {},
         }).then(async response => {
