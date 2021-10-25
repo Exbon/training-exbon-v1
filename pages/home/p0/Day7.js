@@ -789,6 +789,8 @@ const Day7 = () => {
             });
           }
         });
+      } else {
+        router.push(`./Day8`);
       }
     });
   };

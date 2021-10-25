@@ -230,6 +230,8 @@ const start = () => {
             router.push(`./Day7`);
           });
         });
+      } else {
+        router.push(`./Day7`);
       }
     });
   };
