@@ -53,13 +53,13 @@ import SyncProblemIcon from "@material-ui/icons/SyncProblem";
 
 const dashboardRoutes = [
   {
-    path: "/p1/July122021",
+    path: "/p0/Day7",
     name: "Day 7",
     icon: Dashboard,
     layout: "/home",
   },
   {
-    path: "/p2/July122021",
+    path: "/p0/Day8",
     name: "Day 8",
     icon: Dashboard,
     layout: "/home",

@@ -6,9 +6,7 @@ export default function Index() {
   const [cookies, setCookie, removeCookie] = useCookies("username");
   React.useEffect(() => {
     {
-      cookies.username
-        ? Router.push("/home/p0/starting")
-        : Router.push("/login");
+      cookies.username ? Router.push("/home/p0/start") : Router.push("/login");
     }
   });
 

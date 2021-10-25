@@ -199,26 +199,37 @@ const start = () => {
 
   const handleEmail = async () => {
     await axios({
-      method: "post",
-      url: `/api/email-sender2`,
+      method: "get",
+      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=6`,
       timeout: 5000, // 5 seconds timeout
       headers: {},
-      data: {
-        username: cookies.username,
-      },
-    });
-
-    await axios({
-      method: "post",
-      url: `/api/training/training-progress`,
-      timeout: 5000, // 5 seconds timeout
-      headers: {},
-      data: {
-        employeeID: cookies.employeeid,
-      },
-    }).then(response => {
+    }).then(async response => {
       const result = response.data.result.recordsets[0];
-      if (result.length > 0) {
+      console.log(result);
+      if (result.length == 0) {
+        await axios({
+          method: "post",
+          url: `/api/email-sender2`,
+          timeout: 5000, // 5 seconds timeout
+          headers: {},
+          data: {
+            username: cookies.username,
+          },
+        }).then(async response => {
+          await axios({
+            method: "post",
+            url: `/api/training/training-progress`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              employeeID: cookies.employeeid,
+              day: 6,
+              part: 1,
+            },
+          }).then(response => {
+            router.push(`./Day7`);
+          });
+        });
       }
     });
   };

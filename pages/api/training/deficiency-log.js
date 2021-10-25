@@ -13,41 +13,10 @@ const trainingProgressHandler = (req, res) => {
           }
           const request = new mssql.Request();
 
-          const query = `EXEC [Training].[dbo].[TrainingProgress_SelectByEmployeeID]
-           ${req.query.employeeID}, ${req.query.day}`;
+          const query = `EXEC [Training].[dbo].[DeficiencyLog_SelectByAssignedEmployeeID]
+           ${req.query.employeeID}`;
           /* --Params--
           	@employeeID int,
-          	@day int,
-          */
-
-          request.query(query, (err, recordset) => {
-            if (err) {
-              console.error(err);
-              return resolve();
-            }
-            res.status(200).json({
-              result: recordset,
-            });
-            return resolve();
-          });
-        });
-        break;
-
-      case "POST":
-        mssql.connect(dbserver.dbConfig, err => {
-          if (err) {
-            console.error(err);
-            return resolve();
-          }
-          const request = new mssql.Request();
-
-          const query = `EXEC [Training].[dbo].[TrainingProgress_Insert]
-           ${body.employeeID}, ${body.day}, ${body.part}`;
-
-          /* --Params--
-          	@employeeID int,
-            @day int,
-            @part int,
           */
 
           request.query(query, (err, recordset) => {
@@ -64,7 +33,7 @@ const trainingProgressHandler = (req, res) => {
         break;
 
       default:
-        res.setHeader("Allow", ["GET", "POST"]);
+        res.setHeader("Allow", ["GET"]);
         res.status(405).end(`Method ${method} Not Allowed`);
         res.status(404).end(`Failed`);
         resolve();

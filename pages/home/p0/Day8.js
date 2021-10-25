@@ -44,9 +44,9 @@ import Vendor3 from "../../../assets/img/faces/vendor3.png";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
-import "../p0/project.css";
+import "./project.css";
 
-const July122021 = () => {
+const Day8 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -198,111 +198,6 @@ const July122021 = () => {
                       </TableRow>
                     ))} */}
 
-                    {row.name == "Field Worker" && (
-                      <>
-                        {/* Person1 */}
-                        <TableRow>
-                          <TableCell component="th" scope="row" rowSpan={3}>
-                            <img
-                              src={Profile2}
-                              style={{
-                                width: "70px",
-                                height: "70px",
-                                cursor: "pointer",
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell rowSpan={3}>Kevin Valdez</TableCell>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">07:00</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell>Ceiling Joist Installation</TableCell>
-                          <TableCell align="right">10%</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell>Meal</TableCell>
-                          <TableCell align="right"></TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell align="center">15:00</TableCell>
-                          <TableCell>Drywall Installation & Patching</TableCell>
-                          <TableCell align="right">30%</TableCell>
-                        </TableRow>
-
-                        {/* Person2 */}
-                        <TableRow>
-                          <TableCell component="th" scope="row" rowSpan={3}>
-                            <img
-                              src={Profile3}
-                              style={{
-                                width: "70px",
-                                height: "70px",
-                                cursor: "pointer",
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell rowSpan={3}>Paul Martinez</TableCell>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">07:00</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell>Ceiling Joist Installation</TableCell>
-                          <TableCell align="right">10%</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell>Meal</TableCell>
-                          <TableCell align="right"></TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell align="center">16:00</TableCell>
-                          <TableCell>Drywall Installation & Patching</TableCell>
-                          <TableCell align="right">30%</TableCell>
-                        </TableRow>
-
-                        {/* Person3 */}
-                        <TableRow>
-                          <TableCell component="th" scope="row" rowSpan={3}>
-                            <img
-                              src={Profile1}
-                              style={{
-                                width: "70px",
-                                height: "70px",
-                                cursor: "pointer",
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell rowSpan={3}>Peter Cho</TableCell>
-                          <TableCell>Painter</TableCell>
-                          <TableCell align="center">07:00</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell>Sanding & Priming</TableCell>
-                          <TableCell align="right">15%</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Painter</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell>Meal</TableCell>
-                          <TableCell align="right"></TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Painter</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell align="center">16:00</TableCell>
-                          <TableCell>1st Coat of Finish Paint</TableCell>
-                          <TableCell align="right">5%</TableCell>
-                        </TableRow>
-                      </>
-                    )}
                     {row.name == "Subcontractor" && (
                       <>
                         {/* Subcontractor1 */}
@@ -330,11 +225,11 @@ const July122021 = () => {
                             </div>
                           </TableCell>
                           <TableCell>B General Carpentry</TableCell>
-                          <TableCell align="center">08:00</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell>Layout for interior walls</TableCell>
-                          <TableCell align="right">100.0%</TableCell>
-                          <TableCell align="right">2</TableCell>
+                          <TableCell align="center"></TableCell>
+                          <TableCell align="center"></TableCell>
+                          <TableCell>No Work</TableCell>
+                          <TableCell align="right"></TableCell>
+                          <TableCell align="right"></TableCell>
                         </TableRow>
 
                         {/* Subcontractor2 */}
@@ -472,7 +367,7 @@ const July122021 = () => {
                           <TableCell>Susan Ali</TableCell>
                           <TableCell>Project Control</TableCell>
                           <TableCell>
-                            Work with PIC to review a deficiency log
+                            Work with PIC to review a RFI Draft
                           </TableCell>
                         </TableRow>
                       </>
@@ -493,7 +388,7 @@ const July122021 = () => {
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
                           <TableCell>PM ( OAR )</TableCell>
-                          <TableCell></TableCell>
+                          <TableCell>owner email</TableCell>
                         </TableRow>
 
                         {/* Client2 */}
@@ -801,7 +696,7 @@ const July122021 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 7</h2>
+                    <h2 className="title-day">Day 8</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -827,21 +722,8 @@ const July122021 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. During new wall layout,T-Wall Enterprise pointed out
-                      one existing light fixture is conflicting with new wall
-                      layout.
-                    </p>
-                    <p
-                      style={{
-                        marginTop: "10px",
-                        marginBottom: "30px",
-                        color: "#f7f3f0",
-                        fontWeight: "500",
-                        marginLeft: "5px",
-                      }}
-                    >
-                      2. Subcontractor emailed you a photo of existing light
-                      fixture.
+                      1. During new wall layout, Inspector pointed out one
+                      existing light fixture is conflicting with new wall layout
                     </p>
 
                     <div
@@ -870,7 +752,8 @@ const July122021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0703 . Open email from Subcontractor T Wall
+                        0803 . RFI Log : Send a RFI to Owner to get a formal
+                        directive
                       </p>
                       <p
                         style={{
@@ -879,8 +762,7 @@ const July122021 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0704 . Deficiency Log : Upload observed conflict and
-                        develop a plan.
+                        0804 . Upload RFI in One Drive
                       </p>
                     </div>
                   </div>
@@ -916,6 +798,6 @@ const July122021 = () => {
   );
 };
 
-July122021.layout = Admin;
+Day8.layout = Admin;
 
-export default July122021;
+export default Day8;
