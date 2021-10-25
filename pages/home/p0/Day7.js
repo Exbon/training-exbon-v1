@@ -900,9 +900,9 @@ const Day7 = () => {
                     </h3>
                     <div style={{ textAlign: "center" }}>
                       {/* Link -> OneDrive download click -> Chrome Development Settings -> Network API */}
-                      <Link href="https://exboncom-my.sharepoint.com/personal/hammer_exbon_com/_layouts/15/download.aspx?UniqueId=54b02ca3%2D16b7%2D4a9b%2Db852%2Dc5f75ca6a92b">
+                      {/* <Link href="https://exboncom-my.sharepoint.com/personal/hammer_exbon_com/_layouts/15/download.aspx?UniqueId=54b02ca3%2D16b7%2D4a9b%2Db852%2Dc5f75ca6a92b">
                         <CloudDownloadIcon className="Onedrive-download-icon" />
-                      </Link>
+                      </Link> */}
                     </div>
                     <p
                       style={{
@@ -981,7 +981,7 @@ const Day7 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="#">
+                    <Link href="./start">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>

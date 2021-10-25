@@ -12,7 +12,7 @@ const emailHandler = (req, res) => {
             user: emailConfig.emailConfig.user,
             pass: emailConfig.emailConfig.password,
           },
-          from: emailConfig.emailConfig.user,
+          from: "twall.subcontractor@exbon.com",
           to: body.username + "@exbon.com",
           subject: "Layout conflict",
           html: `<p>Exbon,</p>
