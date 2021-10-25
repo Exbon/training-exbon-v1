@@ -759,7 +759,7 @@ const Day7 = () => {
                   },
                 }).then(async response => {
                   await axios({
-                    method: "post",
+                    method: "put",
                     url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
                     timeout: 5000, // 5 seconds timeout
                     headers: {
