@@ -574,7 +574,7 @@ const Day8 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const handleProcess = async () => {
+  const handleNext = async () => {
     await axios({
       method: "get",
       url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=8`,
@@ -811,24 +811,6 @@ const Day8 = () => {
                         directive
                       </p>
                     </div>
-                    <div
-                      style={{
-                        borderBottom: "3px dotted #7e7a7a",
-                        borderRadius: "2px",
-                        padding: "1%",
-                        paddingBottom: "2%",
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <Button
-                        color="primary"
-                        variant="contained"
-                        onClick={() => handleProcess()}
-                      >
-                        Process
-                      </Button>
-                    </div>
                   </div>
                   <div
                     style={{
@@ -846,11 +828,13 @@ const Day8 = () => {
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Link href="./Day9">
-                      <Button variant="contained" className="nextBtn">
-                        NEXT
-                      </Button>
-                    </Link>
+                    <Button
+                      variant="contained"
+                      className="nextBtn"
+                      onClick={() => handleNext()}
+                    >
+                      NEXT
+                    </Button>
                   </div>
                 </div>
               </Grid>
