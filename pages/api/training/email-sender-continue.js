@@ -1,4 +1,4 @@
-const emailConfig = require("../../emailConfig.js");
+const emailConfig = require("../../../emailConfig.js");
 
 const emailHandler = (req, res) => {
   const { method, body } = req;
@@ -13,12 +13,14 @@ const emailHandler = (req, res) => {
             pass: emailConfig.emailConfig.password,
           },
           from: "twall.subcontractor@exbon.com",
+          // from: "twall.subcontractor@exbon.com",
           to: body.username + "@exbon.com",
           subject: "Layout conflict",
           html: `<p>Exbon,</p>
            <p>While we are working on new wall layout, we found there is one existing light fixture conflicting with this new layout. Please inform us how to proceed. </p>
-           <p>T-Wall Enterprise</p>`,
-          text: "This is text version!",
+           <br />
+           <strong>T-Wall Enterprise</strong>`,
+          // text: "This is text version!",
           // replyTo: "receiverXXX@gmail.com",
           attachments: [
             {

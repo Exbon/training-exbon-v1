@@ -607,6 +607,29 @@ const Day9 = () => {
               if (data[0].customStatusId != "IEACA7BEJMCIU22C") {
                 alert("Wrike task's status in incorrect!");
               } else {
+                await axios({
+                  method: "post",
+                  url: `/api/email-sender-day9`,
+                  timeout: 5000, // 5 seconds timeout
+                  headers: {},
+                  data: {
+                    username: cookies.username,
+                  },
+                }).then(async response => {
+                  await axios({
+                    method: "post",
+                    url: `/api/training/training-progress`,
+                    timeout: 5000, // 5 seconds timeout
+                    headers: {},
+                    data: {
+                      employeeID: cookies.employeeid,
+                      day: 9,
+                      part: 1,
+                    },
+                  }).then(response => {
+                    router.push(`./Day10`);
+                  });
+                });
               }
             });
           }

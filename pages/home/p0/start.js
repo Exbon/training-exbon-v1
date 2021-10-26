@@ -205,11 +205,10 @@ const start = () => {
       headers: {},
     }).then(async response => {
       const result = response.data.result.recordsets[0];
-      console.log(result);
       if (result.length == 0) {
         await axios({
           method: "post",
-          url: `/api/email-sender2`,
+          url: `/api/training/email-sender-continue`,
           timeout: 5000, // 5 seconds timeout
           headers: {},
           data: {
