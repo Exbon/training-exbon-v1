@@ -723,7 +723,8 @@ const Day7 = () => {
                   },
                   data: {
                     plainText: false,
-                    text: "Project Control: Proceed with a formal RFI Process",
+                    text: `Project Control: Proceed with a formal RFI Process`,
+                    // text: `<a class="stream-user-id avatar" rel="KUAICS57">@Hyunmyung Kim</a> Project Control: Proceed with a formal RFI Process`,
                   },
                 }).then(async response => {
                   await axios({

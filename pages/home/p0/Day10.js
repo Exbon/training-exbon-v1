@@ -360,7 +360,7 @@ const Day10 = () => {
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
                           <TableCell>PM ( OAR )</TableCell>
-                          <TableCell>owner email</TableCell>
+                          <TableCell>dtrump.owner@exbon.com</TableCell>
                         </TableRow>
 
                         {/* Client2 */}

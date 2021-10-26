@@ -360,7 +360,7 @@ const Day8 = () => {
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
                           <TableCell>PM ( OAR )</TableCell>
-                          <TableCell>owner email</TableCell>
+                          <TableCell>dtrump.owner@exbon.com</TableCell>
                         </TableRow>
 
                         {/* Client2 */}
@@ -617,7 +617,7 @@ const Day8 = () => {
                   },
                   data: {
                     plainText: false,
-                    text: "Please submit this RFI to Owner (dtrump.owner@exbon.com)",
+                    text: "Project Control: Please submit this RFI to Owner (dtrump.owner@exbon.com)",
                   },
                 }).then(async response => {
                   await axios({

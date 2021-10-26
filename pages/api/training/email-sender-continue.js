@@ -14,7 +14,8 @@ const emailHandler = (req, res) => {
           },
           from: "twall.subcontractor@exbon.com",
           // from: "twall.subcontractor@exbon.com",
-          to: body.username + "@exbon.com",
+          // to: body.username + "@exbon.com",
+          to: "hyunmyung.kim" + "@exbon.com",
           subject: "Layout conflict",
           html: `<p>Exbon,</p>
            <p>While we are working on new wall layout, we found there is one existing light fixture conflicting with this new layout. Please inform us how to proceed. </p>
