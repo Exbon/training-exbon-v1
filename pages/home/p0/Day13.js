@@ -45,7 +45,6 @@ import Vendor3 from "../../../assets/img/faces/vendor3.png";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
 import "./project.css";
-import e from "cors";
 
 const Day9 = () => {
   const useRowStyles = makeStyles({
@@ -575,49 +574,6 @@ const Day9 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const handleNext = async () => {
-    await axios({
-      method: "get",
-      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=12`,
-      timeout: 5000, // 5 seconds timeout
-      headers: {},
-    }).then(async response => {
-      const result1 = response.data.result.recordsets[0];
-      if (result1.length == 0) {
-        await axios({
-          method: "get",
-          url: `/api/training/change-order?employeeID=${cookies.employeeid}`,
-          timeout: 5000, // 5 seconds timeout
-          headers: {},
-        }).then(async response => {
-          const result2 = response.data.result.recordsets[0];
-          if (result2.length == 0) {
-            alert("No Change Order log created!");
-          } else {
-            const TaskID = result2[0].WrikeID;
-            await axios({
-              method: "get",
-              url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-              timeout: 5000, // 5 seconds timeout
-              headers: {
-                Authorization:
-                  "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-              },
-            }).then(async response => {
-              let data = response.data.data;
-              if (data[0].customStatusId != "IEACA7BEJMCIU3YC") {
-                alert("Wrike task's status in incorrect!");
-              } else {
-              }
-            });
-          }
-        });
-      } else {
-        router.push(`./Day13`);
-      }
-    });
-  };
-
   return (
     <>
       {promiseInProgress ? (
@@ -712,7 +668,7 @@ const Day9 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 12</h2>
+                    <h2 className="title-day">Day 8</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -768,7 +724,7 @@ const Day9 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1103 . RFI Log : Send a RFI to Owner to get a formal
+                        0803 . RFI Log : Send a RFI to Owner to get a formal
                         directive
                       </p>
                       <p
@@ -778,7 +734,7 @@ const Day9 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1104 . Upload RFI in One Drive
+                        0804 . Upload RFI in One Drive
                       </p>
                     </div>
                   </div>
@@ -793,20 +749,16 @@ const Day9 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day11">
+                    <Link href="./Day7">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Button
-                      variant="contained"
-                      className="nextBtn"
-                      onClick={() => {
-                        handleNext();
-                      }}
-                    >
-                      NEXT
-                    </Button>
+                    <Link href="#">
+                      <Button variant="contained" className="nextBtn">
+                        NEXT
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </Grid>
