@@ -617,7 +617,7 @@ const Day8 = () => {
                   },
                   data: {
                     plainText: false,
-                    text: "Project Control: Please submit this RFI to Owner (dtrump.owner@exbon.com)",
+                    text: "Project Control: Please submit this RFI to Owner",
                   },
                 }).then(async response => {
                   await axios({
