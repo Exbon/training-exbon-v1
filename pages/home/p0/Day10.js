@@ -625,7 +625,7 @@ const Day10 = () => {
                         disableToolbar
                         variant="inline"
                         format="MM/dd/yyyy"
-                        value={"07/12/2021"}
+                        value={"07/13/2021"}
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
@@ -668,7 +668,7 @@ const Day10 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 8</h2>
+                    <h2 className="title-day">Day 10</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -749,7 +749,7 @@ const Day10 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day7">
+                    <Link href="./Day9">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
