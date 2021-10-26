@@ -13,9 +13,8 @@ const emailHandler = (req, res) => {
             pass: emailConfig.emailConfig.password,
           },
           from: "dtrump.owner@exbon.com",
-          // from: "twall.subcontractor@exbon.com",
-          to: "hyunmyung.kim" + "@exbon.com",
-          // to: body.username + "@exbon.com",
+          // to: "hyunmyung.kim" + "@exbon.com",
+          to: body.username + "@exbon.com",
           subject: "Layout conflict",
           html: `<p>Exbon,</p>
            <p>Please see attached RFI response for your action. Field Instruction will follow in separate email. </p>
