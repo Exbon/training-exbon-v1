@@ -575,6 +575,72 @@ const Day9 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
+  const handleNext = async () => {
+    await axios({
+      method: "get",
+      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=11`,
+      timeout: 5000, // 5 seconds timeout
+      headers: {},
+    }).then(async response => {
+      const result1 = response.data.result.recordsets[0];
+      if (result1.length == 0) {
+        await axios({
+          method: "get",
+          url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
+          timeout: 5000, // 5 seconds timeout
+          headers: {},
+        }).then(async response => {
+          const result2 = response.data.result.recordsets[0];
+          if (result2.length == 0) {
+            alert("No RFI log created!");
+          } else {
+            const TaskID = result2[0].WrikeID;
+            await axios({
+              method: "get",
+              url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {
+                Authorization:
+                  "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+              },
+            }).then(async response => {
+              let data = response.data.data;
+              if (data[0].customStatusId != "IEACA7BEJMCIU22W") {
+                alert("Wrike task's status in incorrect!");
+              } else {
+                await axios({
+                  method: "post",
+                  url: `/api/training/email-sender-day11`,
+                  timeout: 5000, // 5 seconds timeout
+                  headers: {},
+                  data: {
+                    username: cookies.username,
+                  },
+                }).then(async response => {
+                  await axios({
+                    method: "post",
+                    url: `/api/training/training-progress`,
+                    timeout: 5000, // 5 seconds timeout
+                    headers: {},
+                    data: {
+                      employeeID: cookies.employeeid,
+                      day: 11,
+                      part: 1,
+                    },
+                  }).then(response => {
+                    router.push(`./Day12`);
+                  });
+                });
+              }
+            });
+          }
+        });
+      } else {
+        router.push(`./Day12`);
+      }
+    });
+  };
+
   return (
     <>
       {promiseInProgress ? (
@@ -669,7 +735,7 @@ const Day9 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 8</h2>
+                    <h2 className="title-day">Day 11</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -763,11 +829,13 @@ const Day9 = () => {
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Link href="#">
-                      <Button variant="contained" className="nextBtn">
-                        NEXT
-                      </Button>
-                    </Link>
+                    <Button
+                      variant="contained"
+                      className="nextBtn"
+                      onClick={() => handleNext()}
+                    >
+                      NEXT
+                    </Button>
                   </div>
                 </div>
               </Grid>

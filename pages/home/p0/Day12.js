@@ -668,7 +668,7 @@ const Day9 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 8</h2>
+                    <h2 className="title-day">Day 12</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",

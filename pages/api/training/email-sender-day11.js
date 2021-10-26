@@ -12,20 +12,21 @@ const emailHandler = (req, res) => {
             user: emailConfig.emailConfig.user,
             pass: emailConfig.emailConfig.password,
           },
-          from: "twall.subcontractor@exbon.com",
-          // to: body.username + "@exbon.com",
+          from: "dtrump.owner@exbon.com",
           to: "hyunmyung.kim" + "@exbon.com",
-          subject: "Layout conflict",
+          // to: body.username + "@exbon.com",
+          subject: "Field Instruction – RFI 01",
           html: `<p>Exbon,</p>
-           <p>While we are working on new wall layout, we found there is one existing light fixture conflicting with this new layout. Please inform us how to proceed. </p>
-           <br />
-           <strong>T-Wall Enterprise</strong>`,
+           <p>Enclosed is a Field Instruction (FI) for your action. Please submit your Change Order Request (COR) accordingly. </p>
+           <p>Thank you</p>
+           <br/>
+           <strong>Don Trump, OAR</strong>`,
           // text: "This is text version!",
           // replyTo: "receiverXXX@gmail.com",
           attachments: [
             {
-              filename: "Photo.pdf",
-              path: "./assets/img/training/Photo.pdf",
+              filename: "FI #01 - Light Fixture Relocation.pdf",
+              path: "./assets/img/training/FI #01 - Light Fixture Relocation.pdf",
               contentType: "application/pdf",
             },
           ],
