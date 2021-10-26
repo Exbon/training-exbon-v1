@@ -46,7 +46,7 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
 import "./project.css";
 
-const Day7 = () => {
+const Day9 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -170,111 +170,6 @@ const Day7 = () => {
                       </TableRow>
                     ))} */}
 
-                    {row.name == "Field Worker" && (
-                      <>
-                        {/* Person1 */}
-                        <TableRow>
-                          <TableCell component="th" scope="row" rowSpan={3}>
-                            <img
-                              src={Profile2}
-                              style={{
-                                width: "70px",
-                                height: "70px",
-                                cursor: "pointer",
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell rowSpan={3}>Kevin Valdez</TableCell>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">07:00</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell>Ceiling Joist Installation</TableCell>
-                          <TableCell align="right">10%</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell>Meal</TableCell>
-                          <TableCell align="right"></TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell align="center">15:00</TableCell>
-                          <TableCell>Drywall Installation & Patching</TableCell>
-                          <TableCell align="right">30%</TableCell>
-                        </TableRow>
-
-                        {/* Person2 */}
-                        <TableRow>
-                          <TableCell component="th" scope="row" rowSpan={3}>
-                            <img
-                              src={Profile3}
-                              style={{
-                                width: "70px",
-                                height: "70px",
-                                cursor: "pointer",
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell rowSpan={3}>Paul Martinez</TableCell>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">07:00</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell>Ceiling Joist Installation</TableCell>
-                          <TableCell align="right">10%</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell>Meal</TableCell>
-                          <TableCell align="right"></TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Carpenter</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell align="center">16:00</TableCell>
-                          <TableCell>Drywall Installation & Patching</TableCell>
-                          <TableCell align="right">30%</TableCell>
-                        </TableRow>
-
-                        {/* Person3 */}
-                        <TableRow>
-                          <TableCell component="th" scope="row" rowSpan={3}>
-                            <img
-                              src={Profile1}
-                              style={{
-                                width: "70px",
-                                height: "70px",
-                                cursor: "pointer",
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell rowSpan={3}>Peter Cho</TableCell>
-                          <TableCell>Painter</TableCell>
-                          <TableCell align="center">07:00</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell>Sanding & Priming</TableCell>
-                          <TableCell align="right">15%</TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Painter</TableCell>
-                          <TableCell align="center">11:00</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell>Meal</TableCell>
-                          <TableCell align="right"></TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>Painter</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell align="center">16:00</TableCell>
-                          <TableCell>1st Coat of Finish Paint</TableCell>
-                          <TableCell align="right">5%</TableCell>
-                        </TableRow>
-                      </>
-                    )}
                     {row.name == "Subcontractor" && (
                       <>
                         {/* Subcontractor1 */}
@@ -302,11 +197,11 @@ const Day7 = () => {
                             </div>
                           </TableCell>
                           <TableCell>B General Carpentry</TableCell>
-                          <TableCell align="center">08:00</TableCell>
-                          <TableCell align="center">12:00</TableCell>
-                          <TableCell>Layout for interior walls</TableCell>
-                          <TableCell align="right">100.0%</TableCell>
-                          <TableCell align="right">2</TableCell>
+                          <TableCell align="center"></TableCell>
+                          <TableCell align="center"></TableCell>
+                          <TableCell>No Work</TableCell>
+                          <TableCell align="right"></TableCell>
+                          <TableCell align="right"></TableCell>
                         </TableRow>
 
                         {/* Subcontractor2 */}
@@ -443,9 +338,7 @@ const Day7 = () => {
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
                           <TableCell>Project Control</TableCell>
-                          <TableCell>
-                            Work with PIC to review a deficiency log
-                          </TableCell>
+                          <TableCell>Work with PIC to review a CO</TableCell>
                         </TableRow>
                       </>
                     )}
@@ -465,7 +358,10 @@ const Day7 = () => {
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
                           <TableCell>PM ( OAR )</TableCell>
-                          <TableCell></TableCell>
+                          <TableCell>
+                            RFI response sent back to Contractor with Field
+                            Instruction
+                          </TableCell>
                         </TableRow>
 
                         {/* Client2 */}
@@ -679,91 +575,6 @@ const Day7 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const handleNextDay = async () => {
-    await axios({
-      method: "get",
-      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=7`,
-      timeout: 5000, // 5 seconds timeout
-      headers: {},
-    }).then(async response => {
-      const result1 = response.data.result.recordsets[0];
-      if (result1.length == 0) {
-        await axios({
-          method: "get",
-          url: `/api/training/deficiency-log?employeeID=${cookies.employeeid}`,
-          timeout: 5000, // 5 seconds timeout
-          headers: {},
-        }).then(async response => {
-          const result2 = response.data.result.recordsets[0];
-          if (result2.length == 0) {
-            alert("No deficiency log created!");
-          } else {
-            const TaskID = result2[0].WrikeID;
-
-            await axios({
-              method: "get",
-              url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-              timeout: 5000, // 5 seconds timeout
-              headers: {
-                Authorization:
-                  "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-              },
-            }).then(async response => {
-              let data = response.data.data;
-              if (data[0].customStatusId != "IEACA7BEJMCIUY6C") {
-                alert("Wrike task's status in incorrect!");
-              } else {
-                await axios({
-                  method: "post",
-                  url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
-                  timeout: 5000, // 5 seconds timeout
-                  headers: {
-                    Authorization:
-                      "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                  },
-                  data: {
-                    plainText: false,
-                    text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Proceed with a formal RFI Process`,
-                    // text: `<a class="stream-user-id avatar" rel="KUAICS57">@Hyunmyung Kim</a> Project Control: Proceed with a formal RFI Process`,
-                  },
-                }).then(async response => {
-                  await axios({
-                    method: "put",
-                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                    timeout: 5000, // 5 seconds timeout
-                    headers: {
-                      Authorization:
-                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                    },
-                    data: {
-                      customStatus: "IEACA7BEJMCIUY6M",
-                    },
-                  }).then(async response => {
-                    await axios({
-                      method: "post",
-                      url: `/api/training/training-progress`,
-                      timeout: 5000, // 5 seconds timeout
-                      headers: {},
-                      data: {
-                        employeeID: cookies.employeeid,
-                        day: 7,
-                        part: 1,
-                      },
-                    }).then(response => {
-                      router.push(`./Day8`);
-                    });
-                  });
-                });
-              }
-            });
-          }
-        });
-      } else {
-        router.push(`./Day8`);
-      }
-    });
-  };
-
   return (
     <>
       {promiseInProgress ? (
@@ -858,7 +669,7 @@ const Day7 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 7</h2>
+                    <h2 className="title-day">Day 8</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -884,21 +695,8 @@ const Day7 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. During new wall layout,T-Wall Enterprise pointed out
-                      one existing light fixture is conflicting with new wall
-                      layout.
-                    </p>
-                    <p
-                      style={{
-                        marginTop: "10px",
-                        marginBottom: "30px",
-                        color: "#f7f3f0",
-                        fontWeight: "500",
-                        marginLeft: "5px",
-                      }}
-                    >
-                      2. Subcontractor emailed you a photo of existing light
-                      fixture.
+                      1. During new wall layout, Inspector pointed out one
+                      existing light fixture is conflicting with new wall layout
                     </p>
 
                     <div
@@ -927,7 +725,7 @@ const Day7 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0703 . Open email from Subcontractor T Wall
+                        1103 . CO Log : Record a Change Order
                       </p>
                       <p
                         style={{
@@ -936,8 +734,16 @@ const Day7 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0704 . Deficiency Log : Upload observed conflict and
-                        develop a plan.
+                        1104 . Upload CO in One Drive
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        1105 . Clarify the Estimate's Sub Mod in Wrike
                       </p>
                     </div>
                   </div>
@@ -952,18 +758,16 @@ const Day7 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./start">
+                    <Link href="./Day10">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Button
-                      variant="contained"
-                      className="nextBtn"
-                      onClick={() => handleNextDay()}
-                    >
-                      NEXT
-                    </Button>
+                    <Link href="#">
+                      <Button variant="contained" className="nextBtn">
+                        NEXT
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </Grid>
@@ -975,6 +779,6 @@ const Day7 = () => {
   );
 };
 
-Day7.layout = Admin;
+Day9.layout = Admin;
 
-export default Day7;
+export default Day9;

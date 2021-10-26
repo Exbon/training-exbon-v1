@@ -617,7 +617,7 @@ const Day8 = () => {
                   },
                   data: {
                     plainText: false,
-                    text: "Project Control: Please submit this RFI to Owner",
+                    text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Please submit this RFI to Owner`,
                   },
                 }).then(async response => {
                   await axios({
