@@ -577,7 +577,7 @@ const Day9 = () => {
   const handleNext = async () => {
     await axios({
       method: "get",
-      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=8`,
+      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=9`,
       timeout: 5000, // 5 seconds timeout
       headers: {},
     }).then(async response => {
@@ -609,7 +609,7 @@ const Day9 = () => {
               } else {
                 await axios({
                   method: "post",
-                  url: `/api/email-sender-day9`,
+                  url: `/api/training/email-sender-day9`,
                   timeout: 5000, // 5 seconds timeout
                   headers: {},
                   data: {
