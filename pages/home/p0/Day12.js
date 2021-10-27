@@ -619,23 +619,71 @@ const Day9 = () => {
                     text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Please see attached CO proposal. Please submit this to Owner.`,
                   },
                 }).then(async response => {
-                  const blob = new Blob(["/CO Submission.pdf"], {
-                    type: "application/pdf",
-                  });
-                  debugger;
-                  const reader = new FileReader();
-                  const dataBinary = reader.readAsBinaryString(blob);
                   await axios({
-                    method: "post",
-                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/attachments`,
+                    method: "get",
+                    url: `/api/training/get-file`,
                     timeout: 5000, // 5 seconds timeout
-                    headers: {
-                      Authorization:
-                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                      "content-type": "application/pdf",
-                      "X-File-Name": "CO Submission.pdf",
-                    },
-                    data: { dataBinary },
+                    headers: {},
+                    data: {},
+                  }).then(async response => {
+                    const result = response.data.result;
+                    const blob = new Blob([result], {
+                      type: "application/pdf",
+                    });
+                    const reader = new FileReader();
+                    const dataBinary = reader.readAsBinaryString(blob);
+                    await axios({
+                      method: "post",
+                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}/attachments`,
+                      timeout: 5000, // 5 seconds timeout
+                      headers: {
+                        Authorization:
+                          "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                        "content-type": "application/pdf",
+                        "X-File-Name": "CO Submission.pdf",
+                      },
+                      data: { dataBinary },
+                    }).then(async response => {
+                      await axios({
+                        method: "post",
+                        url: `https://www.wrike.com/api/v4/tasks/${TaskID}/attachments`,
+                        timeout: 5000, // 5 seconds timeout
+                        headers: {
+                          Authorization:
+                            "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                          "content-type": "application/pdf",
+                          "X-File-Name": "Subcontractor's Proposal.pdf",
+                        },
+                        data: { dataBinary },
+                      }).then(async response => {
+                        await axios({
+                          method: "put",
+                          url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                          timeout: 5000, // 5 seconds timeout
+                          headers: {
+                            Authorization:
+                              "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                          },
+                          data: {
+                            customStatus: "IEACA7BEJMCIU3YM",
+                          },
+                        }).then(async response => {
+                          await axios({
+                            method: "post",
+                            url: `/api/training/training-progress`,
+                            timeout: 5000, // 5 seconds timeout
+                            headers: {},
+                            data: {
+                              employeeID: cookies.employeeid,
+                              day: 12,
+                              part: 1,
+                            },
+                          }).then(response => {
+                            router.push(`./Day13`);
+                          });
+                        });
+                      });
+                    });
                   });
                 });
               }
@@ -837,9 +885,6 @@ const Day9 = () => {
                     >
                       NEXT
                     </Button>
-                    <Link id="filepath" href="/CO Submission.pdf">
-                      <a>Click to download</a>
-                    </Link>
                   </div>
                 </div>
               </Grid>
