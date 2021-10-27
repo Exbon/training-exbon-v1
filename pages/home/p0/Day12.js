@@ -43,9 +43,7 @@ import Vendor1 from "../../../assets/img/faces/vendor1.png";
 import Vendor3 from "../../../assets/img/faces/vendor3.png";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
-
 import "./project.css";
-import e from "cors";
 
 const Day9 = () => {
   const useRowStyles = makeStyles({
@@ -586,7 +584,7 @@ const Day9 = () => {
       if (result1.length == 0) {
         await axios({
           method: "get",
-          url: `/api/training/change-order?employeeID=${cookies.employeeid}`,
+          url: `/api/training/change-order-log?employeeID=${cookies.employeeid}`,
           timeout: 5000, // 5 seconds timeout
           headers: {},
         }).then(async response => {
@@ -608,6 +606,38 @@ const Day9 = () => {
               if (data[0].customStatusId != "IEACA7BEJMCIU3YC") {
                 alert("Wrike task's status in incorrect!");
               } else {
+                await axios({
+                  method: "post",
+                  url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
+                  timeout: 5000, // 5 seconds timeout
+                  headers: {
+                    Authorization:
+                      "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                  },
+                  data: {
+                    plainText: false,
+                    text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Please see attached CO proposal. Please submit this to Owner.`,
+                  },
+                }).then(async response => {
+                  const blob = new Blob(["/CO Submission.pdf"], {
+                    type: "application/pdf",
+                  });
+                  debugger;
+                  const reader = new FileReader();
+                  const dataBinary = reader.readAsBinaryString(blob);
+                  await axios({
+                    method: "post",
+                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/attachments`,
+                    timeout: 5000, // 5 seconds timeout
+                    headers: {
+                      Authorization:
+                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                      "content-type": "application/pdf",
+                      "X-File-Name": "CO Submission.pdf",
+                    },
+                    data: { dataBinary },
+                  });
+                });
               }
             });
           }
@@ -807,6 +837,9 @@ const Day9 = () => {
                     >
                       NEXT
                     </Button>
+                    <Link id="filepath" href="/CO Submission.pdf">
+                      <a>Click to download</a>
+                    </Link>
                   </div>
                 </div>
               </Grid>
