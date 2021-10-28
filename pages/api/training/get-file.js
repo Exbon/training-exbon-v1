@@ -9,7 +9,9 @@ const getFile = (req, res) => {
       case "GET":
         const file = fs.readFileSync("./public/CO Submission.pdf");
         const blob = Buffer.from(file);
-        let arraybuffer = Uint8Array.from(blob).blob;
+
+        let formData = new FormData();
+        formData.append("pdf", blob);
         await axios({
           method: "post",
           url: `https://www.wrike.com/api/v4/tasks/${query.taskid}/attachments`,
@@ -21,7 +23,7 @@ const getFile = (req, res) => {
             "Content-Type": "application/pdf",
             "X-File-Name": "CO Submission.pdf",
           },
-          data: { arraybuffer },
+          data: { blob },
         }).then(response => {
           res.status(200).json(
             //for preventing Timeout

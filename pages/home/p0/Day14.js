@@ -43,9 +43,10 @@ import Vendor1 from "../../../assets/img/faces/vendor1.png";
 import Vendor3 from "../../../assets/img/faces/vendor3.png";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+
 import "./project.css";
 
-const Day9 = ({ defaultFile }) => {
+const Day9 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -577,7 +578,7 @@ const Day9 = ({ defaultFile }) => {
   const handleNext = async () => {
     await axios({
       method: "get",
-      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=12`,
+      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=14`,
       timeout: 5000, // 5 seconds timeout
       headers: {},
     }).then(async response => {
@@ -605,108 +606,28 @@ const Day9 = ({ defaultFile }) => {
             }).then(async response => {
               let data = response.data.data;
 
-              if (data[0].customStatusId != "IEACA7BEJMCIU3YC") {
+              if (data[0].customStatusId != "IEACA7BEJMCIU3ZU") {
                 alert("Wrike task's status in incorrect!");
               } else {
                 await axios({
                   method: "post",
-                  url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
+                  url: `/api/training/training-progress`,
                   timeout: 5000, // 5 seconds timeout
-                  headers: {
-                    Authorization:
-                      "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                  },
+                  headers: {},
                   data: {
-                    plainText: false,
-                    text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Please see attached CO proposal. Please submit this to Owner.`,
+                    employeeID: cookies.employeeid,
+                    day: 14,
+                    part: 1,
                   },
-                }).then(async response => {
-                  await axios({
-                    method: "get",
-                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                    timeout: 5000, // 5 seconds timeout
-                    headers: {
-                      Authorization:
-                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                    },
-                  }).then(async response => {
-                    await axios({
-                      method: "get",
-                      url: `/api/training/get-file?taskid=${TaskID}`,
-                      timeout: 15000, // 5 seconds timeout
-                      headers: {},
-                    }).then(async response => {
-                      await axios({
-                        method: "put",
-                        url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                        timeout: 5000, // 5 seconds timeout
-                        headers: {
-                          Authorization:
-                            "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                        },
-                        data: {
-                          customStatus: "IEACA7BEJMCIU3YM",
-                        },
-                      }).then(async response => {
-                        await axios({
-                          method: "post",
-                          url: `/api/training/training-progress`,
-                          timeout: 5000, // 5 seconds timeout
-                          headers: {},
-                          data: {
-                            employeeID: cookies.employeeid,
-                            day: 12,
-                            part: 1,
-                          },
-                        }).then(response => {
-                          router.push(`./Day13`);
-                        });
-                      });
-                    });
-
-                    // await axios({
-                    //   method: "post",
-                    //   url: `/api/get-file`,
-                    //   timeout: 5000, // 5 seconds timeout
-                    //   headers: {},
-                    //   body: {},
-                    // }).then(async response => {
-                    //   await axios({
-                    //     method: "post",
-                    //     url: `https://www.wrike.com/api/v4/tasks/${TaskID}/attachments`,
-                    //     timeout: 5000, // 5 seconds timeout
-                    //     headers: {
-                    //       Authorization:
-                    //         "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                    //       "content-type": "application/pdf",
-                    //       "X-File-Name": "CO Submission.pdf",
-                    //     },
-                    //     data: {},
-                    //   }).then(async response => {
-                    //     await axios({
-                    //       method: "put",
-                    //       url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                    //       timeout: 5000, // 5 seconds timeout
-                    //       headers: {
-                    //         Authorization:
-                    //           "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                    //       },
-                    //       data: {
-                    //         customStatus: "IEACA7BEJMCIU3YM",
-                    //       },
-                    //     }).then(async response => {
-
-                    //     });
-                    //   });
-                    // });
-                  });
+                }).then(response => {
+                  router.push(`./Day15`);
                 });
               }
             });
           }
         });
       } else {
-        router.push(`./Day13`);
+        router.push("./Day15");
       }
     });
   };
@@ -805,7 +726,7 @@ const Day9 = ({ defaultFile }) => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 12</h2>
+                    <h2 className="title-day">Day 14</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -831,8 +752,8 @@ const Day9 = ({ defaultFile }) => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. Owner sent Field Instruction along with RFI response to
-                      proceed via Email.
+                      1. During new wall layout, Inspector pointed out one
+                      existing light fixture is conflicting with new wall layout
                     </p>
 
                     <div
@@ -861,7 +782,8 @@ const Day9 = ({ defaultFile }) => {
                           marginBottom: "30px",
                         }}
                       >
-                        0903 . CO Log : Record a Change Order
+                        0803 . RFI Log : Send a RFI to Owner to get a formal
+                        directive
                       </p>
                       <p
                         style={{
@@ -870,16 +792,7 @@ const Day9 = ({ defaultFile }) => {
                           marginBottom: "30px",
                         }}
                       >
-                        0904 . Upload CO in One Drive
-                      </p>
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: "500",
-                          marginBottom: "30px",
-                        }}
-                      >
-                        0905 . Clarify the Estimate's Sub Mod in Wrike
+                        0804 . Upload RFI in One Drive
                       </p>
                     </div>
                   </div>
@@ -894,7 +807,7 @@ const Day9 = ({ defaultFile }) => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day11">
+                    <Link href="./Day7">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
@@ -918,28 +831,6 @@ const Day9 = ({ defaultFile }) => {
     </>
   );
 };
-
-// export async function getServerSideProps(context) {
-//   // const res = await fetch(`https://...`);
-//   // const data = await res.json();
-//   // if (!data) {
-//   //   return {
-//   //     notFound: true,
-//   //   };
-//   // }
-//   // const pdf2base64 = require("pdf-to-base64");
-//   // let defaultFile;
-//   // pdf2base64("./assets/img/training/CO Submission.pdf")
-//   //   .then(async response => {
-//   //     defaultFile = response;
-//   //     return {
-//   //       props: { defaultFile: defaultFile }, // will be passed to the page component as props
-//   //     };
-//   //   })
-//   //   .catch(error => {
-//   //     console.log(error); //Exepection error....
-//   //   });
-// }
 
 Day9.layout = Admin;
 

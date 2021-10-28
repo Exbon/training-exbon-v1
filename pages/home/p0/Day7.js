@@ -884,21 +884,8 @@ const Day7 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. During new wall layout,T-Wall Enterprise pointed out
-                      one existing light fixture is conflicting with new wall
-                      layout.
-                    </p>
-                    <p
-                      style={{
-                        marginTop: "10px",
-                        marginBottom: "30px",
-                        color: "#f7f3f0",
-                        fontWeight: "500",
-                        marginLeft: "5px",
-                      }}
-                    >
-                      2. Subcontractor emailed you a photo of existing light
-                      fixture.
+                      1. Owner sent Field Instruction along with RFI response to
+                      proceed via Email.
                     </p>
 
                     <div
@@ -927,7 +914,7 @@ const Day7 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0703 . Open email from Subcontractor T Wall
+                        0902 . Upload Customer Response to RFI Log
                       </p>
                       <p
                         style={{
@@ -936,8 +923,25 @@ const Day7 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0704 . Deficiency Log : Upload observed conflict and
-                        develop a plan.
+                        0903 . CO Log : Record a Change Order
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        0904 . Upload CO in One Drive
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        0905 . Clarify the Estimate's Sub Mod in Wrike
                       </p>
                     </div>
                   </div>

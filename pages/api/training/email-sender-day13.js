@@ -15,20 +15,20 @@ const emailHandler = (req, res) => {
           from: "dtrump.owner@exbon.com",
           // to: "hyunmyung.kim" + "@exbon.com",
           to: body.username + "@exbon.com",
-          subject: "Field Instruction – RFI 01",
+          subject: "Change Order Proposal Approval",
           html: `<p>Exbon,</p>
-           <p>Enclosed is a Field Instruction (FI) for your action. Please submit your Change Order Request (COR) accordingly. </p>
+           <p>Please consider this email as a formal change order approval. Once your work is done, please submit your invoice accordingly. </p>
            <p>Thank you</p>
            <br/>
            <strong>Don Trump, OAR</strong>`,
           // text: "This is text version!",
           // replyTo: "receiverXXX@gmail.com",
           attachments: [
-            {
-              filename: "FI #01 - Light Fixture Relocation.pdf",
-              path: "./assets/img/training/FI #01 - Light Fixture Relocation.pdf",
-              contentType: "application/pdf",
-            },
+            // {
+            //   filename: "FI #01 - Light Fixture Relocation.pdf",
+            //   path: "./assets/img/training/FI #01 - Light Fixture Relocation.pdf",
+            //   contentType: "application/pdf",
+            // },
           ],
           onError: e => console.log(e),
           onSuccess: i => {

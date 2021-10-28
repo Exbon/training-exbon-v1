@@ -338,9 +338,7 @@ const Day10 = () => {
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
                           <TableCell>Project Control</TableCell>
-                          <TableCell>
-                            Work with PIC to review a RFI Draft
-                          </TableCell>
+                          <TableCell>Work with PIC to review a CO</TableCell>
                         </TableRow>
                       </>
                     )}
@@ -360,7 +358,10 @@ const Day10 = () => {
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
                           <TableCell>PM ( OAR )</TableCell>
-                          <TableCell>dtrump.owner@exbon.com</TableCell>
+                          <TableCell>
+                            RFI response sent back to Contractor with Field
+                            Instruction
+                          </TableCell>
                         </TableRow>
 
                         {/* Client2 */}
@@ -574,6 +575,88 @@ const Day10 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
+  const handleNext = async () => {
+    await axios({
+      method: "get",
+      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=10`,
+      timeout: 5000, // 5 seconds timeout
+      headers: {},
+    }).then(async response => {
+      const result1 = response.data.result.recordsets[0];
+      if (result1.length == 0) {
+        await axios({
+          method: "get",
+          url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
+          timeout: 5000, // 5 seconds timeout
+          headers: {},
+        }).then(async response => {
+          const result2 = response.data.result.recordsets[0];
+          if (result2.length == 0) {
+            alert("No RFI log created!");
+          } else {
+            const TaskID = result2[0].WrikeID;
+            await axios({
+              method: "get",
+              url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {
+                Authorization:
+                  "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+              },
+            }).then(async response => {
+              let data = response.data.data;
+              if (data[0].customStatusId != "IEACA7BEJMCIU22M") {
+                alert("Wrike task's status in incorrect!");
+              } else {
+                await axios({
+                  method: "post",
+                  url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
+                  timeout: 5000, // 5 seconds timeout
+                  headers: {
+                    Authorization:
+                      "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                  },
+                  data: {
+                    plainText: false,
+                    text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Proceed with creating a Change Order log.`,
+                  },
+                }).then(async response => {
+                  await axios({
+                    method: "put",
+                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                    timeout: 5000, // 5 seconds timeout
+                    headers: {
+                      Authorization:
+                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                    },
+                    data: {
+                      customStatus: "IEACA7BEJMBZZHRG",
+                    },
+                  }).then(async response => {
+                    await axios({
+                      method: "post",
+                      url: `/api/training/training-progress`,
+                      timeout: 5000, // 5 seconds timeout
+                      headers: {},
+                      data: {
+                        employeeID: cookies.employeeid,
+                        day: 10,
+                        part: 1,
+                      },
+                    }).then(response => {
+                      router.push(`./Day11`);
+                    });
+                  });
+                });
+              }
+            });
+          }
+        });
+      } else {
+        router.push(`./Day11`);
+      }
+    });
+  };
   return (
     <>
       {promiseInProgress ? (
@@ -754,11 +837,13 @@ const Day10 = () => {
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Link href="#">
-                      <Button variant="contained" className="nextBtn">
-                        NEXT
-                      </Button>
-                    </Link>
+                    <Button
+                      variant="contained"
+                      className="nextBtn"
+                      onClick={() => handleNext()}
+                    >
+                      NEXT
+                    </Button>
                   </div>
                 </div>
               </Grid>

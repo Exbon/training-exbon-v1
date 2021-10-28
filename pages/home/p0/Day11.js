@@ -761,8 +761,8 @@ const Day9 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. During new wall layout, Inspector pointed out one
-                      existing light fixture is conflicting with new wall layout
+                      1. Owner sent Field Instruction along with RFI response to
+                      proceed via Email.
                     </p>
 
                     <div
@@ -791,7 +791,7 @@ const Day9 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1103 . CO Log : Record a Change Order
+                        0903 . CO Log : Record a Change Order
                       </p>
                       <p
                         style={{
@@ -800,7 +800,7 @@ const Day9 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1104 . Upload CO in One Drive
+                        0904 . Upload CO in One Drive
                       </p>
                       <p
                         style={{
@@ -809,7 +809,7 @@ const Day9 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1105 . Clarify the Estimate's Sub Mod in Wrike
+                        0905 . Clarify the Estimate's Sub Mod in Wrike
                       </p>
                     </div>
                   </div>
