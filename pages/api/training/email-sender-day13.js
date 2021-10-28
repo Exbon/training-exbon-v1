@@ -13,8 +13,8 @@ const emailHandler = (req, res) => {
             pass: emailConfig.emailConfig.password,
           },
           from: "dtrump.owner@exbon.com",
-          to: "hyunmyung.kim" + "@exbon.com",
-          // to: body.username + "@exbon.com",
+          // to: "hyunmyung.kim" + "@exbon.com",
+          to: body.username + "@exbon.com",
           subject: "Change Order Proposal Approval",
           html: `<p>Exbon,</p>
            <p>Please consider this email as a formal change order approval. Once your work is done, please submit your invoice accordingly. </p>
