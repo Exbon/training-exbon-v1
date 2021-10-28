@@ -578,8 +578,6 @@ const Day9 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const handleNext = () => {};
-
   return (
     <>
       {promiseInProgress ? (
@@ -674,7 +672,7 @@ const Day9 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 15</h2>
+                    <h2 className="title-day">Day 16</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -754,18 +752,12 @@ const Day9 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day14">
+                    <Link href="./Day15">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Button
-                      variant="contained"
-                      className="nextBtn"
-                      onClick={() => {
-                        handleNext();
-                      }}
-                    >
+                    <Button variant="contained" className="nextBtn">
                       NEXT
                     </Button>
                   </div>

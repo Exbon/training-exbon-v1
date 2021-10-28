@@ -341,7 +341,7 @@ const Day9 = () => {
                           <TableCell>Susan Ali</TableCell>
                           <TableCell>Project Control</TableCell>
                           <TableCell>
-                            Work with PIC to review a submod
+                            Work with PIC to review a RFI Draft
                           </TableCell>
                         </TableRow>
                       </>
@@ -578,8 +578,6 @@ const Day9 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const handleNext = () => {};
-
   return (
     <>
       {promiseInProgress ? (
@@ -674,7 +672,7 @@ const Day9 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 15</h2>
+                    <h2 className="title-day">Day 17</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -754,20 +752,16 @@ const Day9 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day14">
+                    <Link href="./Day16">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Button
-                      variant="contained"
-                      className="nextBtn"
-                      onClick={() => {
-                        handleNext();
-                      }}
-                    >
-                      NEXT
-                    </Button>
+                    <Link href="#">
+                      <Button variant="contained" className="nextBtn">
+                        Finish
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </Grid>

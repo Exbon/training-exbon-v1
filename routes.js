@@ -106,6 +106,18 @@ const dashboardRoutes = [
     icon: Dashboard,
     layout: "/home",
   },
+  {
+    path: "/p0/Day16",
+    name: "Day 16",
+    icon: Dashboard,
+    layout: "/home",
+  },
+  {
+    path: "/p0/Day17",
+    name: "Day 17",
+    icon: Dashboard,
+    layout: "/home",
+  },
   // {
   //   path: "/p0/July092021",
   //   name: "Change Order",
