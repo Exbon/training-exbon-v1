@@ -45,7 +45,7 @@ import Vendor3 from "../../../assets/img/faces/vendor3.png";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import "./project.css";
 
-const Day9 = () => {
+const Day9 = ({ defaultFile }) => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -603,6 +603,7 @@ const Day9 = () => {
               },
             }).then(async response => {
               let data = response.data.data;
+
               if (data[0].customStatusId != "IEACA7BEJMCIU3YC") {
                 alert("Wrike task's status in incorrect!");
               } else {
@@ -621,69 +622,69 @@ const Day9 = () => {
                 }).then(async response => {
                   await axios({
                     method: "get",
-                    url: `/api/training/get-file`,
+                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
                     timeout: 5000, // 5 seconds timeout
-                    headers: {},
-                    data: {},
+                    headers: {
+                      Authorization:
+                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                    },
                   }).then(async response => {
-                    const result = response.data.result;
-                    const blob = new Blob([result], {
-                      type: "application/pdf",
-                    });
-                    const reader = new FileReader();
-                    const dataBinary = reader.readAsBinaryString(blob);
                     await axios({
-                      method: "post",
-                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}/attachments`,
-                      timeout: 5000, // 5 seconds timeout
-                      headers: {
-                        Authorization:
-                          "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                        "content-type": "application/pdf",
-                        "X-File-Name": "CO Submission.pdf",
-                      },
-                      data: { dataBinary },
+                      method: "get",
+                      url: `/api/training/get-file?taskid=${TaskID}`,
+                      timeout: 15000, // 5 seconds timeout
+                      headers: {},
                     }).then(async response => {
                       await axios({
                         method: "post",
-                        url: `https://www.wrike.com/api/v4/tasks/${TaskID}/attachments`,
+                        url: `/api/training/training-progress`,
                         timeout: 5000, // 5 seconds timeout
-                        headers: {
-                          Authorization:
-                            "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                          "content-type": "application/pdf",
-                          "X-File-Name": "Subcontractor's Proposal.pdf",
+                        headers: {},
+                        data: {
+                          employeeID: cookies.employeeid,
+                          day: 12,
+                          part: 1,
                         },
-                        data: { dataBinary },
-                      }).then(async response => {
-                        await axios({
-                          method: "put",
-                          url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                          timeout: 5000, // 5 seconds timeout
-                          headers: {
-                            Authorization:
-                              "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                          },
-                          data: {
-                            customStatus: "IEACA7BEJMCIU3YM",
-                          },
-                        }).then(async response => {
-                          await axios({
-                            method: "post",
-                            url: `/api/training/training-progress`,
-                            timeout: 5000, // 5 seconds timeout
-                            headers: {},
-                            data: {
-                              employeeID: cookies.employeeid,
-                              day: 12,
-                              part: 1,
-                            },
-                          }).then(response => {
-                            router.push(`./Day13`);
-                          });
-                        });
+                      }).then(response => {
+                        router.push(`./Day13`);
                       });
                     });
+
+                    // await axios({
+                    //   method: "post",
+                    //   url: `/api/get-file`,
+                    //   timeout: 5000, // 5 seconds timeout
+                    //   headers: {},
+                    //   body: {},
+                    // }).then(async response => {
+                    //   await axios({
+                    //     method: "post",
+                    //     url: `https://www.wrike.com/api/v4/tasks/${TaskID}/attachments`,
+                    //     timeout: 5000, // 5 seconds timeout
+                    //     headers: {
+                    //       Authorization:
+                    //         "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                    //       "content-type": "application/pdf",
+                    //       "X-File-Name": "CO Submission.pdf",
+                    //     },
+                    //     data: {},
+                    //   }).then(async response => {
+                    //     await axios({
+                    //       method: "put",
+                    //       url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                    //       timeout: 5000, // 5 seconds timeout
+                    //       headers: {
+                    //         Authorization:
+                    //           "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                    //       },
+                    //       data: {
+                    //         customStatus: "IEACA7BEJMCIU3YM",
+                    //       },
+                    //     }).then(async response => {
+
+                    //     });
+                    //   });
+                    // });
                   });
                 });
               }
@@ -694,6 +695,11 @@ const Day9 = () => {
         router.push(`./Day13`);
       }
     });
+  };
+
+  const changeFile = e => {
+    defaultFile = e.target.files[0];
+    console.log(e.target.files[0]);
   };
 
   return (
@@ -885,6 +891,8 @@ const Day9 = () => {
                     >
                       NEXT
                     </Button>
+                    <input type="file" onChange={e => changeFile(e)} />
+                    <div id="result"></div>
                   </div>
                 </div>
               </Grid>
@@ -895,6 +903,28 @@ const Day9 = () => {
     </>
   );
 };
+
+// export async function getServerSideProps(context) {
+//   // const res = await fetch(`https://...`);
+//   // const data = await res.json();
+//   // if (!data) {
+//   //   return {
+//   //     notFound: true,
+//   //   };
+//   // }
+//   // const pdf2base64 = require("pdf-to-base64");
+//   // let defaultFile;
+//   // pdf2base64("./assets/img/training/CO Submission.pdf")
+//   //   .then(async response => {
+//   //     defaultFile = response;
+//   //     return {
+//   //       props: { defaultFile: defaultFile }, // will be passed to the page component as props
+//   //     };
+//   //   })
+//   //   .catch(error => {
+//   //     console.log(error); //Exepection error....
+//   //   });
+// }
 
 Day9.layout = Admin;
 
