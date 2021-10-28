@@ -65,12 +65,14 @@ export default function Header(props) {
               Table of Contents
             </Button>
           </a> */}
-          <ListIcon
+
+          {/* Sidebar open Hyunmyung */}
+          {/* <ListIcon
             className="table-contents-icon"
             onClick={() => hideSidebar()}
             color="action"
             fontSize="large"
-          />
+          /> */}
           {router.route.includes("/home/dashboard") ? (
             <div>
               <Link href={`/home/dashboard`}>

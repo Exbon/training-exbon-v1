@@ -671,6 +671,7 @@ const Day16 = () => {
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
+                        disabled
                       />
                     </MuiPickersUtilsProvider>
                   </div>

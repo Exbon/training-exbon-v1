@@ -83,8 +83,9 @@ export default function Admin({ children, ...rest }) {
   }, [mainPanel]);
   return (
     <div className={classes.wrapper}>
-      {console.log(state)}
-      {!state && (
+      {/* For Sidebar removed Hyunmyung */}
+      {/* {console.log(state)} */}
+      {/* {!state && (
         <Sidebar
           routes={routes}
           logoText={"Exbon Training"}
@@ -95,7 +96,7 @@ export default function Admin({ children, ...rest }) {
           color={color}
           {...rest}
         />
-      )}
+      )} */}
 
       <div
         className={state ? classes.mainPanelHide : classes.mainPanel}

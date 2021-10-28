@@ -766,6 +766,7 @@ const Day9 = ({ defaultFile }) => {
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
+                        disabled
                       />
                     </MuiPickersUtilsProvider>
                   </div>
