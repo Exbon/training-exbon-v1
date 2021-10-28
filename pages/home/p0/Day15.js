@@ -578,7 +578,89 @@ const Day9 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const handleNext = () => {};
+  const handleNext = async () => {
+    await axios({
+      method: "get",
+      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=15`,
+      timeout: 5000, // 5 seconds timeout
+      headers: {},
+    }).then(response => {
+      const result1 = response.data.result.recordsets[0];
+      if (result1.length == 0) {
+        await axios({
+          method: "get",
+          url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
+          timeout: 5000, // 5 seconds timeout
+          headers: {},
+        }).then(async response => {
+          const result2 = response.data.result.recordsets[0];
+          if (result2.length == 0) {
+            alert("No Sub Mod log created!");
+          } else {
+            const TaskID = result2[0].WrikeID;
+            await axios({
+              method: "get",
+              url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {
+                Authorization:
+                  "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+              },
+            }).then(async response => {
+              let data = response.data.data;
+
+              if (data[0].customStatusId != "IEACA7BEJMCIU6WY") {
+                alert("Wrike task's status in incorrect!");
+              } else {
+                await axios({
+                  method: "post",
+                  url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
+                  timeout: 5000, // 5 seconds timeout
+                  headers: {
+                    Authorization:
+                      "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                  },
+                  data: {
+                    plainText: false,
+                    text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Approved. Please send a Change Order to subcontractor.`,
+                  },
+                }).then(async response => {
+                  await axios({
+                    method: "put",
+                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                    timeout: 5000, // 5 seconds timeout
+                    headers: {
+                      Authorization:
+                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                    },
+                    data: {
+                      customStatus: "IEACA7BEJMCIU6XC",
+                    },
+                  }).then(async response => {
+                    await axios({
+                      method: "post",
+                      url: `/api/training/training-progress`,
+                      timeout: 5000, // 5 seconds timeout
+                      headers: {},
+                      data: {
+                        employeeID: cookies.employeeid,
+                        day: 15,
+                        part: 1,
+                      },
+                    }).then(response => {
+                      router.push(`./Day16`);
+                    });
+                  });
+                });
+              }
+            });
+          }
+        });
+      } else {
+        router.push("./Day16");
+      }
+    });
+  };
 
   return (
     <>
