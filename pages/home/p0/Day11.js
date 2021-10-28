@@ -605,7 +605,7 @@ const Day9 = () => {
               },
             }).then(async response => {
               let data = response.data.data;
-              if (data[0].customStatusId != "IEACA7BEJMCIU22W") {
+              if (data[0].customStatusId != "IEACA7BEJMCIU23A") {
                 alert("Wrike task's status in incorrect!");
               } else {
                 await axios({
