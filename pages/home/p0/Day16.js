@@ -46,7 +46,7 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
 import "./project.css";
 
-const Day9 = () => {
+const Day16 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -578,6 +578,44 @@ const Day9 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
+  const handleNext = async () => {
+    await axios({
+      method: "get",
+      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=16`,
+      timeout: 5000, // 5 seconds timeout
+      headers: {},
+    }).then(async response => {
+      const result1 = response.data.result.recordsets[0];
+      if (result1.length == 0) {
+        await axios({
+          method: "post",
+          url: `/api/training/email-sender-day16`,
+          timeout: 5000, // 5 seconds timeout
+          headers: {},
+          data: {
+            username: cookies.username,
+          },
+        }).then(async response => {
+          await axios({
+            method: "post",
+            url: `/api/training/training-progress`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+            data: {
+              employeeID: cookies.employeeid,
+              day: 16,
+              part: 1,
+            },
+          }).then(response => {
+            router.push(`./Day17`);
+          });
+        });
+      } else {
+        router.push(`./Day17`);
+      }
+    });
+  };
+
   return (
     <>
       {promiseInProgress ? (
@@ -757,7 +795,13 @@ const Day9 = () => {
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Button variant="contained" className="nextBtn">
+                    <Button
+                      variant="contained"
+                      className="nextBtn"
+                      onClick={() => {
+                        handleNext();
+                      }}
+                    >
                       NEXT
                     </Button>
                   </div>
@@ -771,6 +815,6 @@ const Day9 = () => {
   );
 };
 
-Day9.layout = Admin;
+Day16.layout = Admin;
 
-export default Day9;
+export default Day16;

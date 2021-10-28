@@ -12,23 +12,23 @@ const emailHandler = (req, res) => {
             user: emailConfig.emailConfig.user,
             pass: emailConfig.emailConfig.password,
           },
-          from: "dtrump.owner@exbon.com",
+          from: "conti.subcontractor@exbon.com",
           to: "hyunmyung.kim" + "@exbon.com",
           // to: body.username + "@exbon.com",
-          subject: "Change Order Proposal Approval",
+          subject: "Signed Change Order",
           html: `<p>Exbon,</p>
-           <p>Please consider this email as a formal change order approval. Once your work is done, please submit your invoice accordingly. </p>
+           <p>Thank you for sending me a Change Order. Enclosed is a signed CO for your processing. </p>
            <p>Thank you</p>
            <br/>
-           <strong>Don Trump, OAR</strong>`,
+           <strong>Conti Corporation</strong>`,
           // text: "This is text version!",
           // replyTo: "receiverXXX@gmail.com",
           attachments: [
-            // {
-            //   filename: "FI #01 - Light Fixture Relocation.pdf",
-            //   path: "./assets/img/training/FI #01 - Light Fixture Relocation.pdf",
-            //   contentType: "application/pdf",
-            // },
+            {
+              filename: "Conti Corporation CO #1.pdf",
+              path: "./assets/img/training/Conti Corporation CO #1.pdf",
+              contentType: "application/pdf",
+            },
           ],
           onError: e => console.log(e),
           onSuccess: i => {

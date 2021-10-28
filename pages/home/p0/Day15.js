@@ -46,7 +46,7 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
 import "./project.css";
 
-const Day9 = () => {
+const Day15 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -584,7 +584,7 @@ const Day9 = () => {
       url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=15`,
       timeout: 5000, // 5 seconds timeout
       headers: {},
-    }).then(response => {
+    }).then(async response => {
       const result1 = response.data.result.recordsets[0];
       if (result1.length == 0) {
         await axios({
@@ -841,6 +841,7 @@ const Day9 = () => {
                         PREVIOUS
                       </Button>
                     </Link>
+
                     <Button
                       variant="contained"
                       className="nextBtn"
@@ -861,6 +862,6 @@ const Day9 = () => {
   );
 };
 
-Day9.layout = Admin;
+Day15.layout = Admin;
 
-export default Day9;
+export default Day15;

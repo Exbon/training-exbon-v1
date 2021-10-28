@@ -46,7 +46,7 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
 import "./project.css";
 
-const Day9 = () => {
+const Day17 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -578,6 +578,84 @@ const Day9 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
+  const handleFinish = async () => {
+    await axios({
+      method: "get",
+      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=17`,
+      timeout: 5000, // 5 seconds timeout
+      headers: {},
+    }).then(async response => {
+      const result1 = response.data.result.recordsets[0];
+      if (result1.length == 0) {
+        await axios({
+          method: "post",
+          url: `/api/training/email-sender-day17`,
+          timeout: 5000, // 5 seconds timeout
+          headers: {},
+          data: {
+            username: cookies.username,
+          },
+        }).then(async response => {
+          await axios({
+            method: "get",
+            url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+          }).then(async response => {
+            const result2 = response.data.result.recordsets[0];
+            if (result2.length == 0) {
+              alert("No Sub Mod log created!");
+            } else {
+              await axios({
+                method: "get",
+                url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
+                timeout: 5000, // 5 seconds timeout
+                headers: {},
+              }).then(async response => {
+                const result2 = response.data.result.recordsets[0];
+                if (result2.length == 0) {
+                  alert("No Sub Mod log created!");
+                } else {
+                  const TaskID = result2[0].WrikeID;
+
+                  await axios({
+                    method: "get",
+                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                    timeout: 5000, // 5 seconds timeout
+                    headers: {
+                      Authorization:
+                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                    },
+                  }).then(async response => {
+                    let data = response.data.data;
+
+                    if (data[0].customStatusId != "IEACA7BEJMCIU6XM") {
+                      alert("Wrike task's status in incorrect!");
+                    } else {
+                      await axios({
+                        method: "post",
+                        url: `/api/training/training-progress`,
+                        timeout: 5000, // 5 seconds timeout
+                        headers: {},
+                        data: {
+                          employeeID: cookies.employeeid,
+                          day: 17,
+                          part: 1,
+                        },
+                      }).then(async response => {
+                        alert("Complete! Congratulations!");
+                      });
+                    }
+                  });
+                }
+              });
+            }
+          });
+        });
+      } else {
+      }
+    });
+  };
   return (
     <>
       {promiseInProgress ? (
@@ -757,11 +835,16 @@ const Day9 = () => {
                         PREVIOUS
                       </Button>
                     </Link>
-                    <Link href="#">
-                      <Button variant="contained" className="nextBtn">
-                        Finish
-                      </Button>
-                    </Link>
+
+                    <Button
+                      variant="contained"
+                      className="finishBtn"
+                      onClick={() => {
+                        handleFinish();
+                      }}
+                    >
+                      Finish
+                    </Button>
                   </div>
                 </div>
               </Grid>
@@ -773,6 +856,6 @@ const Day9 = () => {
   );
 };
 
-Day9.layout = Admin;
+Day17.layout = Admin;
 
-export default Day9;
+export default Day17;

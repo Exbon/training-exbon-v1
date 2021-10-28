@@ -46,7 +46,7 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
 import "./project.css";
 
-const Day9 = () => {
+const Day14 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -832,6 +832,6 @@ const Day9 = () => {
   );
 };
 
-Day9.layout = Admin;
+Day14.layout = Admin;
 
-export default Day9;
+export default Day14;
