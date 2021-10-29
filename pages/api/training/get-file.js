@@ -7,30 +7,42 @@ const getFile = (req, res) => {
   return new Promise(async resolve => {
     switch (method) {
       case "GET":
-        const file = fs.readFileSync("./public/CO Submission.pdf");
-        const blob = Buffer.from(file);
+        let buffer = Buffer.from("./public/CO Submission.pdf");
+        // const file = fs.readFileSync("./public/CO Submission.pdf");
+        // const blob = Buffer.from(file);
+        fs.open("./public/CO Submission copy.pdf", "w", function (err, fd) {
+          if (err) {
+          }
 
-        let formData = new FormData();
-        formData.append("pdf", blob);
-        await axios({
-          method: "post",
-          url: `https://www.wrike.com/api/v4/tasks/${query.taskid}/attachments`,
-          timeout: 15000, // 5 seconds timeout
-          headers: {
-            Authorization:
-              "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-            // "Content-Type": "application/x-binary",
-            "Content-Type": "application/pdf",
-            "X-File-Name": "CO Submission.pdf",
-          },
-          data: { blob },
-        }).then(response => {
-          res.status(200).json(
-            //for preventing Timeout
-            { result: response }
-          );
+          fs.write(fd, buffer, 0, buffer.length, null, function (err) {
+            if (err) {
+              throw "error writing file: " + err;
+            }
+            fs.close(fd, function () {
+              axios({
+                method: "post",
+                url: `https://www.wrike.com/api/v4/tasks/${query.taskid}/attachments`,
+                timeout: 15000, // 15 seconds timeout
+                headers: {
+                  Authorization:
+                    "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                  "Content-Type": "application/pdf",
+                  "X-File-Name": "CO Submission.pdf",
+                  "Content-Transfer-Encoding": "base64",
+                  "Content-Disposition": "form-data",
+                },
+                data: { fd },
+              }).then(response => {
+                res.status(200).json(
+                  //for preventing Timeout
+                  { result: response }
+                );
+              });
+
+              console.log("file written successfully");
+            });
+          });
         });
-
         // const file = fs.readFileSync("./public/Subcontractor's Proposal.pdf");
         // const blob = Buffer.from(file);
         // await axios({
