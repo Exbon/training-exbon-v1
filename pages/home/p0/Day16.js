@@ -579,41 +579,47 @@ const Day16 = () => {
   const { promiseInProgress } = usePromiseTracker();
 
   const handleNext = async () => {
-    await axios({
-      method: "get",
-      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=16`,
-      timeout: 5000, // 5 seconds timeout
-      headers: {},
-    }).then(async response => {
-      const result1 = response.data.result.recordsets[0];
-      if (result1.length == 0) {
-        await axios({
-          method: "post",
-          url: `/api/training/email-sender-day16`,
-          timeout: 5000, // 5 seconds timeout
-          headers: {},
-          data: {
-            username: cookies.username,
-          },
-        }).then(async response => {
+    let promises = [];
+
+    const fetchData = async () => {
+      await axios({
+        method: "get",
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=16`,
+        timeout: 5000, // 5 seconds timeout
+        headers: {},
+      }).then(async response => {
+        const result1 = response.data.result.recordsets[0];
+        if (result1.length == 0) {
           await axios({
             method: "post",
-            url: `/api/training/training-progress`,
+            url: `/api/training/email-sender-day16`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
             data: {
-              employeeID: cookies.employeeid,
-              day: 16,
-              part: 1,
+              username: cookies.username,
             },
-          }).then(response => {
-            router.push(`./Day17`);
+          }).then(async response => {
+            await axios({
+              method: "post",
+              url: `/api/training/training-progress`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {},
+              data: {
+                employeeID: cookies.employeeid,
+                day: 16,
+                part: 1,
+              },
+            }).then(response => {
+              router.push(`./Day17`);
+            });
           });
-        });
-      } else {
-        router.push(`./Day17`);
-      }
-    });
+        } else {
+          router.push(`./Day17`);
+        }
+      });
+    };
+    promises.push(fetchData());
+    trackPromise(Promise.all(promises).then(() => {}));
   };
 
   return (

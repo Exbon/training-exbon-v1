@@ -680,88 +680,94 @@ const Day7 = () => {
   const { promiseInProgress } = usePromiseTracker();
 
   const handleNextDay = async () => {
-    await axios({
-      method: "get",
-      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=7`,
-      timeout: 5000, // 5 seconds timeout
-      headers: {},
-    }).then(async response => {
-      const result1 = response.data.result.recordsets[0];
-      if (result1.length == 0) {
-        await axios({
-          method: "get",
-          url: `/api/training/deficiency-log?employeeID=${cookies.employeeid}`,
-          timeout: 5000, // 5 seconds timeout
-          headers: {},
-        }).then(async response => {
-          const result2 = response.data.result.recordsets[0];
-          if (result2.length == 0) {
-            alert("No deficiency log created!");
-          } else {
-            const TaskID = result2[0].WrikeID;
+    let promises = [];
 
-            await axios({
-              method: "get",
-              url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-              timeout: 5000, // 5 seconds timeout
-              headers: {
-                Authorization:
-                  "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-              },
-            }).then(async response => {
-              let data = response.data.data;
-              if (data[0].customStatusId != "IEACA7BEJMCIUY6C") {
-                alert("Wrike task's status in incorrect!");
-              } else {
-                await axios({
-                  method: "post",
-                  url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
-                  timeout: 5000, // 5 seconds timeout
-                  headers: {
-                    Authorization:
-                      "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                  },
-                  data: {
-                    plainText: false,
-                    text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Proceed with a formal RFI Process`,
-                    // text: `<a class="stream-user-id avatar" rel="KUAICS57">@Hyunmyung Kim</a> Project Control: Proceed with a formal RFI Process`,
-                  },
-                }).then(async response => {
+    const fetchData = async () => {
+      await axios({
+        method: "get",
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=7`,
+        timeout: 5000, // 5 seconds timeout
+        headers: {},
+      }).then(async response => {
+        const result1 = response.data.result.recordsets[0];
+        if (result1.length == 0) {
+          await axios({
+            method: "get",
+            url: `/api/training/deficiency-log?employeeID=${cookies.employeeid}`,
+            timeout: 5000, // 5 seconds timeout
+            headers: {},
+          }).then(async response => {
+            const result2 = response.data.result.recordsets[0];
+            if (result2.length == 0) {
+              alert("No deficiency log created!");
+            } else {
+              const TaskID = result2[0].WrikeID;
+
+              await axios({
+                method: "get",
+                url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                timeout: 5000, // 5 seconds timeout
+                headers: {
+                  Authorization:
+                    "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                },
+              }).then(async response => {
+                let data = response.data.data;
+                if (data[0].customStatusId != "IEACA7BEJMCIUY6C") {
+                  alert("Wrike task's status in incorrect!");
+                } else {
                   await axios({
-                    method: "put",
-                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                    method: "post",
+                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
                     timeout: 5000, // 5 seconds timeout
                     headers: {
                       Authorization:
                         "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
                     },
                     data: {
-                      customStatus: "IEACA7BEJMCIUY6M",
+                      plainText: false,
+                      text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Proceed with a formal RFI Process`,
+                      // text: `<a class="stream-user-id avatar" rel="KUAICS57">@Hyunmyung Kim</a> Project Control: Proceed with a formal RFI Process`,
                     },
                   }).then(async response => {
                     await axios({
-                      method: "post",
-                      url: `/api/training/training-progress`,
+                      method: "put",
+                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
                       timeout: 5000, // 5 seconds timeout
-                      headers: {},
-                      data: {
-                        employeeID: cookies.employeeid,
-                        day: 7,
-                        part: 1,
+                      headers: {
+                        Authorization:
+                          "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
                       },
-                    }).then(response => {
-                      router.push(`./Day8`);
+                      data: {
+                        customStatus: "IEACA7BEJMCIUY6M",
+                      },
+                    }).then(async response => {
+                      await axios({
+                        method: "post",
+                        url: `/api/training/training-progress`,
+                        timeout: 5000, // 5 seconds timeout
+                        headers: {},
+                        data: {
+                          employeeID: cookies.employeeid,
+                          day: 7,
+                          part: 1,
+                        },
+                      }).then(response => {
+                        router.push(`./Day8`);
+                      });
                     });
                   });
-                });
-              }
-            });
-          }
-        });
-      } else {
-        router.push(`./Day8`);
-      }
-    });
+                }
+              });
+            }
+          });
+        } else {
+          router.push(`./Day8`);
+        }
+      });
+    };
+    promises.push(fetchData());
+    trackPromise(Promise.all(promises).then(() => {}));
   };
 
   return (
