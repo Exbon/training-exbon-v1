@@ -43,7 +43,7 @@ import Vendor1 from "../../../assets/img/faces/vendor1.png";
 import Vendor3 from "../../../assets/img/faces/vendor3.png";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
-
+import { wrikeConfig } from "../../../WrikeAPI.js";
 import "./project.css";
 
 const Day8 = () => {
@@ -602,8 +602,7 @@ const Day8 = () => {
                 url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
                 timeout: 5000, // 5 seconds timeout
                 headers: {
-                  Authorization:
-                    "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                  Authorization: wrikeConfig.apikey,
                 },
               }).then(async response => {
                 let data = response.data.data;
@@ -615,8 +614,7 @@ const Day8 = () => {
                     url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
                     timeout: 5000, // 5 seconds timeout
                     headers: {
-                      Authorization:
-                        "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                      Authorization: wrikeConfig.apikey,
                     },
                     data: {
                       plainText: false,
@@ -628,8 +626,7 @@ const Day8 = () => {
                       url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
                       timeout: 5000, // 5 seconds timeout
                       headers: {
-                        Authorization:
-                          "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
+                        Authorization: wrikeConfig.apikey,
                       },
                       data: {
                         customStatus: "IEACA7BEJMCIU2ZY",
