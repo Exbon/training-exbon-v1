@@ -18,7 +18,7 @@ import styles from "assets/jss/nextjs-material-dashboard/components/headerLinksS
 
 import { CookiesProvider, useCookies } from "react-cookie";
 import { isFirstDayOfMonth } from "date-fns";
-
+import { wrikeConfig } from "../../WrikeAPI.js";
 import axios from "axios";
 
 export default function AdminNavbarLinks() {
@@ -84,6 +84,7 @@ export default function AdminNavbarLinks() {
 
   return (
     <div>
+      {console.log(wrikeConfig.apikey)}
       <div className={classes.manager}>
         <div style={{ display: "flex" }}>
           <p
