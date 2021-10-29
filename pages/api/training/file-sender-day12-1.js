@@ -2,6 +2,7 @@ let fs = require("fs");
 const fsPromises = fs.promises;
 const pdf2base64 = require("pdf-to-base64");
 let axios = require("axios");
+const { wrikeConfig } = require("../../../WrikeAPI.js");
 
 const fileSender = (req, res) => {
   const { method, body, query } = req;
