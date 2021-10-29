@@ -784,8 +784,8 @@ const Day10 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. During new wall layout, Inspector pointed out one
-                      existing light fixture is conflicting with new wall layout
+                      1. Owner sent Field Instruction along with RFI response to
+                      proceed via Email.
                     </p>
 
                     <div

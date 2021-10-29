@@ -785,7 +785,8 @@ const Day8 = () => {
                       }}
                     >
                       1. During new wall layout, Inspector pointed out one
-                      existing light fixture is conflicting with new wall layout
+                      existing light fixture is conflicting with new wall
+                      layout.
                     </p>
 
                     <div

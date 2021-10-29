@@ -338,7 +338,7 @@ const Day13 = () => {
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
                           <TableCell>Project Control</TableCell>
-                          <TableCell>Work with PIC to a CO</TableCell>
+                          <TableCell>Work with PIC to review a CO</TableCell>
                         </TableRow>
                       </>
                     )}
@@ -769,8 +769,8 @@ const Day13 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. During new wall layout, Inspector pointed out one
-                      existing light fixture is conflicting with new wall layout
+                      1. Owner sent Field Instruction along with RFI response to
+                      proceed via Email.
                     </p>
 
                     <div
@@ -799,8 +799,7 @@ const Day13 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0803 . RFI Log : Send a RFI to Owner to get a formal
-                        directive
+                        0903 . CO Log : Record a Change Order
                       </p>
                       <p
                         style={{
@@ -809,7 +808,16 @@ const Day13 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0804 . Upload RFI in One Drive
+                        0904 . Upload CO in One Drive
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        0905 . Clarify the Estimate's Sub Mod in Wrike
                       </p>
                     </div>
                   </div>
