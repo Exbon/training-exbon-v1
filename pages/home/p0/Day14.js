@@ -814,7 +814,7 @@ const Day14 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day7">
+                    <Link href="./Day13">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
