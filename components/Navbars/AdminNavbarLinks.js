@@ -84,7 +84,6 @@ export default function AdminNavbarLinks() {
 
   return (
     <div>
-      {console.log(wrikeConfig.apikey)}
       <div className={classes.manager}>
         <div style={{ display: "flex" }}>
           <p
