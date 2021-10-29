@@ -632,34 +632,41 @@ const Day9 = ({ defaultFile }) => {
                   }).then(async response => {
                     await axios({
                       method: "get",
-                      url: `/api/training/get-file?taskid=${TaskID}`,
+                      url: `/api/training/file-sender-day12-1?taskid=${TaskID}`,
                       timeout: 15000, // 5 seconds timeout
                       headers: {},
                     }).then(async response => {
                       await axios({
-                        method: "put",
-                        url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                        timeout: 5000, // 5 seconds timeout
-                        headers: {
-                          Authorization:
-                            "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
-                        },
-                        data: {
-                          customStatus: "IEACA7BEJMCIU3YM",
-                        },
+                        method: "get",
+                        url: `/api/training/file-sender-day12-2?taskid=${TaskID}`,
+                        timeout: 15000, // 5 seconds timeout
+                        headers: {},
                       }).then(async response => {
                         await axios({
-                          method: "post",
-                          url: `/api/training/training-progress`,
+                          method: "put",
+                          url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
                           timeout: 5000, // 5 seconds timeout
-                          headers: {},
-                          data: {
-                            employeeID: cookies.employeeid,
-                            day: 12,
-                            part: 1,
+                          headers: {
+                            Authorization:
+                              "bearer eyJ0dCI6InAiLCJhbGciOiJIUzI1NiIsInR2IjoiMSJ9.eyJkIjoie1wiYVwiOjIxMjg5MzIsXCJpXCI6NjYyMzk5NixcImNcIjo0NTkzODAxLFwidVwiOjQyODM2NzEsXCJyXCI6XCJVU1wiLFwic1wiOltcIldcIixcIkZcIixcIklcIixcIlVcIixcIktcIixcIkNcIixcIkFcIixcIkxcIl0sXCJ6XCI6W10sXCJ0XCI6MH0iLCJpYXQiOjE1NzA0NTc4NDR9.ayTohiITZBNn5f2axYfdDwUEsXC-WSlMFocdijGI0ic",
                           },
-                        }).then(response => {
-                          router.push(`./Day13`);
+                          data: {
+                            customStatus: "IEACA7BEJMCIU3YM",
+                          },
+                        }).then(async response => {
+                          await axios({
+                            method: "post",
+                            url: `/api/training/training-progress`,
+                            timeout: 5000, // 5 seconds timeout
+                            headers: {},
+                            data: {
+                              employeeID: cookies.employeeid,
+                              day: 12,
+                              part: 1,
+                            },
+                          }).then(response => {
+                            router.push(`./Day13`);
+                          });
                         });
                       });
                     });
