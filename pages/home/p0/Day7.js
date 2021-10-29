@@ -44,8 +44,6 @@ import Vendor3 from "../../../assets/img/faces/vendor3.png";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
-import { wrikeConfig } from "../../../wrikeConfig.js";
-
 import "./project.css";
 
 const Day7 = () => {

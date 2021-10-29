@@ -29,3 +29,4 @@ package-lock.json
 
 dbConfig.js
 emailConfig.js
+WrikeAPI.js
