@@ -40,9 +40,15 @@ import Profile7 from "../../../assets/img/faces/profile7.png";
 import Subcontractor1 from "../../../assets/img/faces/sub1.png";
 import Subcontractor2 from "../../../assets/img/faces/sub2.png";
 import Vendor1 from "../../../assets/img/faces/vendor1.png";
-import Vendor3 from "../../../assets/img/faces/vendor3.png";
+import Congrats from "../../../assets/img/training/congrats.jpg";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 import "./project.css";
 
@@ -405,6 +411,8 @@ const Day17 = () => {
 
   const router = useRouter();
 
+  const [openModal, setOpenModal] = useState(false);
+
   const [data, setData] = useState(() => []);
   const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
@@ -415,6 +423,13 @@ const Day17 = () => {
       employeeid: 0,
     },
   });
+  const handleClickOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   const signin = async (username, password) => {
     let promises = [];
@@ -643,7 +658,8 @@ const Day17 = () => {
                           part: 1,
                         },
                       }).then(async response => {
-                        alert("Complete! Congratulations!");
+                        setOpenModal(true);
+                        // alert("Complete! Congratulations!");
                       });
                     }
                   });
@@ -653,6 +669,7 @@ const Day17 = () => {
           });
         });
       } else {
+        setOpenModal(true);
       }
     });
   };
@@ -846,6 +863,38 @@ const Day17 = () => {
                     >
                       Finish
                     </Button>
+                    <Dialog
+                      open={openModal}
+                      onClose={handleClose}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                    >
+                      <DialogTitle id="alert-dialog-title">
+                        <div
+                          style={{ display: "flex", justifyContent: "center" }}
+                        >
+                          {"Congratulations!"}
+                        </div>
+                        <img
+                          src={Congrats}
+                          style={{
+                            width: "400px",
+                            marginTop: "20px",
+                          }}
+                        />
+                      </DialogTitle>
+                      {/* <DialogContent>
+                        <DialogContentText id="alert-dialog-description"></DialogContentText>
+                      </DialogContent> */}
+                      <DialogActions>
+                        {/* <Button onClick={handleClose} color="primary">
+                          Disagree
+                        </Button> */}
+                        <Button onClick={handleClose} color="primary" autoFocus>
+                          OK
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                   </div>
                 </div>
               </Grid>
