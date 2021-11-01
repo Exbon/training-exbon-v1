@@ -12,10 +12,10 @@ const emailHandler = (req, res) => {
             user: emailConfig.emailConfig.user,
             pass: emailConfig.emailConfig.password,
           },
-          from: "dtrump.owner@exbon.com",
+          from: "owner.pm@exbon.com",
           // to: "hyunmyung.kim" + "@exbon.com",
           to: body.username + "@exbon.com",
-          subject: "Field Instruction – RFI 01",
+          subject: "[Training] Field Instruction – RFI 01",
           html: `<p>Exbon,</p>
            <p>Enclosed is a Field Instruction (FI) for your action. Please submit your Change Order Request (COR) accordingly. </p>
            <p>Thank you</p>

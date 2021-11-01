@@ -504,6 +504,9 @@ const Day13 = () => {
     const fetchData = async () => {
       if (status.cookies.username !== 0) {
         if (status.cookies.username !== undefined) {
+          if (status.cookies.username == 1) {
+            return null;
+          }
           await axios({
             method: "post",
             url: `/api/dashboard/signin`,
@@ -513,7 +516,24 @@ const Day13 = () => {
               Username: status.cookies.username,
               Password: status.cookies.password,
             },
-          }).then(response => {});
+          }).then(response => {
+            if (response.data.result.recordset.length == 0) {
+              removeCookie("fullname");
+              removeCookie("password");
+              removeCookie("username");
+              removeCookie("employeeid");
+              setStatus(prevState => ({
+                ...prevState,
+                cookies: {
+                  username: 0,
+                  password: 0,
+                  fullname: 0,
+                  employeeid: 0,
+                },
+              }));
+              alert("Login Failed.");
+            }
+          });
         }
       } else {
         if (router.query.hash !== undefined) {
@@ -650,7 +670,7 @@ const Day13 = () => {
 
   return (
     <>
-      {promiseInProgress ? (
+      {promiseInProgress || status.cookies.username == 1 ? (
         <div
           style={{
             width: "100%",

@@ -15,7 +15,7 @@ const emailHandler = (req, res) => {
           from: "conti.subcontractor@exbon.com",
           // to: "hyunmyung.kim" + "@exbon.com",
           to: body.username + "@exbon.com",
-          subject: "Signed Change Order",
+          subject: "[Training] Signed Change Order",
           html: `<p>Exbon,</p>
            <p>Thank you for sending me a Change Order. Enclosed is a signed CO for your processing. </p>
            <p>Thank you</p>

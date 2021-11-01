@@ -40,7 +40,7 @@ import Profile7 from "../../../assets/img/faces/profile7.png";
 import Subcontractor1 from "../../../assets/img/faces/sub1.png";
 import Subcontractor2 from "../../../assets/img/faces/sub2.png";
 import Vendor1 from "../../../assets/img/faces/vendor1.png";
-import Congrats from "../../../assets/img/training/congrats.jpg";
+import Congrats from "../../../assets/img/training/Fireworks.gif";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
@@ -521,6 +521,9 @@ const Day17 = () => {
     const fetchData = async () => {
       if (status.cookies.username !== 0) {
         if (status.cookies.username !== undefined) {
+          if (status.cookies.username == 1) {
+            return null;
+          }
           await axios({
             method: "post",
             url: `/api/dashboard/signin`,
@@ -530,7 +533,24 @@ const Day17 = () => {
               Username: status.cookies.username,
               Password: status.cookies.password,
             },
-          }).then(response => {});
+          }).then(response => {
+            if (response.data.result.recordset.length == 0) {
+              removeCookie("fullname");
+              removeCookie("password");
+              removeCookie("username");
+              removeCookie("employeeid");
+              setStatus(prevState => ({
+                ...prevState,
+                cookies: {
+                  username: 1,
+                  password: 1,
+                  fullname: 1,
+                  employeeid: 1,
+                },
+              }));
+              alert("Login Failed.");
+            }
+          });
         }
       } else {
         if (router.query.hash !== undefined) {
@@ -680,7 +700,7 @@ const Day17 = () => {
   };
   return (
     <>
-      {promiseInProgress ? (
+      {promiseInProgress || status.cookies.username == 1 ? (
         <div
           style={{
             width: "100%",
@@ -879,28 +899,40 @@ const Day17 = () => {
                           style={{
                             display: "flex",
                             justifyContent: "center",
+                            flexDirection: "column",
                             fontSize: "2rem",
                             color: "#5a5858",
                           }}
                         >
-                          {"Congratulations!"}
+                          <p style={{ margin: "0", textAlign: "center" }}>
+                            Congratulations!
+                          </p>
+                          <img
+                            src={Congrats}
+                            style={{
+                              width: "400px",
+                              marginTop: "20px",
+                              marginBottom: "20px",
+                              alignSelf: "center",
+                            }}
+                          />
                         </div>
-                        <img
-                          src={Congrats}
-                          style={{
-                            width: "400px",
-                            marginTop: "20px",
-                            marginBottom: "20px",
-                          }}
-                        />
+
                         <div
                           style={{
                             display: "flex",
                             justifyContent: "center",
+                            flexDirection: "column",
                             color: "#5a5858",
                           }}
                         >
-                          {"Course completed!"}
+                          <p style={{ margin: "0", textAlign: "center" }}>
+                            Course completed!
+                          </p>
+                          <p style={{ margin: "0" }}>
+                            Please go to <strong>Talent LMS</strong> to complete
+                            the course.
+                          </p>
                         </div>
                       </DialogTitle>
                       {/* <DialogContent>

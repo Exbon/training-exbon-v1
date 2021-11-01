@@ -125,6 +125,9 @@ const start = () => {
     const fetchData = async () => {
       if (status.cookies.username !== 0) {
         if (status.cookies.username !== undefined) {
+          if (status.cookies.username == 1) {
+            return null;
+          }
           await axios({
             method: "post",
             url: `/api/dashboard/signin`,
@@ -134,7 +137,24 @@ const start = () => {
               Username: status.cookies.username,
               Password: status.cookies.password,
             },
-          }).then(response => {});
+          }).then(response => {
+            if (response.data.result.recordset.length == 0) {
+              removeCookie("fullname");
+              removeCookie("password");
+              removeCookie("username");
+              removeCookie("employeeid");
+              setStatus(prevState => ({
+                ...prevState,
+                cookies: {
+                  username: 1,
+                  password: 1,
+                  fullname: 1,
+                  employeeid: 1,
+                },
+              }));
+              alert("Login Failed.");
+            }
+          });
         }
       } else {
         if (router.query.hash !== undefined) {
@@ -198,47 +218,52 @@ const start = () => {
   const { promiseInProgress } = usePromiseTracker();
 
   const handleEmail = async () => {
-    await axios({
-      method: "get",
-      url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=6`,
-      timeout: 5000, // 5 seconds timeout
-      headers: {},
-    }).then(async response => {
-      const result = response.data.result.recordsets[0];
-      if (result.length == 0) {
-        await axios({
-          method: "post",
-          url: `/api/training/email-sender-continue`,
-          timeout: 5000, // 5 seconds timeout
-          headers: {},
-          data: {
-            username: cookies.username,
-          },
-        }).then(async response => {
+    let promises = [];
+
+    const fetchData = async () => {
+      await axios({
+        method: "get",
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=6`,
+        timeout: 5000, // 5 seconds timeout
+        headers: {},
+      }).then(async response => {
+        const result = response.data.result.recordsets[0];
+        if (result.length == 0) {
           await axios({
             method: "post",
-            url: `/api/training/training-progress`,
+            url: `/api/training/email-sender-continue`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
             data: {
-              employeeID: cookies.employeeid,
-              day: 6,
-              part: 1,
+              username: cookies.username,
             },
-          }).then(response => {
-            router.push(`./Day7`);
+          }).then(async response => {
+            await axios({
+              method: "post",
+              url: `/api/training/training-progress`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {},
+              data: {
+                employeeID: cookies.employeeid,
+                day: 6,
+                part: 1,
+              },
+            }).then(response => {
+              router.push(`./Day7`);
+            });
           });
-        });
-      } else {
-        router.push(`./Day7`);
-      }
-    });
+        } else {
+          router.push(`./Day7`);
+        }
+      });
+    };
+    promises.push(fetchData());
+    trackPromise(Promise.all(promises).then(() => {}));
   };
 
   return (
     <>
-      {console.log(data)}
-      {promiseInProgress ? (
+      {promiseInProgress || status.cookies.username == 1 ? (
         <div
           style={{
             width: "100%",

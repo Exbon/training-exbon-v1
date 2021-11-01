@@ -12,10 +12,10 @@ const emailHandler = (req, res) => {
             user: emailConfig.emailConfig.user,
             pass: emailConfig.emailConfig.password,
           },
-          from: "dtrump.owner@exbon.com",
+          from: "owner.pm@exbon.com",
           // to: "hyunmyung.kim" + "@exbon.com",
           to: body.username + "@exbon.com",
-          subject: "RE: RFI 01 Response",
+          subject: "[Training] RE: RFI 01 Response",
           html: `<p>Exbon,</p>
            <p>Please see attached RFI response for your action. Field Instruction will follow in separate email. </p>
            <p>Thank you</p>
