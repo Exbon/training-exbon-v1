@@ -40,7 +40,7 @@ import Profile7 from "../../../assets/img/faces/profile7.png";
 import Subcontractor1 from "../../../assets/img/faces/sub1.png";
 import Subcontractor2 from "../../../assets/img/faces/sub2.png";
 import Vendor1 from "../../../assets/img/faces/vendor1.png";
-import Congrats from "../../../assets/img/training/Fireworks.gif";
+import Congrats from "../../../assets/img/training/fireworks.gif";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 
