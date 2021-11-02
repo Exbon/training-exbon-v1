@@ -345,7 +345,7 @@ const Day17 = () => {
                             />
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
-                          <TableCell>Project Control</TableCell>
+                          <TableCell>Exbon PC</TableCell>
                           <TableCell>
                             Work with PIC to review a RFI Draft
                           </TableCell>
@@ -367,7 +367,7 @@ const Day17 = () => {
                             />
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
-                          <TableCell>PM ( OAR )</TableCell>
+                          <TableCell>Owner PM</TableCell>
                           <TableCell>
                             Looking for a formal Change Order Request to process
                           </TableCell>
@@ -386,7 +386,7 @@ const Day17 = () => {
                             />
                           </TableCell>
                           <TableCell>James Dean</TableCell>
-                          <TableCell>Inspector ( IOR )</TableCell>
+                          <TableCell>Owner Inspector</TableCell>
                           <TableCell></TableCell>
                         </TableRow>
                       </>

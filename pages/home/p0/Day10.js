@@ -337,7 +337,7 @@ const Day10 = () => {
                             />
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
-                          <TableCell>Project Control</TableCell>
+                          <TableCell>Exbon PC</TableCell>
                           <TableCell>Work with PIC to review a CO</TableCell>
                         </TableRow>
                       </>
@@ -357,7 +357,7 @@ const Day10 = () => {
                             />
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
-                          <TableCell>PM ( OAR )</TableCell>
+                          <TableCell>Owner PM</TableCell>
                           <TableCell>
                             RFI response sent back to Contractor with Field
                             Instruction
@@ -377,7 +377,7 @@ const Day10 = () => {
                             />
                           </TableCell>
                           <TableCell>James Dean</TableCell>
-                          <TableCell>Inspector ( IOR )</TableCell>
+                          <TableCell>Owner Inspector</TableCell>
                           <TableCell></TableCell>
                         </TableRow>
                       </>
@@ -831,7 +831,8 @@ const Day10 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0902 . Upload Customer Response to RFI Log
+                        0902 . Upload Customer Response to RFI Log and complete
+                        the Wrike process.
                       </p>
                       <p
                         style={{
@@ -840,7 +841,8 @@ const Day10 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0903 . CO Log : Record a Change Order
+                        0903 . Create a Change Order and Change Status to
+                        "Create a Proposal"
                       </p>
                       <p
                         style={{
@@ -849,16 +851,7 @@ const Day10 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0904 . Upload CO in One Drive
-                      </p>
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: "500",
-                          marginBottom: "30px",
-                        }}
-                      >
-                        0905 . Clarify the Estimate's Sub Mod in Wrike
+                        0904 . Upload FI in One Drive
                       </p>
                     </div>
                   </div>

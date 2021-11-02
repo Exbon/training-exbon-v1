@@ -337,7 +337,7 @@ const Day14 = () => {
                             />
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
-                          <TableCell>Project Control</TableCell>
+                          <TableCell>Exbon PC</TableCell>
                           <TableCell>Work with PIC to review a CO</TableCell>
                         </TableRow>
                       </>
@@ -357,7 +357,7 @@ const Day14 = () => {
                             />
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
-                          <TableCell>PM ( OAR )</TableCell>
+                          <TableCell>Owner PM</TableCell>
                           <TableCell>
                             RFI response sent back to Contractor with Field
                             Instruction
@@ -377,7 +377,7 @@ const Day14 = () => {
                             />
                           </TableCell>
                           <TableCell>James Dean</TableCell>
-                          <TableCell>Inspector ( IOR )</TableCell>
+                          <TableCell>Owner Inspector</TableCell>
                           <TableCell></TableCell>
                         </TableRow>
                       </>

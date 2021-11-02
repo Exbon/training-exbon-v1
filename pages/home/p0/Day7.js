@@ -444,7 +444,7 @@ const Day7 = () => {
                             />
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
-                          <TableCell>Project Control</TableCell>
+                          <TableCell>Exbon PC</TableCell>
                           <TableCell>
                             Work with PIC to review a deficiency log
                           </TableCell>
@@ -466,7 +466,7 @@ const Day7 = () => {
                             />
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
-                          <TableCell>PM ( OAR )</TableCell>
+                          <TableCell>Owner PM</TableCell>
                           <TableCell></TableCell>
                         </TableRow>
 
@@ -483,7 +483,7 @@ const Day7 = () => {
                             />
                           </TableCell>
                           <TableCell>James Dean</TableCell>
-                          <TableCell>Inspector ( IOR )</TableCell>
+                          <TableCell>Owner Inspector</TableCell>
                           <TableCell></TableCell>
                         </TableRow>
                       </>
@@ -963,7 +963,17 @@ const Day7 = () => {
                         }}
                       >
                         0704 . Deficiency Log : Upload observed conflict and
-                        develop a plan.
+                        develop a plan
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        0705 . Change Wrike Status to "Review by PC" for PC
+                        review
                       </p>
                     </div>
                   </div>

@@ -337,7 +337,7 @@ const Day9 = () => {
                             />
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
-                          <TableCell>Project Control</TableCell>
+                          <TableCell>Exbon PC</TableCell>
                           <TableCell>
                             Work with PIC to review a RFI Draft
                           </TableCell>
@@ -359,8 +359,8 @@ const Day9 = () => {
                             />
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
-                          <TableCell>PM ( OAR )</TableCell>
-                          <TableCell>dtrump.owner@exbon.com</TableCell>
+                          <TableCell>Owner PM</TableCell>
+                          <TableCell>owner.pm@exbon.com</TableCell>
                         </TableRow>
 
                         {/* Client2 */}
@@ -376,7 +376,7 @@ const Day9 = () => {
                             />
                           </TableCell>
                           <TableCell>James Dean</TableCell>
-                          <TableCell>Inspector ( IOR )</TableCell>
+                          <TableCell>Owner Inspector</TableCell>
                           <TableCell></TableCell>
                         </TableRow>
                       </>
@@ -818,7 +818,7 @@ const Day9 = () => {
                         }}
                       >
                         0903 . RFI Log : Send a RFI to Owner to get a formal
-                        directive
+                        directive. Use a RFI form in Hammer
                       </p>
                       <p
                         style={{
