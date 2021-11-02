@@ -44,10 +44,9 @@ import Vendor3 from "../../../assets/img/faces/vendor3.png";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import { wrikeConfig } from "../../../WrikeAPI.js";
-
 import "./project.css";
 
-const Day13 = () => {
+const Day10_2 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -200,7 +199,7 @@ const Day13 = () => {
                           <TableCell>B General Carpentry</TableCell>
                           <TableCell align="center"></TableCell>
                           <TableCell align="center"></TableCell>
-                          <TableCell>No Work</TableCell>
+                          <TableCell></TableCell>
                           <TableCell align="right"></TableCell>
                           <TableCell align="right"></TableCell>
                         </TableRow>
@@ -230,11 +229,13 @@ const Day13 = () => {
                             </div>
                           </TableCell>
                           <TableCell>C10 Electrical</TableCell>
-                          <TableCell align="center"></TableCell>
-                          <TableCell align="center"></TableCell>
-                          <TableCell></TableCell>
-                          <TableCell align="right"></TableCell>
-                          <TableCell align="right"></TableCell>
+                          <TableCell align="center">07:00</TableCell>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell>
+                            Relocate one existing light fixture
+                          </TableCell>
+                          <TableCell align="right">100.0%</TableCell>
+                          <TableCell align="right">1</TableCell>
                         </TableRow>
                       </>
                     )}
@@ -339,7 +340,9 @@ const Day13 = () => {
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
                           <TableCell>Exbon PC</TableCell>
-                          <TableCell>Work with PIC to review a CO</TableCell>
+                          <TableCell>
+                            Work with PIC to review a submod
+                          </TableCell>
                         </TableRow>
                       </>
                     )}
@@ -360,8 +363,7 @@ const Day13 = () => {
                           <TableCell>Don Trump</TableCell>
                           <TableCell>Owner PM</TableCell>
                           <TableCell>
-                            RFI response sent back to Contractor with Field
-                            Instruction
+                            Looking for a formal Change Order Request to process
                           </TableCell>
                         </TableRow>
 
@@ -602,65 +604,37 @@ const Day13 = () => {
     const fetchData = async () => {
       await axios({
         method: "get",
-        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=13`,
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=16`,
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {
         const result1 = response.data.result.recordsets[0];
         if (result1.length == 0) {
           await axios({
-            method: "get",
-            url: `/api/training/change-order-log?employeeID=${cookies.employeeid}`,
+            method: "post",
+            url: `/api/training/email-sender-day16`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
+            data: {
+              username: cookies.username,
+            },
           }).then(async response => {
-            const result2 = response.data.result.recordsets[0];
-            if (result2.length == 0) {
-              alert("No Change Order log created!");
-            } else {
-              const TaskID = result2[0].WrikeID;
-              await axios({
-                method: "get",
-                url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                timeout: 5000, // 5 seconds timeout
-                headers: {
-                  Authorization: wrikeConfig.apikey,
-                },
-              }).then(async response => {
-                let data = response.data.data;
-
-                if (data[0].customStatusId != "IEACA7BEJMCIU3YW") {
-                  alert("Wrike task's status in incorrect!");
-                } else {
-                  await axios({
-                    method: "post",
-                    url: `/api/training/email-sender-day13`,
-                    timeout: 5000, // 5 seconds timeout
-                    headers: {},
-                    data: {
-                      username: cookies.username,
-                    },
-                  }).then(async response => {
-                    await axios({
-                      method: "post",
-                      url: `/api/training/training-progress`,
-                      timeout: 5000, // 5 seconds timeout
-                      headers: {},
-                      data: {
-                        employeeID: cookies.employeeid,
-                        day: 13,
-                        part: 1,
-                      },
-                    }).then(response => {
-                      router.push(`./Day14`);
-                    });
-                  });
-                }
-              });
-            }
+            await axios({
+              method: "post",
+              url: `/api/training/training-progress`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {},
+              data: {
+                employeeID: cookies.employeeid,
+                day: 16,
+                part: 1,
+              },
+            }).then(response => {
+              router.push(`./Day17`);
+            });
           });
         } else {
-          router.push(`./Day14`);
+          router.push(`./Day17`);
         }
       });
     };
@@ -719,7 +693,7 @@ const Day13 = () => {
                         disableToolbar
                         variant="inline"
                         format="MM/dd/yyyy"
-                        value={"07/20/2021"}
+                        value={"07/23/2021"}
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
@@ -763,7 +737,7 @@ const Day13 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 13</h2>
+                    <h2 className="title-day">Day 16</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -789,8 +763,8 @@ const Day13 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. Owner sent Field Instruction along with RFI response to
-                      proceed via Email.
+                      1. Exbon Estimator uploaded electrical subcontractor's
+                      proposal
                     </p>
 
                     <div
@@ -819,7 +793,7 @@ const Day13 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0903 . CO Log : Record a Change Order
+                        1003 . Sub Mod Log : Upload a subcontractor proposal
                       </p>
                       <p
                         style={{
@@ -828,16 +802,7 @@ const Day13 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0904 . Upload CO in One Drive
-                      </p>
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: "500",
-                          marginBottom: "30px",
-                        }}
-                      >
-                        0905 . Clarify the Estimate's Sub Mod in Wrike
+                        1004 . Confirm Sub Mod updated
                       </p>
                     </div>
                   </div>
@@ -852,7 +817,7 @@ const Day13 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day12">
+                    <Link href="./Day15">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
@@ -877,6 +842,6 @@ const Day13 = () => {
   );
 };
 
-Day13.layout = Admin;
+Day10_2.layout = Admin;
 
-export default Day13;
+export default Day10_2;

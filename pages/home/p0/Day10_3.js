@@ -40,13 +40,19 @@ import Profile7 from "../../../assets/img/faces/profile7.png";
 import Subcontractor1 from "../../../assets/img/faces/sub1.png";
 import Subcontractor2 from "../../../assets/img/faces/sub2.png";
 import Vendor1 from "../../../assets/img/faces/vendor1.png";
-import Vendor3 from "../../../assets/img/faces/vendor3.png";
+import Congrats from "../../../assets/img/training/fireworks.gif";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
+
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import { wrikeConfig } from "../../../WrikeAPI.js";
 import "./project.css";
 
-const Day15 = () => {
+const Day10_3 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -341,7 +347,7 @@ const Day15 = () => {
                           <TableCell>Susan Ali</TableCell>
                           <TableCell>Exbon PC</TableCell>
                           <TableCell>
-                            Work with PIC to review a submod
+                            Work with PIC to review a RFI Draft
                           </TableCell>
                         </TableRow>
                       </>
@@ -405,6 +411,8 @@ const Day15 = () => {
 
   const router = useRouter();
 
+  const [openModal, setOpenModal] = useState(false);
+
   const [data, setData] = useState(() => []);
   const [cookies, setCookie, removeCookie] = useCookies();
   const [status, setStatus] = useState({
@@ -415,6 +423,13 @@ const Day15 = () => {
       employeeid: 0,
     },
   });
+  const handleClickOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   const signin = async (username, password) => {
     let promises = [];
@@ -527,10 +542,10 @@ const Day15 = () => {
               setStatus(prevState => ({
                 ...prevState,
                 cookies: {
-                  username: 0,
-                  password: 0,
-                  fullname: 0,
-                  employeeid: 0,
+                  username: 1,
+                  password: 1,
+                  fullname: 1,
+                  employeeid: 1,
                 },
               }));
               alert("Login Failed.");
@@ -598,92 +613,179 @@ const Day15 = () => {
 
   const { promiseInProgress } = usePromiseTracker();
 
-  const handleNext = async () => {
+  const handleFinish = async () => {
     let promises = [];
+
     const fetchData = async () => {
       await axios({
         method: "get",
-        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=15`,
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=17`,
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {
         const result1 = response.data.result.recordsets[0];
         if (result1.length == 0) {
           await axios({
-            method: "get",
-            url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
+            method: "post",
+            url: `/api/training/email-sender-day17`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
+            data: {
+              username: cookies.username,
+            },
           }).then(async response => {
-            const result2 = response.data.result.recordsets[0];
-            if (result2.length == 0) {
-              alert("No Sub Mod log created!");
-            } else {
-              const TaskID = result2[0].WrikeID;
-              await axios({
-                method: "get",
-                url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                timeout: 5000, // 5 seconds timeout
-                headers: {
-                  Authorization: wrikeConfig.apikey,
-                },
-              }).then(async response => {
-                let data = response.data.data;
+            await axios({
+              method: "get",
+              url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
+              timeout: 5000, // 5 seconds timeout
+              headers: {},
+            }).then(async response => {
+              const result2 = response.data.result.recordsets[0];
+              if (result2.length == 0) {
+                alert("No Sub Mod log created!");
+              } else {
+                await axios({
+                  method: "get",
+                  url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
+                  timeout: 5000, // 5 seconds timeout
+                  headers: {},
+                }).then(async response => {
+                  const result2 = response.data.result.recordsets[0];
+                  if (result2.length == 0) {
+                    alert("No Sub Mod log created!");
+                  } else {
+                    const SubmodID = result2[0].WrikeID;
 
-                if (data[0].customStatusId != "IEACA7BEJMCIU6WY") {
-                  alert("Wrike task's status in incorrect!");
-                } else {
-                  await axios({
-                    method: "post",
-                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
-                    timeout: 5000, // 5 seconds timeout
-                    headers: {
-                      Authorization: wrikeConfig.apikey,
-                    },
-                    data: {
-                      plainText: false,
-                      text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Approved. Please send a Change Order to subcontractor.`,
-                    },
-                  }).then(async response => {
                     await axios({
-                      method: "put",
-                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                      method: "get",
+                      url: `https://www.wrike.com/api/v4/tasks/${SubmodID}`,
                       timeout: 5000, // 5 seconds timeout
                       headers: {
                         Authorization: wrikeConfig.apikey,
                       },
-                      data: {
-                        customStatus: "IEACA7BEJMCIU6XC",
-                      },
                     }).then(async response => {
-                      await axios({
-                        method: "post",
-                        url: `/api/training/training-progress`,
-                        timeout: 5000, // 5 seconds timeout
-                        headers: {},
-                        data: {
-                          employeeID: cookies.employeeid,
-                          day: 15,
-                          part: 1,
-                        },
-                      }).then(response => {
-                        router.push(`./Day16`);
-                      });
+                      let submodData = response.data.data;
+
+                      if (submodData[0].customStatusId != "IEACA7BEJMCIU6XM") {
+                        alert("Wrike task's status in incorrect! - Sub Mod");
+                      } else {
+                        await axios({
+                          method: "get",
+                          url: `/api/training/deficiency-log?employeeID=${cookies.employeeid}`,
+                          timeout: 5000, // 5 seconds timeout
+                          headers: {},
+                        }).then(async response => {
+                          const result = response.data.result.recordsets[0];
+                          if (result.length == 0) {
+                            alert("No deficiency log created!");
+                          } else {
+                            const DefID = result[0].WrikeID;
+                            await axios({
+                              method: "get",
+                              url: `https://www.wrike.com/api/v4/tasks/${DefID}`,
+                              timeout: 5000, // 5 seconds timeout
+                              headers: {
+                                Authorization: wrikeConfig.apikey,
+                              },
+                            }).then(async response => {
+                              let defData = response.data.data;
+                              if (
+                                defData[0].customStatusId != "IEACA7BEJMCIUY6W"
+                              ) {
+                                alert(
+                                  "Wrike task's status in incorrect! - Deficiency Log"
+                                );
+                              } else {
+                                await axios({
+                                  method: "put",
+                                  url: `https://www.wrike.com/api/v4/tasks/${DefID}`,
+                                  timeout: 5000, // 5 seconds timeout
+                                  headers: {
+                                    Authorization: wrikeConfig.apikey,
+                                  },
+                                  data: {
+                                    customStatus: "IEACA7BEJMCIUY5Z",
+                                  },
+                                }).then(async response => {
+                                  await axios({
+                                    method: "get",
+                                    url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
+                                    timeout: 5000, // 5 seconds timeout
+                                    headers: {},
+                                  }).then(async response => {
+                                    const result =
+                                      response.data.result.recordsets[0];
+                                    if (result.length == 0) {
+                                      alert("No rfi log created!");
+                                    } else {
+                                      const RfiID = result[0].WrikeID;
+                                      await axios({
+                                        method: "get",
+                                        url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
+                                        timeout: 5000, // 5 seconds timeout
+                                        headers: {
+                                          Authorization: wrikeConfig.apikey,
+                                        },
+                                      }).then(async response => {
+                                        let data = response.data.data;
+                                        if (
+                                          data[0].customStatusId !=
+                                          "IEACA7BEJMCIU23A"
+                                        ) {
+                                          alert(
+                                            "Wrike task's status in incorrect! - EFI"
+                                          );
+                                        } else {
+                                          await axios({
+                                            method: "put",
+                                            url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
+                                            timeout: 5000, // 5 seconds timeout
+                                            headers: {
+                                              Authorization: wrikeConfig.apikey,
+                                            },
+                                            data: {
+                                              customStatus: "IEACA7BEJMCIU2ZF",
+                                            },
+                                          }).then(async response => {
+                                            await axios({
+                                              method: "post",
+                                              url: `/api/training/training-progress`,
+                                              timeout: 5000, // 5 seconds timeout
+                                              headers: {},
+                                              data: {
+                                                employeeID: cookies.employeeid,
+                                                day: 17,
+                                                part: 1,
+                                              },
+                                            }).then(async response => {
+                                              setOpenModal(true);
+                                              // alert("Complete! Congratulations!");
+                                            });
+                                          });
+                                        }
+                                      });
+                                    }
+                                  });
+                                });
+                              }
+                            });
+                          }
+                        });
+                      }
                     });
-                  });
-                }
-              });
-            }
+                  }
+                });
+              }
+            });
           });
         } else {
-          router.push("./Day16");
+          setOpenModal(true);
         }
       });
     };
     promises.push(fetchData());
     trackPromise(Promise.all(promises).then(() => {}));
   };
-
   return (
     <>
       {promiseInProgress || status.cookies.username == 1 ? (
@@ -735,7 +837,7 @@ const Day15 = () => {
                         disableToolbar
                         variant="inline"
                         format="MM/dd/yyyy"
-                        value={"07/22/2021"}
+                        value={"07/26/2021"}
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
@@ -779,7 +881,7 @@ const Day15 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 15</h2>
+                    <h2 className="title-day">Day 17</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -846,6 +948,24 @@ const Day15 = () => {
                       >
                         1004 . Confirm Sub Mod updated
                       </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        1005 . Confirm your deficiency log is closed
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        1006 . Confirm your RFI Log is closed
+                      </p>
                     </div>
                   </div>
                   <div
@@ -859,7 +979,7 @@ const Day15 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day14">
+                    <Link href="./Day16">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
@@ -867,13 +987,72 @@ const Day15 = () => {
 
                     <Button
                       variant="contained"
-                      className="nextBtn"
+                      className="finishBtn"
                       onClick={() => {
-                        handleNext();
+                        handleFinish();
                       }}
                     >
-                      NEXT
+                      Finish
                     </Button>
+                    <Dialog
+                      open={openModal}
+                      onClose={handleClose}
+                      aria-labelledby="alert-dialog-title"
+                      aria-describedby="alert-dialog-description"
+                    >
+                      <DialogTitle id="alert-dialog-title">
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            fontSize: "2rem",
+                            color: "#5a5858",
+                          }}
+                        >
+                          <p style={{ margin: "0", textAlign: "center" }}>
+                            Congratulations!
+                          </p>
+                          <img
+                            src={Congrats}
+                            style={{
+                              width: "400px",
+                              marginTop: "20px",
+                              marginBottom: "20px",
+                              alignSelf: "center",
+                            }}
+                          />
+                        </div>
+
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            color: "#5a5858",
+                          }}
+                        >
+                          <p style={{ margin: "0", textAlign: "center" }}>
+                            Course completed!
+                          </p>
+                          <p style={{ margin: "0" }}>
+                            Please go to <strong>Talent LMS</strong> to complete
+                            the course.
+                          </p>
+                        </div>
+                      </DialogTitle>
+                      {/* <DialogContent>
+                        <DialogContentText id="alert-dialog-description"></DialogContentText>
+                      </DialogContent> */}
+                      <DialogActions>
+                        {/* <Button onClick={handleClose} color="primary">
+                          Disagree
+                        </Button> */}
+                        <Button onClick={handleClose} color="primary" autoFocus>
+                          OK
+                        </Button>
+                      </DialogActions>
+                    </Dialog>
                   </div>
                 </div>
               </Grid>
@@ -885,6 +1064,6 @@ const Day15 = () => {
   );
 };
 
-Day15.layout = Admin;
+Day10_3.layout = Admin;
 
-export default Day15;
+export default Day10_3;

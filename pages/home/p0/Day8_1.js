@@ -46,7 +46,7 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import { wrikeConfig } from "../../../WrikeAPI.js";
 import "./project.css";
 
-const Day14 = () => {
+const Day8_1 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -118,16 +118,13 @@ const Day14 = () => {
                         <TableCell className="test" width="14%">
                           License
                         </TableCell>
-                        <TableCell className="test" width="10%">
-                          Email
-                        </TableCell>
                         <TableCell align="center" width="12%">
                           Work Start
                         </TableCell>
                         <TableCell align="center" width="12%">
                           Work End
                         </TableCell>
-                        <TableCell width="21%">Task</TableCell>
+                        <TableCell width="31%">Task</TableCell>
                         <TableCell width="6%">Completion</TableCell>
                         <TableCell width="6%">Workers</TableCell>
                       </TableRow>
@@ -202,7 +199,6 @@ const Day14 = () => {
                           <TableCell>B General Carpentry</TableCell>
                           <TableCell align="center"></TableCell>
                           <TableCell align="center"></TableCell>
-                          <TableCell align="center"></TableCell>
                           <TableCell>No Work</TableCell>
                           <TableCell align="right"></TableCell>
                           <TableCell align="right"></TableCell>
@@ -233,9 +229,6 @@ const Day14 = () => {
                             </div>
                           </TableCell>
                           <TableCell>C10 Electrical</TableCell>
-                          <TableCell align="center">
-                            conti.subcontractor@exbon.com
-                          </TableCell>
                           <TableCell align="center"></TableCell>
                           <TableCell align="center"></TableCell>
                           <TableCell></TableCell>
@@ -345,7 +338,9 @@ const Day14 = () => {
                           </TableCell>
                           <TableCell>Susan Ali</TableCell>
                           <TableCell>Exbon PC</TableCell>
-                          <TableCell>Work with PIC to review a CO</TableCell>
+                          <TableCell>
+                            Work with PIC to review a RFI Draft
+                          </TableCell>
                         </TableRow>
                       </>
                     )}
@@ -365,10 +360,7 @@ const Day14 = () => {
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
                           <TableCell>Owner PM</TableCell>
-                          <TableCell>
-                            RFI response sent back to Contractor with Field
-                            Instruction
-                          </TableCell>
+                          <TableCell>owner.pm@exbon.com</TableCell>
                         </TableRow>
 
                         {/* Client2 */}
@@ -608,7 +600,7 @@ const Day14 = () => {
     const fetchData = async () => {
       await axios({
         method: "get",
-        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=14`,
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=8`,
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {
@@ -616,13 +608,13 @@ const Day14 = () => {
         if (result1.length == 0) {
           await axios({
             method: "get",
-            url: `/api/training/change-order-log?employeeID=${cookies.employeeid}`,
+            url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
           }).then(async response => {
             const result2 = response.data.result.recordsets[0];
             if (result2.length == 0) {
-              alert("No Change Order log created!");
+              alert("No RFI log created!");
             } else {
               const TaskID = result2[0].WrikeID;
               await axios({
@@ -634,29 +626,53 @@ const Day14 = () => {
                 },
               }).then(async response => {
                 let data = response.data.data;
-
-                if (data[0].customStatusId != "IEACA7BEJMCIU3ZU") {
+                if (data[0].customStatusId != "IEACA7BEJMCIU2ZO") {
                   alert("Wrike task's status in incorrect!");
                 } else {
                   await axios({
                     method: "post",
-                    url: `/api/training/training-progress`,
+                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
                     timeout: 5000, // 5 seconds timeout
-                    headers: {},
-                    data: {
-                      employeeID: cookies.employeeid,
-                      day: 14,
-                      part: 1,
+                    headers: {
+                      Authorization: wrikeConfig.apikey,
                     },
-                  }).then(response => {
-                    router.push(`./Day15`);
+                    data: {
+                      plainText: false,
+                      text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Please submit this RFI to Owner`,
+                    },
+                  }).then(async response => {
+                    await axios({
+                      method: "put",
+                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                      timeout: 5000, // 5 seconds timeout
+                      headers: {
+                        Authorization: wrikeConfig.apikey,
+                      },
+                      data: {
+                        customStatus: "IEACA7BEJMCIU2ZY",
+                      },
+                    }).then(async response => {
+                      await axios({
+                        method: "post",
+                        url: `/api/training/training-progress`,
+                        timeout: 5000, // 5 seconds timeout
+                        headers: {},
+                        data: {
+                          employeeID: cookies.employeeid,
+                          day: 8,
+                          part: 1,
+                        },
+                      }).then(response => {
+                        router.push(`./Day9`);
+                      });
+                    });
                   });
                 }
               });
             }
           });
         } else {
-          router.push("./Day15");
+          router.push(`./Day9`);
         }
       });
     };
@@ -715,7 +731,7 @@ const Day14 = () => {
                         disableToolbar
                         variant="inline"
                         format="MM/dd/yyyy"
-                        value={"07/21/2021"}
+                        value={"07/13/2021"}
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
@@ -759,7 +775,7 @@ const Day14 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 14</h2>
+                    <h2 className="title-day">Day 8</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -785,8 +801,9 @@ const Day14 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. Owner sent Field Instruction along with RFI response to
-                      proceed via Email.
+                      1. During new wall layout, Inspector pointed out one
+                      existing light fixture is conflicting with new wall
+                      layout.
                     </p>
 
                     <div
@@ -815,7 +832,8 @@ const Day14 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0903 . CO Log : Record a Change Order
+                        0803 . RFI Log : Send a RFI to Owner to get a formal
+                        directive
                       </p>
                       <p
                         style={{
@@ -824,16 +842,8 @@ const Day14 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0904 . Upload CO in One Drive
-                      </p>
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: "500",
-                          marginBottom: "30px",
-                        }}
-                      >
-                        0904 . Clarify the Estimate's Sub Mod in Wrike
+                        0804 . Deficiency Log: Follow deficiency log procedure
+                        and close this deficiency
                       </p>
                     </div>
                   </div>
@@ -848,7 +858,7 @@ const Day14 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day13">
+                    <Link href="./Day7">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
@@ -856,9 +866,7 @@ const Day14 = () => {
                     <Button
                       variant="contained"
                       className="nextBtn"
-                      onClick={() => {
-                        handleNext();
-                      }}
+                      onClick={() => handleNext()}
                     >
                       NEXT
                     </Button>
@@ -873,6 +881,6 @@ const Day14 = () => {
   );
 };
 
-Day14.layout = Admin;
+Day8_1.layout = Admin;
 
-export default Day14;
+export default Day8_1;

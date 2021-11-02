@@ -46,7 +46,7 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import { wrikeConfig } from "../../../WrikeAPI.js";
 import "./project.css";
 
-const Day8 = () => {
+const Day8_2 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -600,7 +600,7 @@ const Day8 = () => {
     const fetchData = async () => {
       await axios({
         method: "get",
-        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=8`,
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=9`,
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {
@@ -626,45 +626,30 @@ const Day8 = () => {
                 },
               }).then(async response => {
                 let data = response.data.data;
-                if (data[0].customStatusId != "IEACA7BEJMCIU2ZO") {
+                if (data[0].customStatusId != "IEACA7BEJMCIU22C") {
                   alert("Wrike task's status in incorrect!");
                 } else {
                   await axios({
                     method: "post",
-                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
+                    url: `/api/training/email-sender-day9`,
                     timeout: 5000, // 5 seconds timeout
-                    headers: {
-                      Authorization: wrikeConfig.apikey,
-                    },
+                    headers: {},
                     data: {
-                      plainText: false,
-                      text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Please submit this RFI to Owner`,
+                      username: cookies.username,
                     },
                   }).then(async response => {
                     await axios({
-                      method: "put",
-                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                      method: "post",
+                      url: `/api/training/training-progress`,
                       timeout: 5000, // 5 seconds timeout
-                      headers: {
-                        Authorization: wrikeConfig.apikey,
-                      },
+                      headers: {},
                       data: {
-                        customStatus: "IEACA7BEJMCIU2ZY",
+                        employeeID: cookies.employeeid,
+                        day: 9,
+                        part: 1,
                       },
-                    }).then(async response => {
-                      await axios({
-                        method: "post",
-                        url: `/api/training/training-progress`,
-                        timeout: 5000, // 5 seconds timeout
-                        headers: {},
-                        data: {
-                          employeeID: cookies.employeeid,
-                          day: 8,
-                          part: 1,
-                        },
-                      }).then(response => {
-                        router.push(`./Day9`);
-                      });
+                    }).then(response => {
+                      router.push(`./Day10`);
                     });
                   });
                 }
@@ -672,7 +657,7 @@ const Day8 = () => {
             }
           });
         } else {
-          router.push(`./Day9`);
+          router.push(`./Day10`);
         }
       });
     };
@@ -731,7 +716,7 @@ const Day8 = () => {
                         disableToolbar
                         variant="inline"
                         format="MM/dd/yyyy"
-                        value={"07/13/2021"}
+                        value={"07/14/2021"}
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
@@ -775,7 +760,7 @@ const Day8 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 8</h2>
+                    <h2 className="title-day">Day 9</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -832,8 +817,8 @@ const Day8 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0803 . RFI Log : Send a RFI to Owner to get a formal
-                        directive
+                        0903 . RFI Log : Send a RFI to Owner to get a formal
+                        directive.
                       </p>
                       <p
                         style={{
@@ -842,8 +827,7 @@ const Day8 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0804 . Deficiency Log: Follow deficiency log procedure
-                        and close this deficiency
+                        0904 . Upload RFI in One Drive
                       </p>
                     </div>
                   </div>
@@ -858,7 +842,7 @@ const Day8 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day7">
+                    <Link href="./Day8">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
@@ -881,6 +865,6 @@ const Day8 = () => {
   );
 };
 
-Day8.layout = Admin;
+Day8_2.layout = Admin;
 
-export default Day8;
+export default Day8_2;

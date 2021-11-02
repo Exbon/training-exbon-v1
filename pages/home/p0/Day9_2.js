@@ -44,9 +44,10 @@ import Vendor3 from "../../../assets/img/faces/vendor3.png";
 
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import { wrikeConfig } from "../../../WrikeAPI.js";
+
 import "./project.css";
 
-const Day10 = () => {
+const Day9_2 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -601,7 +602,7 @@ const Day10 = () => {
     const fetchData = async () => {
       await axios({
         method: "get",
-        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=10`,
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=13`,
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {
@@ -609,13 +610,13 @@ const Day10 = () => {
         if (result1.length == 0) {
           await axios({
             method: "get",
-            url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
+            url: `/api/training/change-order-log?employeeID=${cookies.employeeid}`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
           }).then(async response => {
             const result2 = response.data.result.recordsets[0];
             if (result2.length == 0) {
-              alert("No RFI log created!");
+              alert("No Change Order log created!");
             } else {
               const TaskID = result2[0].WrikeID;
               await axios({
@@ -627,45 +628,31 @@ const Day10 = () => {
                 },
               }).then(async response => {
                 let data = response.data.data;
-                if (data[0].customStatusId != "IEACA7BEJMCIU22M") {
+
+                if (data[0].customStatusId != "IEACA7BEJMCIU3YW") {
                   alert("Wrike task's status in incorrect!");
                 } else {
                   await axios({
                     method: "post",
-                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
+                    url: `/api/training/email-sender-day13`,
                     timeout: 5000, // 5 seconds timeout
-                    headers: {
-                      Authorization: wrikeConfig.apikey,
-                    },
+                    headers: {},
                     data: {
-                      plainText: false,
-                      text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Proceed with creating a Change Order log.`,
+                      username: cookies.username,
                     },
                   }).then(async response => {
                     await axios({
-                      method: "put",
-                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                      method: "post",
+                      url: `/api/training/training-progress`,
                       timeout: 5000, // 5 seconds timeout
-                      headers: {
-                        Authorization: wrikeConfig.apikey,
-                      },
+                      headers: {},
                       data: {
-                        customStatus: "IEACA7BEJMCIU22W",
+                        employeeID: cookies.employeeid,
+                        day: 13,
+                        part: 1,
                       },
-                    }).then(async response => {
-                      await axios({
-                        method: "post",
-                        url: `/api/training/training-progress`,
-                        timeout: 5000, // 5 seconds timeout
-                        headers: {},
-                        data: {
-                          employeeID: cookies.employeeid,
-                          day: 10,
-                          part: 1,
-                        },
-                      }).then(response => {
-                        router.push(`./Day11`);
-                      });
+                    }).then(response => {
+                      router.push(`./Day14`);
                     });
                   });
                 }
@@ -673,13 +660,14 @@ const Day10 = () => {
             }
           });
         } else {
-          router.push(`./Day11`);
+          router.push(`./Day14`);
         }
       });
     };
     promises.push(fetchData());
     trackPromise(Promise.all(promises).then(() => {}));
   };
+
   return (
     <>
       {promiseInProgress || status.cookies.username == 1 ? (
@@ -731,7 +719,7 @@ const Day10 = () => {
                         disableToolbar
                         variant="inline"
                         format="MM/dd/yyyy"
-                        value={"07/15/2021"}
+                        value={"07/20/2021"}
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
@@ -775,7 +763,7 @@ const Day10 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 10</h2>
+                    <h2 className="title-day">Day 13</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -831,15 +819,6 @@ const Day10 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0902 . Upload Customer Response to RFI Log
-                      </p>
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: "500",
-                          marginBottom: "30px",
-                        }}
-                      >
                         0903 . CO Log : Record a Change Order
                       </p>
                       <p
@@ -873,7 +852,7 @@ const Day10 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day9">
+                    <Link href="./Day12">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
@@ -881,7 +860,9 @@ const Day10 = () => {
                     <Button
                       variant="contained"
                       className="nextBtn"
-                      onClick={() => handleNext()}
+                      onClick={() => {
+                        handleNext();
+                      }}
                     >
                       NEXT
                     </Button>
@@ -896,6 +877,6 @@ const Day10 = () => {
   );
 };
 
-Day10.layout = Admin;
+Day9_2.layout = Admin;
 
-export default Day10;
+export default Day9_2;

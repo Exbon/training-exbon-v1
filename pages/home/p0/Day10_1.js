@@ -46,7 +46,7 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import { wrikeConfig } from "../../../WrikeAPI.js";
 import "./project.css";
 
-const Day9 = () => {
+const Day10_1 = () => {
   const useRowStyles = makeStyles({
     root: {
       "& > *": {
@@ -199,7 +199,7 @@ const Day9 = () => {
                           <TableCell>B General Carpentry</TableCell>
                           <TableCell align="center"></TableCell>
                           <TableCell align="center"></TableCell>
-                          <TableCell>No Work</TableCell>
+                          <TableCell></TableCell>
                           <TableCell align="right"></TableCell>
                           <TableCell align="right"></TableCell>
                         </TableRow>
@@ -229,11 +229,13 @@ const Day9 = () => {
                             </div>
                           </TableCell>
                           <TableCell>C10 Electrical</TableCell>
-                          <TableCell align="center"></TableCell>
-                          <TableCell align="center"></TableCell>
-                          <TableCell></TableCell>
-                          <TableCell align="right"></TableCell>
-                          <TableCell align="right"></TableCell>
+                          <TableCell align="center">07:00</TableCell>
+                          <TableCell align="center">12:00</TableCell>
+                          <TableCell>
+                            Relocate one existing light fixture
+                          </TableCell>
+                          <TableCell align="right">100.0%</TableCell>
+                          <TableCell align="right">1</TableCell>
                         </TableRow>
                       </>
                     )}
@@ -339,7 +341,7 @@ const Day9 = () => {
                           <TableCell>Susan Ali</TableCell>
                           <TableCell>Exbon PC</TableCell>
                           <TableCell>
-                            Work with PIC to review a RFI Draft
+                            Work with PIC to review a submod
                           </TableCell>
                         </TableRow>
                       </>
@@ -360,7 +362,9 @@ const Day9 = () => {
                           </TableCell>
                           <TableCell>Don Trump</TableCell>
                           <TableCell>Owner PM</TableCell>
-                          <TableCell>owner.pm@exbon.com</TableCell>
+                          <TableCell>
+                            Looking for a formal Change Order Request to process
+                          </TableCell>
                         </TableRow>
 
                         {/* Client2 */}
@@ -596,11 +600,10 @@ const Day9 = () => {
 
   const handleNext = async () => {
     let promises = [];
-
     const fetchData = async () => {
       await axios({
         method: "get",
-        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=9`,
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=15`,
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {
@@ -608,13 +611,13 @@ const Day9 = () => {
         if (result1.length == 0) {
           await axios({
             method: "get",
-            url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
+            url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
           }).then(async response => {
             const result2 = response.data.result.recordsets[0];
             if (result2.length == 0) {
-              alert("No RFI log created!");
+              alert("No Sub Mod log created!");
             } else {
               const TaskID = result2[0].WrikeID;
               await axios({
@@ -626,30 +629,46 @@ const Day9 = () => {
                 },
               }).then(async response => {
                 let data = response.data.data;
-                if (data[0].customStatusId != "IEACA7BEJMCIU22C") {
+
+                if (data[0].customStatusId != "IEACA7BEJMCIU6WY") {
                   alert("Wrike task's status in incorrect!");
                 } else {
                   await axios({
                     method: "post",
-                    url: `/api/training/email-sender-day9`,
+                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
                     timeout: 5000, // 5 seconds timeout
-                    headers: {},
+                    headers: {
+                      Authorization: wrikeConfig.apikey,
+                    },
                     data: {
-                      username: cookies.username,
+                      plainText: false,
+                      text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Approved. Please send a Change Order to subcontractor.`,
                     },
                   }).then(async response => {
                     await axios({
-                      method: "post",
-                      url: `/api/training/training-progress`,
+                      method: "put",
+                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
                       timeout: 5000, // 5 seconds timeout
-                      headers: {},
-                      data: {
-                        employeeID: cookies.employeeid,
-                        day: 9,
-                        part: 1,
+                      headers: {
+                        Authorization: wrikeConfig.apikey,
                       },
-                    }).then(response => {
-                      router.push(`./Day10`);
+                      data: {
+                        customStatus: "IEACA7BEJMCIU6XC",
+                      },
+                    }).then(async response => {
+                      await axios({
+                        method: "post",
+                        url: `/api/training/training-progress`,
+                        timeout: 5000, // 5 seconds timeout
+                        headers: {},
+                        data: {
+                          employeeID: cookies.employeeid,
+                          day: 15,
+                          part: 1,
+                        },
+                      }).then(response => {
+                        router.push(`./Day16`);
+                      });
                     });
                   });
                 }
@@ -657,7 +676,7 @@ const Day9 = () => {
             }
           });
         } else {
-          router.push(`./Day10`);
+          router.push("./Day16");
         }
       });
     };
@@ -716,7 +735,7 @@ const Day9 = () => {
                         disableToolbar
                         variant="inline"
                         format="MM/dd/yyyy"
-                        value={"07/14/2021"}
+                        value={"07/22/2021"}
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
@@ -760,7 +779,7 @@ const Day9 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 9</h2>
+                    <h2 className="title-day">Day 15</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -786,9 +805,8 @@ const Day9 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. During new wall layout, Inspector pointed out one
-                      existing light fixture is conflicting with new wall
-                      layout.
+                      1. Exbon Estimator uploaded electrical subcontractor's
+                      proposal
                     </p>
 
                     <div
@@ -817,8 +835,7 @@ const Day9 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0903 . RFI Log : Send a RFI to Owner to get a formal
-                        directive.
+                        1003 . Sub Mod Log : Upload a subcontractor proposal
                       </p>
                       <p
                         style={{
@@ -827,7 +844,7 @@ const Day9 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0904 . Upload RFI in One Drive
+                        1004 . Confirm Sub Mod updated
                       </p>
                     </div>
                   </div>
@@ -842,15 +859,18 @@ const Day9 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day8">
+                    <Link href="./Day14">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>
                     </Link>
+
                     <Button
                       variant="contained"
                       className="nextBtn"
-                      onClick={() => handleNext()}
+                      onClick={() => {
+                        handleNext();
+                      }}
                     >
                       NEXT
                     </Button>
@@ -865,6 +885,6 @@ const Day9 = () => {
   );
 };
 
-Day9.layout = Admin;
+Day10_1.layout = Admin;
 
-export default Day9;
+export default Day10_1;
