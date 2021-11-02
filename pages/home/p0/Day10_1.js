@@ -805,8 +805,7 @@ const Day10_1 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. Exbon Estimator uploaded electrical subcontractor's
-                      proposal
+                      1. Owner sent CO response via email to proceed.
                     </p>
 
                     <div
@@ -835,7 +834,8 @@ const Day10_1 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1003 . Sub Mod Log : Upload a subcontractor proposal
+                        1003 . Sub Mod Log : Upload a subcontractor proposal and
+                        change the status to "Decide by PIC"
                       </p>
                       <p
                         style={{
@@ -844,7 +844,8 @@ const Day10_1 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1004 . Confirm Sub Mod updated
+                        1004 . Sub Mod Log : Review a subcontractor proposal and
+                        change status to "Decide by PC"
                       </p>
                     </div>
                   </div>

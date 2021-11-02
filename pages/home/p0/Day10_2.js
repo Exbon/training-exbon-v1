@@ -763,8 +763,7 @@ const Day10_2 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. Exbon Estimator uploaded electrical subcontractor's
-                      proposal
+                      1. Owner sent CO response via email to proceed.
                     </p>
 
                     <div
@@ -793,16 +792,8 @@ const Day10_2 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1003 . Sub Mod Log : Upload a subcontractor proposal
-                      </p>
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: "500",
-                          marginBottom: "30px",
-                        }}
-                      >
-                        1004 . Confirm Sub Mod updated
+                        1003 . Create a Subcontractor Sub Mod and send it via
+                        email.
                       </p>
                     </div>
                   </div>

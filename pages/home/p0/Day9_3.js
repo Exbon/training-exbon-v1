@@ -785,8 +785,7 @@ const Day9_3 = () => {
                         marginLeft: "5px",
                       }}
                     >
-                      1. Owner sent Field Instruction along with RFI response to
-                      proceed via Email.
+                      1. Owner sent CO response via email to proceed.
                     </p>
 
                     <div
@@ -815,8 +814,10 @@ const Day9_3 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0903 . CO Log : Record a Change Order
+                        0903 . CO Log : Change Status to "Upload Acceptance
+                        Document"
                       </p>
+
                       <p
                         style={{
                           color: "white",
@@ -824,16 +825,8 @@ const Day9_3 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0904 . Upload CO in One Drive
-                      </p>
-                      <p
-                        style={{
-                          color: "white",
-                          fontWeight: "500",
-                          marginBottom: "30px",
-                        }}
-                      >
-                        0904 . Clarify the Estimate's Sub Mod in Wrike
+                        0904 . Upload a copy of email in Wrike and change status
+                        to VP Approval.
                       </p>
                     </div>
                   </div>

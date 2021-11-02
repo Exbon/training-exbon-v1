@@ -819,7 +819,8 @@ const Day9_2 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0903 . CO Log : Record a Change Order
+                        0903 . CO Log : Submit a CO proposal to Owner to get
+                        their response.
                       </p>
                       <p
                         style={{
@@ -837,7 +838,7 @@ const Day9_2 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0905 . Clarify the Estimate's Sub Mod in Wrike
+                        0905 . Change Wrike Status to "Decide by Customer"
                       </p>
                     </div>
                   </div>
