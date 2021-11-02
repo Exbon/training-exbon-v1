@@ -14,7 +14,7 @@ const trainingProgressHandler = (req, res) => {
           const request = new mssql.Request();
 
           const query = `EXEC [Training].[dbo].[TrainingProgress_SelectByEmployeeID]
-           ${req.query.employeeID}, ${req.query.day}`;
+           ${req.query.employeeID}, ${req.query.day}, ${req.query.part}`;
           /* --Params--
           	@employeeID int,
           	@day int,

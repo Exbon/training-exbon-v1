@@ -690,42 +690,6 @@ const Day9 = ({ defaultFile }) => {
                           });
                         });
                       });
-
-                      // await axios({
-                      //   method: "post",
-                      //   url: `/api/get-file`,
-                      //   timeout: 5000, // 5 seconds timeout
-                      //   headers: {},
-                      //   body: {},
-                      // }).then(async response => {
-                      //   await axios({
-                      //     method: "post",
-                      //     url: `https://www.wrike.com/api/v4/tasks/${TaskID}/attachments`,
-                      //     timeout: 5000, // 5 seconds timeout
-                      //     headers: {
-                      //       Authorization:
-                      //         wrikeConfig.apikey,
-                      //       "content-type": "application/pdf",
-                      //       "X-File-Name": "CO Submission.pdf",
-                      //     },
-                      //     data: {},
-                      //   }).then(async response => {
-                      //     await axios({
-                      //       method: "put",
-                      //       url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                      //       timeout: 5000, // 5 seconds timeout
-                      //       headers: {
-                      //         Authorization:
-                      //           wrikeConfig.apikey,
-                      //       },
-                      //       data: {
-                      //         customStatus: "IEACA7BEJMCIU3YM",
-                      //       },
-                      //     }).then(async response => {
-
-                      //     });
-                      //   });
-                      // });
                     });
                   });
                 }

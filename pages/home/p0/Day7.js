@@ -707,7 +707,7 @@ const Day7 = () => {
     const fetchData = async () => {
       await axios({
         method: "get",
-        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=7`,
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=7&part=1`,
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {

@@ -608,7 +608,7 @@ const Day9_3 = () => {
     const fetchData = async () => {
       await axios({
         method: "get",
-        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=14`,
+        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=9&part=3`,
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {
@@ -645,8 +645,8 @@ const Day9_3 = () => {
                     headers: {},
                     data: {
                       employeeID: cookies.employeeid,
-                      day: 14,
-                      part: 1,
+                      day: 9,
+                      part: 3,
                     },
                   }).then(response => {
                     router.push(`./Day10_1`);
