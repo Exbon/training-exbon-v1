@@ -156,7 +156,7 @@ blockquote p {
   margin-top: 16px !important;
   color: bisque;
   font-weight: 500;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   text-align: center;
 }
 
