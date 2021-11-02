@@ -627,8 +627,13 @@ const Day9_1 = () => {
                 },
               }).then(async response => {
                 let data = response.data.data;
-                if (data[0].customStatusId != "IEACA7BEJMCIU22M") {
+                if (
+                  data[0].customStatusId != "IEACA7BEJMCIU22M" &&
+                  data[0].customStatusId != "IEACA7BEJMCIU22W"
+                ) {
                   alert("Wrike task's status in incorrect!");
+                } else if (data[0].customStatusId == "IEACA7BEJMCIU22W") {
+                  fetchData2();
                 } else {
                   await axios({
                     method: "post",
@@ -709,7 +714,7 @@ const Day9_1 = () => {
                 let data = response.data.data;
 
                 if (data[0].customStatusId != "IEACA7BEJMCIU3YC") {
-                  alert("Wrike task's status in incorrect!");
+                  alert("Wrike task's status in incorrect! - Change Order");
                 } else {
                   await axios({
                     method: "post",

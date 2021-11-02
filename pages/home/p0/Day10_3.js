@@ -690,7 +690,9 @@ const Day10_3 = () => {
                             }).then(async response => {
                               let defData = response.data.data;
                               if (
-                                defData[0].customStatusId != "IEACA7BEJMCIUY6W"
+                                defData[0].customStatusId !=
+                                  "IEACA7BEJMCIUY6W" &&
+                                defData[0].customStatusId != "IEACA7BEJMCIUY5Z"
                               ) {
                                 alert(
                                   "Wrike task's status in incorrect! - Deficiency Log"
@@ -730,7 +732,9 @@ const Day10_3 = () => {
                                         let data = response.data.data;
                                         if (
                                           data[0].customStatusId !=
-                                          "IEACA7BEJMCIU23A"
+                                            "IEACA7BEJMCIU23A" &&
+                                          data[0].customStatusId !=
+                                            "IEACA7BEJMCIU2ZF"
                                         ) {
                                           alert(
                                             "Wrike task's status in incorrect! - EFI"
