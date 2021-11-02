@@ -634,7 +634,7 @@ const Day9_2 = () => {
                 } else {
                   await axios({
                     method: "post",
-                    url: `/api/training/email-sender-day13`,
+                    url: `/api/training/email-sender-day9_2`,
                     timeout: 5000, // 5 seconds timeout
                     headers: {},
                     data: {
@@ -652,7 +652,7 @@ const Day9_2 = () => {
                         part: 1,
                       },
                     }).then(response => {
-                      router.push(`./Day14`);
+                      router.push(`./Day9_3`);
                     });
                   });
                 }
@@ -660,7 +660,7 @@ const Day9_2 = () => {
             }
           });
         } else {
-          router.push(`./Day14`);
+          router.push(`./Day9_3`);
         }
       });
     };
@@ -763,7 +763,7 @@ const Day9_2 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 13</h2>
+                    <h2 className="title-day">Day 9 Part 2</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -852,7 +852,7 @@ const Day9_2 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day12">
+                    <Link href="./Day9_1">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>

@@ -772,7 +772,7 @@ const Day7 = () => {
                           part: 1,
                         },
                       }).then(response => {
-                        router.push(`./Day8`);
+                        router.push(`./Day8_1`);
                       });
                     });
                   });
@@ -781,7 +781,7 @@ const Day7 = () => {
             }
           });
         } else {
-          router.push(`./Day8`);
+          router.push(`./Day8_1`);
         }
       });
     };

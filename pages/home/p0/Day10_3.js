@@ -627,7 +627,7 @@ const Day10_3 = () => {
         if (result1.length == 0) {
           await axios({
             method: "post",
-            url: `/api/training/email-sender-day17`,
+            url: `/api/training/email-sender-day10_3`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
             data: {
@@ -881,7 +881,7 @@ const Day10_3 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 17</h2>
+                    <h2 className="title-day">Day 10 Part 3</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -979,7 +979,7 @@ const Day10_3 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day16">
+                    <Link href="./Day10_2">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>

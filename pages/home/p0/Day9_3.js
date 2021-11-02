@@ -649,14 +649,14 @@ const Day9_3 = () => {
                       part: 1,
                     },
                   }).then(response => {
-                    router.push(`./Day15`);
+                    router.push(`./Day10_1`);
                   });
                 }
               });
             }
           });
         } else {
-          router.push("./Day15");
+          router.push("./Day10_1");
         }
       });
     };
@@ -759,7 +759,7 @@ const Day9_3 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 14</h2>
+                    <h2 className="title-day">Day 9 Part 3</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
@@ -848,7 +848,7 @@ const Day9_3 = () => {
                       marginLeft: "20px",
                     }}
                   >
-                    <Link href="./Day13">
+                    <Link href="./Day9_2">
                       <Button variant="outlined" className="nextBtn">
                         PREVIOUS
                       </Button>

@@ -653,13 +653,13 @@ const Day9 = ({ defaultFile }) => {
                     }).then(async response => {
                       await axios({
                         method: "get",
-                        url: `/api/training/file-sender-day12-1?taskid=${TaskID}`,
+                        url: `/api/training/file-sender-day9_1-1?taskid=${TaskID}`,
                         timeout: 15000, // 5 seconds timeout
                         headers: {},
                       }).then(async response => {
                         await axios({
                           method: "get",
-                          url: `/api/training/file-sender-day12-2?taskid=${TaskID}`,
+                          url: `/api/training/file-sender-day9_1-2?taskid=${TaskID}`,
                           timeout: 15000, // 5 seconds timeout
                           headers: {},
                         }).then(async response => {

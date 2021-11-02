@@ -663,7 +663,7 @@ const Day8_1 = () => {
                           part: 1,
                         },
                       }).then(response => {
-                        router.push(`./Day9`);
+                        router.push(`./Day8_2`);
                       });
                     });
                   });
@@ -672,7 +672,7 @@ const Day8_1 = () => {
             }
           });
         } else {
-          router.push(`./Day9`);
+          router.push(`./Day8_2`);
         }
       });
     };
@@ -775,7 +775,7 @@ const Day8_1 = () => {
                   }}
                 >
                   <div style={{ padding: "1%" }}>
-                    <h2 className="title-day">Day 8</h2>
+                    <h2 className="title-day">Day 8 Part 1</h2>
                     <h3
                       style={{
                         color: "#fcfaf8",
