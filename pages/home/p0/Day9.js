@@ -818,7 +818,7 @@ const Day9 = () => {
                         }}
                       >
                         0903 . RFI Log : Send a RFI to Owner to get a formal
-                        directive. Use a RFI form in Hammer
+                        directive.
                       </p>
                       <p
                         style={{

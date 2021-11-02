@@ -831,8 +831,7 @@ const Day10 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0902 . Upload Customer Response to RFI Log and complete
-                        the Wrike process.
+                        0902 . Upload Customer Response to RFI Log
                       </p>
                       <p
                         style={{
@@ -841,8 +840,7 @@ const Day10 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0903 . Create a Change Order and Change Status to
-                        "Create a Proposal"
+                        0903 . CO Log : Record a Change Order
                       </p>
                       <p
                         style={{
@@ -851,7 +849,16 @@ const Day10 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0904 . Upload FI in One Drive
+                        0904 . Upload CO in One Drive
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        0905 . Clarify the Estimate's Sub Mod in Wrike
                       </p>
                     </div>
                   </div>
