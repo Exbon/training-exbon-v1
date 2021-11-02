@@ -654,34 +654,122 @@ const Day17 = () => {
                   if (result2.length == 0) {
                     alert("No Sub Mod log created!");
                   } else {
-                    const TaskID = result2[0].WrikeID;
+                    const SubmodID = result2[0].WrikeID;
 
                     await axios({
                       method: "get",
-                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                      url: `https://www.wrike.com/api/v4/tasks/${SubmodID}`,
                       timeout: 5000, // 5 seconds timeout
                       headers: {
                         Authorization: wrikeConfig.apikey,
                       },
                     }).then(async response => {
-                      let data = response.data.data;
+                      let submodData = response.data.data;
 
-                      if (data[0].customStatusId != "IEACA7BEJMCIU6XM") {
-                        alert("Wrike task's status in incorrect!");
+                      if (submodData[0].customStatusId != "IEACA7BEJMCIU6XM") {
+                        alert("Wrike task's status in incorrect! - Sub Mod");
                       } else {
                         await axios({
-                          method: "post",
-                          url: `/api/training/training-progress`,
+                          method: "get",
+                          url: `/api/training/deficiency-log?employeeID=${cookies.employeeid}`,
                           timeout: 5000, // 5 seconds timeout
                           headers: {},
-                          data: {
-                            employeeID: cookies.employeeid,
-                            day: 17,
-                            part: 1,
-                          },
                         }).then(async response => {
-                          setOpenModal(true);
-                          // alert("Complete! Congratulations!");
+                          const result = response.data.result.recordsets[0];
+                          if (result.length == 0) {
+                            alert("No deficiency log created!");
+                          } else {
+                            const DefID = result[0].WrikeID;
+                            await axios({
+                              method: "get",
+                              url: `https://www.wrike.com/api/v4/tasks/${DefID}`,
+                              timeout: 5000, // 5 seconds timeout
+                              headers: {
+                                Authorization: wrikeConfig.apikey,
+                              },
+                            }).then(async response => {
+                              let defData = response.data.data;
+                              if (
+                                defData[0].customStatusId != "IEACA7BEJMCIUY6W"
+                              ) {
+                                alert(
+                                  "Wrike task's status in incorrect! - Deficiency Log"
+                                );
+                              } else {
+                                await axios({
+                                  method: "put",
+                                  url: `https://www.wrike.com/api/v4/tasks/${DefID}`,
+                                  timeout: 5000, // 5 seconds timeout
+                                  headers: {
+                                    Authorization: wrikeConfig.apikey,
+                                  },
+                                  data: {
+                                    customStatus: "IEACA7BEJMCIUY5Z",
+                                  },
+                                }).then(async response => {
+                                  await axios({
+                                    method: "get",
+                                    url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
+                                    timeout: 5000, // 5 seconds timeout
+                                    headers: {},
+                                  }).then(async response => {
+                                    const result =
+                                      response.data.result.recordsets[0];
+                                    if (result.length == 0) {
+                                      alert("No rfi log created!");
+                                    } else {
+                                      const RfiID = result[0].WrikeID;
+                                      await axios({
+                                        method: "get",
+                                        url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
+                                        timeout: 5000, // 5 seconds timeout
+                                        headers: {
+                                          Authorization: wrikeConfig.apikey,
+                                        },
+                                      }).then(async response => {
+                                        let data = response.data.data;
+                                        if (
+                                          data[0].customStatusId !=
+                                          "IEACA7BEJMCIU23A"
+                                        ) {
+                                          alert(
+                                            "Wrike task's status in incorrect! - EFI"
+                                          );
+                                        } else {
+                                          await axios({
+                                            method: "put",
+                                            url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
+                                            timeout: 5000, // 5 seconds timeout
+                                            headers: {
+                                              Authorization: wrikeConfig.apikey,
+                                            },
+                                            data: {
+                                              customStatus: "IEACA7BEJMCIU2ZF",
+                                            },
+                                          }).then(async response => {
+                                            await axios({
+                                              method: "post",
+                                              url: `/api/training/training-progress`,
+                                              timeout: 5000, // 5 seconds timeout
+                                              headers: {},
+                                              data: {
+                                                employeeID: cookies.employeeid,
+                                                day: 17,
+                                                part: 1,
+                                              },
+                                            }).then(async response => {
+                                              setOpenModal(true);
+                                              // alert("Complete! Congratulations!");
+                                            });
+                                          });
+                                        }
+                                      });
+                                    }
+                                  });
+                                });
+                              }
+                            });
+                          }
                         });
                       }
                     });
@@ -859,6 +947,24 @@ const Day17 = () => {
                         }}
                       >
                         1004 . Confirm Sub Mod updated
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        1005 . Confirm your deficiency log is closed
+                      </p>
+                      <p
+                        style={{
+                          color: "white",
+                          fontWeight: "500",
+                          marginBottom: "30px",
+                        }}
+                      >
+                        1006 . Confirm your RFI Log is closed
                       </p>
                     </div>
                   </div>
