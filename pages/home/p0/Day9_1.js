@@ -808,7 +808,7 @@ const Day9_1 = () => {
                         disableToolbar
                         variant="inline"
                         format="MM/dd/yyyy"
-                        value={"07/15/2021"}
+                        value={"07/14/2021"}
                         onChange={() => {}}
                         className="datepicker"
                         autoOk={true}
