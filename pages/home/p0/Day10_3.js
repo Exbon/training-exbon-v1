@@ -611,162 +611,122 @@ const Day10_3 = () => {
   const handleFinish = async () => {
     let promises = [];
 
-    const fetchData2 = async () => {
+    const fetchData = async () => {
       await axios({
         method: "get",
         url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=10&part=3`,
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {
-        const result1 = response.data.result.recordsets[0];
-        if (result1.length == 0) {
+        const resultProgress = response.data.result.recordsets[0];
+        if (resultProgress.length == 0) {
           await axios({
-            method: "post",
-            url: `/api/training/email-sender-day10_3`,
+            method: "get",
+            url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
-            data: {
-              username: cookies.username,
-            },
           }).then(async response => {
+            const resultSubmod = response.data.result.recordsets[0];
+            if (resultSubmod.length == 0) {
+              alert("No Sub Mod log created!");
+            }
+            const SubmodID = resultSubmod[0].WrikeID;
             await axios({
               method: "get",
-              url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
+              url: `/api/training/deficiency-log?employeeID=${cookies.employeeid}`,
               timeout: 5000, // 5 seconds timeout
               headers: {},
             }).then(async response => {
-              const result2 = response.data.result.recordsets[0];
-              if (result2.length == 0) {
-                alert("No Sub Mod log created!");
-              } else {
+              const resultDef = response.data.result.recordsets[0];
+              if (resultDef.length == 0) {
+                alert("No Deficiency log created!");
+              }
+              const DefID = resultDef[0].WrikeID;
+              await axios({
+                method: "get",
+                url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
+                timeout: 5000, // 5 seconds timeout
+                headers: {},
+              }).then(async response => {
+                const resultRfi = response.data.result.recordsets[0];
+                if (resultRfi.length == 0) {
+                  alert("No RFI log created!");
+                }
+                const RfiID = resultRfi[0].WrikeID;
                 await axios({
                   method: "get",
-                  url: `/api/training/sub-mod-log?employeeID=${cookies.employeeid}`,
+                  url: `https://www.wrike.com/api/v4/tasks/${SubmodID}`,
                   timeout: 5000, // 5 seconds timeout
-                  headers: {},
+                  headers: {
+                    Authorization: wrikeConfig.apikey,
+                  },
                 }).then(async response => {
-                  const result2 = response.data.result.recordsets[0];
-                  if (result2.length == 0) {
-                    alert("No Sub Mod log created!");
+                  const submodData = response.data.data;
+                  if (submodData[0].customStatusId != "IEACA7BEJMCIU6XM") {
+                    alert("Wrike task's status in incorrect! - Sub Mod");
                   } else {
-                    const SubmodID = result2[0].WrikeID;
-
                     await axios({
                       method: "get",
-                      url: `https://www.wrike.com/api/v4/tasks/${SubmodID}`,
+                      url: `https://www.wrike.com/api/v4/tasks/${DefID}`,
                       timeout: 5000, // 5 seconds timeout
                       headers: {
                         Authorization: wrikeConfig.apikey,
                       },
                     }).then(async response => {
-                      let submodData = response.data.data;
-
-                      if (submodData[0].customStatusId != "IEACA7BEJMCIU6XM") {
-                        alert("Wrike task's status in incorrect! - Sub Mod");
+                      const defData = response.data.data;
+                      if (defData[0].customStatusId != "IEACA7BEJMCIUY6W") {
+                        alert(
+                          "Wrike task's status in incorrect! - Deficiency Log"
+                        );
                       } else {
                         await axios({
                           method: "get",
-                          url: `/api/training/deficiency-log?employeeID=${cookies.employeeid}`,
+                          url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
                           timeout: 5000, // 5 seconds timeout
-                          headers: {},
+                          headers: {
+                            Authorization: wrikeConfig.apikey,
+                          },
                         }).then(async response => {
-                          const result = response.data.result.recordsets[0];
-                          if (result.length == 0) {
-                            alert("No deficiency log created!");
+                          const rfiData = response.data.data;
+                          if (rfiData[0].customStatusId != "IEACA7BEJMCIU23A") {
+                            alert("Wrike task's status in incorrect! - RFI");
                           } else {
-                            const DefID = result[0].WrikeID;
                             await axios({
-                              method: "get",
+                              method: "put",
                               url: `https://www.wrike.com/api/v4/tasks/${DefID}`,
                               timeout: 5000, // 5 seconds timeout
                               headers: {
                                 Authorization: wrikeConfig.apikey,
                               },
+                              data: {
+                                customStatus: "IEACA7BEJMCIUY5Z",
+                              },
                             }).then(async response => {
-                              let defData = response.data.data;
-                              if (
-                                defData[0].customStatusId !=
-                                  "IEACA7BEJMCIUY6W" &&
-                                defData[0].customStatusId != "IEACA7BEJMCIUY5Z"
-                              ) {
-                                alert(
-                                  "Wrike task's status in incorrect! - Deficiency Log"
-                                );
-                              } else {
+                              await axios({
+                                method: "put",
+                                url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
+                                timeout: 5000, // 5 seconds timeout
+                                headers: {
+                                  Authorization: wrikeConfig.apikey,
+                                },
+                                data: {
+                                  customStatus: "IEACA7BEJMCIU2ZF",
+                                },
+                              }).then(async response => {
                                 await axios({
-                                  method: "put",
-                                  url: `https://www.wrike.com/api/v4/tasks/${DefID}`,
+                                  method: "post",
+                                  url: `/api/training/training-progress`,
                                   timeout: 5000, // 5 seconds timeout
-                                  headers: {
-                                    Authorization: wrikeConfig.apikey,
-                                  },
+                                  headers: {},
                                   data: {
-                                    customStatus: "IEACA7BEJMCIUY5Z",
+                                    employeeID: cookies.employeeid,
+                                    day: 10,
+                                    part: 3,
                                   },
                                 }).then(async response => {
-                                  await axios({
-                                    method: "get",
-                                    url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
-                                    timeout: 5000, // 5 seconds timeout
-                                    headers: {},
-                                  }).then(async response => {
-                                    const result =
-                                      response.data.result.recordsets[0];
-                                    if (result.length == 0) {
-                                      alert("No rfi log created!");
-                                    } else {
-                                      const RfiID = result[0].WrikeID;
-                                      await axios({
-                                        method: "get",
-                                        url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
-                                        timeout: 5000, // 5 seconds timeout
-                                        headers: {
-                                          Authorization: wrikeConfig.apikey,
-                                        },
-                                      }).then(async response => {
-                                        let data = response.data.data;
-                                        if (
-                                          data[0].customStatusId !=
-                                            "IEACA7BEJMCIU23A" &&
-                                          data[0].customStatusId !=
-                                            "IEACA7BEJMCIU2ZF"
-                                        ) {
-                                          alert(
-                                            "Wrike task's status in incorrect! - EFI"
-                                          );
-                                        } else {
-                                          await axios({
-                                            method: "put",
-                                            url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
-                                            timeout: 5000, // 5 seconds timeout
-                                            headers: {
-                                              Authorization: wrikeConfig.apikey,
-                                            },
-                                            data: {
-                                              customStatus: "IEACA7BEJMCIU2ZF",
-                                            },
-                                          }).then(async response => {
-                                            await axios({
-                                              method: "post",
-                                              url: `/api/training/training-progress`,
-                                              timeout: 5000, // 5 seconds timeout
-                                              headers: {},
-                                              data: {
-                                                employeeID: cookies.employeeid,
-                                                day: 10,
-                                                part: 3,
-                                              },
-                                            }).then(async response => {
-                                              setOpenModal(true);
-                                              // alert("Complete! Congratulations!");
-                                            });
-                                          });
-                                        }
-                                      });
-                                    }
-                                  });
+                                  setOpenModal(true);
                                 });
-                              }
+                              });
                             });
                           }
                         });
@@ -774,7 +734,7 @@ const Day10_3 = () => {
                     });
                   }
                 });
-              }
+              });
             });
           });
         } else {
@@ -782,7 +742,8 @@ const Day10_3 = () => {
         }
       });
     };
-    promises.push(fetchData2());
+
+    promises.push(fetchData());
     trackPromise(Promise.all(promises).then(() => {}));
   };
   return (
