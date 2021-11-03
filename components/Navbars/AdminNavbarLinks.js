@@ -94,7 +94,8 @@ export default function AdminNavbarLinks() {
               marginTop: "16px",
             }}
           >
-            {state.FullName} ({testData})
+            {state.FullName}
+            {/* ({testData}) */}
           </p>
           <Button
             color={size.width > 959 ? "transparent" : "white"}
