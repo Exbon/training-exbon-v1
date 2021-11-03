@@ -118,13 +118,16 @@ const Day10_2 = () => {
                         <TableCell className="test" width="14%">
                           License
                         </TableCell>
+                        <TableCell className="test" width="10%">
+                          Email
+                        </TableCell>
                         <TableCell align="center" width="12%">
                           Work Start
                         </TableCell>
                         <TableCell align="center" width="12%">
                           Work End
                         </TableCell>
-                        <TableCell width="31%">Task</TableCell>
+                        <TableCell width="21%">Task</TableCell>
                         <TableCell width="6%">Completion</TableCell>
                         <TableCell width="6%">Workers</TableCell>
                       </TableRow>
@@ -227,6 +230,9 @@ const Day10_2 = () => {
                             </div>
                           </TableCell>
                           <TableCell>C10 Electrical</TableCell>
+                          <TableCell align="center">
+                            conti.subcontractor@exbon.com
+                          </TableCell>
                           <TableCell align="center">07:00</TableCell>
                           <TableCell align="center">12:00</TableCell>
                           <TableCell>

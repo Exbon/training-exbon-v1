@@ -338,7 +338,7 @@ const Day9_2 = () => {
                             />
                           </TableCell>
                           <TableCell>Exbon PC</TableCell>
-                          <TableCell>Work with PIC to review a CO</TableCell>
+                          <TableCell></TableCell>
                         </TableRow>
                       </>
                     )}
@@ -357,10 +357,7 @@ const Day9_2 = () => {
                             />
                           </TableCell>
                           <TableCell>Owner PM</TableCell>
-                          <TableCell>
-                            RFI response sent back to Contractor with Field
-                            Instruction
-                          </TableCell>
+                          <TableCell>owner.pm@exbon.com</TableCell>
                         </TableRow>
 
                         {/* Client2 */}

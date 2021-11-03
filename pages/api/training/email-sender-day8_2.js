@@ -15,9 +15,10 @@ const emailHandler = (req, res) => {
           from: "owner.pm@exbon.com",
           // to: "hyunmyung.kim" + "@exbon.com",
           to: body.username + "@exbon.com",
-          subject: "[Training] RE: RFI 01 Response",
+          subject: "[Training] RE: RFI 01 Response w/ FI",
           html: `<p>Exbon,</p>
-           <p>Please see attached RFI response for your action. Field Instruction will follow in separate email. </p>
+           <p>Please see attached RFI response and a Field Instruction (FI) for your action.</p>
+           <p>Please submit your Change Order Request (COR) accordingly.</p>
            <p>Thank you</p>
            <br/>
            <strong>Don Trump, OAR</strong>`,
@@ -27,6 +28,11 @@ const emailHandler = (req, res) => {
             {
               filename: "RFI#05 Light Obstruction UNIV Response.pdf",
               path: "./assets/img/training/RFI#05 Light Obstruction UNIV Response.pdf",
+              contentType: "application/pdf",
+            },
+            {
+              filename: "FI #01 - Light Fixture Relocation.pdf",
+              path: "./assets/img/training/FI #01 - Light Fixture Relocation.pdf",
               contentType: "application/pdf",
             },
           ],
