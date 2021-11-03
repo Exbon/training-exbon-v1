@@ -625,10 +625,10 @@ const Day9_1 = () => {
               }).then(async response => {
                 let data = response.data.data;
                 if (
-                  data[0].customStatusId != "IEACA7BEJMCIU22M" &&
-                  data[0].customStatusId != "IEACA7BEJMCIU22W"
+                  data[0].customStatusId != "IEACA7BEJMCIU22M" && //Upload Response (PIC)
+                  data[0].customStatusId != "IEACA7BEJMCIU22W" //Execute Plan (PIC)
                 ) {
-                  alert("Wrike task's status in incorrect!");
+                  alert("Wrike task's status in incorrect! - RFI");
                 } else if (data[0].customStatusId == "IEACA7BEJMCIU22W") {
                   fetchData2();
                 } else {
@@ -655,19 +655,7 @@ const Day9_1 = () => {
                         customStatus: "IEACA7BEJMCIU22W",
                       },
                     }).then(async response => {
-                      await axios({
-                        method: "post",
-                        url: `/api/training/training-progress`,
-                        timeout: 5000, // 5 seconds timeout
-                        headers: {},
-                        data: {
-                          employeeID: cookies.employeeid,
-                          day: 10,
-                          part: 1,
-                        },
-                      }).then(response => {
-                        fetchData2();
-                      });
+                      fetchData2();
                     });
                   });
                 }
