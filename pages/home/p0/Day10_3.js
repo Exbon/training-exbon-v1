@@ -907,7 +907,7 @@ const Day10_3 = () => {
                         }}
                       >
                         1004 . Sub Mod Log : Upload the document and change
-                        status to "VP Approval"
+                        status to "Approve by VP"
                       </p>
                       <p
                         style={{
