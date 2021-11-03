@@ -25,8 +25,8 @@ const emailHandler = (req, res) => {
           // replyTo: "receiverXXX@gmail.com",
           attachments: [
             {
-              filename: "Conti Corporation CO #1.pdf",
-              path: "./assets/img/training/Conti Corporation CO #1.pdf",
+              filename: "Conti Corporation CO 1.pdf",
+              path: "./assets/img/training/Conti Corporation CO 1.pdf",
               contentType: "application/pdf",
             },
           ],
