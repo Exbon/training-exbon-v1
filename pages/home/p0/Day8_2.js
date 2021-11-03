@@ -787,6 +787,17 @@ const Day8_2 = () => {
                       existing light fixture is conflicting with new wall
                       layout.
                     </p>
+                    <p
+                      style={{
+                        marginTop: "10px",
+                        marginBottom: "30px",
+                        color: "#f7f3f0",
+                        fontWeight: "500",
+                        marginLeft: "5px",
+                      }}
+                    >
+                      2. PC has responded in Wrike.
+                    </p>
 
                     <div
                       style={{

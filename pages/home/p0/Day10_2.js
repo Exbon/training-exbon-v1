@@ -766,6 +766,17 @@ const Day10_2 = () => {
                     >
                       1. Owner sent CO response via email to proceed.
                     </p>
+                    <p
+                      style={{
+                        marginTop: "10px",
+                        marginBottom: "30px",
+                        color: "#f7f3f0",
+                        fontWeight: "500",
+                        marginLeft: "5px",
+                      }}
+                    >
+                      2. PC has responded in Wrike.
+                    </p>
 
                     <div
                       style={{

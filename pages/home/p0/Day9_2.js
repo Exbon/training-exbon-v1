@@ -786,7 +786,17 @@ const Day9_2 = () => {
                       1. Owner sent Field Instruction along with RFI response to
                       proceed via Email.
                     </p>
-
+                    <p
+                      style={{
+                        marginTop: "10px",
+                        marginBottom: "30px",
+                        color: "#f7f3f0",
+                        fontWeight: "500",
+                        marginLeft: "5px",
+                      }}
+                    >
+                      2. PC has responded in Wrike.
+                    </p>
                     <div
                       style={{
                         borderTop: "3px dotted #7e7a7a",
