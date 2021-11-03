@@ -602,165 +602,147 @@ const Day9_1 = () => {
         timeout: 5000, // 5 seconds timeout
         headers: {},
       }).then(async response => {
-        const result1 = response.data.result.recordsets[0];
-        if (result1.length == 0) {
+        const resultProgress = response.data.result.recordsets[0];
+        if (resultProgress.length == 0) {
           await axios({
             method: "get",
             url: `/api/training/rfi-log?employeeID=${cookies.employeeid}`,
             timeout: 5000, // 5 seconds timeout
             headers: {},
           }).then(async response => {
-            const result2 = response.data.result.recordsets[0];
-            if (result2.length == 0) {
+            const resultRFI = response.data.result.recordsets[0];
+            if (resultRFI.length == 0) {
               alert("No RFI log created!");
             } else {
-              const TaskID = result2[0].WrikeID;
+              const RfiID = resultRFI[0].WrikeID;
               await axios({
                 method: "get",
-                url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                url: `/api/training/change-order-log?employeeID=${cookies.employeeid}`,
                 timeout: 5000, // 5 seconds timeout
-                headers: {
-                  Authorization: wrikeConfig.apikey,
-                },
+                headers: {},
               }).then(async response => {
-                let data = response.data.data;
-                if (
-                  data[0].customStatusId != "IEACA7BEJMCIU22M" && //Upload Response (PIC)
-                  data[0].customStatusId != "IEACA7BEJMCIU22W" //Execute Plan (PIC)
-                ) {
-                  alert("Wrike task's status in incorrect! - RFI");
-                } else if (data[0].customStatusId == "IEACA7BEJMCIU22W") {
-                  fetchData2();
+                const resultCO = response.data.result.recordsets[0];
+                if (resultCO.length == 0) {
+                  alert("No Change Order log created!");
                 } else {
+                  const CoID = resultCO[0].WrikeID;
                   await axios({
-                    method: "post",
-                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
+                    method: "get",
+                    url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
                     timeout: 5000, // 5 seconds timeout
                     headers: {
                       Authorization: wrikeConfig.apikey,
                     },
-                    data: {
-                      plainText: false,
-                      text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Proceed with creating a Change Order log.`,
-                    },
                   }).then(async response => {
-                    await axios({
-                      method: "put",
-                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                      timeout: 5000, // 5 seconds timeout
-                      headers: {
-                        Authorization: wrikeConfig.apikey,
-                      },
-                      data: {
-                        customStatus: "IEACA7BEJMCIU22W",
-                      },
-                    }).then(async response => {
-                      fetchData2();
-                    });
-                  });
-                }
-              });
-            }
-          });
-        } else {
-          router.push(`./Day9_2`);
-        }
-      });
-    };
-
-    const fetchData2 = async () => {
-      await axios({
-        method: "get",
-        url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=9&part=1`,
-        timeout: 5000, // 5 seconds timeout
-        headers: {},
-      }).then(async response => {
-        const result1 = response.data.result.recordsets[0];
-        if (result1.length == 0) {
-          await axios({
-            method: "get",
-            url: `/api/training/change-order-log?employeeID=${cookies.employeeid}`,
-            timeout: 5000, // 5 seconds timeout
-            headers: {},
-          }).then(async response => {
-            const result2 = response.data.result.recordsets[0];
-            if (result2.length == 0) {
-              alert("No Change Order log created!");
-            } else {
-              const TaskID = result2[0].WrikeID;
-              await axios({
-                method: "get",
-                url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                timeout: 5000, // 5 seconds timeout
-                headers: {
-                  Authorization: wrikeConfig.apikey,
-                },
-              }).then(async response => {
-                let data = response.data.data;
-
-                if (data[0].customStatusId != "IEACA7BEJMCIU3YC") {
-                  alert("Wrike task's status in incorrect! - Change Order");
-                } else {
-                  await axios({
-                    method: "post",
-                    url: `https://www.wrike.com/api/v4/tasks/${TaskID}/comments`,
-                    timeout: 5000, // 5 seconds timeout
-                    headers: {
-                      Authorization: wrikeConfig.apikey,
-                    },
-                    data: {
-                      plainText: false,
-                      text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Please see attached CO proposal. Please submit this to Owner.`,
-                    },
-                  }).then(async response => {
-                    await axios({
-                      method: "get",
-                      url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
-                      timeout: 5000, // 5 seconds timeout
-                      headers: {
-                        Authorization: wrikeConfig.apikey,
-                      },
-                    }).then(async response => {
+                    const dataRfi = response.data.data;
+                    if (
+                      dataRfi[0].customStatusId != "IEACA7BEJMCIU22M" //Upload Response (PIC)
+                    ) {
+                      alert("Wrike task's status in incorrect! - RFI");
+                    } else {
                       await axios({
                         method: "get",
-                        url: `/api/training/file-sender-day9_1-1?taskid=${TaskID}`,
-                        timeout: 15000, // 5 seconds timeout
-                        headers: {},
+                        url: `https://www.wrike.com/api/v4/tasks/${CoID}`,
+                        timeout: 5000, // 5 seconds timeout
+                        headers: {
+                          Authorization: wrikeConfig.apikey,
+                        },
                       }).then(async response => {
-                        await axios({
-                          method: "get",
-                          url: `/api/training/file-sender-day9_1-2?taskid=${TaskID}`,
-                          timeout: 15000, // 5 seconds timeout
-                          headers: {},
-                        }).then(async response => {
+                        const dataCo = response.data.data;
+                        if (
+                          dataCo[0].customStatusId != "IEACA7BEJMCIU3YC" //Create Proposal (Est)
+                        ) {
+                          alert("Wrike task's status in incorrect! - CO");
+                        } else {
                           await axios({
-                            method: "put",
-                            url: `https://www.wrike.com/api/v4/tasks/${TaskID}`,
+                            method: "post",
+                            url: `https://www.wrike.com/api/v4/tasks/${RfiID}/comments`,
                             timeout: 5000, // 5 seconds timeout
                             headers: {
                               Authorization: wrikeConfig.apikey,
                             },
                             data: {
-                              customStatus: "IEACA7BEJMCIU3YM",
+                              plainText: false,
+                              text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Proceed with creating a Change Order log.`,
                             },
                           }).then(async response => {
                             await axios({
-                              method: "post",
-                              url: `/api/training/training-progress`,
+                              method: "put",
+                              url: `https://www.wrike.com/api/v4/tasks/${RfiID}`,
                               timeout: 5000, // 5 seconds timeout
-                              headers: {},
-                              data: {
-                                employeeID: cookies.employeeid,
-                                day: 9,
-                                part: 1,
+                              headers: {
+                                Authorization: wrikeConfig.apikey,
                               },
-                            }).then(response => {
-                              router.push(`./Day9_2`);
+                              data: {
+                                customStatus: "IEACA7BEJMCIU22W",
+                              },
+                            }).then(async response => {
+                              await axios({
+                                method: "post",
+                                url: `https://www.wrike.com/api/v4/tasks/${CoID}/comments`,
+                                timeout: 5000, // 5 seconds timeout
+                                headers: {
+                                  Authorization: wrikeConfig.apikey,
+                                },
+                                data: {
+                                  plainText: false,
+                                  text: `<a class="stream-user-id avatar ai-936361 quasi-contact" rel="@assignees">@assignees</a> Project Control: Please see attached CO proposal. Please submit this to Owner.`,
+                                },
+                              }).then(async response => {
+                                await axios({
+                                  method: "get",
+                                  url: `https://www.wrike.com/api/v4/tasks/${CoID}`,
+                                  timeout: 5000, // 5 seconds timeout
+                                  headers: {
+                                    Authorization: wrikeConfig.apikey,
+                                  },
+                                }).then(async response => {
+                                  await axios({
+                                    method: "get",
+                                    url: `/api/training/file-sender-day9_1-1?taskid=${CoID}`,
+                                    timeout: 15000, // 5 seconds timeout
+                                    headers: {},
+                                  }).then(async response => {
+                                    await axios({
+                                      method: "get",
+                                      url: `/api/training/file-sender-day9_1-2?taskid=${CoID}`,
+                                      timeout: 15000, // 5 seconds timeout
+                                      headers: {},
+                                    }).then(async response => {
+                                      await axios({
+                                        method: "put",
+                                        url: `https://www.wrike.com/api/v4/tasks/${CoID}`,
+                                        timeout: 5000, // 5 seconds timeout
+                                        headers: {
+                                          Authorization: wrikeConfig.apikey,
+                                        },
+                                        data: {
+                                          customStatus: "IEACA7BEJMCIU3YM",
+                                        },
+                                      }).then(async response => {
+                                        await axios({
+                                          method: "post",
+                                          url: `/api/training/training-progress`,
+                                          timeout: 5000, // 5 seconds timeout
+                                          headers: {},
+                                          data: {
+                                            employeeID: cookies.employeeid,
+                                            day: 9,
+                                            part: 1,
+                                          },
+                                        }).then(response => {
+                                          router.push(`./Day9_2`);
+                                        });
+                                      });
+                                    });
+                                  });
+                                });
+                              });
                             });
                           });
-                        });
+                        }
                       });
-                    });
+                    }
                   });
                 }
               });

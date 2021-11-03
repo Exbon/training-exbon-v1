@@ -611,7 +611,7 @@ const Day10_3 = () => {
   const handleFinish = async () => {
     let promises = [];
 
-    const fetchData = async () => {
+    const fetchData2 = async () => {
       await axios({
         method: "get",
         url: `/api/training/training-progress?employeeID=${cookies.employeeid}&day=10&part=3`,
@@ -782,7 +782,7 @@ const Day10_3 = () => {
         }
       });
     };
-    promises.push(fetchData());
+    promises.push(fetchData2());
     trackPromise(Promise.all(promises).then(() => {}));
   };
   return (
