@@ -133,11 +133,11 @@ const Day8_2 = () => {
                     {row.name == "Exbon Team" && (
                       <TableRow>
                         <TableCell width="10%"></TableCell>
-                        <TableCell width="15%">Name</TableCell>
-                        <TableCell align="left" width="15%">
-                          Position
+                        <TableCell align="left" width="20%">
+                          Name
                         </TableCell>
-                        <TableCell align="left" width="60%">
+
+                        <TableCell align="left" width="70%">
                           Description
                         </TableCell>
                       </TableRow>
@@ -145,11 +145,11 @@ const Day8_2 = () => {
                     {row.name == "Client" && (
                       <TableRow>
                         <TableCell width="10%"></TableCell>
-                        <TableCell width="15%">Name</TableCell>
-                        <TableCell align="left" width="15%">
-                          Position
+                        <TableCell align="left" width="20%">
+                          Name
                         </TableCell>
-                        <TableCell align="left" width="60%">
+
+                        <TableCell align="left" width="70%">
                           Description
                         </TableCell>
                       </TableRow>
@@ -336,7 +336,6 @@ const Day8_2 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell>Susan Ali</TableCell>
                           <TableCell>Exbon PC</TableCell>
                           <TableCell>
                             Work with PIC to review a RFI Draft
@@ -358,7 +357,6 @@ const Day8_2 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell>Don Trump</TableCell>
                           <TableCell>Owner PM</TableCell>
                           <TableCell>owner.pm@exbon.com</TableCell>
                         </TableRow>
@@ -375,7 +373,6 @@ const Day8_2 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell>James Dean</TableCell>
                           <TableCell>Owner Inspector</TableCell>
                           <TableCell></TableCell>
                         </TableRow>

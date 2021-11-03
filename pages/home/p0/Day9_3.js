@@ -136,11 +136,11 @@ const Day9_3 = () => {
                     {row.name == "Exbon Team" && (
                       <TableRow>
                         <TableCell width="10%"></TableCell>
-                        <TableCell width="15%">Name</TableCell>
-                        <TableCell align="left" width="15%">
-                          Position
+                        <TableCell align="left" width="20%">
+                          Name
                         </TableCell>
-                        <TableCell align="left" width="60%">
+
+                        <TableCell align="left" width="70%">
                           Description
                         </TableCell>
                       </TableRow>
@@ -148,11 +148,11 @@ const Day9_3 = () => {
                     {row.name == "Client" && (
                       <TableRow>
                         <TableCell width="10%"></TableCell>
-                        <TableCell width="15%">Name</TableCell>
-                        <TableCell align="left" width="15%">
-                          Position
+                        <TableCell align="left" width="20%">
+                          Name
                         </TableCell>
-                        <TableCell align="left" width="60%">
+
+                        <TableCell align="left" width="70%">
                           Description
                         </TableCell>
                       </TableRow>
@@ -343,7 +343,6 @@ const Day9_3 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell>Susan Ali</TableCell>
                           <TableCell>Exbon PC</TableCell>
                           <TableCell>Work with PIC to review a CO</TableCell>
                         </TableRow>
@@ -363,7 +362,6 @@ const Day9_3 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell>Don Trump</TableCell>
                           <TableCell>Owner PM</TableCell>
                           <TableCell>
                             RFI response sent back to Contractor with Field
@@ -383,7 +381,6 @@ const Day9_3 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell>James Dean</TableCell>
                           <TableCell>Owner Inspector</TableCell>
                           <TableCell></TableCell>
                         </TableRow>

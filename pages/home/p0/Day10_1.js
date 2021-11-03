@@ -133,11 +133,10 @@ const Day10_1 = () => {
                     {row.name == "Exbon Team" && (
                       <TableRow>
                         <TableCell width="10%"></TableCell>
-                        <TableCell width="15%">Name</TableCell>
-                        <TableCell align="left" width="15%">
-                          Position
+                        <TableCell align="left" width="20%">
+                          Name
                         </TableCell>
-                        <TableCell align="left" width="60%">
+                        <TableCell align="left" width="70%">
                           Description
                         </TableCell>
                       </TableRow>
@@ -145,11 +144,10 @@ const Day10_1 = () => {
                     {row.name == "Client" && (
                       <TableRow>
                         <TableCell width="10%"></TableCell>
-                        <TableCell width="15%">Name</TableCell>
-                        <TableCell align="left" width="15%">
-                          Position
+                        <TableCell align="left" width="20%">
+                          Name
                         </TableCell>
-                        <TableCell align="left" width="60%">
+                        <TableCell align="left" width="70%">
                           Description
                         </TableCell>
                       </TableRow>
@@ -338,7 +336,6 @@ const Day10_1 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell>Susan Ali</TableCell>
                           <TableCell>Exbon PC</TableCell>
                           <TableCell>
                             Work with PIC to review a submod
@@ -360,7 +357,6 @@ const Day10_1 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell>Don Trump</TableCell>
                           <TableCell>Owner PM</TableCell>
                           <TableCell>
                             Looking for a formal Change Order Request to process
@@ -379,7 +375,6 @@ const Day10_1 = () => {
                               }}
                             />
                           </TableCell>
-                          <TableCell>James Dean</TableCell>
                           <TableCell>Owner Inspector</TableCell>
                           <TableCell></TableCell>
                         </TableRow>
