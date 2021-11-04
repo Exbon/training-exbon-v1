@@ -372,11 +372,12 @@ const start = () => {
           <ul
             style={{
               color: "#f7f3f0",
-              fontWeight: "500",
+              fontWeight: "400",
               fontSize: "1.1rem",
               textAlign: "left",
               alignSelf: "left",
               marginLeft: "40px",
+              marginRight: "10px",
             }}
           >
             <li>Make sure your Hammer is updated to the latest version.</li>
@@ -392,11 +393,12 @@ const start = () => {
             <ol
               style={{
                 color: "#f7f3f0",
-                fontWeight: "500",
+                fontWeight: "400",
                 fontSize: "1.1rem",
                 textAlign: "left",
                 alignSelf: "left",
                 marginLeft: "40px",
+                marginRight: "10px",
                 marginTop: "10px",
                 marginBottom: "10px",
               }}
