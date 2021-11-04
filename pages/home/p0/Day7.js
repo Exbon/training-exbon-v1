@@ -292,8 +292,7 @@ const Day7 = () => {
                               <img
                                 src={Subcontractor1}
                                 style={{
-                                  width: "40px",
-                                  height: "40px",
+                                  width: "100px",
                                   cursor: "pointer",
                                 }}
                               />
@@ -324,8 +323,7 @@ const Day7 = () => {
                               <img
                                 src={Subcontractor2}
                                 style={{
-                                  width: "40px",
-                                  height: "40px",
+                                  width: "100px",
                                   cursor: "pointer",
                                 }}
                               />
