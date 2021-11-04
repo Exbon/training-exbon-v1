@@ -314,7 +314,7 @@ const start = () => {
             borderRadius: "10px",
             display: "flex",
             borderLeft: "2px #7e7a7a",
-            // backgroundColor: "#5e5a5a",
+            backgroundColor: "#5e5a5a",
           }}
         >
           {/* <p
@@ -338,32 +338,100 @@ const start = () => {
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum
           </p> */}
-          {/* <p
+          <p
+            style={{
+              color: "#FFE4C4",
+              fontWeight: "500",
+              fontSize: "1.2rem",
+              textAlign: "left",
+              alignSelf: "left",
+              marginLeft: "10px",
+              marginRight: "10px",
+              marginTop: "10px",
+              marginBottom: "10px",
+            }}
+          >
+            - This training course should be performed on Hammer's TRAINING
+            server. DO NOT MODIFY ORIGINAL HAMMER PROJECTS.
+          </p>
+          <p
+            style={{
+              color: "#FFE4C4",
+              fontWeight: "500",
+              fontSize: "1.2rem",
+              textAlign: "left",
+              alignSelf: "left",
+              marginLeft: "10px",
+              marginRight: "10px",
+              marginTop: "10px",
+              marginBottom: "10px",
+            }}
+          >
+            - Training Hammer can be accessed by the following steps:
+          </p>
+          <ul
             style={{
               color: "#f7f3f0",
               fontWeight: "500",
               fontSize: "1.1rem",
-              textAlign: "center",
-              alignSelf: "center",
+              textAlign: "left",
+              alignSelf: "left",
+              marginLeft: "40px",
             }}
           >
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum
-          </p> */}
+            <li>Make sure your Hammer is updated to the latest version.</li>
+            <li>
+              In the login screen, select TRAINING as "Instance Name". You DO
+              NOT have to press Connect. Use same credentials as regular Hammer.
+            </li>
+            <li>
+              Only Project Management should be accessible. Inside Project
+              Management, only the following functions are currently
+              supported/tested:
+            </li>
+            <ol
+              style={{
+                color: "#f7f3f0",
+                fontWeight: "500",
+                fontSize: "1.1rem",
+                textAlign: "left",
+                alignSelf: "left",
+                marginLeft: "40px",
+                marginTop: "10px",
+                marginBottom: "10px",
+              }}
+            >
+              <li>Deficiency Log</li>
+              <li>RFI Log</li>
+              <li>Change Order Log</li>
+              <li>Sub Mod Log</li>
+            </ol>
+            <li>Do not use the other functions.</li>
+          </ul>
+
+          <p
+            style={{
+              color: "#FFE4C4",
+              fontWeight: "500",
+              fontSize: "1.2rem",
+              textAlign: "left",
+              alignSelf: "left",
+              marginLeft: "10px",
+              marginRight: "10px",
+              marginTop: "10px",
+              marginBottom: "10px",
+            }}
+          >
+            - You will be receiving emails throughout the training course. They
+            will be marked with [Training] in the title to avoid confusion.
+          </p>
           <Button
             variant="contained"
             color="primary"
             style={{
               alignSelf: "center",
               width: "40%",
-              marginBottom: "50px",
+              marginBottom: "30px",
               marginTop: "30px",
             }}
             onClick={() => handleEmail()}
