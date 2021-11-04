@@ -314,10 +314,10 @@ const start = () => {
             borderRadius: "10px",
             display: "flex",
             borderLeft: "2px #7e7a7a",
-            backgroundColor: "#5e5a5a",
+            // backgroundColor: "#5e5a5a",
           }}
         >
-          <p
+          {/* <p
             style={{
               color: "#f7f3f0",
               fontWeight: "500",
@@ -337,7 +337,7 @@ const start = () => {
             with the release of Letraset sheets containing Lorem Ipsum passages,
             and more recently with desktop publishing software like Aldus
             PageMaker including versions of Lorem Ipsum
-          </p>
+          </p> */}
           {/* <p
             style={{
               color: "#f7f3f0",
