@@ -895,7 +895,7 @@ const Day10_3 = () => {
                         }}
                       >
                         1003 . Open email from Subcontractor Conti - signed Sub
-                        Mod
+                        Mod.
                       </p>
                       <p
                         style={{
@@ -905,7 +905,7 @@ const Day10_3 = () => {
                         }}
                       >
                         1004 . Sub Mod Log : Upload the document and change
-                        status to "Approve by VP"
+                        status to "Approve by VP".
                       </p>
                       <p
                         style={{
@@ -914,7 +914,7 @@ const Day10_3 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1005 . Confirm your deficiency log is closed
+                        1005 . Confirm your deficiency log is closed.
                       </p>
                       <p
                         style={{
@@ -923,7 +923,7 @@ const Day10_3 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        1006 . Confirm your RFI Log is closed
+                        1006 . Confirm your RFI Log is closed.
                       </p>
                     </div>
                   </div>

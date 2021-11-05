@@ -907,7 +907,8 @@ const Day9_1 = () => {
                         }}
                       >
                         0902 . Upload Customer Response to RFI Log and complete
-                        the Wrike process
+                        the Wrike process. (Refer to CO 11 RFI Log in LMS
+                        Training)
                       </p>
                       <p
                         style={{
@@ -916,8 +917,10 @@ const Day9_1 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0903 . CO Log : Create a Change Order and Change Status
-                        to "Create a Proposal"
+                        0903 . CO Log : Generate Change Order Log in Hammer CO
+                        Log and Change Status to "Create a Proposal". Wrike Task
+                        can be accessed by clicking the "Wrike" button in Hammer
+                        CO Log.
                       </p>
                       <p
                         style={{
@@ -926,7 +929,7 @@ const Day9_1 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0904 . Upload FI in One Drive
+                        0904 . Upload FI in One Drive.
                       </p>
                     </div>
                   </div>

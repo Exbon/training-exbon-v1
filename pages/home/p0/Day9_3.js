@@ -805,7 +805,7 @@ const Day9_3 = () => {
                         }}
                       >
                         0903 . CO Log : Change Status to "Upload Acceptance
-                        Document"
+                        Document".
                       </p>
 
                       <p

@@ -947,7 +947,7 @@ const Day7 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0703 . Open email from Subcontractor T Wall
+                        0703 . Open email from Subcontractor T Wall.
                       </p>
                       <p
                         style={{
@@ -957,7 +957,7 @@ const Day7 = () => {
                         }}
                       >
                         0704 . Deficiency Log : Upload observed conflict and
-                        develop a plan
+                        develop a plan.
                       </p>
                       <p
                         style={{
@@ -967,7 +967,7 @@ const Day7 = () => {
                         }}
                       >
                         0705 . Change Wrike Status to "Review by PC" for PC
-                        review
+                        review.
                       </p>
                     </div>
                   </div>

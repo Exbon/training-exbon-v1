@@ -828,7 +828,8 @@ const Day10_1 = () => {
                         }}
                       >
                         1003 . Sub Mod Log : Upload a subcontractor proposal and
-                        change the status to "Decide by PIC"
+                        change the status to "Decide by PIC". (Refer to CO 16
+                        Subcontractor Modification in LMS training)
                       </p>
                       <p
                         style={{
@@ -838,7 +839,7 @@ const Day10_1 = () => {
                         }}
                       >
                         1004 . Sub Mod Log : Review a subcontractor proposal and
-                        change status to "Decide by PC"
+                        change status to "Decide by PC".
                       </p>
                     </div>
                   </div>

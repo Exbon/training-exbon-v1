@@ -833,7 +833,7 @@ const Day8_2 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0904 . Upload RFI in One Drive
+                        0904 . Upload RFI in One Drive.
                       </p>
                     </div>
                   </div>

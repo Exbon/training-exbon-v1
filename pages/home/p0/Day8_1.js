@@ -836,8 +836,9 @@ const Day8_1 = () => {
                           marginBottom: "30px",
                         }}
                       >
-                        0803 . RFI Log : Send a RFI to Owner to get a formal
-                        directive
+                        0803 . RFI Log : Generate RFI & Wrike Task in Hammer RFI
+                        Log. Wrike Task can be accessed by clicking the "Wrike"
+                        button in Hammer RFI Log.
                       </p>
                       <p
                         style={{
@@ -847,7 +848,8 @@ const Day8_1 = () => {
                         }}
                       >
                         0804 . Deficiency Log: Follow deficiency log procedure
-                        and close this deficiency
+                        and close this deficiency in Wrike. (Refer to CO 10
+                        Deficiency Log in LMS Training)
                       </p>
                     </div>
                   </div>
