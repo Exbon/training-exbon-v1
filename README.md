@@ -8,6 +8,8 @@
 
 ##### 2. Subcontractor emailed you a photo of existing light fixture.
 
+---
+
 - 0703 . Open email from Subcontractor T Wall.
 - 0704 . Deficiency Log : Upload observed conflict and develop a plan.
 - 0705 . Change Wrike Status to "Review by PC" for PC review.
