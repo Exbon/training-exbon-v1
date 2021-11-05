@@ -4,6 +4,10 @@
 
 ## Day7
 
+##### 1. During new wall layout,T-Wall Enterprise pointed out one existing light fixture is conflicting with new wall layout.
+
+##### 2. Subcontractor emailed you a photo of existing light fixture.
+
 - 0703 . Open email from Subcontractor T Wall.
 - 0704 . Deficiency Log : Upload observed conflict and develop a plan.
 - 0705 . Change Wrike Status to "Review by PC" for PC review.
