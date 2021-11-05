@@ -382,8 +382,8 @@ const start = () => {
           >
             <li>Make sure your Hammer is updated to the latest version.</li>
             <li>
-              In the login screen, select TRAINING as "Instance Name". You DO
-              NOT have to press Connect. Use same credentials as regular Hammer.
+              In the login screen, select TRAINING as "Server". Use same
+              credentials as regular Hammer.
             </li>
             <li>
               Only Project Management should be accessible. Inside Project
@@ -407,8 +407,13 @@ const start = () => {
               <li>RFI Log</li>
               <li>Change Order Log</li>
               <li>Sub Mod Log</li>
+              <li>OneDrive</li>
             </ol>
             <li>Do not use the other functions.</li>
+            <li>
+              You may get a message about "Invalid object name 'Contractor'"
+              when accessing Project Management. Please ignore this error.
+            </li>
           </ul>
 
           <p
