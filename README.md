@@ -4,6 +4,10 @@
 
 ## Day7
 
+0703 . Open email from Subcontractor T Wall.
+0704 . Deficiency Log : Upload observed conflict and develop a plan.
+0705 . Change Wrike Status to "Review by PC" for PC review.
+
 1. Check training-progress
 2. Check Deficiency Log
 3. Check Deficiency Log's status (Review by PC)
