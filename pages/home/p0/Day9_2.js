@@ -517,10 +517,10 @@ const Day9_2 = () => {
               setStatus(prevState => ({
                 ...prevState,
                 cookies: {
-                  username: 0,
-                  password: 0,
-                  fullname: 0,
-                  employeeid: 0,
+                  username: 1,
+                  password: 1,
+                  fullname: 1,
+                  employeeid: 1,
                 },
               }));
               alert("Login Failed.");
